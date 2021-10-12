@@ -19,7 +19,31 @@
 				"command": "mind-reader.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"configuration":{
+			"title": "Mind_Reader",
+			"properties": {
+				"mindReader.productType":{
+					"type":"string",
+					"default": "MINDSTORMS® EV3",
+    				"enum": ["MINDSTORMS® EV3", "SPIKE™ Prime"],
+  					"enumDescriptions": [
+    						"LEGO® MINDSTORMS® EV3 (31313)",
+ 						     "LEGO® Education SPIKE™ Prime Set (45678)"
+  					]
+				},
+				"mindReader.screenReader":{
+					"type":"string",
+					"default": "NVDA",
+    				"enum": ["NVDA", "JAWS", "VoiceOver"],
+  					"enumDescriptions": [
+    						"NonVisual Desktop Access",
+ 						     "Job Access With Speech",
+							  "Voice Over"
+  					]
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
