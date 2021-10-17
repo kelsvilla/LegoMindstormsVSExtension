@@ -18,6 +18,30 @@
 			{
 				"command": "mind-reader.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "mind-reader.increaseFontScale",
+				"title": "Increase Font Scale"
+			},
+			{
+				"command": "mind-reader.decreaseFontScale",
+				"title": "Decrease Font Scale"
+			},
+			{
+				"command": "mind-reader.resetFontScale",
+				"title": "Reset Font Scale"
+			},
+			{
+				"command": "mind-reader.increaseEditorScale",
+				"title": "Increase Editor Scale"
+			},
+			{
+				"command": "mind-reader.decreaseEditorScale",
+				"title": "Decrease Editor Scale"
+			},
+			{
+				"command": "mind-reader.resetEditorScale",
+				"title": "Reset Editor Scale"
 			}
 		]
 	},
@@ -40,9 +64,7 @@
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
 		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2"
-	},
-	"dependencies": {
+		"vscode-test": "^1.5.2",
 		"@vscode/test-electron": "^1.6.2"
 	}
 }
