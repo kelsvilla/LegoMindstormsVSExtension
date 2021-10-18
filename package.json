@@ -43,7 +43,42 @@
 				"command": "mind-reader.resetEditorScale",
 				"title": "Reset Editor Scale"
 			}
-		]
+		],
+		"configuration":{
+			"title": "Mind_Reader",
+			"properties": {
+				"mindreader.productType": {
+					"type":"string",
+					"description": "Specifies the LEGO® product.",
+					"default": "MINDSTORMS® EV3",
+					"enum": ["MINDSTORMS® EV3", "SPIKE™ Prime"],
+					"enumDescriptions": [
+						"LEGO® MINDSTORMS® EV3 (31313)",
+						"LEGO® Education SPIKE™ Prime Set (45678)"
+					]
+				},
+				"mindreader.screenReader": {
+					"type": "string",
+					"description": "Specifies which screen reader to optimize for.",
+					"default": "NVDA",
+					"enum": ["NVDA", "Orca", "VoiceOver"],
+					"enumDescriptions": [
+						"NonVisual Desktop Access (Windows)",
+						"Orca (Linux)",
+						"Apple VoiceOver (macOS)"
+					]
+				},
+				"mindreader.connection.connectAutomatically": {
+					"type": "boolean",
+					"description": "Specifies whether to try to automatically detect and communicate with a connected Hub.",
+					"default": "true"
+				},
+				"mindreader.connection.portPath": {
+					"type": "string",
+					"markdownDescription": "Specifies the serial port path to use if `#mindreader.connectAutomatically#` is not set."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
