@@ -42,6 +42,10 @@
 			{
 				"command": "mind-reader.resetEditorScale",
 				"title": "Reset Editor Scale"
+			},
+			{
+				"command": "mind-reader.selectTheme",
+				"title": "Select Theme"
 			}
 		],
 
@@ -83,7 +87,12 @@
                     "command": "mind-reader.resetEditorScale",
                     "group": "mind-reader",
                     "when": "activeEditor"
-                }
+                },
+				{
+					"command": "mind-reader.selectTheme",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				}
 			]
 		},
 
