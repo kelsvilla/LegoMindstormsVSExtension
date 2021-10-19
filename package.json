@@ -44,6 +44,57 @@
 				"title": "Reset Editor Scale"
 			}
 		],
+
+		"menus": {
+			"editor/context": [
+				{
+					"submenu": "mind-reader.editor.context",
+					"group": "Accessibility",
+					"when": "activeEditor"
+				}
+			],
+
+			"mind-reader.editor.context": [
+                {
+                    "command": "mind-reader.increaseEditorScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                },
+                {
+                    "command": "mind-reader.decreaseFontScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                },
+                {
+                    "command": "mind-reader.resetFontScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                },
+                {
+                    "command": "mind-reader.increaseEditorScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                },
+				{
+                    "command": "mind-reader.decreaseEditorScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                },
+				{
+                    "command": "mind-reader.resetEditorScale",
+                    "group": "mind-reader",
+                    "when": "editorActive"
+                }
+			]
+		},
+
+		"submenus": [
+            {
+                "id": "mind-reader.editor.context",
+                "label": "Mind_Reader"
+            }
+		],
+
 		"configuration":{
 			"title": "Mind_Reader",
 			"properties": {
