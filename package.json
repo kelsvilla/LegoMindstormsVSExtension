@@ -49,50 +49,49 @@
 			"editor/context": [
 				{
 					"submenu": "mind-reader.editor.context",
-					"group": "Accessibility",
-					"when": "activeEditor"
+					"group": "mind-reader"
 				}
 			],
 
 			"mind-reader.editor.context": [
-                {
+				{
                     "command": "mind-reader.increaseEditorScale",
                     "group": "mind-reader",
-                    "when": "editorActive"
+                    "when": "activeEditor"
                 },
                 {
                     "command": "mind-reader.decreaseFontScale",
-                    "group": "mind-reader",
-                    "when": "editorActive"
+					"group": "mind-reader",
+                    "when": "activeEditor"
                 },
                 {
                     "command": "mind-reader.resetFontScale",
                     "group": "mind-reader",
-                    "when": "editorActive"
+                    "when": "activeEditor"
                 },
                 {
                     "command": "mind-reader.increaseEditorScale",
                     "group": "mind-reader",
-                    "when": "editorActive"
+                    "when": "activeEditor"
                 },
 				{
                     "command": "mind-reader.decreaseEditorScale",
                     "group": "mind-reader",
-                    "when": "editorActive"
+                    "when": "activeEditor"
                 },
 				{
                     "command": "mind-reader.resetEditorScale",
                     "group": "mind-reader",
-                    "when": "editorActive"
+                    "when": "activeEditor"
                 }
 			]
 		},
 
 		"submenus": [
-            {
-                "id": "mind-reader.editor.context",
-                "label": "Mind_Reader"
-            }
+			{
+				"id": "mind-reader.editor.context",
+				"label": "Mind_Reader"
+			}
 		],
 
 		"configuration":{
