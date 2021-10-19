@@ -45,6 +45,13 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.commands.executeCommand('workbench.action.zoomReset');
     })
   );
+
+  // Select Theme
+  context.subscriptions.push(
+    vscode.commands.registerCommand('mind-reader.selectTheme', () => {
+      vscode.commands.executeCommand('workbench.action.selectTheme');
+    })
+  );
 }
 
 export function deactivate() {}
