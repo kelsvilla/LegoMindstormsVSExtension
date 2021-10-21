@@ -48,7 +48,36 @@
 				"title": "Select Theme"
 			}
 		],
+        "keybindings": [
+            {
+              "command": "mind-reader.decreaseFontScale",
+              "key": "numpad_subtract",
+              "mac": ""
+            },
 
+            {
+                "command": "mind-reader.increaseFontScale",
+                "key": "numpad_add",
+                "mac": ""
+            },
+
+            {
+                "command": "mind-reader.increaseEditorScale",
+                "key": "shift+numpad_add"
+            },
+
+            {
+                "command": "mind-reader.decreaseEditorScale",
+                "key": "shift+numpad_subtract",
+                "mac": ""
+            },
+
+            {
+                "command": "mind-reader.resetEditorScale",
+                "key": "shift+enter",
+                "mac": ""
+            }
+          ],
 		"menus": {
 			"editor/context": [
 				{
@@ -56,38 +85,37 @@
 					"group": "mind-reader"
 				}
 			],
-
 			"mind-reader.editor.context": [
 				{
-                    "command": "mind-reader.increaseEditorScale",
-                    "group": "mind-reader",
-                    "when": "activeEditor"
-                },
-                {
-                    "command": "mind-reader.decreaseFontScale",
+					"command": "mind-reader.increaseEditorScale",
 					"group": "mind-reader",
-                    "when": "activeEditor"
-                },
-                {
-                    "command": "mind-reader.resetFontScale",
-                    "group": "mind-reader",
-                    "when": "activeEditor"
-                },
-                {
-                    "command": "mind-reader.increaseEditorScale",
-                    "group": "mind-reader",
-                    "when": "activeEditor"
-                },
+					"when": "activeEditor"
+				},
 				{
-                    "command": "mind-reader.decreaseEditorScale",
-                    "group": "mind-reader",
-                    "when": "activeEditor"
-                },
+					"command": "mind-reader.decreaseFontScale",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
 				{
-                    "command": "mind-reader.resetEditorScale",
-                    "group": "mind-reader",
-                    "when": "activeEditor"
-                },
+					"command": "mind-reader.resetFontScale",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.increaseEditorScale",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.decreaseEditorScale",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.resetEditorScale",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
 				{
 					"command": "mind-reader.selectTheme",
 					"group": "mind-reader",
@@ -95,22 +123,23 @@
 				}
 			]
 		},
-
 		"submenus": [
 			{
 				"id": "mind-reader.editor.context",
 				"label": "Mind_Reader"
 			}
 		],
-
-		"configuration":{
+		"configuration": {
 			"title": "Mind_Reader",
 			"properties": {
 				"mindreader.productType": {
-					"type":"string",
+					"type": "string",
 					"description": "Specifies the LEGO® product.",
 					"default": "MINDSTORMS® EV3",
-					"enum": ["MINDSTORMS® EV3", "SPIKE™ Prime"],
+					"enum": [
+						"MINDSTORMS® EV3",
+						"SPIKE™ Prime"
+					],
 					"enumDescriptions": [
 						"LEGO® MINDSTORMS® EV3 (31313)",
 						"LEGO® Education SPIKE™ Prime Set (45678)"
@@ -120,7 +149,11 @@
 					"type": "string",
 					"description": "Specifies which screen reader to optimize for.",
 					"default": "NVDA",
-					"enum": ["NVDA", "Orca", "VoiceOver"],
+					"enum": [
+						"NVDA",
+						"Orca",
+						"VoiceOver"
+					],
 					"enumDescriptions": [
 						"NonVisual Desktop Access (Windows)",
 						"Orca (Linux)",
