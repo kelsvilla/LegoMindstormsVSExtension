@@ -1,8 +1,13 @@
 import * as vscode from 'vscode';
+import * as pl from './pylex';
+
+let parser: pl.Parser = new pl.Parser();
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "mind-reader" is now active!');
   vscode.window.showInformationMessage('Mind_Reader is loaded!');
+
+  parser.parse('Beep Boop');
 
   // Increase Font Scale
   context.subscriptions.push(
