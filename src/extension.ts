@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
+
 import * as pl from './pylex';
+import commands from './commands';
 
 let parser: pl.Parser = new pl.Parser();
 
@@ -9,54 +11,14 @@ export function activate(context: vscode.ExtensionContext) {
 
   parser.parse('Beep Boop');
 
-  // Increase Font Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.increaseFontScale', () => {
-      vscode.commands.executeCommand('editor.action.fontZoomIn');
-    })
-  );
-
-  // Decrease Font Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.decreaseFontScale', () => {
-      vscode.commands.executeCommand('editor.action.fontZoomOut');
-    })
-  );
-
-  // Reset Font Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.resetFontScale', () => {
-      vscode.commands.executeCommand('editor.action.fontZoomReset');
-    })
-  );
-
-  // Increase Editor Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.increaseEditorScale', () => {
-      vscode.commands.executeCommand('workbench.action.zoomIn');
-    })
-  );
-
-  // Decrease Editor Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.decreaseEditorScale', () => {
-      vscode.commands.executeCommand('workbench.action.zoomOut');
-    })
-  );
-
-  // Reset Editor Scale
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.resetEditorScale', () => {
-      vscode.commands.executeCommand('workbench.action.zoomReset');
-    })
-  );
-
-  // Select Theme
-  context.subscriptions.push(
-    vscode.commands.registerCommand('mind-reader.selectTheme', () => {
-      vscode.commands.executeCommand('workbench.action.selectTheme');
-    })
-  );
+  // Register Commands
+  commands.forEach(command => {
+    let disposable = vscode.commands.registerCommand(
+      command.name,
+      command.callback
+    );
+    context.subscriptions.push(disposable);
+  });
 }
 
 export function deactivate() {}
