@@ -46,7 +46,13 @@
 			{
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
+			},
+
+			{
+				"command": "mind-reader.runLineContext",
+				"title": "Run Line Context"
 			}
+
 		],
         "keybindings": [
             {

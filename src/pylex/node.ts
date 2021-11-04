@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 
 import LineToken from './token';
 
+/* TODO: make accessing children and parent less tedious */
+/* TODO: 'root.children()![i])' */
 /**
  * A node in a Parse tree.
  */
