@@ -124,8 +124,8 @@ function createContextString(context: pl.LexNode[], line: number): string {
         continue;
       }
 
-      if (node.token!.type != pl.PylexSymbol.EMPTY &&
-        node.token!.type != pl.PylexSymbol.INDENT) {
+      if (node.token!.type !== pl.PylexSymbol.EMPTY &&
+        node.token!.type !== pl.PylexSymbol.INDENT) {
         contextString += ' inside ' + node.token!.type.toString();
         if (node.token!.attr) {
           contextString += ' ' + node.token!.attr.toString();

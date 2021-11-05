@@ -17,13 +17,18 @@ suite('Lexer Test Suite', () => {
   });
 
   test('Undefined', () => {
-    let l: Lexer = new Lexer('');
+    let l: Lexer = new Lexer(undefined);
     assert.deepStrictEqual(l.currToken(), EOFTOKEN);
   });
 
   test('Whitespace', () => {
     let l: Lexer = new Lexer('  \t\t'.repeat(4).repeat(4));
-    assert.deepStrictEqual(l.currToken(), EOFTOKEN);
+    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.EMPTY, 0, 999999));
+  });
+
+  test('Comment', () => {
+    let l: Lexer = new Lexer('# ur mom eats toes');
+    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.EMPTY, 0, 999999));
   });
 
   test('Non-Whitespace with no construct', () => {
@@ -118,98 +123,6 @@ suite('Lexer Test Suite', () => {
     let l: Lexer = new Lexer('with open(file as f:');
     l.restart('if is_old():');
     assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.IF, 0, 0, 'is_old()'));
-  });
-
-  test('next() ignores empty lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      '',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    l.next();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.INDENT, 2, 1));
-  });
-
-  test('retract() ignores empty lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      '',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    l.next();
-
-    l.retract();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.IF, 0, 0, 'wurst_available()'));
-  });
-
-  test('next() ignores whitespace lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      ' \t \t   ',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    l.next();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.INDENT, 2, 1));
-  });
-
-  test('retract() ignores whitespace lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      ' \t  \t   ',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    // Advance to end of input
-    // Eliminates dependence on next()
-    // skipping whitespace
-    do {} while (l.next() !== EOFTOKEN);
-
-    l.retract(); // retract past EOFTOKEn
-    l.retract();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.IF, 0, 0, 'wurst_available()'));
-  });
-
-  test('next() ignores comment lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      ' \t # I hate testing \t',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    l.next();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.INDENT, 2, 1));
-  });
-
-  test('retract() ignores comment lines', () => {
-    let lines: string[] = [
-      'if wurst_available():',
-      ' \t # \t',
-      '    eat_wurst()'
-    ];
-    let l: Lexer = new Lexer(lines.join('\n'));
-
-    // Advance to end of input
-    // Eliminates dependence on next()
-    // skipping comment
-    do {} while (l.next() !== EOFTOKEN);
-
-    l.retract(); // retract past EOFTOKEn
-    l.retract();
-
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.IF, 0, 0, 'wurst_available()'));
   });
 
   test('next() out of range', () => {

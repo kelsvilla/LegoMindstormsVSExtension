@@ -48,8 +48,9 @@ export default class LexNode extends vscode.TreeItem {
    * Adopt child nodes.
    *
    * @param `child` Array of nodes to adopt.
+   * @returns an updated version of itself
    */
-  adopt(children: LexNode[]): void {
+  adopt(children: LexNode[]): LexNode {
     let parentedChildren = children.map(c => new LexNode(
       c.label,
       c.collapsibleState,
@@ -66,6 +67,7 @@ export default class LexNode extends vscode.TreeItem {
       // No....
       this._children = parentedChildren;
     }
+    return this;
   }
 
   /**

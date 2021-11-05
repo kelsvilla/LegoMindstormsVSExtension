@@ -120,7 +120,7 @@ export default class Parser {
    */
   context(lineNumber: number, root?: LexNode): LexNode[] {
     if (!root) {
-      root = this.root
+      root = this.root;
     }
 
     // is this the target?
