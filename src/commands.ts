@@ -48,6 +48,67 @@ const commands: Command[] = [
     name: 'mind-reader.resetEditorScale',
     callback: resetEditorScale,
   },
+
+  //Navigation Keys......
+  {
+    name: 'mind-reader.showAllSymboles',
+    callback: () => vscode.commands.executeCommand('workbench.action.showAllSymbols'),
+  },
+
+  {
+    name: 'mind-reader.gotoLine',
+    callback: () => vscode.commands.executeCommand('workbench.action.gotoLine'),
+  },
+
+  {
+    name: 'mind-reader.quickOpen',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickOpen'),
+  },
+
+  {
+    name: 'mind-reader.gotoSymbol',
+    callback: () => vscode.commands.executeCommand('workbench.action.gotoSymbol'),
+  },
+
+  {
+    name: 'mind-reader.showProblems',
+    callback: () => vscode.commands.executeCommand('workbench.actions.view.problems'),
+  },
+
+  {
+    name: 'mind-reader.nextInFiles',
+    callback: () => vscode.commands.executeCommand('editor.action.marker.nextInFiles'),
+  },
+
+  {
+    name: 'mind-reader.prevInFiles',
+    callback: () => vscode.commands.executeCommand('editor.action.marker.prevInFiles'),
+  },
+
+  {
+    name: 'mind-reader.showCommands',
+    callback: () => vscode.commands.executeCommand('workbench.action.showCommands'),
+  },
+
+  {
+    name: 'mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup'),
+  },
+
+  {
+    name: 'mind-reader.navigateBack',
+    callback: () => vscode.commands.executeCommand('workbench.action.navigateBack'),
+  },
+
+  {
+    name: 'mind-reader.getuickInputBack',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickInputBack'),
+  },
+
+  {
+    name: 'mind-reader.navigateForward',
+    callback: () => vscode.commands.executeCommand('workbench.action.navigateForward'),
+  }
 ];
 
 // COMMAND CALLBACK IMPLEMENTATIONS

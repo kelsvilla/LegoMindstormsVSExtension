@@ -76,8 +76,75 @@
                 "command": "mind-reader.resetEditorScale",
                 "key": "shift+enter",
                 "mac": ""
-            }
-          ],
+            },
+
+			{
+				"command": "mind-reader.showAllSymboles",
+				"key": "Ctrl+T",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.gotoLine",
+				"key": "CTRL+G",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.quickOpen",
+				"key": "CTRL+P",
+				"mac": ""
+			},			
+
+			{
+				"command": "mind-reader.gotoSymbol",
+				"key": "Ctrl+Shift+O",
+				"mac": ""
+			},
+			
+			{
+				"command": "mind-reader.showProblems",
+				"key": "Ctrl+Shift+M",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.nextInFiles",
+				"key": "F8",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.prevInFiles",
+				"key": "Shift+F8",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
+				"key": "Ctrl+Tab",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.navigateBack",
+				"key": "Ctrl+Alt+-",
+				"mac": ""
+			},
+		
+			{
+				"command": "mind-reader.getuickInputBack",
+				"key": "Ctrl+Alt+-",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.navigateForward",
+				"key": "Ctrl+Shift+-",
+				"mac": ""
+			}
+			
+        ],
 		"menus": {
 			"editor/context": [
 				{
