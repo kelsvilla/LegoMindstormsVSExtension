@@ -48,6 +48,11 @@ const commands: Command[] = [
     name: 'mind-reader.resetEditorScale',
     callback: resetEditorScale,
   },
+
+  {
+    name: 'mind-reader.openWebview',
+    callback: openWebview,
+  }
 ];
 
 // COMMAND CALLBACK IMPLEMENTATIONS
@@ -74,6 +79,16 @@ function decreaseEditorScale(): void {
 
 function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
+}
+
+function openWebview(): void {
+  //vscode.commands.executeCommand('workbench.action.zoomOut');
+  vscode.window.createWebviewPanel(
+    'catCoding', // Identifies the type of the webview. Used internally
+    'Cat Coding', // Title of the panel displayed to the user
+    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+    {}
+  ); // Webview options. More on these later.
 }
 
 export default commands;

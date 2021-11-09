@@ -18,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
       command.callback
     );
     context.subscriptions.push(disposable);
+    console.log(command.name);
   });
 }
 

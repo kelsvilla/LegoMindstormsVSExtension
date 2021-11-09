@@ -46,6 +46,10 @@
 			{
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
+			},
+			{
+				"command": "mind-reader.openWebview",
+				"title": "Mind Reader Webview"
 			}
 		],
         "keybindings": [
@@ -118,6 +122,11 @@
 				},
 				{
 					"command": "mind-reader.selectTheme",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openWebview",
 					"group": "mind-reader",
 					"when": "activeEditor"
 				}
