@@ -117,6 +117,10 @@ const commands: Command[] = [
   {
     name: 'mind-reader.runCursorContext',
     callback: runCursorContext
+  },
+  {
+    name: 'mind-reader.getIndent',
+    callback: getIndent
   }
 ];
 
@@ -144,6 +148,34 @@ function decreaseEditorScale(): void {
 
 function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
+}
+
+function getIndent(): void {
+  let editor = vscode.window.activeTextEditor;
+  if(editor) 
+  {
+    let tabSize = editor.options.tabSize;
+    let editorText = editor?.document.getText();
+    let lineNum = editor.selection.active.line + 1;
+    let textLine = editor.document.lineAt(lineNum - 1);
+    let i = 0;
+    if(textLine.isEmptyOrWhitespace)
+    {
+      vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty")
+    }
+    else
+    {
+      while(textLine.text[i] == '\t')
+      {
+        i++;
+      }
+      vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString())
+    }
+  }
+  else{
+    vscode.window.showErrorMessage('No document currently active')
+  }
+
 }
 
 function runLineContext(): void {

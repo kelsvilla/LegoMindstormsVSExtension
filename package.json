@@ -56,6 +56,10 @@
 			{
 				"command": "mind-reader.runCursorContext",
 				"title": "Run Cursor Context"
+			},
+			{
+				"command": "mind-reader.getIndent",
+				"title": "Get Line Indentation"
 			}
 
 		],
@@ -153,8 +157,19 @@
 				"command": "mind-reader.navigateForward",
 				"key": "Ctrl+Shift+-",
 				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.selectTheme",
+				"key": "Ctrl+Shift+1",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.getIndent",
+				"key": "Shift+Tab",
+				"mac": ""
 			}
-			
         ],
 		"menus": {
 			"editor/context": [
