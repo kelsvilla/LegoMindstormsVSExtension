@@ -186,7 +186,26 @@
 					"markdownDescription": "Specifies the serial port path to use if `#mindreader.connectAutomatically#` is not set."
 				}
 			}
-		}
+		},
+    "views": {
+      "accessActions": [
+        {
+          "id": "accessActions",
+          "name": "Access Actions",
+          "icon": "media/dep.svg",
+          "contextualTitle": "Accessibility Menu Actions"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "accessActions",
+          "title": "Access Actions",
+          "icon": "media/dep.svg"
+        }
+      ]
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
