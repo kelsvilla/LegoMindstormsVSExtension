@@ -8,7 +8,7 @@ class AccessAction extends vscode.TreeItem {
     public readonly label: string,
     public readonly command: vscode.Command
   ) {
-    super(label, vscode.TreeItemCollapsibleState.None)
+    super(label, vscode.TreeItemCollapsibleState.None);
   }
 };
 
