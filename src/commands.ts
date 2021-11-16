@@ -154,8 +154,6 @@ function getIndent(): void {
   let editor = vscode.window.activeTextEditor;
   if(editor) 
   {
-    let tabSize = editor.options.tabSize;
-    let editorText = editor?.document.getText();
     let lineNum = editor.selection.active.line + 1;
     let textLine = editor.document.lineAt(lineNum - 1);
     let i = 0;
