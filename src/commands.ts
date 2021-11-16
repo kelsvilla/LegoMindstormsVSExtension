@@ -159,19 +159,19 @@ function getIndent(): void {
     let i = 0;
     if(textLine.isEmptyOrWhitespace)
     {
-      vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty")
+      vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
     }
     else
     {
-      while(textLine.text[i] == '\t')
+      while(textLine.text[i] === '\t')
       {
         i++;
       }
-      vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString())
+      vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString());
     }
   }
   else{
-    vscode.window.showErrorMessage('No document currently active')
+    vscode.window.showErrorMessage('No document currently active');
   }
 
 }
