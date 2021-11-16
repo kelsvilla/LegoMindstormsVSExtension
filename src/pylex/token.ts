@@ -17,6 +17,7 @@ export enum Symbol {
   FINALLY = "finally",
   WITH = "with",
   INDENT = "INDENT", // Indent token, default if not EOF, only contains indent information
+  EMPTY = "EMPTY", // empty line, used only to associate with the previous line
   EOF = "EOF"
 }
 

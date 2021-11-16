@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-
-import LexNode from '../pylex/node';
+import { LineToken, PylexSymbol, LexNode} from '../pylex';
 
 /**
  * TODO: Eliminate need for me.
@@ -50,8 +49,20 @@ function root(nodes: LexNode[] | null): LexNode {
   );
 }
 
+/* short hand for returning an indentation token for a certain line and indentation */
+function indent(linenr: number, indentLevel: number): LexNode {
+  return new LexNode('INDENT', 0, new LineToken(PylexSymbol.INDENT, linenr, indentLevel));
+}
+
+/* short hand for returning an empty token for a certain line*/
+function empty(linenr: number): LexNode {
+  return new LexNode('EMPTY', 0, new LineToken(PylexSymbol.EMPTY, linenr, 999999));
+}
+
 
 export {
   deparent,
   root,
+  indent,
+  empty
 };
