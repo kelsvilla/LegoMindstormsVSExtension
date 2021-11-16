@@ -51,7 +51,7 @@ const commands: Command[] = [
 
   //Navigation Keys......
   {
-    name: 'mind-reader.showAllSymboles',
+    name: 'mind-reader.showAllSymbols',
     callback: () => vscode.commands.executeCommand('workbench.action.showAllSymbols'),
   },
 
