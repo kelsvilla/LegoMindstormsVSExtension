@@ -152,7 +152,7 @@ function resetEditorScale(): void {
 
 function getIndent(): void {
   let editor = vscode.window.activeTextEditor;
-  if(editor) 
+  if(editor)
   {
     let lineNum = editor.selection.active.line + 1;
     let textLine = editor.document.lineAt(lineNum - 1);
@@ -178,7 +178,7 @@ function getIndent(): void {
 
 function runLineContext(): void {
   let editor = vscode.window.activeTextEditor;
-  if (editor) {
+  if (editor){
     // current text and line number
     let editorText = editor.document.getText();
     let line = editor.selection.active.line;
