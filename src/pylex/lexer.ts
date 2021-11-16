@@ -159,14 +159,15 @@ export default class Lexer {
       }
       // No rules matched
 
-      // Skip this line if it is whitespace, comment, or empty
+      // TODO: move to rules
       if (/^\s*(#.*)?$/.test(line)) {
-        this.pos++;
-        continue;
+        // "empty" line
+        token = new LineToken(Symbol.EMPTY, this.pos, 999999);
+      } else {
+        // This is an INDENT token
+        token = new LineToken(Symbol.INDENT, this.pos, indent);
       }
 
-      // This is an INDENT token
-      token = new LineToken(Symbol.INDENT, this.pos, indent);
       this._currToken = token;
       this.pos++;
       return this.currToken();

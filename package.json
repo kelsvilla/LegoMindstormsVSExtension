@@ -46,7 +46,18 @@
 			{
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
+			},
+
+			{
+				"command": "mind-reader.runLineContext",
+				"title": "Run Line Context"
+			},
+
+			{
+				"command": "mind-reader.runCursorContext",
+				"title": "Run Cursor Context"
 			}
+
 		],
         "keybindings": [
             {
@@ -145,7 +156,7 @@
 						"LEGO® Education SPIKE™ Prime Set (45678)"
 					]
 				},
-				"mindreader.screenReader": {
+				"mindreader.reader.screenReader": {
 					"type": "string",
 					"description": "Specifies which screen reader to optimize for.",
 					"default": "NVDA",
@@ -159,6 +170,11 @@
 						"Orca (Linux)",
 						"Apple VoiceOver (macOS)"
 					]
+				},
+				"mindreader.reader.contextWindow": {
+					"type": "number",
+					"description": "The number of words around the cursor to use when reading the cursor context",
+					"default": 1
 				},
 				"mindreader.connection.connectAutomatically": {
 					"type": "boolean",
