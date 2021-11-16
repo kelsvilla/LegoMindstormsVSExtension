@@ -79,7 +79,7 @@
             },
 
 			{
-				"command": "mind-reader.showAllSymboles",
+				"command": "mind-reader.showAllSymbols",
 				"key": "Ctrl+T",
 				"mac": ""
 			},
