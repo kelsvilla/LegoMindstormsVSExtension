@@ -156,17 +156,18 @@ function getIndent(): void {
   {
     let lineNum = editor.selection.active.line + 1;
     let textLine = editor.document.lineAt(lineNum - 1);
-    let i = 0;
     if(textLine.isEmptyOrWhitespace)
     {
       vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
     }
     else
     {
-      while(textLine.text[i] === '\t')
-      {
-        i++;
-      }
+      // Grab tab format from open document
+      let tabFmt = {
+        size: editor.options.tabSize as number,
+        hard: !editor.options.insertSpaces
+      };
+      let i = pl.Lexer.getIndent(textLine.text, tabFmt);
       vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString());
     }
   }
