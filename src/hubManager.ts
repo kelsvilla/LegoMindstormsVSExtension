@@ -150,14 +150,18 @@ export default class HubManager {
   }
 
   /**
-   * Send an RPC message and get the corresponding response.
+   * Send an RPC message. The corresponding Promise resolve
+   * is saved into the `pendingRequests` map. When an inbound
+   * message is found that matches an ID in `pendingRequests`,
+   * the corresponding resolve is called. So, even though
+   * the `resolve` call does not appear explicitly here, it *does*
+   * get resolved at the appropriate time.
    *
    * @param `proc` Procedure to execute
    * @param `params` Optional parameters for the procedure
    * @param `id` The ID to use for the RPC message. Use null to indicate no ID/notification message.
    *             If neither a string or `null` is passed, an ID is automatically generated.
    */
-  // TODO: make send take a single RPCRequest argument, made inline in each function
   public async send(request: RPCRequest): Promise<RPCResponse> {
     return new Promise((resolve, reject) => {
       if (request['i'] === undefined) {
