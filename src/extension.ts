@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as pl from './pylex';
 
-import commands from './commands';
+import { accessCommands, hubCommands, navCommands } from './commands';
 
 import CommandNodeProvider from './commandNodeProvider';
 import Logger from './log';
@@ -18,8 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   parser.parse('Beep Boop');
 
+  let allCommands = accessCommands.concat(hubCommands).concat(navCommands);
+
   // Register Commands
-  commands.forEach(command => {
+  allCommands.forEach(command => {
     let disposable = vscode.commands.registerCommand(
       command.name,
       command.callback
@@ -27,37 +29,11 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
   });
 
-  // list of all commands to present in the access pane
-  const accessActions: string[] = [
-    'increaseFontScale',
-    'decreaseFontScale',
-    'resetFontScale',
-
-    'increaseEditorScale',
-    'decreaseEditorScale',
-    'resetEditorScale',
-
-    'selectTheme',
-
-    'runLineContext',
-    'runCursorContext',
-  ];
-
-  let accessProvider = new CommandNodeProvider(accessActions);
+  let accessProvider = new CommandNodeProvider(accessCommands);
   vscode.window.registerTreeDataProvider('accessActions', accessProvider);
-
-
-  // list of all commands to present in the hub pane
-  const hubCommands: string[] = [
-    'connectHub',
-    'diconnectHub',
-    'uploadCurrentFile',
-    'runProgram',
-    'stopExecution',
-    'deleteProgram',
-  ];
 
   let hubProvider = new CommandNodeProvider(hubCommands);
   vscode.window.registerTreeDataProvider('hubActions', hubProvider);
+}
 
 export function deactivate() {}

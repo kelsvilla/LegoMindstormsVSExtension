@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 
+import { CommandEntry } from './commands';
+
 export class CommandItem extends vscode.TreeItem {
   constructor(
     public readonly label: string,
@@ -12,19 +14,19 @@ export class CommandItem extends vscode.TreeItem {
 export default class CommandNodeProvider implements vscode.TreeDataProvider<CommandItem> {
   private items: CommandItem[] = [];
 
-  public constructor(commands: string[]) {
+  public constructor(commands: CommandEntry[]) {
     // build and cache command items
     for (const c of commands) {
-      console.log(commands.length);
+      let humanReadable = c.name.replace(/^mind-reader\./, ''); // strip extensions name
       // Convert camelCaseText to Title Case Text
-      let humanReadable = c.replace(/([A-Z])/g, ' $1');
+      humanReadable = humanReadable.replace(/([A-Z])/g, ' $1');
       humanReadable = humanReadable.charAt(0).toUpperCase() + humanReadable.slice(1);
 
       this.items.push(new CommandItem(
         humanReadable,
         {
           title: humanReadable,
-          command: 'mind-reader.' + c,
+          command: c.name,
           tooltip: humanReadable
         }
       ));

@@ -9,13 +9,13 @@ import HubManager from './hubManager';
  * @prop {string} command // Name of the command; e.g., 'mind-reader.selectTheme'
  * @prop {callback} callback // Callback to register when `command` is invoked
  */
-type Command = {
+export type CommandEntry = {
   name: string,
   callback: () => void
 };
 
-// The list of commands to register in the extension
-const commands: Command[] = [
+// Accessibility Commands
+export const accessCommands: CommandEntry[] = [
   {
     name: 'mind-reader.selectTheme',
 
@@ -53,6 +53,13 @@ const commands: Command[] = [
     callback: resetEditorScale,
   },
 
+  {
+    name: 'mind-reader.getIndent',
+    callback: getIndent,
+  }
+];
+
+export const navCommands: CommandEntry[] = [
   //Navigation Keys......
   {
     name: 'mind-reader.showAllSymbols',
@@ -105,7 +112,7 @@ const commands: Command[] = [
   },
 
   {
-    name: 'mind-reader.getuickInputBack',
+    name: 'mind-reader.getQuickInputBack',
     callback: () => vscode.commands.executeCommand('workbench.action.quickInputBack'),
   },
 
@@ -121,7 +128,10 @@ const commands: Command[] = [
   {
     name: 'mind-reader.runCursorContext',
     callback: runCursorContext
-  },
+  }
+];
+
+export const hubCommands: CommandEntry[] = [
   {
     name: 'mind-reader.connectHub',
     callback: connectHub
@@ -151,11 +161,6 @@ const commands: Command[] = [
     name: 'mind-reader.deleteProgram',
     callback: deleteProgram
   },
-    
-  {
-    name: 'mind-reader.getIndent',
-    callback: getIndent
-  }
 ];
 
 // COMMAND CALLBACK IMPLEMENTATIONS
@@ -331,7 +336,7 @@ function runCursorContext(): void {
 }
 
 // Current connected hub
-let hub: HubManager | null;
+let hub: HubManager | null = null;
 
 // TODO: port option
 async function connectHub(): Promise<void> {
@@ -469,6 +474,3 @@ async function deleteProgram(): Promise<void> {
   await hub.deleteProgram(parseInt(slotID.label));
   vscode.window.showInformationMessage('Deleted program ' + slotID.label);
 }
-
-
-export default commands;

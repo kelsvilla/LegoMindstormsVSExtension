@@ -116,8 +116,7 @@
 				"command": "mind-reader.resetEditorScale",
 				"key": "shift+enter",
 				"mac": ""
-			}
-		],
+			},
 
 			{
 				"command": "mind-reader.showAllSymbols",
