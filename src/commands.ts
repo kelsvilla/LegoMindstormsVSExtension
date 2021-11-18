@@ -246,7 +246,7 @@ let hub: HubManager | null;
 async function connectHub(): Promise<void> {
   if (hub) {
     vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
-    hub.close();
+    disconnectHub();
   }
   const config = vscode.workspace.getConfiguration();
 
@@ -283,7 +283,7 @@ async function connectHub(): Promise<void> {
 }
 
 async function disconnectHub(): Promise<void> {
-  if (!hub) {
+  if (!hub || !hub.isOpen()) {
     vscode.window.showErrorMessage('LEGO Hub is not connected');
     return;
   }
@@ -294,7 +294,7 @@ async function disconnectHub(): Promise<void> {
 }
 
 async function uploadCurrentFile(): Promise<void> {
-  if (!hub) {
+  if (!hub || !hub.isOpen()) {
     vscode.window.showErrorMessage('LEGO Hub is not connected!');
     return;
   }
@@ -327,7 +327,7 @@ async function uploadCurrentFile(): Promise<void> {
 
 // TODO: find empty slots
 async function runProgram(): Promise<void> {
-  if (!hub) {
+  if (!hub || !hub.isOpen()) {
     vscode.window.showErrorMessage('LEGO Hub is not connected!');
     return;
   }
@@ -348,7 +348,7 @@ async function runProgram(): Promise<void> {
 }
 
 async function stopExecution(): Promise<void> {
-  if (!hub) {
+  if (!hub || !hub.isOpen()) {
     vscode.window.showErrorMessage('LEGO Hub is not connected!');
     return;
   }
@@ -359,7 +359,7 @@ async function stopExecution(): Promise<void> {
 
 // TODO: find slots from status
 async function deleteProgram(): Promise<void> {
-  if (!hub) {
+  if (!hub || !hub.isOpen()) {
     vscode.window.showErrorMessage('LEGO Hub is not connected!');
     return;
   }

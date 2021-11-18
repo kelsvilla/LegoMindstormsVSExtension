@@ -5,6 +5,14 @@ import commands from './commands';
 
 import AccessNodeProvider from './accessNodeProvider';
 
+// create output channel
+const outputChannel = vscode.window.createOutputChannel("SPIKE Prime Output");
+
+export function MindReaderOutput(line: string) {
+  outputChannel.show();
+  outputChannel.appendLine(line);
+}
+
 let parser: pl.Parser = new pl.Parser();
 
 export function activate(context: vscode.ExtensionContext) {
