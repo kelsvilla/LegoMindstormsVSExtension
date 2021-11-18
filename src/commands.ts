@@ -53,6 +53,66 @@ const commands: Command[] = [
     callback: resetEditorScale,
   },
 
+  //Navigation Keys......
+  {
+    name: 'mind-reader.showAllSymbols',
+    callback: () => vscode.commands.executeCommand('workbench.action.showAllSymbols'),
+  },
+
+  {
+    name: 'mind-reader.gotoLine',
+    callback: () => vscode.commands.executeCommand('workbench.action.gotoLine'),
+  },
+
+  {
+    name: 'mind-reader.quickOpen',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickOpen'),
+  },
+
+  {
+    name: 'mind-reader.gotoSymbol',
+    callback: () => vscode.commands.executeCommand('workbench.action.gotoSymbol'),
+  },
+
+  {
+    name: 'mind-reader.showProblems',
+    callback: () => vscode.commands.executeCommand('workbench.actions.view.problems'),
+  },
+
+  {
+    name: 'mind-reader.nextInFiles',
+    callback: () => vscode.commands.executeCommand('editor.action.marker.nextInFiles'),
+  },
+
+  {
+    name: 'mind-reader.prevInFiles',
+    callback: () => vscode.commands.executeCommand('editor.action.marker.prevInFiles'),
+  },
+
+  {
+    name: 'mind-reader.showCommands',
+    callback: () => vscode.commands.executeCommand('workbench.action.showCommands'),
+  },
+
+  {
+    name: 'mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup'),
+  },
+
+  {
+    name: 'mind-reader.navigateBack',
+    callback: () => vscode.commands.executeCommand('workbench.action.navigateBack'),
+  },
+
+  {
+    name: 'mind-reader.getuickInputBack',
+    callback: () => vscode.commands.executeCommand('workbench.action.quickInputBack'),
+  },
+
+  {
+    name: 'mind-reader.navigateForward',
+    callback: () => vscode.commands.executeCommand('workbench.action.navigateForward'),
+  },
   {
     name: 'mind-reader.runLineContext',
     callback: runLineContext,
@@ -62,7 +122,6 @@ const commands: Command[] = [
     name: 'mind-reader.runCursorContext',
     callback: runCursorContext
   },
-
   {
     name: 'mind-reader.connectHub',
     callback: connectHub
@@ -91,6 +150,11 @@ const commands: Command[] = [
   {
     name: 'mind-reader.deleteProgram',
     callback: deleteProgram
+  },
+    
+  {
+    name: 'mind-reader.getIndent',
+    callback: getIndent
   }
 ];
 
@@ -120,9 +184,36 @@ function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
 }
 
+function getIndent(): void {
+  let editor = vscode.window.activeTextEditor;
+  if(editor)
+  {
+    let lineNum = editor.selection.active.line + 1;
+    let textLine = editor.document.lineAt(lineNum - 1);
+    if(textLine.isEmptyOrWhitespace)
+    {
+      vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
+    }
+    else
+    {
+      // Grab tab format from open document
+      let tabFmt = {
+        size: editor.options.tabSize as number,
+        hard: !editor.options.insertSpaces
+      };
+      let i = pl.Lexer.getIndent(textLine.text, tabFmt);
+      vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString());
+    }
+  }
+  else{
+    vscode.window.showErrorMessage('No document currently active');
+  }
+
+}
+
 function runLineContext(): void {
   let editor = vscode.window.activeTextEditor;
-  if (editor) {
+  if (editor){
     // current text and line number
     let editorText = editor.document.getText();
     let line = editor.selection.active.line;

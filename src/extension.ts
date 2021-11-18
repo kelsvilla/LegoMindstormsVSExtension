@@ -59,6 +59,5 @@ export function activate(context: vscode.ExtensionContext) {
 
   let hubProvider = new CommandNodeProvider(hubCommands);
   vscode.window.registerTreeDataProvider('hubActions', hubProvider);
-}
 
 export function deactivate() {}
