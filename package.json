@@ -47,48 +47,71 @@
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
 			},
-
 			{
 				"command": "mind-reader.runLineContext",
 				"title": "Run Line Context"
 			},
-
 			{
 				"command": "mind-reader.runCursorContext",
 				"title": "Run Cursor Context"
-			}
+			},
 
+      {
+        "command": "mind-reader.connectHub",
+        "title": "Connect LEGO Hub"
+      },
+
+      {
+        "command": "mind-reader.disconnectHub",
+        "title": "Disconnect LEGO Hub"
+      },
+
+      {
+        "command": "mind-reader.uploadCurrentFile",
+        "title": "Upload current file to LEGO Hub"
+      },
+
+      {
+        "command": "mind-reader.runProgram",
+        "title": "Run a program from the LEGO Hub"
+      },
+
+      {
+        "command": "mind-reader.stopExecution",
+        "title": "Stop running program on the LEGO Hub"
+      },
+
+      {
+        "command": "mind-reader.deleteProgram",
+        "title": "Delete a program from the LEGO Hub"
+      }
 		],
-        "keybindings": [
-            {
-              "command": "mind-reader.decreaseFontScale",
-              "key": "numpad_subtract",
-              "mac": ""
-            },
-
-            {
-                "command": "mind-reader.increaseFontScale",
-                "key": "numpad_add",
-                "mac": ""
-            },
-
-            {
-                "command": "mind-reader.increaseEditorScale",
-                "key": "shift+numpad_add"
-            },
-
-            {
-                "command": "mind-reader.decreaseEditorScale",
-                "key": "shift+numpad_subtract",
-                "mac": ""
-            },
-
-            {
-                "command": "mind-reader.resetEditorScale",
-                "key": "shift+enter",
-                "mac": ""
-            }
-          ],
+		"keybindings": [
+			{
+				"command": "mind-reader.decreaseFontScale",
+				"key": "numpad_subtract",
+				"mac": ""
+			},
+			{
+				"command": "mind-reader.increaseFontScale",
+				"key": "numpad_add",
+				"mac": ""
+			},
+			{
+				"command": "mind-reader.increaseEditorScale",
+				"key": "shift+numpad_add"
+			},
+			{
+				"command": "mind-reader.decreaseEditorScale",
+				"key": "shift+numpad_subtract",
+				"mac": ""
+			},
+			{
+				"command": "mind-reader.resetEditorScale",
+				"key": "shift+enter",
+				"mac": ""
+			}
+		],
 		"menus": {
 			"editor/context": [
 				{
@@ -187,25 +210,25 @@
 				}
 			}
 		},
-    "views": {
-      "accessActions": [
-        {
-          "id": "accessActions",
-          "name": "Access Actions",
-          "icon": "media/dep.svg",
-          "contextualTitle": "Accessibility Menu Actions"
-        }
-      ]
-    },
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "accessActions",
-          "title": "Access Actions",
-          "icon": "media/dep.svg"
-        }
-      ]
-    }
+		"views": {
+			"accessActions": [
+				{
+					"id": "accessActions",
+					"name": "Access Actions",
+					"icon": "media/dep.svg",
+					"contextualTitle": "Accessibility Menu Actions"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "accessActions",
+					"title": "Access Actions",
+					"icon": "media/dep.svg"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -216,17 +239,23 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.60.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.2.2",
-		"@types/node": "14.x",
-		"eslint": "^7.27.0",
+		"@types/node": "16.x",
+		"@types/serialport": "^8.0.2",
+		"@types/vscode": "^1.60.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
+		"@vscode/test-electron": "^1.6.2",
+		"electron": "^13.5.2",
+		"electron-rebuild": "^3.2.5",
+		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
 		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2",
-		"@vscode/test-electron": "^1.6.2"
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"serialport": "^9.2.5"
 	}
 }

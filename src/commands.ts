@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
 import * as pl from './pylex';
+import * as path from 'path';
+
+import HubManager from './hubManager';
 
 /**
  * @type {Object} Command // Command to register with the VS Code Extension API
@@ -54,10 +57,40 @@ const commands: Command[] = [
     name: 'mind-reader.runLineContext',
     callback: runLineContext,
   },
+
   {
     name: 'mind-reader.runCursorContext',
-
     callback: runCursorContext
+  },
+
+  {
+    name: 'mind-reader.connectHub',
+    callback: connectHub
+  },
+
+  {
+    name: 'mind-reader.disconnectHub',
+    callback: disconnectHub
+  },
+
+  {
+    name: 'mind-reader.uploadCurrentFile',
+    callback: uploadCurrentFile
+  },
+
+  {
+    name: 'mind-reader.runProgram',
+    callback: runProgram
+  },
+
+  {
+    name: 'mind-reader.stopExecution',
+    callback: stopExecution
+  },
+
+  {
+    name: 'mind-reader.deleteProgram',
+    callback: deleteProgram
   }
 ];
 
@@ -145,7 +178,7 @@ function createContextString(context: pl.LexNode[], line: number): string {
 function runCursorContext(): void {
   let editor = vscode.window.activeTextEditor;
   if (!editor) {
-    vscode.window.showErrorMessage("RunCursorContext: No Active Editor");
+    vscode.window.showErrorMessage('RunCursorContext: No Active Editor');
     return;
   }
 
@@ -205,5 +238,146 @@ function runCursorContext(): void {
     }
   }
 }
+
+// Current connected hub
+let hub: HubManager | null;
+
+// TODO: port option
+async function connectHub(): Promise<void> {
+  if (hub) {
+    vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
+    hub.close();
+  }
+  const config = vscode.workspace.getConfiguration();
+
+  try {
+    if (config.get('mindreader.connection.connectAutomatically')) {
+      hub = await HubManager.create();
+      vscode.window.showInformationMessage('LEGO Hub connected');
+    } else {
+      const ports = await HubManager.queryPorts();
+
+      if (ports.length === 0) {
+        vscode.window.showErrorMessage('No ports found. Is the LEGO Hub connected?');
+        return;
+      }
+
+      let slots: vscode.QuickPickItem[] = [];
+      for (const port of ports) {
+        slots.push({ label: port.path });
+      }
+
+      let picked = await vscode.window.showQuickPick(slots);
+
+      if (!picked) {
+        return;
+      }
+
+      hub = await HubManager.create({ port: picked.label });
+      vscode.window.showInformationMessage('LEGO Hub connected');
+    }
+  } catch (err) {
+    // TODO: better handling
+    vscode.window.showErrorMessage('Could not connect to LEGO Hub');
+  }
+}
+
+async function disconnectHub(): Promise<void> {
+  if (!hub) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected');
+    return;
+  }
+
+  await hub.close();
+  hub = null;
+  vscode.window.showInformationMessage('LEGO Hub disconnected');
+}
+
+async function uploadCurrentFile(): Promise<void> {
+  if (!hub) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  if (!vscode.window.activeTextEditor) {
+    vscode.window.showErrorMessage('No active text editor');
+    return;
+  }
+
+  const currentFilePath = vscode.window.activeTextEditor.document.fileName;
+
+  if (currentFilePath) {
+    // construct quickpick
+    const slots: vscode.QuickPickItem[] = [];
+    for (let i = 0; i < 10; i++) {
+      slots.push({ label: i.toString() });
+    }
+    const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+    if (!slotID) {
+      return;
+    }
+
+    // TODO: progress bar?
+    vscode.window.showInformationMessage('Uploading current file');
+    await hub.uploadFile(currentFilePath, parseInt(slotID.label), path.basename(currentFilePath));
+    vscode.window.showInformationMessage(path.basename(currentFilePath) + ' uploaded to slot ' + slotID.label);
+  }
+}
+
+// TODO: find empty slots
+async function runProgram(): Promise<void> {
+  if (!hub) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  const slots: vscode.QuickPickItem[] = [];
+  // construct quickpick
+  for (let i = 0; i < 10; i++) {
+    slots.push({ label: i.toString() });
+  }
+  const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+  if (!slotID) {
+    return;
+  }
+
+  vscode.window.showInformationMessage('Running program ' + slotID.label);
+  await hub.programExecute(parseInt(slotID.label));
+}
+
+async function stopExecution(): Promise<void> {
+  if (!hub) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  await hub.programTerminate();
+  vscode.window.showInformationMessage('Execution stopped');
+}
+
+// TODO: find slots from status
+async function deleteProgram(): Promise<void> {
+  if (!hub) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  const slots: vscode.QuickPickItem[] = [];
+  // construct quickpick
+  for (let i = 0; i < 10; i++) {
+    slots.push({ label: i.toString() });
+  }
+  const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+  if (!slotID) {
+    return;
+  }
+
+  await hub.deleteProgram(parseInt(slotID.label));
+  vscode.window.showInformationMessage('Deleted program ' + slotID.label);
+}
+
 
 export default commands;
