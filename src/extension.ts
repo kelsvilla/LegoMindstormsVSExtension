@@ -3,7 +3,7 @@ import * as pl from './pylex';
 
 import commands from './commands';
 
-import AccessNodeProvider from './accessNodeProvider';
+import CommandNodeProvider from './commandNodeProvider';
 import Logger from './log';
 
 // Output Logger
@@ -27,8 +27,38 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
   });
 
-  let provider = new AccessNodeProvider();
-  vscode.window.registerTreeDataProvider('accessActions', provider);
+  // list of all commands to present in the access pane
+  const accessActions: string[] = [
+    'increaseFontScale',
+    'decreaseFontScale',
+    'resetFontScale',
+
+    'increaseEditorScale',
+    'decreaseEditorScale',
+    'resetEditorScale',
+
+    'selectTheme',
+
+    'runLineContext',
+    'runCursorContext',
+  ];
+
+  let accessProvider = new CommandNodeProvider(accessActions);
+  vscode.window.registerTreeDataProvider('accessActions', accessProvider);
+
+
+  // list of all commands to present in the hub pane
+  const hubCommands: string[] = [
+    'connectHub',
+    'diconnectHub',
+    'uploadCurrentFile',
+    'runProgram',
+    'stopExecution',
+    'deleteProgram',
+  ];
+
+  let hubProvider = new CommandNodeProvider(hubCommands);
+  vscode.window.registerTreeDataProvider('hubActions', hubProvider);
 }
 
 export function deactivate() {}

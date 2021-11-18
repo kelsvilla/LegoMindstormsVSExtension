@@ -216,20 +216,26 @@
 			}
 		},
 		"views": {
-			"accessActions": [
+			"MindReader": [
 				{
 					"id": "accessActions",
 					"name": "Access Actions",
 					"icon": "media/dep.svg",
 					"contextualTitle": "Accessibility Menu Actions"
+				},
+				{
+				  "id": "hubActions",
+				  "name": "Hub Actions",
+				  "icon": "media/dep.svg",
+				  "contextualTitle": "Hub Connection Actions"
 				}
 			]
 		},
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "accessActions",
-					"title": "Access Actions",
+					"id": "MindReader",
+					"title": "MindReader Actions",
 					"icon": "media/dep.svg"
 				}
 			]
