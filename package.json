@@ -59,7 +59,7 @@
 			{
 				"command": "mind-reader.getIndent",
 				"title": "Get Line Indentation"
-			}
+			},
 
 			{
 			  "command": "mind-reader.connectHub",
