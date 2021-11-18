@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as SerialPort from 'serialport';
 import * as fs from 'fs';
-import { performance } from 'perf_hooks';
 
 import { logger } from './extension';
 
@@ -36,12 +35,10 @@ type RPCResponse = {
  *
  * @prop {boolean=} `magic` automatically try and find a suitable port to connect. Defaults to `true`
  * @prop {string=} `port` port to use if `magic` is disabled. Defaults to `'/dev/ttyACM0'`.
- * @prop {number|null=}  `timeout` how long to wait for responses from the Hub.
  */
 type HubOptions = {
   magic?: boolean;
   port?: string;
-  timeout?: number | null;
 };
 
 /**
@@ -180,20 +177,23 @@ export default class HubManager {
   }
 
   public async uploadFile(file: string, slotid: number, name?: string, autoStart: boolean = false) {
-    const data = fs.readFileSync(file, 'utf8');
-    const size = data.length;
+    const fileStats = fs.statSync(file);
     name = name || file;
-    const now = performance.now();
 
-    const ack: {[key: string]: any} = await this.startWriteProgram(name, size, slotid, now, now);
+    const ack: {[key: string]: any} = await this.startWriteProgram(
+      name,
+      fileStats.size,
+      slotid,
+      fileStats.birthtime.getTime(),
+      fileStats.mtime.getTime()
+    );
+
     const blockSize = ack.blocksize;
     const transferid = ack.transferid;
 
-    const numBlocks = Math.ceil(size / blockSize);
-
-    for (let i = 0; i < numBlocks; i++) {
-      const dataChunk = data.substring(i*blockSize, i*blockSize + blockSize);
-      await this.writePackage(dataChunk, transferid);
+    let dataStream = fs.createReadStream(file, { highWaterMark: blockSize });
+    for await (const data of dataStream) {
+      await this.writePackage(data, transferid);
     }
 
     if (autoStart) {
