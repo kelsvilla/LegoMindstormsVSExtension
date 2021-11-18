@@ -56,35 +56,35 @@
 				"title": "Run Cursor Context"
 			},
 
-      {
-        "command": "mind-reader.connectHub",
-        "title": "Connect LEGO Hub"
-      },
+			{
+			  "command": "mind-reader.connectHub",
+			  "title": "Connect LEGO Hub"
+			},
 
-      {
-        "command": "mind-reader.disconnectHub",
-        "title": "Disconnect LEGO Hub"
-      },
+			{
+			  "command": "mind-reader.disconnectHub",
+			  "title": "Disconnect LEGO Hub"
+			},
 
-      {
-        "command": "mind-reader.uploadCurrentFile",
-        "title": "Upload current file to LEGO Hub"
-      },
+			{
+			  "command": "mind-reader.uploadCurrentFile",
+			  "title": "Upload current file to LEGO Hub"
+			},
 
-      {
-        "command": "mind-reader.runProgram",
-        "title": "Run a program from the LEGO Hub"
-      },
+			{
+				"command": "mind-reader.runProgram",
+				"title": "Run a program from the LEGO Hub"
+			},
 
-      {
-        "command": "mind-reader.stopExecution",
-        "title": "Stop running program on the LEGO Hub"
-      },
+			{
+			  "command": "mind-reader.stopExecution",
+			  "title": "Stop running program on the LEGO Hub"
+			},
 
-      {
-        "command": "mind-reader.deleteProgram",
-        "title": "Delete a program from the LEGO Hub"
-      }
+			{
+			  "command": "mind-reader.deleteProgram",
+			  "title": "Delete a program from the LEGO Hub"
+			}
 		],
 		"keybindings": [
 			{
@@ -207,7 +207,12 @@
 				"mindreader.connection.portPath": {
 					"type": "string",
 					"markdownDescription": "Specifies the serial port path to use if `#mindreader.connectAutomatically#` is not set."
-				}
+				},
+        "mindreader.connection.clearOutputOnRun": {
+          "type": "boolean",
+          "description": "Whether to clear the output each time the program is run",
+          "default": "true"
+        }
 			}
 		},
 		"views": {

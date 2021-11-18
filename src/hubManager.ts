@@ -2,7 +2,8 @@ import * as vscode from 'vscode';
 import * as SerialPort from 'serialport';
 import * as fs from 'fs';
 import { performance } from 'perf_hooks';
-import { MindReaderOutput } from './extension';
+
+import { logger } from './extension';
 
 /**
  * @type RPCRequest an RPC request message
@@ -104,11 +105,11 @@ export default class HubManager {
           const params = json['p'];
           switch (json['m']) {
             case 'user_program_error':
-              MindReaderOutput(Buffer.from(params[3], 'base64').toString());
-              MindReaderOutput(Buffer.from(params[4], 'base64').toString());
+              logger.error(Buffer.from(params[3], 'base64').toString());
+              logger.error(Buffer.from(params[4], 'base64').toString());
               break;
             case 'runtime_error':
-              MindReaderOutput(Buffer.from(params[3], 'base64').toString());
+              logger.error(Buffer.from(params[3], 'base64').toString());
               break;
           }
         }
@@ -141,7 +142,7 @@ export default class HubManager {
 
     let mgr = this;
     this.port.on('data', data => {
-      mgr.receiveData(data)
+      mgr.receiveData(data);
     });
   }
 
@@ -364,7 +365,6 @@ export default class HubManager {
       options = {
         port: '/dev/ttyACM0',
         magic: true,
-        timeout: 2500,
         ...options
       };
 
