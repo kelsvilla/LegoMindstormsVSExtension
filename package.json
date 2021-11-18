@@ -46,7 +46,22 @@
 			{
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
+			},
+
+			{
+				"command": "mind-reader.runLineContext",
+				"title": "Run Line Context"
+			},
+
+			{
+				"command": "mind-reader.runCursorContext",
+				"title": "Run Cursor Context"
+			},
+			{
+				"command": "mind-reader.getIndent",
+				"title": "Get Line Indentation"
 			}
+
 		],
         "keybindings": [
             {
@@ -76,8 +91,86 @@
                 "command": "mind-reader.resetEditorScale",
                 "key": "shift+enter",
                 "mac": ""
-            }
-          ],
+            },
+
+			{
+				"command": "mind-reader.showAllSymbols",
+				"key": "Ctrl+T",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.gotoLine",
+				"key": "CTRL+G",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.quickOpen",
+				"key": "CTRL+P",
+				"mac": ""
+			},			
+
+			{
+				"command": "mind-reader.gotoSymbol",
+				"key": "Ctrl+Shift+O",
+				"mac": ""
+			},
+			
+			{
+				"command": "mind-reader.showProblems",
+				"key": "Ctrl+Shift+M",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.nextInFiles",
+				"key": "F8",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.prevInFiles",
+				"key": "Shift+F8",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
+				"key": "Ctrl+Tab",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.navigateBack",
+				"key": "Ctrl+Alt+-",
+				"mac": ""
+			},
+		
+			{
+				"command": "mind-reader.getuickInputBack",
+				"key": "Ctrl+Alt+-",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.navigateForward",
+				"key": "Ctrl+Shift+-",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.selectTheme",
+				"key": "Ctrl+Shift+1",
+				"mac": ""
+			},
+
+			{
+				"command": "mind-reader.getIndent",
+				"key": "Shift+Tab",
+				"mac": ""
+			}
+        ],
 		"menus": {
 			"editor/context": [
 				{
@@ -145,7 +238,7 @@
 						"LEGO® Education SPIKE™ Prime Set (45678)"
 					]
 				},
-				"mindreader.screenReader": {
+				"mindreader.reader.screenReader": {
 					"type": "string",
 					"description": "Specifies which screen reader to optimize for.",
 					"default": "NVDA",
@@ -159,6 +252,11 @@
 						"Orca (Linux)",
 						"Apple VoiceOver (macOS)"
 					]
+				},
+				"mindreader.reader.contextWindow": {
+					"type": "number",
+					"description": "The number of words around the cursor to use when reading the cursor context",
+					"default": 1
 				},
 				"mindreader.connection.connectAutomatically": {
 					"type": "boolean",
