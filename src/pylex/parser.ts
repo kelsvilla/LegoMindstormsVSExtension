@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import { EOFTOKEN, Symbol, TabInfo } from './token';
 import Lexer from './lexer';
 import LexNode from './node';
+/* TODO: update design doc */
 
 /**
  * A parse tree generator
@@ -71,8 +72,20 @@ export default class Parser {
         // go up 1 level of recursion at a time to unravel properly
         this.currIndent--;
         return children;
-      } else if (this.lexer.currToken().type === Symbol.INDENT) {
+      }
+
+      if (this.lexer.currToken().type === Symbol.INDENT ||
+          this.lexer.currToken().type === Symbol.EMPTY) {
+        const label = this.lexer.currToken().type;
         // regular code, advance and stay in same block
+        children.push(new LexNode(
+          label,
+          vscode.TreeItemCollapsibleState.None,
+          this.lexer.currToken(),
+          null,
+          parent)
+        );
+
         this.lexer.next();
         continue;
       } else {
@@ -105,29 +118,28 @@ export default class Parser {
    * @param `lineNumber` The line number to query context for.
    * @return An array of LexNodes for the root path containing `lineNumber`
    */
-  context(lineNumber: number): LexNode[] {
-    if (!this.root.children()) {
-      return [];
+  context(lineNumber: number, root?: LexNode): LexNode[] {
+    if (!root) {
+      root = this.root;
     }
 
-    // Returns the LexNode that is the parent
-    // of the queried line number
-    let find = (root: LexNode): LexNode | undefined => {
-      let prevChild: LexNode;
-      for (var child of root.children()!) {
-        if (lineNumber < child.token!.linenr) {
-          if (prevChild!.children()) {
-            return find(prevChild!);
-          } else {
-            return prevChild!;
-          }
-        } else {
-          prevChild = child;
+    // is this the target?
+    if (root.token && root.token!.linenr === lineNumber) {
+      // match
+      return root.rootPath();
+    }
+
+    if (root.children()) {
+      // recursive call
+      for (let i = 0; i < root.children()!.length; i++) {
+        let ctx = this.context(lineNumber, root.children()![i]);
+        if (ctx.length > 0) {
+          // a rootpath was returned
+          return ctx;
         }
       }
-    };
-
-    let target = find(this.root);
-    return target!.rootPath();
+    }
+    // no matches
+    return [];
   }
 }
