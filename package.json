@@ -74,7 +74,7 @@
 			}
 
 		],
-                "keybindings": [
+                        "keybindings": [
             {
               "command": "mind-reader.decreaseFontScale",
               "key": "numpad_subtract",
@@ -108,31 +108,31 @@
 			{
 				"command": "mind-reader.showAllSymbols",
 				"key": "Ctrl+T",
-				"mac": "Ctrl+[KeyT]"
+				"mac": "Cmd+[KeyT]"
 			},
 
 			{
 				"command": "mind-reader.gotoLine",
 				"key": "CTRL+G",
-				"mac": "Ctrl+[KeyG]"
+				"mac": "Cmd+[KeyG]"
 			},
 
 			{
 				"command": "mind-reader.quickOpen",
 				"key": "CTRL+P",
-				"mac": "Ctrl+[KeyP]"
+				"mac": "Cmd+[KeyP]"
 			},			
 
 			{
 				"command": "mind-reader.gotoSymbol",
 				"key": "Ctrl+Shift+O",
-				"mac": "Ctrl+Shift+[KeyO]"
+				"mac": "Cmd+Shift+[KeyO]"
 			},
 			
 			{
 				"command": "mind-reader.showProblems",
 				"key": "Ctrl+Shift+M",
-				"mac": "Ctrl+Shift+[KeyM]"
+				"mac": "Cmd+Shift+[KeyM]"
 			},
 
 			{
@@ -150,38 +150,48 @@
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
 				"key": "Ctrl+Tab",
-				"mac": "Ctrl+[Tab]"
+				"mac": "Cmd+[Tab]"
 			},
 
 			{
 				"command": "mind-reader.navigateBack",
 				"key": "Ctrl+Alt+-",
-				"mac": "Ctrl+Alt+[Minus]"
+				"mac": "Cmd+Alt+[Minus]"
 			},
 		
 			{
 				"command": "mind-reader.getuickInputBack",
 				"key": "Ctrl+Alt+-",
-				"mac": "Ctrl+Alt+[Minus]"
+				"mac": "Cmd+Alt+[Minus]"
 			},
 
 			{
 				"command": "mind-reader.navigateForward",
 				"key": "Ctrl+Shift+-",
-				"mac": "Ctrl+Shift+[Minus]"
+				"mac": "Cmd+Shift+[Minus]"
 			},
 
 			{
 				"command": "mind-reader.selectTheme",
 				"key": "Ctrl+Shift+1",
-				"mac": "Ctrl+Shift+[Digit1]"
+				"mac": "Cmd+Shift+[Digit1]"
 			},
 
 			{
 				"command": "mind-reader.getIndent",
 				"key": "Shift+Tab",
 				"mac": "Shift+[Tab]"
-			}
+			},
+		{
+			"command": "mind-reader.openKeyBindWin",
+			"key": "Ctrl+Shift+8",
+			"mac": "Cmd+Shift+8"
+		},
+		{
+			"command": "mind-reader.openKeyBindMac",
+			"key": "Ctrl+Shift+9",
+			"mac": "Cmd+Shift+9"
+		}
         ],
 		"menus": {
 			"editor/context": [
