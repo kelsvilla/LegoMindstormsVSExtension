@@ -47,7 +47,6 @@
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
 			},
-			
 			{
 				"command": "mind-reader.openWebview",
 				"title": "Mind Reader Webview"
