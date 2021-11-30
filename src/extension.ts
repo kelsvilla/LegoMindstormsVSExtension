@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import * as pl from './pylex';
 import commands from './commands';
 
-import AccessNodeProvider from './accessNodeProvider'
+import AccessNodeProvider from './accessNodeProvider';
 
 let parser: pl.Parser = new pl.Parser();
 
@@ -20,7 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
       command.callback
     );
     context.subscriptions.push(disposable);
-    console.log(command.name);
   });
 
   let provider = new AccessNodeProvider();
