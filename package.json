@@ -74,122 +74,113 @@
 			}
 
 		],
-        "keybindings": [
+                "keybindings": [
             {
               "command": "mind-reader.decreaseFontScale",
               "key": "numpad_subtract",
-              "mac": ""
+              "mac": "d"
             },
 
             {
                 "command": "mind-reader.increaseFontScale",
                 "key": "numpad_add",
-                "mac": ""
+                "mac": "[NumpadAdd]"
             },
 
             {
                 "command": "mind-reader.increaseEditorScale",
-                "key": "shift+numpad_add"
+                "key": "shift+numpad_add",
+				"mac": "Shift+[NumpadAdd]"
             },
 
             {
                 "command": "mind-reader.decreaseEditorScale",
                 "key": "shift+numpad_subtract",
-                "mac": ""
+                "mac": "Shift+[NumpadSubtract]"
             },
 
             {
                 "command": "mind-reader.resetEditorScale",
                 "key": "shift+enter",
-                "mac": ""
+                "mac": "Shift+[Enter]"
             },
 
 			{
 				"command": "mind-reader.showAllSymbols",
 				"key": "Ctrl+T",
-				"mac": ""
+				"mac": "Ctrl+[KeyT]"
 			},
 
 			{
 				"command": "mind-reader.gotoLine",
 				"key": "CTRL+G",
-				"mac": ""
+				"mac": "Ctrl+[KeyG]"
 			},
 
 			{
 				"command": "mind-reader.quickOpen",
 				"key": "CTRL+P",
-				"mac": ""
+				"mac": "Ctrl+[KeyP]"
 			},			
 
 			{
 				"command": "mind-reader.gotoSymbol",
 				"key": "Ctrl+Shift+O",
-				"mac": ""
+				"mac": "Ctrl+Shift+[KeyO]"
 			},
 			
 			{
 				"command": "mind-reader.showProblems",
 				"key": "Ctrl+Shift+M",
-				"mac": ""
+				"mac": "Ctrl+Shift+[KeyM]"
 			},
 
 			{
 				"command": "mind-reader.nextInFiles",
 				"key": "F8",
-				"mac": ""
+				"mac": "[F8]"
 			},
 
 			{
 				"command": "mind-reader.prevInFiles",
 				"key": "Shift+F8",
-				"mac": ""
+				"mac": "Shift+[F8]"
 			},
 
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
 				"key": "Ctrl+Tab",
-				"mac": ""
+				"mac": "Ctrl+[Tab]"
 			},
 
 			{
 				"command": "mind-reader.navigateBack",
 				"key": "Ctrl+Alt+-",
-				"mac": ""
+				"mac": "Ctrl+Alt+[Minus]"
 			},
 		
 			{
 				"command": "mind-reader.getuickInputBack",
 				"key": "Ctrl+Alt+-",
-				"mac": ""
+				"mac": "Ctrl+Alt+[Minus]"
 			},
 
 			{
 				"command": "mind-reader.navigateForward",
 				"key": "Ctrl+Shift+-",
-				"mac": ""
+				"mac": "Ctrl+Shift+[Minus]"
 			},
 
 			{
 				"command": "mind-reader.selectTheme",
 				"key": "Ctrl+Shift+1",
-				"mac": ""
+				"mac": "Ctrl+Shift+[Digit1]"
 			},
 
 			{
 				"command": "mind-reader.getIndent",
 				"key": "Shift+Tab",
-				"mac": ""
-			},
-			{
-				"command": "mind-reader.openKeyBindWin",
-				"key": "Ctrl+Shift+8",
-				"mac": "Cmd+Shift+8"
-			},
-			{
-				"command": "mind-reader.openKeyBindMac",
-				"key": "Ctrl+Shift+9",
-				"mac": "Cmd+Shift+9"
+				"mac": "Shift+[Tab]"
 			}
         ],
 		"menus": {
