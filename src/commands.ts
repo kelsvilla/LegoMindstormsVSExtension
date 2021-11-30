@@ -55,6 +55,15 @@ const commands: Command[] = [
     callback: openWebview,
   },
 
+  {
+    name: 'mind-reader.openKeyBindWin',
+    callback: openKeyBindWin,
+  },
+  {
+    name: 'mind-reader.openKeyBindMac',
+    callback: openKeyBindMac,
+  },
+
   //Navigation Keys......
   {
     name: 'mind-reader.showAllSymbols',
@@ -196,6 +205,14 @@ function getWebviewContent() {
           vision impaired.
         </li>
       </ul>
+      <p>Use the following key binding to bring up a page for all key bindings for windows
+      <br>
+      Control and Shift and 8
+      </p>
+      <p>Use this key binding to do the same for mac computers:
+      <br>
+      Command and Shift and 9
+      </p>
       <h2>This is the Lego Spike Prime!</h2z>
       <p></p>
       <img src="https://cdn.vox-cdn.com/thumbor/qoaa6N2ppl7oj97MR-aj43qPy0w=/0x0:1024x576/920x613/filters:focal(431x207:593x369):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/63339099/lego_spike.0.png" width="300" />
@@ -204,6 +221,103 @@ function getWebviewContent() {
   </body>
   </html>`;
 }
+
+function openKeyBindWin(): void {
+  //vscode.commands.executeCommand('workbench.action.zoomOut');
+  const panel = vscode.window.createWebviewPanel(
+    'mindReader', // Identifies the type of the webview. Used internally
+    'MR Key Bindings', // Title of the panel displayed to the user
+    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+    {}
+  ); // Webview options. More on these later.
+
+  panel.webview.html = getKeyBindWinContent();
+}
+
+function getKeyBindWinContent() {
+  return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mind Reader Key Bindings for Windows</title>
+  </head>
+  <body>
+  <h2> Here is a list of all Mind Reader's commands and they're keybindings on windows and linux systems </h2>
+  <p>
+      <h2> Editor Settings </h2>
+      Increase Font Scale - Number Pad Add<br>
+      Decrease Font Scale - Number Pad Subtract<br>
+      Increase Editor Scale - Shift and Number Pad Add<br>
+      Decrease Editor Scale - Shift and Number Pad Subtract<br>
+      Reset Editor Scale - Shift and Enter<br>
+      Select Theme - Control and Shift and 1<br>
+      <h2>Navigation</h2>
+      Get Indent - Shift and Tab<br>
+      Show All Symbols - Control and T<br>
+      Go To Line - Control and G<br>
+      Quick Open - Control and P<br>
+      Go To Symbol - Control and Shift and 0<br>
+      Show Problems - Control and Shift and M<br>
+      Next In File - F8<br>
+      Previous In File - Shift and F8<br>
+      Open Previous Editor Group - Control and Tab<br>
+      Navigate Forward - Control and Shift and Minus<br>
+      Navigate Back - Control and Alt and Minus<br>
+      Get Quick Input Back - Control and Alt and Minus
+  </p>
+  </body>
+  </html>`;
+}
+
+function openKeyBindMac(): void {
+  //vscode.commands.executeCommand('workbench.action.zoomOut');
+  const panel = vscode.window.createWebviewPanel(
+    'mindReader', // Identifies the type of the webview. Used internally
+    'MR Key Bindings', // Title of the panel displayed to the user
+    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+    {}
+  ); // Webview options. More on these later.
+
+  panel.webview.html = getKeyBindMacContent();
+}
+
+function getKeyBindMacContent() {
+  return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mind Reader Key Bindings for Mac</title>
+  </head>
+  <body>
+  <h2> Here is a list of all the Mind Reader commands and they're keybindings on Mac systems </h2>
+  <p>
+      <h2> Editor Settings </h2>
+      Increase Font Scale - <br>
+      Decrease Font Scale - <br>
+      Increase Editor Scale - <br>
+      Decrease Editor Scale - <br>
+      Reset Editor Scale - <br>
+      Select Theme - <br>
+      <h2>Navigation</h2>
+      Get Indent - <br>
+      Show All Symbols - <br>
+      Go To Line - <br>
+      Quick Open - <br>
+      Go To Symbol - <br>
+      Show Problems - <br>
+      Next In File - <br>
+      Previous In File - <br>
+      Open Previous Editor Group - <br>
+      Navigate Forward - <br>
+      Navigate Back - <br>
+      Get Quick Input Back - 
+  </p>
+  </body>
+  </html>`;
+}
+
 
 function getIndent(): void {
   let editor = vscode.window.activeTextEditor;
