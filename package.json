@@ -47,7 +47,18 @@
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
 			},
-
+			{
+				"command": "mind-reader.openWebview",
+				"title": "Mind Reader Webview"
+			},
+			{
+				"command": "mind-reader.openKeyBindWin",
+				"title": "Key Bindings for Windows"
+			},
+			{
+				"command": "mind-reader.openKeyBindMac",
+				"title": "Key Bindings for Mac"
+			},
 			{
 				"command": "mind-reader.runLineContext",
 				"title": "Run Line Context"
@@ -169,6 +180,16 @@
 				"command": "mind-reader.getIndent",
 				"key": "Shift+Tab",
 				"mac": ""
+			},
+			{
+				"command": "mind-reader.openKeyBindWin",
+				"key": "Ctrl+Shift+8",
+				"mac": "Cmd+Shift+8"
+			},
+			{
+				"command": "mind-reader.openKeyBindMac",
+				"key": "Ctrl+Shift+9",
+				"mac": "Cmd+Shift+9"
 			}
         ],
 		"menus": {
@@ -213,7 +234,23 @@
 					"command": "mind-reader.selectTheme",
 					"group": "mind-reader",
 					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openWebview",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openKeyBindWin",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openKeyBindMac",
+					"group": "mind-reader",
+					"when": "activeEditor"
 				}
+
 			]
 		},
 		"submenus": [
