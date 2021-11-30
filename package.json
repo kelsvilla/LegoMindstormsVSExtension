@@ -47,11 +47,11 @@
 				"command": "mind-reader.selectTheme",
 				"title": "Select Theme"
 			},
-<<<<<<< HEAD
+			
 			{
 				"command": "mind-reader.openWebview",
 				"title": "Mind Reader Webview"
-=======
+			},
 
 			{
 				"command": "mind-reader.runLineContext",
@@ -65,7 +65,6 @@
 			{
 				"command": "mind-reader.getIndent",
 				"title": "Get Line Indentation"
->>>>>>> master
 			}
 
 		],
