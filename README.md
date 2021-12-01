@@ -38,6 +38,13 @@ Python programming with LEGO Mindstorms. Our goal is to:
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 
+**NOTE**: While installing Node.js, there will be a section titled "Tools for Native Modules". Make sure that
+'Automatically install the necessary tools' is checked:
+
+<p align="center">
+<img width="50%" height="50%" alt="tools for native modules page with tool installation checked" src="media/nodejs_setup.png"></img>
+</p>
+
 If the compiled serial port version is incompatible, you may see no options presented in the Mind_Reader actions panel:
 
 <p align="center">
