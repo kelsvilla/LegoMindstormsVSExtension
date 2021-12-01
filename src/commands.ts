@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as pl from './pylex';
 import * as path from 'path';
+import * as fs from 'fs';
 
 import HubManager from './hubManager';
 
@@ -60,6 +61,20 @@ export const accessCommands: CommandEntry[] = [
 ];
 
 export const navCommands: CommandEntry[] = [
+  {
+    name: 'mind-reader.openWebview',
+    callback: openWebview,
+  },
+
+  {
+    name: 'mind-reader.openKeyBindWin',
+    callback: () => openKeyBindWin('Windows')
+  },
+  {
+    name: 'mind-reader.openKeyBindMac',
+    callback: () => openKeyBindWin('Mac'),
+  },
+
   //Navigation Keys......
   {
     name: 'mind-reader.showAllSymbols',
@@ -187,6 +202,38 @@ function decreaseEditorScale(): void {
 
 function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
+}
+
+function openWebview(): void {
+  //vscode.commands.executeCommand('workbench.action.zoomOut');
+  const panel = vscode.window.createWebviewPanel(
+    'mindReader', // Identifies the type of the webview. Used internally
+    'Mind Reader', // Title of the panel displayed to the user
+    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+    {}
+  ); // Webview options. More on these later.
+
+  panel.webview.html = getWebviewContent('media/html/main.html');
+}
+
+function getWebviewContent(filepath: string) {
+  return fs.readFileSync(filepath, {encoding: 'utf-8'});
+}
+
+function openKeyBindWin(os: 'Mac' | 'Windows'): void {
+  //vscode.commands.executeCommand('workbench.action.zoomOut');
+  const panel = vscode.window.createWebviewPanel(
+    'mindReader', // Identifies the type of the webview. Used internally
+    'MR Key Bindings', // Title of the panel displayed to the user
+    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
+    {}
+  ); // Webview options. More on these later.
+
+  if (os === 'Windows') {
+    panel.webview.html = getWebviewContent('media/html/winkeys.html');
+  } else if (os === 'Mac') {
+    panel.webview.html = getWebviewContent('media/html/mackeys.html');
+  }
 }
 
 function getIndent(): void {

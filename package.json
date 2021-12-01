@@ -1,6 +1,7 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind_Reader",
+	"repository": "https://github.com/SingleSemesterSnobs/Mind_Reader",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -48,6 +49,18 @@
 				"title": "Select Theme"
 			},
 			{
+				"command": "mind-reader.openWebview",
+				"title": "Mind Reader Webview"
+			},
+			{
+				"command": "mind-reader.openKeyBindWin",
+				"title": "Key Bindings for Windows"
+			},
+			{
+				"command": "mind-reader.openKeyBindMac",
+				"title": "Key Bindings for Mac"
+			},
+			{
 				"command": "mind-reader.runLineContext",
 				"title": "Run Line Context"
 			},
@@ -55,147 +68,137 @@
 				"command": "mind-reader.runCursorContext",
 				"title": "Run Cursor Context"
 			},
-      
 			{
 				"command": "mind-reader.getIndent",
 				"title": "Get Line Indentation"
 			},
-
 			{
-			  "command": "mind-reader.connectHub",
-			  "title": "Connect LEGO Hub"
+				"command": "mind-reader.connectHub",
+				"title": "Connect LEGO Hub"
 			},
-
 			{
-			  "command": "mind-reader.disconnectHub",
-			  "title": "Disconnect LEGO Hub"
+				"command": "mind-reader.disconnectHub",
+				"title": "Disconnect LEGO Hub"
 			},
-
 			{
-			  "command": "mind-reader.uploadCurrentFile",
-			  "title": "Upload current file to LEGO Hub"
+				"command": "mind-reader.uploadCurrentFile",
+				"title": "Upload current file to LEGO Hub"
 			},
-
 			{
 				"command": "mind-reader.runProgram",
 				"title": "Run a program from the LEGO Hub"
 			},
-
 			{
-			  "command": "mind-reader.stopExecution",
-			  "title": "Stop running program on the LEGO Hub"
+				"command": "mind-reader.stopExecution",
+				"title": "Stop running program on the LEGO Hub"
 			},
-
-
 			{
-			  "command": "mind-reader.deleteProgram",
-			  "title": "Delete a program from the LEGO Hub"
+				"command": "mind-reader.deleteProgram",
+				"title": "Delete a program from the LEGO Hub"
 			}
 		],
 		"keybindings": [
 			{
 				"command": "mind-reader.decreaseFontScale",
 				"key": "numpad_subtract",
-				"mac": ""
+				"mac": "d"
 			},
 			{
 				"command": "mind-reader.increaseFontScale",
 				"key": "numpad_add",
-				"mac": ""
+				"mac": "[NumpadAdd]"
 			},
 			{
 				"command": "mind-reader.increaseEditorScale",
-				"key": "shift+numpad_add"
+				"key": "shift+numpad_add",
+				"mac": "Shift+[NumpadAdd]"
 			},
 			{
 				"command": "mind-reader.decreaseEditorScale",
 				"key": "shift+numpad_subtract",
-				"mac": ""
+				"mac": "Shift+[NumpadSubtract]"
 			},
 			{
 				"command": "mind-reader.resetEditorScale",
 				"key": "shift+enter",
-				"mac": ""
+				"mac": "Shift+[Enter]"
 			},
-
 			{
 				"command": "mind-reader.showAllSymbols",
 				"key": "Ctrl+T",
-				"mac": ""
+				"mac": "Cmd+[KeyT]"
 			},
-
 			{
 				"command": "mind-reader.gotoLine",
 				"key": "CTRL+G",
-				"mac": ""
+				"mac": "Cmd+[KeyG]"
 			},
-
 			{
 				"command": "mind-reader.quickOpen",
 				"key": "CTRL+P",
-				"mac": ""
-			},			
-
+				"mac": "Cmd+[KeyP]"
+			},
 			{
 				"command": "mind-reader.gotoSymbol",
 				"key": "Ctrl+Shift+O",
-				"mac": ""
+				"mac": "Cmd+Shift+[KeyO]"
 			},
-			
 			{
 				"command": "mind-reader.showProblems",
 				"key": "Ctrl+Shift+M",
-				"mac": ""
+				"mac": "Cmd+Shift+[KeyM]"
 			},
-
 			{
 				"command": "mind-reader.nextInFiles",
 				"key": "F8",
-				"mac": ""
+				"mac": "[F8]"
 			},
-
 			{
 				"command": "mind-reader.prevInFiles",
 				"key": "Shift+F8",
-				"mac": ""
+				"mac": "Shift+[F8]"
 			},
-
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
 				"key": "Ctrl+Tab",
-				"mac": ""
+				"mac": "Cmd+[Tab]"
 			},
-
 			{
 				"command": "mind-reader.navigateBack",
 				"key": "Ctrl+Alt+-",
-				"mac": ""
+				"mac": "Cmd+Alt+[Minus]"
 			},
-		
 			{
 				"command": "mind-reader.getQuickInputBack",
 				"key": "Ctrl+Alt+-",
-				"mac": ""
+				"mac": "Cmd+Alt+[Minus]"
 			},
-
 			{
 				"command": "mind-reader.navigateForward",
 				"key": "Ctrl+Shift+-",
-				"mac": ""
+				"mac": "Cmd+Shift+[Minus]"
 			},
-
 			{
 				"command": "mind-reader.selectTheme",
 				"key": "Ctrl+Shift+1",
-				"mac": ""
+				"mac": "Cmd+Shift+[Digit1]"
 			},
-
 			{
 				"command": "mind-reader.getIndent",
 				"key": "Shift+Tab",
-				"mac": ""
+				"mac": "Shift+[Tab]"
+			},
+			{
+				"command": "mind-reader.openKeyBindWin",
+				"key": "Ctrl+Shift+8",
+				"mac": "Cmd+Shift+8"
+			},
+			{
+				"command": "mind-reader.openKeyBindMac",
+				"key": "Ctrl+Shift+9",
+				"mac": "Cmd+Shift+9"
 			}
-        ],
+		],
 		"menus": {
 			"editor/context": [
 				{
@@ -236,6 +239,21 @@
 				},
 				{
 					"command": "mind-reader.selectTheme",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openWebview",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openKeyBindWin",
+					"group": "mind-reader",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.openKeyBindMac",
 					"group": "mind-reader",
 					"when": "activeEditor"
 				}
@@ -292,11 +310,11 @@
 					"type": "string",
 					"markdownDescription": "Specifies the serial port path to use if `#mindreader.connectAutomatically#` is not set."
 				},
-        "mindreader.connection.clearOutputOnRun": {
-          "type": "boolean",
-          "description": "Whether to clear the output each time the program is run",
-          "default": "true"
-        }
+				"mindreader.connection.clearOutputOnRun": {
+					"type": "boolean",
+					"description": "Whether to clear the output each time the program is run",
+					"default": "true"
+				}
 			}
 		},
 		"views": {
@@ -308,10 +326,10 @@
 					"contextualTitle": "Accessibility Menu Actions"
 				},
 				{
-				  "id": "hubActions",
-				  "name": "Hub Actions",
-				  "icon": "media/dep.svg",
-				  "contextualTitle": "Hub Connection Actions"
+					"id": "hubActions",
+					"name": "Hub Actions",
+					"icon": "media/dep.svg",
+					"contextualTitle": "Hub Connection Actions"
 				}
 			]
 		},
@@ -342,8 +360,6 @@
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
 		"@vscode/test-electron": "^1.6.2",
-		"electron": "^13.5.2",
-		"electron-rebuild": "^3.2.5",
 		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
