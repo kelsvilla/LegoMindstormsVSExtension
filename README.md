@@ -1,6 +1,6 @@
 <!-- header with logo -->
 <p align="center">
-<img alt="Mind Reader Logo" src="./media/logo.png"></img>
+<img alt="Mind Reader Logo" src="media/logo.png"></img>
 </p>
 
 <h1>Mind_Reader</h1>
@@ -34,14 +34,65 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 - Save and load programs directly onto the LEGO Hub from within Visual Studio Code
 
-# For Developers
-
 ## Dependencies
-<!-- TODO: version information -->
-<!-- TODO: how to support native-usb functionality? -->
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 
+If the compiled serial port version is incompatible, you may see no options presented in the Mind_Reader actions panel:
+
+<p align="center">
+<img width="50%" height="50%" alt="mind reader actions panel with no items:" src="media/missing_actions.png"></img>
+</p>
+
+In this case, you will also need to rebuild the serial port component with `electron-rebuild`. This is a one-time setup
+for each installation of Visual Studio Code.
+
+## Installing `electron-rebuild`
+**Use Git Bash on Windows, and the terminal on MacOS/Linux. These steps will refer to this as 'the terminal'**
+
+### 1 Install the `electron-rebuild` tool
+In the terminal install electron rebuild with `npm` that is included with [Node.js](https://nodejs.org/en/):
+
+```console
+$ npm install -g electron-rebuild
+```
+
+### 2 Finding your electron version
+On MacOS, go to Code > About Visual Studio Code.
+
+On Windows and Linux, go to Help > About.
+
+The electron version should be listed, e.g.: `Electron: 13.5.2`
+
+<p align="center">
+<img width="35%" height="35%" alt="vscode information" src="media/vscode_info.png"></img>
+</p>
+
+### 3 Finding the Mind_Reader extension directory
+On MacOS and Linux this is `~/.vscode/extensions`.
+
+On Windows this is `C:\<YOUR USER>\.vscode\extensions\`. However, in Git Bash, it will appear like on MacOS and Linux
+e.g.: `~/.vscode/extensions`.
+
+---
+
+Find the Mind_Reader extension folder, this should look like `xxx.mind-reader-x.x.x`.
+
+Navigate to the found folder in the terminal.
+
+```console
+$ cd ~/.vscode/extensions/<mind_reader_folder>
+```
+
+### 4 Running `electron-rebuild`
+
+Then, run `electron-rebuild` with `ELECTRON_VERSION` replaced with the electron version found in step 2:
+
+```console
+$ electron-rebuild --version=ELECTRON_VERSION
+```
+
+# For Developers
 ## Development Quick Start
 Use the following to set up the extension for development.
 
