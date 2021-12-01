@@ -45,7 +45,8 @@ If the compiled serial port version is incompatible, you may see no options pres
 </p>
 
 In this case, you will also need to rebuild the serial port component with `electron-rebuild`. This is a one-time setup
-for each installation of Visual Studio Code.
+for each version of Visual Studio Code. You may need to repeat this process if you update your version of Visual Studio
+Code.
 
 ## Installing `electron-rebuild`
 **Use Git Bash on Windows, and the terminal on MacOS/Linux. These steps will refer to this as 'the terminal'**
