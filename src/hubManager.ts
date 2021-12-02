@@ -1,3 +1,4 @@
+import * as vscode from 'vscode';
 import * as SerialPort from 'serialport';
 import * as fs from 'fs';
 
@@ -97,6 +98,7 @@ export default class HubManager {
               logger.error(Buffer.from(params[3], 'base64').toString());
               break;
           }
+          vscode.window.showErrorMessage("Program Error.")
         }
       } catch (err) {
         console.log('Could not parse JSON:', msg);

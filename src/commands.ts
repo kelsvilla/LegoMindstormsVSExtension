@@ -388,7 +388,7 @@ let hub: HubManager | null = null;
 
 // TODO: port option
 async function connectHub(): Promise<void> {
-  if (hub) {
+  if (hub && hub.isOpen()) {
     vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
     disconnectHub();
   }
