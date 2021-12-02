@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import * as SerialPort from 'serialport';
 import * as fs from 'fs';
 
@@ -31,31 +30,20 @@ type RPCResponse = {
 };
 
 /**
- * @type HubOptions Connection options
- *
- * @prop {boolean=} `magic` automatically try and find a suitable port to connect. Defaults to `true`
- * @prop {string=} `port` port to use if `magic` is disabled. Defaults to `'/dev/ttyACM0'`.
- */
-type HubOptions = {
-  magic?: boolean;
-  port?: string;
-};
-
-/**
  * Manages sending and receiving of JSON Remote Procedure Call (JSON-RPC) protocol messages
  * to the Hub.
  */
 export default class HubManager {
   private port: SerialPort;
   private receiveBuffer: string = ''; // buffer for in-flight messages
-  private pendingRequests = new Map<string, [(result: any) => void, (error: string) => void]>();
+  private pendingRequests = new Map<string, [(result: any) => void, (error: string) => void]>(); // lists of requests that are still pending
 
   // ======================== INSTANCE METHODS ========================
 
   /**
    * Private constructor, use static `create` + `init`
    */
-  private constructor(public options: HubOptions) { }
+  private constructor(public portPath: string) { }
 
   public isOpen(): boolean {
     return this.port.isOpen;
@@ -122,7 +110,7 @@ export default class HubManager {
   public async init(): Promise<void> {
     try {
       this.port = new SerialPort(
-        this.options.port!,
+        this.portPath,
         {
           autoOpen: true,
           baudRate: 112500,
@@ -359,46 +347,10 @@ export default class HubManager {
 
   // ======================== INSTANCE METHODS ========================
 
-  public static async create(options?: HubOptions): Promise<HubManager> {
+  public static async create(portPath: string): Promise<HubManager> {
     return new Promise(async (resolve) => {
-      // merge passed options into default options
-      options = {
-        port: '/dev/ttyACM0',
-        magic: true,
-        ...options
-      };
-
-      let mgr: HubManager;
-
-      // try to detect port automatically
-      if (options.magic) {
-        const availablePorts = await HubManager.queryPorts();
-
-        // get paths from port information
-        const portPaths = availablePorts.map(x => x.path);
-
-        if (portPaths.length > 0) {
-          // try to establish connections to found ports
-          for (const port of portPaths) {
-            try {
-              mgr = new HubManager({ ...options, port });
-              await mgr.init();
-
-              return resolve(mgr);
-            } catch (err) {
-              // could not connect to port, try next port
-              continue;
-            }
-          }
-        }
-
-        // TODO: better error, this will do for now
-        vscode.window.showErrorMessage('Mind_Reader: Magic is enabled but no ports were found. Is the Hub plugged in and turned on');
-      }
-
-      // magic disabled or failed, try normally
       try {
-        mgr = new HubManager(options);
+        let mgr = new HubManager(portPath);
         await mgr.init();
 
         return resolve(mgr);
@@ -413,15 +365,12 @@ export default class HubManager {
 
   /**
    * Returns a list of serial devices
-   * advertising their manufacturer
-   * as `LEGO System A/S`
    */
   public static async queryPorts() {
     // get all ports
     let ports = await SerialPort.list();
 
     // filter by manufacturer
-    ports = ports.filter(x => x.manufacturer === 'LEGO System A/S');
     return Promise.resolve(ports);
   }
 

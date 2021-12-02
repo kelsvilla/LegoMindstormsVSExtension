@@ -392,13 +392,8 @@ async function connectHub(): Promise<void> {
     vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
     disconnectHub();
   }
-  const config = vscode.workspace.getConfiguration();
 
   try {
-    if (config.get('mindreader.connection.connectAutomatically')) {
-      hub = await HubManager.create();
-      vscode.window.showInformationMessage('LEGO Hub connected');
-    } else {
       const ports = await HubManager.queryPorts();
 
       if (ports.length === 0) {
@@ -406,22 +401,25 @@ async function connectHub(): Promise<void> {
         return;
       }
 
-      let slots: vscode.QuickPickItem[] = [];
-      for (const port of ports) {
-        slots.push({ label: port.path });
+      let portPath: string | undefined = vscode.workspace.getConfiguration('mindreader.connection').get('portPath');
+
+      if (!portPath) {
+        let slots: vscode.QuickPickItem[] = [];
+        for (const port of ports) {
+          slots.push({ label: port.path });
+        }
+
+        let picked = await vscode.window.showQuickPick(slots);
+
+        if (!picked) {
+          return;
+        }
+
+        portPath = picked.label;
       }
-
-      let picked = await vscode.window.showQuickPick(slots);
-
-      if (!picked) {
-        return;
-      }
-
-      hub = await HubManager.create({ port: picked.label });
+      hub = await HubManager.create(portPath);
       vscode.window.showInformationMessage('LEGO Hub connected');
-    }
   } catch (err) {
-    // TODO: better handling
     vscode.window.showErrorMessage('Could not connect to LEGO Hub');
   }
 }

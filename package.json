@@ -301,11 +301,6 @@
 					"description": "The number of words around the cursor to use when reading the cursor context",
 					"default": 1
 				},
-				"mindreader.connection.connectAutomatically": {
-					"type": "boolean",
-					"description": "Specifies whether to try to automatically detect and communicate with a connected Hub.",
-					"default": "true"
-				},
 				"mindreader.connection.portPath": {
 					"type": "string",
 					"markdownDescription": "Specifies the serial port path to use if `#mindreader.connectAutomatically#` is not set."
