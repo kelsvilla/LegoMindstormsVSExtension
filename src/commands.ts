@@ -57,6 +57,16 @@ export const accessCommands: CommandEntry[] = [
   {
     name: 'mind-reader.getIndent',
     callback: getIndent,
+  },
+
+  {
+    name: 'mind-reader.runLineContext',
+    callback: runLineContext,
+  },
+
+  {
+    name: 'mind-reader.runCursorContext',
+    callback: runCursorContext
   }
 ];
 
@@ -135,15 +145,6 @@ export const navCommands: CommandEntry[] = [
     name: 'mind-reader.navigateForward',
     callback: () => vscode.commands.executeCommand('workbench.action.navigateForward'),
   },
-  {
-    name: 'mind-reader.runLineContext',
-    callback: runLineContext,
-  },
-
-  {
-    name: 'mind-reader.runCursorContext',
-    callback: runCursorContext
-  }
 ];
 
 export const hubCommands: CommandEntry[] = [
