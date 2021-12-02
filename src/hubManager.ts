@@ -98,7 +98,7 @@ export default class HubManager {
               logger.error(Buffer.from(params[3], 'base64').toString());
               break;
           }
-          vscode.window.showErrorMessage("Program Error.")
+          vscode.window.showErrorMessage("Program Error.");
         }
       } catch (err) {
         console.log('Could not parse JSON:', msg);
