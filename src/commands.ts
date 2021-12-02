@@ -1,19 +1,22 @@
 import * as vscode from 'vscode';
 import * as pl from './pylex';
+import * as path from 'path';
 import * as fs from 'fs';
+
+import HubManager from './hubManager';
 
 /**
  * @type {Object} Command // Command to register with the VS Code Extension API
  * @prop {string} command // Name of the command; e.g., 'mind-reader.selectTheme'
  * @prop {callback} callback // Callback to register when `command` is invoked
  */
-type Command = {
+export type CommandEntry = {
   name: string,
   callback: () => void
 };
 
-// The list of commands to register in the extension
-const commands: Command[] = [
+// Accessibility Commands
+export const accessCommands: CommandEntry[] = [
   {
     name: 'mind-reader.selectTheme',
 
@@ -51,6 +54,23 @@ const commands: Command[] = [
     callback: resetEditorScale,
   },
 
+  {
+    name: 'mind-reader.getIndent',
+    callback: getIndent,
+  },
+
+  {
+    name: 'mind-reader.runLineContext',
+    callback: runLineContext,
+  },
+
+  {
+    name: 'mind-reader.runCursorContext',
+    callback: runCursorContext
+  }
+];
+
+export const navCommands: CommandEntry[] = [
   {
     name: 'mind-reader.openWebview',
     callback: openWebview,
@@ -117,7 +137,7 @@ const commands: Command[] = [
   },
 
   {
-    name: 'mind-reader.getuickInputBack',
+    name: 'mind-reader.getQuickInputBack',
     callback: () => vscode.commands.executeCommand('workbench.action.quickInputBack'),
   },
 
@@ -125,18 +145,38 @@ const commands: Command[] = [
     name: 'mind-reader.navigateForward',
     callback: () => vscode.commands.executeCommand('workbench.action.navigateForward'),
   },
+];
+
+export const hubCommands: CommandEntry[] = [
   {
-    name: 'mind-reader.runLineContext',
-    callback: runLineContext,
+    name: 'mind-reader.connectHub',
+    callback: connectHub
   },
+
   {
-    name: 'mind-reader.runCursorContext',
-    callback: runCursorContext
+    name: 'mind-reader.disconnectHub',
+    callback: disconnectHub
   },
+
   {
-    name: 'mind-reader.getIndent',
-    callback: getIndent
-  }
+    name: 'mind-reader.uploadCurrentFile',
+    callback: uploadCurrentFile
+  },
+
+  {
+    name: 'mind-reader.runProgram',
+    callback: runProgram
+  },
+
+  {
+    name: 'mind-reader.stopExecution',
+    callback: stopExecution
+  },
+
+  {
+    name: 'mind-reader.deleteProgram',
+    callback: deleteProgram
+  },
 ];
 
 // COMMAND CALLBACK IMPLEMENTATIONS
@@ -278,17 +318,17 @@ function createContextString(context: pl.LexNode[], line: number): string {
 }
 
 // find up to `n` words around the cursor, where `n` is
-// the value of `#mindreader.reader.contextWindow`
+// the value of `#mindReader.reader.contextWindow`
 function runCursorContext(): void {
   let editor = vscode.window.activeTextEditor;
   if (!editor) {
-    vscode.window.showErrorMessage("RunCursorContext: No Active Editor");
+    vscode.window.showErrorMessage('RunCursorContext: No Active Editor');
     return;
   }
 
   const cursorPos: vscode.Position = editor.selection.active;
   const text: string = editor.document.lineAt(cursorPos).text;
-  const windowSize: number = vscode.workspace.getConfiguration('mindreader').get('reader.contextWindow')!;
+  const windowSize: number = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow')!;
 
   let trimmedText = text.trimStart(); // trim leading whitespace
   let leadingWS = text.length - trimmedText.length; // # of characters of leading whitespace
@@ -343,4 +383,140 @@ function runCursorContext(): void {
   }
 }
 
-export default commands;
+// Current connected hub
+let hub: HubManager | null = null;
+
+// TODO: port option
+async function connectHub(): Promise<void> {
+  if (hub) {
+    vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
+    disconnectHub();
+  }
+
+  try {
+      const ports = await HubManager.queryPorts();
+
+      if (ports.length === 0) {
+        vscode.window.showErrorMessage('No ports found. Is the LEGO Hub connected?');
+        return;
+      }
+
+      let portPath: string | undefined = vscode.workspace.getConfiguration('mindReader.connection').get('portPath');
+
+      if (!portPath) {
+        let slots: vscode.QuickPickItem[] = [];
+        for (const port of ports) {
+          slots.push({ label: port.path });
+        }
+
+        let picked = await vscode.window.showQuickPick(slots);
+
+        if (!picked) {
+          return;
+        }
+
+        portPath = picked.label;
+      }
+      hub = await HubManager.create(portPath);
+      vscode.window.showInformationMessage('LEGO Hub connected');
+  } catch (err) {
+    vscode.window.showErrorMessage('Could not connect to LEGO Hub');
+  }
+}
+
+async function disconnectHub(): Promise<void> {
+  if (!hub || !hub.isOpen()) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected');
+    return;
+  }
+
+  await hub.close();
+  hub = null;
+  vscode.window.showInformationMessage('LEGO Hub disconnected');
+}
+
+async function uploadCurrentFile(): Promise<void> {
+  if (!hub || !hub.isOpen()) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  if (!vscode.window.activeTextEditor) {
+    vscode.window.showErrorMessage('No active text editor');
+    return;
+  }
+
+  const currentFilePath = vscode.window.activeTextEditor.document.fileName;
+
+  if (currentFilePath) {
+    // construct quickpick
+    const slots: vscode.QuickPickItem[] = [];
+    for (let i = 0; i < 10; i++) {
+      slots.push({ label: i.toString() });
+    }
+    const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+    if (!slotID) {
+      return;
+    }
+
+    // TODO: progress bar?
+    vscode.window.showInformationMessage('Uploading current file');
+    await hub.uploadFile(currentFilePath, parseInt(slotID.label), path.basename(currentFilePath));
+    vscode.window.showInformationMessage(path.basename(currentFilePath) + ' uploaded to slot ' + slotID.label);
+  }
+}
+
+// TODO: find empty slots
+async function runProgram(): Promise<void> {
+  if (!hub || !hub.isOpen()) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  const slots: vscode.QuickPickItem[] = [];
+  // construct quickpick
+  for (let i = 0; i < 10; i++) {
+    slots.push({ label: i.toString() });
+  }
+  const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+  if (!slotID) {
+    return;
+  }
+
+  vscode.window.showInformationMessage('Running program ' + slotID.label);
+  await hub.programExecute(parseInt(slotID.label));
+}
+
+async function stopExecution(): Promise<void> {
+  if (!hub || !hub.isOpen()) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  await hub.programTerminate();
+  vscode.window.showInformationMessage('Execution stopped');
+}
+
+// TODO: find slots from status
+async function deleteProgram(): Promise<void> {
+  if (!hub || !hub.isOpen()) {
+    vscode.window.showErrorMessage('LEGO Hub is not connected!');
+    return;
+  }
+
+  const slots: vscode.QuickPickItem[] = [];
+  // construct quickpick
+  for (let i = 0; i < 10; i++) {
+    slots.push({ label: i.toString() });
+  }
+  const slotID = await vscode.window.showQuickPick(slots, { canPickMany: false });
+
+  if (!slotID) {
+    return;
+  }
+
+  await hub.deleteProgram(parseInt(slotID.label));
+  vscode.window.showInformationMessage('Deleted program ' + slotID.label);
+}
