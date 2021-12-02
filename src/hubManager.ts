@@ -190,7 +190,6 @@ export default class HubManager {
   }
 
   // ========================= Hub Methods =========================
-  // TODO: only spike is supported rn -> m_strType
   //
   // These methods each handle a single RPC method's communication.
 

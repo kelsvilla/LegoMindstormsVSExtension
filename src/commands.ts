@@ -318,7 +318,7 @@ function createContextString(context: pl.LexNode[], line: number): string {
 }
 
 // find up to `n` words around the cursor, where `n` is
-// the value of `#mindreader.reader.contextWindow`
+// the value of `#mindReader.reader.contextWindow`
 function runCursorContext(): void {
   let editor = vscode.window.activeTextEditor;
   if (!editor) {
@@ -328,7 +328,7 @@ function runCursorContext(): void {
 
   const cursorPos: vscode.Position = editor.selection.active;
   const text: string = editor.document.lineAt(cursorPos).text;
-  const windowSize: number = vscode.workspace.getConfiguration('mindreader').get('reader.contextWindow')!;
+  const windowSize: number = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow')!;
 
   let trimmedText = text.trimStart(); // trim leading whitespace
   let leadingWS = text.length - trimmedText.length; // # of characters of leading whitespace
@@ -401,7 +401,7 @@ async function connectHub(): Promise<void> {
         return;
       }
 
-      let portPath: string | undefined = vscode.workspace.getConfiguration('mindreader.connection').get('portPath');
+      let portPath: string | undefined = vscode.workspace.getConfiguration('mindReader.connection').get('portPath');
 
       if (!portPath) {
         let slots: vscode.QuickPickItem[] = [];

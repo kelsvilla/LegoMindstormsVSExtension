@@ -27,9 +27,6 @@ Python programming with LEGO Mindstorms. Our goal is to:
     - [JAWS](https://www.freedomscientific.com/products/software/jaws/)
     - [Apple VoiceOver](https://support.apple.com/guide/voiceover-guide/welcome/web/)
 
-<!-- TODO: still need this -->
-- Play audio alerts for syntax and runtime errors.
-
 - Present a summary of the scope for an individual line of code.
 
 - Save and load programs directly onto the LEGO Hub from within Visual Studio Code
