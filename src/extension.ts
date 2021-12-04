@@ -1,7 +1,12 @@
 import * as vscode from 'vscode';
 import * as pl from './pylex';
 
-import { accessCommands, hubCommands, navCommands } from './commands';
+import {
+  accessCommands,
+  hubCommands,
+  navCommands,
+  textCommands
+} from './commands';
 
 import CommandNodeProvider from './commandNodeProvider';
 import Logger from './log';
@@ -18,7 +23,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   parser.parse('Beep Boop');
 
-  let allCommands = accessCommands.concat(hubCommands).concat(navCommands);
+  const allCommands = [
+    accessCommands,
+    hubCommands,
+    navCommands,
+    textCommands
+  ].flat(1);
 
   // Register Commands
   allCommands.forEach(command => {
@@ -29,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
   });
 
-  let accessProvider = new CommandNodeProvider(accessCommands);
+  let accessProvider = new CommandNodeProvider([accessCommands, textCommands].flat(1));
   vscode.window.registerTreeDataProvider('accessActions', accessProvider);
 
   let hubProvider = new CommandNodeProvider(hubCommands);
