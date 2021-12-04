@@ -129,3 +129,7 @@ directions above.
 
 See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
 API page if you need more help.
+
+# Contact Information
+
+- Jake Grossman: [\<JacobGrossman2@my.unt.edu\>](mailto:JacobGrossman2@my.unt.edu)
