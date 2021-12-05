@@ -133,5 +133,6 @@ API page if you need more help.
 # Contact Information
 
 - Jake Grossman: [\<JacobGrossman2@my.unt.edu\>](mailto:JacobGrossman2@my.unt.edu)
-- Cal Wooten : [\<calwooten@my.unt.edu\>](mailto:calwooten@my.unt.edu)
+- Cal Wooten: [\<calwooten@my.unt.edu\>](mailto:calwooten@my.unt.edu)
 - Josiah Moses: [\<josiahmoses@my.unt.edu\>](mailto:josiahmoses@my.unt.edu)
+- Sophia Drewfs: [\<sophiadrewfs@my.unt.edu\>](mailto:sophiadrewfs@my.unt.edu)
