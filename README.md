@@ -121,5 +121,17 @@ Development Host](https://code.visualstudio.com/api/advanced-topics/extension-ho
 
 ---
 
+If you get an error about a `NODE_MODULE_VERSION` incompatibility or that a file is not a Windows executable,
+this is likely the error described above. Run `npm i -g electron-rebuild` if you have not done so and follow the
+directions above.
+
+---
+
 See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
 API page if you need more help.
+
+# Contact Information
+
+- Jake Grossman: [\<JacobGrossman2@my.unt.edu\>](mailto:JacobGrossman2@my.unt.edu)
+- Cal Wooten : [\<calwooten@my.unt.edu\>](mailto:calwooten@my.unt.edu)
+- Josiah Moses: [\<josiahmoses@my.unt.edu\>](mailto:josiahmoses@my.unt.edu)

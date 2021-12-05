@@ -1,7 +1,23 @@
+import * as vscode from 'vscode';
 import * as SerialPort from 'serialport';
 import * as fs from 'fs';
 
 import { logger } from './extension';
+
+/**
+ * Communication with the Hub takes place using a modified version of the JSON RPC 1.0 protocol:
+ * https://en.wikipedia.org/wiki/JSON-RPC
+ *
+ * It is mostly the same, except that the field names are abbreviated to the first letter. So,
+ *
+ * FIELD  -> ABBREVIATION
+ * ------ -> ----------
+ * method -> m
+ * params -> p
+ * id     -> i
+ * result -> r
+ * error  -> e
+ */
 
 /**
  * @type RPCRequest an RPC request message
@@ -20,7 +36,7 @@ type RPCRequest = {
  * @type RPCResponse an RPC response message
  *
  * @prop {any?} `'r'` RPC response body
- * @prop {Object?} `'e'` RPC error body
+ * @prop {Object?} `'e'` RPC error body (base64 encoded)
  * @prop {string|null} `'i'` required response ID.
  */
 type RPCResponse = {
@@ -97,6 +113,7 @@ export default class HubManager {
               logger.error(Buffer.from(params[3], 'base64').toString());
               break;
           }
+          vscode.window.showErrorMessage("Program Error.");
         }
       } catch (err) {
         console.log('Could not parse JSON:', msg);

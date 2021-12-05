@@ -2,8 +2,7 @@
 	"name": "mind-reader",
 	"displayName": "Mind_Reader",
 	"repository": "https://github.com/SingleSemesterSnobs/Mind_Reader",
-	"description": "",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.60.0"
 	},
@@ -303,7 +302,7 @@
 				},
 				"mindReader.connection.portPath": {
 					"type": "string",
-					"markdownDescription": "Specifies the serial port path to use if `#mindReader.connectAutomatically#` is not set."
+					"markdownDescription": "The default port to try and establish a connection on."
 				},
 				"mindReader.connection.clearOutputOnRun": {
 					"type": "boolean",
