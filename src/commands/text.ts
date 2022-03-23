@@ -54,7 +54,7 @@ function getLeadingSpaces() {
         }
         else {
             let numSpaces = textLine.firstNonWhitespaceCharacterIndex;
-            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + numSpaces.toString()) + " Leading Spaces ";
+            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + ": " + numSpaces.toString() + " Leading Spaces ");
         }
     }
     else {
