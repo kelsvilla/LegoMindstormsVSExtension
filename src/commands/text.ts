@@ -5,6 +5,10 @@ const vscode = require("vscode");
 const pl = require("../pylex");
 exports.textCommands = [
     {
+        name: 'mind-reader.getLineNumber',
+        callback: getLineNumber,
+    },
+    {
         name: 'mind-reader.getIndent',
         callback: getIndent,
     },
@@ -21,10 +25,30 @@ exports.textCommands = [
         callback: runCursorContext
     }
 ];
+/* Helper Function  
+ * This function returns the line number of the active text editor window
+ */
+function fetchLineNumber(editor) {
+    return editor.selection.active.line + 1;
+}
+
+// Function that outputs the current line number the cursor is on
+function getLineNumber() {
+    let editor = vscode.window.activeTextEditor;
+    
+    if (editor) {
+        let lineNum = fetchLineNumber(editor);
+        vscode.window.showInformationMessage("Line " + lineNum.toString());
+    }
+    else {
+        vscode.window.showErrorMessage('No document currently active');
+    }    
+}
+
 function getIndent() {
     let editor = vscode.window.activeTextEditor;
     if (editor) {
-        let lineNum = editor.selection.active.line + 1;
+        let lineNum = fetchLineNumber(editor);
         let textLine = editor.document.lineAt(lineNum - 1);
         if (textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
@@ -43,18 +67,22 @@ function getIndent() {
         vscode.window.showErrorMessage('No document currently active');
     }
 }
+/* Function -> Returns the number of leading spaces on the line the cursor is on
+ * This is done by returning the index of the first non whitespace character
+ * Since this index is a 0-index, the returned number will correspond to the number of leading spaces
+ */
 function getLeadingSpaces() {
     let editor = vscode.window.activeTextEditor;
 
     if (editor) {
-        let lineNum = editor.selection.active.line + 1;
+        let lineNum = fetchLineNumber(editor);
         let textLine = editor.document.lineAt(lineNum - 1);
         if(textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
         }
         else {
             let numSpaces = textLine.firstNonWhitespaceCharacterIndex;
-            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + ": " + numSpaces.toString() + " Leading Spaces ");
+            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Has " + numSpaces.toString()+ " Leading Spaces ");
         }
     }
     else {
