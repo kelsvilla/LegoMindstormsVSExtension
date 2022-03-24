@@ -14,7 +14,7 @@ exports.textCommands = [
     },
     {
         name: 'mind-reader.getLeadingSpaces',
-        callback: getLeadingSpaces, 
+        callback: getLeadingSpaces,
     },
     {
         name: 'mind-reader.runLineContext',
@@ -25,7 +25,7 @@ exports.textCommands = [
         callback: runCursorContext
     }
 ];
-/* Helper Function  
+/* Helper Function
  * This function returns the line number of the active text editor window
  */
 function fetchLineNumber(editor) {
@@ -35,14 +35,14 @@ function fetchLineNumber(editor) {
 // Function that outputs the current line number the cursor is on
 function getLineNumber() {
     let editor = vscode.window.activeTextEditor;
-    
+
     if (editor) {
         let lineNum = fetchLineNumber(editor);
-        vscode.window.showInformationMessage("Line " + lineNum.toString());
+        vscode.window.showInformationMessage(`Line ${lineNum.toString()}`);
     }
     else {
         vscode.window.showErrorMessage('No document currently active');
-    }    
+    }
 }
 
 function getIndent() {
@@ -51,7 +51,7 @@ function getIndent() {
         let lineNum = fetchLineNumber(editor);
         let textLine = editor.document.lineAt(lineNum - 1);
         if (textLine.isEmptyOrWhitespace) {
-            vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
+            vscode.window.showInformationMessage(`"Line ${lineNum.toString()} is Empty`);
         }
         else {
             // Grab tab format from open document
@@ -60,7 +60,7 @@ function getIndent() {
                 hard: !editor.options.insertSpaces
             };
             let i = pl.Lexer.getIndent(textLine.text, tabFmt);
-            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Indentation " + i.toString());
+            vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`);
         }
     }
     else {
@@ -78,12 +78,12 @@ function getLeadingSpaces() {
         let lineNum = fetchLineNumber(editor);
         let textLine = editor.document.lineAt(lineNum - 1);
         if(textLine.isEmptyOrWhitespace) {
-            vscode.window.showInformationMessage("Line number " + lineNum.toString() + " Is Empty");
+            vscode.window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
         }
         else {
             let numSpaces = textLine.firstNonWhitespaceCharacterIndex;
             // let numSpaces = textLine.text.length - textLine.text.trimStart().length; // Alternative method, same result by calculating the leading spaces 
-            vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Has " + numSpaces.toString()+ " Leading Spaces ");
+            vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`);
         }
     }
     else {

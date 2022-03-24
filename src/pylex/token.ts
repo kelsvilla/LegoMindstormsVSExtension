@@ -53,7 +53,7 @@ export default class LineToken {
    * @return A string representation of the token
    */
   toString(): string {
-    return this.type + ", linenr:" + (this.linenr+1) + ", indentLevel: " + this.indentLevel + ", attr: " + this.attr;
+    return `${this.type}, linenr: ${this.linenr+1}, indentLevel: ${this.indentLevel}, attr: ${this.attr}`;
   }
 }
 
