@@ -82,6 +82,7 @@ function getLeadingSpaces() {
         }
         else {
             let numSpaces = textLine.firstNonWhitespaceCharacterIndex;
+            // let numSpaces = textLine.text.length - textLine.text.trimStart().length; // Alternative method, same result by calculating the leading spaces 
             vscode.window.showInformationMessage("Line Number " + lineNum.toString() + " Has " + numSpaces.toString()+ " Leading Spaces ");
         }
     }
