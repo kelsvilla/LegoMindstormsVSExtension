@@ -73,8 +73,8 @@ function getIndent() {
             };
             let i = pl.Lexer.getIndent(textLine.text, tabFmt);
 
-            // Ternary operator to change the tense of 'indent' to 'indents' for the output if i is greater than 1
-            (i > 1) ?
+            /* Ternary operator to change the tense of 'indent' to 'indents' for the output if i is 0 or greater than 1 */
+            (i !== 1) ?
             vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`):
                 vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indent`);
         }
@@ -120,8 +120,8 @@ function getLeadingSpaces() {
                 pl.Lexer.getLeadingSpacesByArithmetic(textLine) :
                 pl.Lexer.getLeadingSpacesByIndex(textLine);
 
-            /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is greater than 1 */
-            (numSpaces > 1) ?
+            /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
+            (numSpaces !== 1) ?
             vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`):
                 vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
         }
