@@ -81,7 +81,7 @@ export default class Lexer {
         };
 
         if (text) {
-            // normalize linefeeds
+            // normalize line feeds
             text = text.replace('\r\n', '\n');
         }
         this.restart(text);
@@ -120,13 +120,13 @@ export default class Lexer {
 
         // Until a LineToken is found, or EOF
         while (this.pos < this.textLines.length) {
-            let line: string = this.textLines[this.pos];
-            let indent: number = Lexer.getIndent(line, this.tabFmt!);
+            const line: string = this.textLines[this.pos];
+            const indent: number = Lexer.getIndent(line, this.tabFmt!);
             let token: LineToken;
 
             for (var r of rules) {
                 // Does line match pattern?
-                let match: RegExpMatchArray | null = line.match(r.pattern);
+                const match: RegExpMatchArray | null = line.match(r.pattern);
                 if (match) {
                     // Yes...
                     if (match.groups) {
@@ -212,7 +212,7 @@ export default class Lexer {
      * @return The indent of `text` with consideration for `tabFmt`.
      */
     static getIndent(text: string, tabFmt: TabInfo): number {
-        let leadingSpace: number = text.length - text.trimStart().length;
+        const leadingSpace: number = text.length - text.trimStart().length;
         let indent: number;
 
         if (tabFmt.hard) {
@@ -234,7 +234,7 @@ export default class Lexer {
      * @param `line` The line of text.
      * @return The number of leading spaces of `text`.
      */
-    static getLeadingSpacesByArithmetic(line: any) {
+    static getLeadingSpacesByArithmetic(line: any): number {
         const leadingSpaces: number = line.text.length - line.text.trimStart().length;
 
         return leadingSpaces;
@@ -249,7 +249,7 @@ export default class Lexer {
      * @param `text` The line of text.
      * @return The number of leading spaces of `text` with respect to the index position of the first non-whitespace character.
      */
-    static getLeadingSpacesByIndex(text: any) {
+    static getLeadingSpacesByIndex(text: any): number {
         const indexNum: number = text.firstNonWhitespaceCharacterIndex;
 
         return indexNum;
