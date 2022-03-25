@@ -201,9 +201,9 @@ function runCursorContext(): void {
     }
 
     const cursorPos: any = editor.selection.active;
-    const text: string = editor.document.lineAt(cursorPos).text;
+    const text: any = editor.document.lineAt(cursorPos).text;
     const windowSize: number = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow');
-    let trimmedText: string = text.trimStart(); // trim leading whitespace
+    let trimmedText: any = text.trimStart(); // trim leading whitespace
     let leadingWS: number = text.length - trimmedText.length; // # of characters of leading whitespace
     let pos: number = leadingWS;
     let maxPos: number = text.length;
@@ -262,4 +262,3 @@ function runCursorContext(): void {
         }
     }
 }
-//# sourceMappingURL=text.js.map
