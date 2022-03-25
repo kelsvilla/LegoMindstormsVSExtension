@@ -1,8 +1,7 @@
 "use strict";
 import { CommandEntry } from './commandEntry';
-
-const vscode = require("vscode");
-const pl = require("../pylex");
+import vscode = require("vscode");
+import pl = require("../pylex");
 
 export const textCommands: CommandEntry[] = [
     {
@@ -43,10 +42,10 @@ function fetchTextLine(editor: any): string {
 
 // Function that outputs the current line number the cursor is on
 function getLineNumber(): void {
-    let editor: any = vscode.window.activeTextEditor;
+    const editor: any = vscode.window.activeTextEditor;
 
     if (editor) {
-        let lineNum: number = fetchLineNumber(editor);
+        const lineNum: number = fetchLineNumber(editor);
 
         vscode.window.showInformationMessage(`Line ${lineNum.toString()}`);
     }
@@ -56,7 +55,7 @@ function getLineNumber(): void {
 }
 
 function getIndent(): void {
-    let editor: any = vscode.window.activeTextEditor;
+    const editor: any = vscode.window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
@@ -67,11 +66,11 @@ function getIndent(): void {
         }
         else {
             // Grab tab format from open document
-            let tabFmt: any = {
+            const tabFmt: any = {
                 size: editor.options.tabSize,
                 hard: !editor.options.insertSpaces
             };
-            let i: number = pl.Lexer.getIndent(textLine.text, tabFmt);
+            const i: number = pl.Lexer.getIndent(textLine.text, tabFmt);
 
             vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`);
         }
@@ -98,7 +97,7 @@ function getIndent(): void {
  *      TO-USE: set calculateLeadingSpaces to false
  */
 function getLeadingSpaces(): void {
-    let editor: any = vscode.window.activeTextEditor;
+    const editor: any = vscode.window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
@@ -131,25 +130,25 @@ function getLeadingSpaces(): void {
 }
 
 function runLineContext(): void {
-    let editor: any = vscode.window.activeTextEditor;
+    const editor: any = vscode.window.activeTextEditor;
 
     if (editor) {
         // current text and line number
-        let editorText: string = editor.document.getText();
-        let line: number = editor.selection.active.line;
+        const editorText: string = editor.document.getText();
+        const line: string = editor.selection.active.line;
         // get tab info settings
-        let size: number = parseInt(editor.options.tabSize);
-        let hard: boolean = !editor.options.insertSpaces;
+        const size: number = parseInt(editor.options.tabSize);
+        const hard: boolean = !editor.options.insertSpaces;
         // initialize parser
-        let parser: any = new pl.Parser(editorText, {
+        const parser: any = new pl.Parser(editorText, {
             size,
             hard
         });
 
         parser.parse();
-        let context: any = parser.context(line);
+        const context: string = parser.context(line);
         // build text
-        let contentString: string = createContextString(context, line);
+        const contentString: string = createContextString(context, line);
 
         vscode.window.showInformationMessage(contentString);
     }
@@ -158,7 +157,7 @@ function runLineContext(): void {
     }
 }
 
-function createContextString(context: any, line: number): string {
+function createContextString(context: any, line: string): string {
     if (context.length < 1) {
         throw new Error('Cannot create context string for empty context');
     }
@@ -169,8 +168,8 @@ function createContextString(context: any, line: number): string {
         contextString += ': ' + context[0].token.type.toString() + ' ' + context[0].token.attr.toString();
     }
 
-    for (let i = 1; i < context.length; i++) {
-        let node: any = context[i];
+    for (let i: number = 1; i < context.length; i++) {
+        const node: any = context[i];
 
         if (node.label === 'root') {
             // root
@@ -193,7 +192,7 @@ function createContextString(context: any, line: number): string {
 // find up to `n` words around the cursor, where `n` is
 // the value of `#mindReader.reader.contextWindow`
 function runCursorContext(): void {
-    let editor: any = vscode.window.activeTextEditor;
+    const editor: any = vscode.window.activeTextEditor;
 
     if (!editor) {
         vscode.window.showErrorMessage('RunCursorContext: No Active Editor');
@@ -201,12 +200,12 @@ function runCursorContext(): void {
     }
 
     const cursorPos: any = editor.selection.active;
-    const text: any = editor.document.lineAt(cursorPos).text;
-    const windowSize: number = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow');
-    let trimmedText: any = text.trimStart(); // trim leading whitespace
-    let leadingWS: number = text.length - trimmedText.length; // # of characters of leading whitespace
+    const text: string = editor.document.lineAt(cursorPos).text;
+    const windowSize: any = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow');
+    let trimmedText: string = text.trimStart(); // trim leading whitespace
+    const leadingWS: number = text.length - trimmedText.length; // # of characters of leading whitespace
     let pos: number = leadingWS;
-    let maxPos: number = text.length;
+    const maxPos: number = text.length;
     // clamp cursor start/end to new range
     let col: number = cursorPos.character; // effective column of the cursor position
 
@@ -223,10 +222,10 @@ function runCursorContext(): void {
 
     // generate list of space separate words with range data (start, end)
     // TODO: can find user position to be done in one pass
-    let spaceWords: any[] = [];
+    const spaceWords: any[] = [];
 
     while (pos < maxPos && trimmedText.length > 0) {
-        let word: string = trimmedText.replace(/ .*/, '');
+        const word: string = trimmedText.replace(/ .*/, '');
 
         spaceWords.push({
             word,
@@ -245,7 +244,7 @@ function runCursorContext(): void {
     let contextStart: number = -1;
     let contextEnd: number = -1;
 
-    for (let i = 0; i < spaceWords.length; i++) {
+    for (let i: number = 0; i < spaceWords.length; i++) {
         if (col >= spaceWords[i].start && col <= spaceWords[i].end) {
             // found the word
             contextStart = Math.max(0, i - windowSize); // clamp start index
@@ -253,7 +252,7 @@ function runCursorContext(): void {
             // construct cursor context string
             let contextString: string = '';
 
-            for (let i = contextStart; i < contextEnd; i++) {
+            for (let i: any = contextStart; i < contextEnd; i++) {
                 contextString += spaceWords[i].word + ' ';
             }
             // output cursor context string
