@@ -49,7 +49,7 @@ function getLineNumber(): void {
         let lineNum: number = fetchLineNumber(editor);
 
         vscode.window.showInformationMessage(`Line ${lineNum.toString()}`);
-    } 
+    }
     else {
         vscode.window.showErrorMessage('No document currently active');
     }
@@ -64,7 +64,7 @@ function getIndent(): void {
 
         if (textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
-        } 
+        }
         else {
             // Grab tab format from open document
             let tabFmt: any = {
@@ -75,7 +75,7 @@ function getIndent(): void {
 
             vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`);
         }
-    } 
+    }
     else {
         vscode.window.showErrorMessage('No document currently active');
     }
@@ -87,14 +87,14 @@ function getIndent(): void {
  *      calculates the number of leading spaces by finding the length of the current line
  *      then subtracting from that the length of the text after trimming the whitespace at the start
  *      which will equal the number of whitespace characters
- * 
+ *
  *      TO-USE: set calculateLeadingSpaces to true
- * 
+ *
  * method 2 (default):
  *      finds the index position of the first non-whitespace character in a 0-index
  *      this number will equal the number of spaces preceding the non-whitespace character
  *      due to the nature of 0-indexes.
- * 
+ *
  *      TO-USE: set calculateLeadingSpaces to false
  */
 function getLeadingSpaces(): void {
@@ -106,12 +106,12 @@ function getLeadingSpaces(): void {
 
         if (textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
-        } 
+        }
         else {
             /*
              * set  true to use method 1: find the number of leading spaces through arithmetic
              * set false to use method 2: find the index position of the first non-whitespace character in a 0-index
-             * 
+             *
              * default: false
              */
             const calculateLeadingSpaces: boolean = false; // change boolean value to change method
@@ -124,7 +124,7 @@ function getLeadingSpaces(): void {
             vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`):
                 vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
         }
-    } 
+    }
     else {
         vscode.window.showErrorMessage('No document currently active');
     }
@@ -152,7 +152,7 @@ function runLineContext(): void {
         let contentString: string = createContextString(context, line);
 
         vscode.window.showInformationMessage(contentString);
-    } 
+    }
     else {
         vscode.window.showErrorMessage('No document currently active');
     }
@@ -215,7 +215,7 @@ function runCursorContext(): void {
     if (col < leadingWS) {
         // move effective start to first non-whitespace character in the line
         col = leadingWS;
-    } 
+    }
     else if (col > leadingWS + trimmedText.length - 1) {
         // move effective end to last non-whitespace character in the line
         col = leadingWS + trimmedText.length - 1;
