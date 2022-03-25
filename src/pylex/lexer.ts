@@ -95,7 +95,6 @@ export default class Lexer {
     restart(text ? : string): void {
         this.pos = 0;
         this._currToken = EOFTOKEN; // if no input, already on EOFTOKEN
-        
         if (text) {
             this.textLines = text.split('\n');
             this.next(); // advance to the first token
@@ -132,7 +131,7 @@ export default class Lexer {
                     // Yes...
                     if (match.groups) {
                         token = new LineToken(r.type, this.pos, indent, match.groups["attr"]);
-                    } 
+                    }
                     else {
                         token = new LineToken(r.type, this.pos, indent);
                     }
@@ -149,7 +148,7 @@ export default class Lexer {
             if (/^\s*(#.*)?$/.test(line)) {
                 // "empty" line
                 token = new LineToken(Symbol.EMPTY, this.pos, 999999);
-            } 
+            }
             else {
                 // This is an INDENT token
                 token = new LineToken(Symbol.INDENT, this.pos, indent);
@@ -219,7 +218,7 @@ export default class Lexer {
         if (tabFmt.hard) {
             // used tabs
             indent = leadingSpace;
-        } 
+        }
         else {
             // use spaces
             indent = Math.ceil(leadingSpace / tabFmt.size!);
@@ -229,9 +228,9 @@ export default class Lexer {
     }
 
     /**
-     * Calculates leading spaces for a line. 
+     * Calculates leading spaces for a line.
      * This method uses arithmetic to calculate the number of leading spaces
-     *  
+     *
      * @param `line` The line of text.
      * @return The number of leading spaces of `text`.
      */
@@ -242,11 +241,11 @@ export default class Lexer {
     }
 
     /**
-     * Calculates leading spaces for a line. 
+     * Calculates leading spaces for a line.
      * This method finds the index position of the first non-whitespace character
      * Since the index is built using a 0-index, the position of this character
      * will equal the number of spaces preceding the character.
-     *  
+     *
      * @param `text` The line of text.
      * @return The number of leading spaces of `text` with respect to the index position of the first non-whitespace character.
      */
