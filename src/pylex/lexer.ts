@@ -1,5 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 const _1 = require(".");
 const token_1 = require("./token");
 /**
@@ -67,7 +69,10 @@ class Lexer {
         this.pos = 0;
         this._currToken = token_1.EOFTOKEN;
         // default is 4 wide expanded tabs
-        this.tabFmt = Object.assign({ size: 4, hard: false }, tabFmt);
+        this.tabFmt = Object.assign({
+            size: 4,
+            hard: false
+        }, tabFmt);
         if (text) {
             // normalize linefeeds
             text = text.replace('\r\n', '\n');
@@ -89,8 +94,7 @@ class Lexer {
         if (tabFmt.hard) {
             // used tabs
             indent = leadingSpace;
-        }
-        else {
+        } else {
             // use spaces
             indent = Math.ceil(leadingSpace / tabFmt.size);
         }
@@ -138,7 +142,9 @@ class Lexer {
     /**
      * @return the current {@link LineToken}.
      */
-    currToken() { return this._currToken; }
+    currToken() {
+        return this._currToken;
+    }
     /**
      * Advance the position in the token stream.
      *
@@ -160,8 +166,7 @@ class Lexer {
                     // Yes...
                     if (match.groups) {
                         token = new _1.LineToken(r.type, this.pos, indent, match.groups["attr"]);
-                    }
-                    else {
+                    } else {
                         token = new _1.LineToken(r.type, this.pos, indent);
                     }
                     this._currToken = token;
@@ -174,8 +179,7 @@ class Lexer {
             if (/^\s*(#.*)?$/.test(line)) {
                 // "empty" line
                 token = new _1.LineToken(token_1.Symbol.EMPTY, this.pos, 999999);
-            }
-            else {
+            } else {
                 // This is an INDENT token
                 token = new _1.LineToken(token_1.Symbol.INDENT, this.pos, indent);
             }
