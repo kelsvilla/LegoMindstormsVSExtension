@@ -3,6 +3,8 @@ import { CommandEntry } from './commandEntry';
 import vscode = require("vscode");
 import pl = require("../pylex");
 
+type TextEditor = vscode.TextEditor | undefined;
+
 export const textCommands: CommandEntry[] = [
     {
         name: 'mind-reader.getLineNumber',
@@ -29,20 +31,20 @@ export const textCommands: CommandEntry[] = [
 /* Helper Function
  * This function returns the line number of the active text editor window
  */
-function fetchLineNumber(editor: any): number {
-    return editor.selection.active.line + 1;
+function fetchLineNumber(editor: TextEditor): number {
+    return editor? editor.selection.active.line + 1: -1;
 }
 
 /* Helper Function
  * This function returns the text from the current line of the active text editor window
  */
-function fetchTextLine(editor: any): string {
-    return editor.document.lineAt(fetchLineNumber(editor) - 1);
+function fetchTextLine(editor: TextEditor): vscode.TextLine|undefined {
+    return editor? editor.document.lineAt(fetchLineNumber(editor) - 1): undefined;
 }
 
 // Function that outputs the current line number the cursor is on
 function getLineNumber(): void {
-    const editor: any = vscode.window.activeTextEditor;
+    const editor: TextEditor = vscode.window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
@@ -55,19 +57,19 @@ function getLineNumber(): void {
 }
 
 function getIndent(): void {
-    const editor: any = vscode.window.activeTextEditor;
+    const editor: TextEditor = vscode.window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
-        const textLine: any = editor.document.lineAt(lineNum - 1);
+        const textLine: vscode.TextLine = editor.document.lineAt(lineNum - 1);
 
         if (textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
         }
         else {
             // Grab tab format from open document
-            const tabFmt: any = {
-                size: editor.options.tabSize,
+            const tabFmt: pl.TabInfo = {
+                size: typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4,
                 hard: !editor.options.insertSpaces
             };
             const i: number = pl.Lexer.getIndent(textLine.text, tabFmt);
@@ -101,9 +103,9 @@ function getLeadingSpaces(): void {
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
-        const textLine: any = fetchTextLine(editor);
-
-        if (textLine.isEmptyOrWhitespace) {
+        const textLine: vscode.TextLine|undefined = fetchTextLine(editor);
+        // If there's no line, or the line is empty, say the line is empty
+        if (!textLine || textLine.isEmptyOrWhitespace) {
             vscode.window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
         }
         else {
@@ -130,23 +132,23 @@ function getLeadingSpaces(): void {
 }
 
 function runLineContext(): void {
-    const editor: any = vscode.window.activeTextEditor;
+    const editor: TextEditor = vscode.window.activeTextEditor;
 
     if (editor) {
         // current text and line number
         const editorText: string = editor.document.getText();
-        const line: string = editor.selection.active.line;
+        const line: number = editor.selection.active.line;
         // get tab info settings
-        const size: number = parseInt(editor.options.tabSize);
+        const size: number = typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4;
         const hard: boolean = !editor.options.insertSpaces;
         // initialize parser
-        const parser: any = new pl.Parser(editorText, {
+        const parser: pl.Parser = new pl.Parser(editorText, {
             size,
             hard
         });
 
         parser.parse();
-        const context: string = parser.context(line);
+        const context: pl.LexNode[] = parser.context(line);
         // build text
         const contentString: string = createContextString(context, line);
 
@@ -157,7 +159,7 @@ function runLineContext(): void {
     }
 }
 
-function createContextString(context: any, line: string): string {
+function createContextString(context: pl.LexNode[], line: number): string {
     if (context.length < 1) {
         throw new Error('Cannot create context string for empty context');
     }
@@ -169,7 +171,7 @@ function createContextString(context: any, line: string): string {
     }
 
     for (let i: number = 1; i < context.length; i++) {
-        const node: any = context[i];
+        const node: pl.LexNode = context[i];
 
         if (node.label === 'root') {
             // root
@@ -177,7 +179,7 @@ function createContextString(context: any, line: string): string {
             continue;
         }
 
-        if (node.token.type !== pl.PylexSymbol.EMPTY &&
+        if (node.token && node.token.type !== pl.PylexSymbol.EMPTY &&
             node.token.type !== pl.PylexSymbol.INDENT) {
             contextString += ' inside ' + node.token.type.toString();
             if (node.token.attr) {
@@ -192,14 +194,14 @@ function createContextString(context: any, line: string): string {
 // find up to `n` words around the cursor, where `n` is
 // the value of `#mindReader.reader.contextWindow`
 function runCursorContext(): void {
-    const editor: any = vscode.window.activeTextEditor;
+    const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
 
     if (!editor) {
         vscode.window.showErrorMessage('RunCursorContext: No Active Editor');
         return;
     }
 
-    const cursorPos: any = editor.selection.active;
+    const cursorPos: vscode.Position = editor.selection.active;
     const text: string = editor.document.lineAt(cursorPos).text;
     const windowSize: any = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow');
     let trimmedText: string = text.trimStart(); // trim leading whitespace
@@ -252,7 +254,7 @@ function runCursorContext(): void {
             // construct cursor context string
             let contextString: string = '';
 
-            for (let i: any = contextStart; i < contextEnd; i++) {
+            for (let i: number = contextStart; i < contextEnd; i++) {
                 contextString += spaceWords[i].word + ' ';
             }
             // output cursor context string
