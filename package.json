@@ -1,7 +1,7 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind_Reader",
-	"repository": "https://github.com/SingleSemesterSnobs/Mind_Reader",
+	"repository": "https://github.com/We-Dont-Byte/Mind_Reader",
 	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.60.0"
@@ -52,20 +52,16 @@
 				"title": "Mind Reader Webview"
 			},
 			{
-				"command": "mind-reader.openKeyBindWin",
-				"title": "Key Bindings for Windows"
-			},
-			{
-				"command": "mind-reader.openKeyBindMac",
-				"title": "Key Bindings for Mac"
+				"command": "mind-reader.openKeybinds",
+				"title": "Mind_Reader Keybinds"
 			},
 			{
 				"command": "mind-reader.runLineContext",
-				"title": "Run Line Context"
+				"title": "Get the Context of the Current Line"
 			},
 			{
 				"command": "mind-reader.runCursorContext",
-				"title": "Run Cursor Context"
+				"title": "Get the Context of Text Under Cursor"
 			},
 			{
 				"command": "mind-reader.getIndent",
@@ -81,121 +77,128 @@
 			},
 			{
 				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload current file to LEGO Hub"
+				"title": "Upload Current File to LEGO Hub"
 			},
 			{
 				"command": "mind-reader.runProgram",
-				"title": "Run a program from the LEGO Hub"
+				"title": "Run a Program from the LEGO Hub"
 			},
 			{
 				"command": "mind-reader.stopExecution",
-				"title": "Stop running program on the LEGO Hub"
+				"title": "Stop Running Program on the LEGO Hub"
 			},
 			{
 				"command": "mind-reader.deleteProgram",
-				"title": "Delete a program from the LEGO Hub"
+				"title": "Delete a Program from the LEGO Hub"
+			},
+			{
+				"command": "mind-reader.uploadCurrentFile",
+				"title": "Hub: Upload Current File"
+			},
+			{
+				"command": "mind-reader.getLeadingSpaces",
+				"title": "Get Leading Spaces"
+			},
+			{
+				"command": "mind-reader.getLineNumber",
+				"title": "Get Line Number"
+			},
+			{
+				"command": "mind-reader.getQuickInputBack",
+				"title": "Go Back in Quick Input"
+			},
+			{
+				"command": "mind-reader.gotoLine",
+				"title": "Go to Line"
+			},
+			{
+				"command": "mind-reader.gotoSymbol",
+				"title": "Go to Symbol"
+			},
+			{
+				"command": "mind-reader.navigateBack",
+				"title": "Navigate Backward"
+			},
+			{
+				"command": "mind-reader.navigateForward",
+				"title": "Navigate Forward"
+			},
+			{
+				"command": "mind-reader.nextInFiles",
+				"title": "Go to Next Problem in Files (Error, Warning, Info)"
+			},
+			{
+				"command": "mind-reader.prevInFiles",
+				"title": "Go to Previous Problem in Files (Error, Warning, Info)"
+			},
+			{
+				"command": "mind-reader.quickOpen",
+				"title": "Go to File..."
+			},
+			{
+				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
+				"title": "View: Quick Open Previous Recently Used Editor in Group"
+			},
+			{
+				"command": "mind-reader.showAllSymbols",
+				"title": "Go to Symbol in Workspace..."
+			},
+			{
+				"command": "mind-reader.showProblems",
+				"title": "Show Problems"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "mind-reader.decreaseFontScale",
+				"command": "editor.action.fontZoomOut",
 				"key": "numpad_subtract",
-				"mac": "d"
+				"mac": "d",
+				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
 			},
 			{
-				"command": "mind-reader.increaseFontScale",
+				"command": "editor.action.fontZoomIn",
 				"key": "numpad_add",
-				"mac": "[NumpadAdd]"
+				"mac": "[NumpadAdd]",
+				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
 			},
 			{
-				"command": "mind-reader.increaseEditorScale",
+				"command": "editor.action.fontZoomReset",
+				"key": "numpad_add",
+				"mac": "[NumpadAdd]",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "workbench.action.zoomIn",
 				"key": "shift+numpad_add",
-				"mac": "Shift+[NumpadAdd]"
+				"mac": "Shift+[NumpadAdd]",
+				"when": "config.mindReader.reader.screenReader != JAWS"
 			},
 			{
-				"command": "mind-reader.decreaseEditorScale",
+				"command": "workbench.action.zoomOut",
 				"key": "shift+numpad_subtract",
 				"mac": "Shift+[NumpadSubtract]"
 			},
 			{
-				"command": "mind-reader.resetEditorScale",
+				"command": "workbench.action.zoomReset",
 				"key": "shift+enter",
 				"mac": "Shift+[Enter]"
 			},
 			{
-				"command": "mind-reader.showAllSymbols",
-				"key": "Ctrl+T",
-				"mac": "Cmd+[KeyT]"
-			},
-			{
-				"command": "mind-reader.gotoLine",
-				"key": "CTRL+G",
-				"mac": "Cmd+[KeyG]"
-			},
-			{
-				"command": "mind-reader.quickOpen",
-				"key": "CTRL+P",
-				"mac": "Cmd+[KeyP]"
-			},
-			{
-				"command": "mind-reader.gotoSymbol",
-				"key": "Ctrl+Shift+O",
-				"mac": "Cmd+Shift+[KeyO]"
-			},
-			{
-				"command": "mind-reader.showProblems",
-				"key": "Ctrl+Shift+M",
-				"mac": "Cmd+Shift+[KeyM]"
-			},
-			{
-				"command": "mind-reader.nextInFiles",
-				"key": "F8",
-				"mac": "[F8]"
-			},
-			{
-				"command": "mind-reader.prevInFiles",
-				"key": "Shift+F8",
-				"mac": "Shift+[F8]"
-			},
-			{
-				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
-				"key": "Ctrl+Tab",
-				"mac": "Cmd+[Tab]"
-			},
-			{
-				"command": "mind-reader.navigateBack",
-				"key": "Ctrl+Alt+-",
-				"mac": "Cmd+Alt+[Minus]"
-			},
-			{
-				"command": "mind-reader.getQuickInputBack",
-				"key": "Ctrl+Alt+-",
-				"mac": "Cmd+Alt+[Minus]"
-			},
-			{
-				"command": "mind-reader.navigateForward",
-				"key": "Ctrl+Shift+-",
-				"mac": "Cmd+Shift+[Minus]"
-			},
-			{
-				"command": "mind-reader.selectTheme",
-				"key": "Ctrl+Shift+1",
-				"mac": "Cmd+Shift+[Digit1]"
-			},
-			{
 				"command": "mind-reader.getIndent",
-				"key": "Shift+Tab",
-				"mac": "Shift+[Tab]"
+				"key": "Ctrl+Shift+/ I",
+				"mac": "Cmd+Shift+[Slash] I",
+				"when": "activeEditor"
 			},
 			{
-				"command": "mind-reader.openKeyBindWin",
-				"key": "Ctrl+Shift+8",
-				"mac": "Cmd+Shift+8"
+				"command": "mind-reader.getLeadingSpaces",
+				"key": "Ctrl+Shift+/ S",
+				"mac": "Cmd+Shift+[Slash] S",
+				"when": "activeEditor"
 			},
 			{
-				"command": "mind-reader.openKeyBindMac",
-				"key": "Ctrl+Shift+9",
-				"mac": "Cmd+Shift+9"
+				"command": "mind-reader.openKeybinds",
+				"key": "Ctrl+Shift+/ K",
+				"mac": "Cmd+Shift+[Slash] K"
 			}
 		],
 		"menus": {
@@ -247,12 +250,7 @@
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.openKeyBindWin",
-					"group": "mind-reader",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.openKeyBindMac",
+					"command": "mind-reader.openKeybinds",
 					"group": "mind-reader",
 					"when": "activeEditor"
 				}
@@ -270,7 +268,7 @@
 				"mindReader.productType": {
 					"type": "string",
 					"description": "Specifies the LEGO® product.",
-					"default": "MINDSTORMS EV3",
+					"default": "SPIKE Prime",
 					"enum": [
 						"MINDSTORMS EV3",
 						"SPIKE Prime"
@@ -285,11 +283,13 @@
 					"description": "Specifies which screen reader to optimize for.",
 					"default": "NVDA",
 					"enum": [
+						"JAWS",
 						"NVDA",
 						"Orca",
 						"VoiceOver"
 					],
 					"enumDescriptions": [
+						"Job Access With Speech (Windows)",
 						"NonVisual Desktop Access (Windows)",
 						"Orca (Linux)",
 						"Apple VoiceOver (macOS)"

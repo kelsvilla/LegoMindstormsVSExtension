@@ -8,17 +8,13 @@ export const navCommands: CommandEntry[] = [
     name: 'mind-reader.openWebview',
     callback: openWebview,
   },
-
   {
-    name: 'mind-reader.openKeyBindWin',
-    callback: () => openKeyBindWin('Windows')
-  },
-  {
-    name: 'mind-reader.openKeyBindMac',
-    callback: () => openKeyBindWin('Mac'),
+    name: "mind-reader.openKeybinds",
+    callback: () => vscode.commands.executeCommand("workbench.action.openGlobalKeybindings", "mind-reader"),
   },
 
   //Navigation Keys......
+  // TODO: Why is this here? Extensions can rebind existing keybinds.
   {
     name: 'mind-reader.showAllSymbols',
     callback: () => vscode.commands.executeCommand('workbench.action.showAllSymbols'),
@@ -95,22 +91,6 @@ function openWebview(): void {
 
 function getWebviewContent(filepath: string) {
   return fs.readFileSync(filepath, {encoding: 'utf-8'});
-}
-
-function openKeyBindWin(os: 'Mac' | 'Windows'): void {
-  //vscode.commands.executeCommand('workbench.action.zoomOut');
-  const panel = vscode.window.createWebviewPanel(
-    'mindReader', // Identifies the type of the webview. Used internally
-    'MR Key Bindings', // Title of the panel displayed to the user
-    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-    {}
-  ); // Webview options. More on these later.
-
-  if (os === 'Windows') {
-    panel.webview.html = getWebviewContent('media/html/winkeys.html');
-  } else if (os === 'Mac') {
-    panel.webview.html = getWebviewContent('media/html/mackeys.html');
-  }
 }
 
 
