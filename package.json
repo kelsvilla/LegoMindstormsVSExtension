@@ -16,36 +16,39 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "mind-reader.helloWorld",
-				"title": "Hello World"
-			},
-			{
 				"command": "mind-reader.increaseFontScale",
-				"title": "Increase Font Scale"
+				"title": "Increase Font Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.decreaseFontScale",
-				"title": "Decrease Font Scale"
+				"title": "Decrease Font Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.resetFontScale",
-				"title": "Reset Font Scale"
+				"title": "Reset Font Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.increaseEditorScale",
-				"title": "Increase Editor Scale"
+				"title": "Increase Editor Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.decreaseEditorScale",
-				"title": "Decrease Editor Scale"
+				"title": "Decrease Editor Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.resetEditorScale",
-				"title": "Reset Editor Scale"
+				"title": "Reset Editor Scale",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.selectTheme",
-				"title": "Select Theme"
+				"title": "Select Theme",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.openWebview",
@@ -53,87 +56,108 @@
 			},
 			{
 				"command": "mind-reader.openKeybinds",
-				"title": "Mind_Reader Keybinds"
+				"title": "Edit Keybinds",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.runLineContext",
-				"title": "Get the Context of the Current Line"
+				"title": "Get the Context of the Current Line",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.runCursorContext",
-				"title": "Get the Context of Text Under Cursor"
+				"title": "Get the Context of Text Under Cursor",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getIndent",
-				"title": "Get Line Indentation"
+				"title": "Get Line Indentation",
+				"category": "Mind_Reader"
 			},
 			{
 				"command": "mind-reader.connectHub",
-				"title": "Connect LEGO Hub"
+				"title": "Connect LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.disconnectHub",
-				"title": "Disconnect LEGO Hub"
+				"title": "Disconnect LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload Current File to LEGO Hub"
+				"title": "Upload Current File to LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.runProgram",
-				"title": "Run a Program from the LEGO Hub"
+				"title": "Run a Program on the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.stopExecution",
-				"title": "Stop Running Program on the LEGO Hub"
+				"title": "Stop Running Program on the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.deleteProgram",
-				"title": "Delete a Program from the LEGO Hub"
+				"title": "Delete a Program from the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.uploadCurrentFile",
-				"title": "Hub: Upload Current File"
+				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.getLeadingSpaces",
-				"title": "Get Leading Spaces"
+				"title": "Get Leading Spaces",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getLineNumber",
-				"title": "Get Line Number"
+				"title": "Get Line Number",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getQuickInputBack",
-				"title": "Go Back in Quick Input"
+				"title": "Go Back in Quick Input",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.gotoLine",
-				"title": "Go to Line"
+				"title": "Go to Line",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.gotoSymbol",
-				"title": "Go to Symbol"
+				"title": "Go to Symbol",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.navigateBack",
-				"title": "Navigate Backward"
+				"title": "Navigate Backward",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.navigateForward",
-				"title": "Navigate Forward"
+				"title": "Navigate Forward",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.nextInFiles",
-				"title": "Go to Next Problem in Files (Error, Warning, Info)"
+				"title": "Go to Next Problem in Files (Error, Warning, Info)",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.prevInFiles",
-				"title": "Go to Previous Problem in Files (Error, Warning, Info)"
+				"title": "Go to Previous Problem in Files (Error, Warning, Info)",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.quickOpen",
-				"title": "Go to File..."
+				"title": "Go to File...",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
@@ -141,59 +165,60 @@
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
-				"title": "Go to Symbol in Workspace..."
+				"title": "Go to Symbol in Workspace...",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.showProblems",
-				"title": "Show Problems"
+				"title": "Show Problems",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.showCommands",
+				"title": "Show All Commands",
+				"category": "Mind Reader"
 			}
 		],
 		"keybindings": [
 			{
 				"command": "editor.action.fontZoomOut",
-				"key": "numpad_subtract",
-				"mac": "d",
+				"key": "Shift+Alt+z -",
 				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "editor.action.fontZoomIn",
-				"key": "numpad_add",
-				"mac": "[NumpadAdd]",
+				"key": "Shift+Alt+z =",
 				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "editor.action.fontZoomReset",
-				"key": "numpad_add",
-				"mac": "[NumpadAdd]",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "workbench.action.zoomIn",
-				"key": "shift+numpad_add",
-				"mac": "Shift+[NumpadAdd]",
-				"when": "config.mindReader.reader.screenReader != JAWS"
-			},
-			{
-				"command": "workbench.action.zoomOut",
-				"key": "shift+numpad_subtract",
-				"mac": "Shift+[NumpadSubtract]"
-			},
-			{
-				"command": "workbench.action.zoomReset",
-				"key": "shift+enter",
-				"mac": "Shift+[Enter]"
+				"key": "Shift+Alt+z 0",
+				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "mind-reader.getIndent",
 				"key": "Ctrl+Shift+/ I",
 				"mac": "Cmd+Shift+[Slash] I",
-				"when": "activeEditor"
+				"when": "editorTextFocus"
 			},
 			{
 				"command": "mind-reader.getLeadingSpaces",
 				"key": "Ctrl+Shift+/ S",
 				"mac": "Cmd+Shift+[Slash] S",
-				"when": "activeEditor"
+				"when": "editorTextFocus",
+				"comment": "Requires python language"
+			},
+			{
+				"command": "mind-reader.getLineNumber",
+				"key": "Ctrl+Shift+/ L",
+				"mac": "Cmd+Shift+[Slash] L",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.runLineContext",
+				"key": "Ctrl+Shift+/ C",
+				"mac": "Cmd+Shift+[Slash] C",
+				"when": "editorTextFocus && editorLangId == python"
 			},
 			{
 				"command": "mind-reader.openKeybinds",
