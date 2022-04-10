@@ -224,6 +224,10 @@
 				"command": "mind-reader.openKeybinds",
 				"key": "Ctrl+Shift+/ K",
 				"mac": "Cmd+Shift+[Slash] K"
+			},
+			{
+				"command": "mind-reader.ev3.test",
+				"key": "Ctrl+E Ctrl+V"
 			}
 		],
 		"menus": {
