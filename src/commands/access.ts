@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
 import { CommandEntry } from './commandEntry';
+import { ConfigurationTarget, workspace} from 'vscode';
+var highlightToggle = 0;
+var color = "#14afc0";
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
@@ -39,6 +42,10 @@ export const accessCommands: CommandEntry[] = [
     name: 'mind-reader.resetEditorScale',
     callback: resetEditorScale,
   },
+  {
+    name: 'mind-reader.highlightCurrentLine',
+    callback: highlightCurrentLine,
+  },
 ];
 
 
@@ -66,3 +73,19 @@ function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
 }
 
+async function highlightCurrentLine(){
+const config = vscode.workspace.getConfiguration('workbench');
+const config2 = config.get('colorCustomizations');
+switch (highlightToggle) {
+  case 0:
+    config2["editor.lineHighlightBackground"] = color;
+    await config.update('colorCustomizations', config2, ConfigurationTarget.Global, true);
+    highlightToggle = 1;
+    break;
+  case 1:
+    config2["editor.lineHighlightBackground"] = null;
+    await config.update('colorCustomizations', config2, ConfigurationTarget.Global, true);
+    highlightToggle = 0;
+    break;
+}
+}
