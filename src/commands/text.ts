@@ -167,23 +167,29 @@ function createContextString(context: pl.LexNode[], line: number): string {
     let contextString: string = `Line ${line + 1}`; // 1 based
 
     if (context[0].token && context[0].token.attr) {
-        contextString += ': ' + context[0].token.type.toString() + ' ' + context[0].token.attr.toString();
+        let tokenTypeString: string = ` ${context[0].token.type.toString()}`;
+        contextString += `:${tokenTypeString !== 'INDENT'?tokenTypeString:" "
+        } ${context[0].token.attr.toString()}`;
     }
 
     for (let i: number = 1; i < context.length; i++) {
         const node: pl.LexNode = context[i];
-
+        const inside: string = "in";
         if (node.label === 'root') {
             // root
-            contextString += ' in the Document Root';
+            if (vscode.window.activeTextEditor?.document.uri) {
+                contextString += ` ${inside} ${vscode.workspace.asRelativePath(vscode.window.activeTextEditor?.document.uri)}`;
+            } else {
+                contextString += ` ${inside} the Document`;
+            }
             continue;
         }
 
         if (node.token && node.token.type !== pl.PylexSymbol.EMPTY &&
             node.token.type !== pl.PylexSymbol.INDENT) {
-            contextString += ' inside ' + node.token.type.toString();
+            contextString += ` ${inside} ${node.token.type.toString()}`;
             if (node.token.attr) {
-                contextString += ' ' + node.token.attr.toString();
+                contextString += ` ${node.token.attr.toString()}`;
             }
         }
     }

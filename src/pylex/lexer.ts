@@ -56,6 +56,14 @@ const rules: Rule[] = [
         pattern: /^\s*with\s+(?<attr>[^:]+):\s*$/,
         type: Symbol.WITH
     },
+    {
+        pattern: /^\s*(#.*)?$/,
+        type: Symbol.EMPTY
+    },
+    {
+        pattern: /\s*(?<attr>[^#]+)?$/,
+        type: Symbol.INDENT
+    }
 ];
 
 /**
@@ -143,17 +151,7 @@ export default class Lexer {
                 }
             }
             // No rules matched
-
-            // TODO: move to rules
-            if (/^\s*(#.*)?$/.test(line)) {
-                // "empty" line
-                token = new LineToken(Symbol.EMPTY, this.pos, 999999);
-            }
-            else {
-                // This is an INDENT token
-                token = new LineToken(Symbol.INDENT, this.pos, indent);
-            }
-
+            token = new LineToken(Symbol.EMPTY, this.pos, 999999);
             this._currToken = token;
             this.pos++;
 

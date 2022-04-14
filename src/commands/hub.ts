@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import HubManager from '../hubManager';
-import EV3Manager from '../ev3Manager';
+//import EV3Manager from '../ev3Manager';
 
 import { CommandEntry } from './commandEntry';
 
@@ -34,22 +34,23 @@ export const hubCommands: CommandEntry[] = [
   {
     name: 'mind-reader.deleteProgram',
     callback: deleteProgram
-  },
+  }/*,
   {
     name: 'mind-reader.ev3.test',
     callback: ev3test
-  }
+  }*/
 ];
 
 // Current connected hub
 let hub: HubManager | null = null;
+/*
 let ev3: EV3Manager | null = null;
 
 async function ev3test(): Promise<void> {
   ev3 = await EV3Manager.activate();
   ev3.test();
 }
-
+*/
 async function connectHub(): Promise<void> {
   if (hub && hub.isOpen()) {
     vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');
