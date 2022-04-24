@@ -165,32 +165,33 @@ function createContextString(context: pl.LexNode[], line: number): string {
     }
 
     let contextString: string = `Line ${line + 1}`; // 1 based
-
+    // Print the current line
     if (context[0].token && context[0].token.attr) {
-        let tokenTypeString: string = ` ${context[0].token.type.toString()}`;
-        contextString += `:${tokenTypeString !== 'INDENT'?tokenTypeString:" "
+        let tokenTypeString: string = `${context[0].token.type.toString()}`;
+        contextString += `: ${tokenTypeString !== 'INDENT'?tokenTypeString:""
         } ${context[0].token.attr.toString()}`;
     }
 
     for (let i: number = 1; i < context.length; i++) {
         const node: pl.LexNode = context[i];
         const inside: string = "in";
-        if (node.label === 'root') {
-            // root
-            if (vscode.window.activeTextEditor?.document.uri) {
-                contextString += ` ${inside} ${vscode.workspace.asRelativePath(vscode.window.activeTextEditor?.document.uri)}`;
-            } else {
-                contextString += ` ${inside} the Document`;
-            }
-            continue;
-        }
-
+        // Node contains information relevant to the current line
         if (node.token && node.token.type !== pl.PylexSymbol.EMPTY &&
             node.token.type !== pl.PylexSymbol.INDENT) {
             contextString += ` ${inside} ${node.token.type.toString()}`;
             if (node.token.attr) {
                 contextString += ` ${node.token.attr.toString()}`;
             }
+        }
+        // Node is the document root
+        if (node.label === 'root') {
+            // Append the name (relative path) of the document in the workspace
+            if (vscode.window.activeTextEditor?.document.uri) {
+                contextString += ` ${inside} ${vscode.workspace.asRelativePath(vscode.window.activeTextEditor?.document.uri)}`;
+            } else {
+                contextString += ` ${inside} the Document`;
+            }
+            continue;
         }
     }
 
