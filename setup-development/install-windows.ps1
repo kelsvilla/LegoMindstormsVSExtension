@@ -165,6 +165,8 @@ $args = if ($AllowAdministrator) {" -AllowAdministrator"} else {""}
 $args += if ($DryRun) {" -DryRun"} else {""}
 PowerShell ("./upgrade-windows.ps1 -Install -NoPrompt" + $args)
 
+# Open VSCode in the repository location
+code .
 
 cd $dir
 if ( -not $NoPrompt ) {
