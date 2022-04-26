@@ -150,7 +150,10 @@ $dir = $pwd
 cd $GitDir
 Dry-Run "git clone 'https://github.com/We-Dont-Byte/Mind_Reader.git'"
 # TODO: Change this during merge onto main branch
+cd Mind_reader
 Dry-Run "git checkout johnBreaux"
+cd ..
+# END TODO
 
 # Run the install script
 if ( -not (Test-Path "$SetupPath")) {
