@@ -157,7 +157,7 @@ $prev_directory = $pwd
 
 # install NodeJS dependencies for this extension
 Write-Host "`nInstalling NodeJS Dependencies..."
-cd ..
+cd ..\..
 Dry-Run 'npm install'
 
 # if we're on a known VSCode version, go ahead and run electron-rebuild
@@ -189,5 +189,5 @@ switch -Regex (code --version) {
 # Return from whence we came
 cd $prev_directory
 if ( -not $NoPrompt ) {
-   Write-Host "Press any key to exit."; [void][Console]::ReadKey(1)
+   Write-Host "`nPress any key to exit."; [void][Console]::ReadKey(1)
 }

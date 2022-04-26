@@ -56,7 +56,8 @@ param (
    [switch]$DryRun                 # Run script without installing
 )
 
-$SetupPath = 'Mind_Reader/setup-development'
+$RepoPath  = "$GitDir\Mind_Reader"
+$SetupPath = "$RepoPath\setup-development\windows"
 
 if ($h -or $Help) {
    Get-Help ./install-windows.ps1
@@ -166,9 +167,11 @@ $args += if ($DryRun) {" -DryRun"} else {""}
 PowerShell ("./upgrade-windows.ps1 -Install -NoPrompt" + $args)
 
 # Open VSCode in the repository location
-code .
+Write-Host "`nOpening Visual Studio Code"
+cd $RepoPath
+Dry-Run "code ."
 
 cd $dir
 if ( -not $NoPrompt ) {
-   Write-Host "Press any key to exit."; [void][Console]::ReadKey(1)
+   Write-Host "`nPress any key to exit."; [void][Console]::ReadKey(1)
 }
