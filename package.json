@@ -1,7 +1,7 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind_Reader",
-	"repository": "https://github.com/SingleSemesterSnobs/Mind_Reader",
+	"repository": "https://github.com/We-Dont-Byte/Mind_Reader",
 	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.60.0"
@@ -14,8 +14,7 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
+		"commands": [{
 				"command": "mind-reader.helloWorld",
 				"title": "Hello World"
 			},
@@ -96,8 +95,7 @@
 				"title": "Delete a program from the LEGO Hub"
 			}
 		],
-		"keybindings": [
-			{
+		"keybindings": [{
 				"command": "mind-reader.decreaseFontScale",
 				"key": "numpad_subtract",
 				"mac": "d"
@@ -199,14 +197,11 @@
 			}
 		],
 		"menus": {
-			"editor/context": [
-				{
-					"submenu": "mind-reader.editor.context",
-					"group": "mind-reader"
-				}
-			],
-			"mind-reader.editor.context": [
-				{
+			"editor/context": [{
+				"submenu": "mind-reader.editor.context",
+				"group": "mind-reader"
+			}],
+			"mind-reader.editor.context": [{
 					"command": "mind-reader.increaseEditorScale",
 					"group": "mind-reader",
 					"when": "activeEditor"
@@ -258,12 +253,10 @@
 				}
 			]
 		},
-		"submenus": [
-			{
-				"id": "mind-reader.editor.context",
-				"label": "Mind_Reader"
-			}
-		],
+		"submenus": [{
+			"id": "mind-reader.editor.context",
+			"label": "Mind_Reader"
+		}],
 		"configuration": {
 			"title": "Mind_Reader",
 			"properties": {
@@ -312,8 +305,7 @@
 			}
 		},
 		"views": {
-			"MindReader": [
-				{
+			"MindReader": [{
 					"id": "accessActions",
 					"name": "Access Actions",
 					"icon": "media/dep.svg",
@@ -328,13 +320,11 @@
 			]
 		},
 		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "MindReader",
-					"title": "MindReader Actions",
-					"icon": "media/dep.svg"
-				}
-			]
+			"activitybar": [{
+				"id": "MindReader",
+				"title": "MindReader Actions",
+				"icon": "media/dep.svg"
+			}]
 		}
 	},
 	"scripts": {
