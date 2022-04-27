@@ -64,7 +64,6 @@ if ($h -or $Help) {
    exit
 }
 
-
 # .description
 # Command-Available: Checks whether a given command is available.
 # If command is available, returns $false
@@ -165,6 +164,7 @@ cd $SetupPath
 $args = if ($AllowAdministrator) {" -AllowAdministrator"} else {""}
 $args += if ($DryRun) {" -DryRun"} else {""}
 PowerShell ("./upgrade-windows.ps1 -Install -NoPrompt" + $args)
+Reload-Path
 
 # Open VSCode in the repository location
 Write-Host "`nOpening Visual Studio Code"
