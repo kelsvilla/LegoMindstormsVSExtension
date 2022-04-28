@@ -56,6 +56,7 @@ param (
    [switch]$DryRun                 # Run script without installing
 )
 
+$RepoURI   = "https://github.com/We-Dont-Byte/Mind_Reader.git"
 $RepoPath  = "$GitDir\Mind_Reader"
 $SetupPath = "$RepoPath\setup-development\windows"
 
@@ -98,8 +99,8 @@ function Reload-Path {
 
 
 # Check if Winget is available
-if ( $NoWinget -or -not (Command-Available winget) ) {
-   Write-Warning "[ Warning ]: It looks like winget isn't available.`n"
+if ( -not (Command-Available winget) ) {
+   Write-Warning "It looks like winget isn't available.`n"
    Write-Host "Update 'App Installer' through the Microsoft Store, or grab the '.msixbundle' from the winget-cli repository:"
    Write-Host "( https://github.com/microsoft/winget-cli/releases/latest )`n" -ForegroundColor White
    exit
@@ -148,12 +149,13 @@ if ( -not (Test-Path "$GitDir") ) {
 # Clone the repository in GitDir
 $dir = $pwd
 cd $GitDir
-Dry-Run "git clone 'https://github.com/We-Dont-Byte/Mind_Reader.git'"
-# TODO: Change this during merge onto main branch
+Dry-Run "git clone '$RepoURI'"
+
+# TODO: Remove this when merging
 cd Mind_reader
 Dry-Run "git checkout johnBreaux"
 cd ..
-# END TODO
+# TODO: Remove this when merging
 
 # Run the install script
 if ( -not (Test-Path "$SetupPath")) {

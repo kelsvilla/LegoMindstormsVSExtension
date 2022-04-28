@@ -1,0 +1,4 @@
+apt-transport-https
+build-essential
+python3
+wget
