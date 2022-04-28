@@ -7,7 +7,7 @@
 # If run with bash -vx, print useful information instead of just a + sign
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # If run as root, it could be because sudo isn't installed (some people disagree with sudo, especially on Arch)
-ELEVATE='';if (( $UID !=0 )); then;ELEVATE='sudo';fi
+ELEVATE='';if (( $UID !=0 )); then ELEVATE='sudo';fi
 
 # Get option flags:
 dry=false
@@ -23,12 +23,13 @@ function dryrun {
    else
       echo "> $*"
       $@
+   fi
 }
 
 # Set these variables if you need to install for a different architecture
 # Valid architectures are "x64", "arm64", "armhf"
 arch=""
-case (uname -i) in
+case `uname -i` in
    "x86_64")     arch="x64";;
    "armv[6-8]*") arch="armhf";;
    "aarch64")    arch="arm64";;
@@ -46,6 +47,9 @@ elif which apt-get; then
    # Install Node Version Manager (nvm)
    # TODO: Find a better way to install nvm on Ubuntu, the official NodeJS for <20.04 is so out of date it's unsupported.
    dryrun curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
    # Check if vscode exists, if not, install it.
    # Microsoft doesn't put it in any Ubuntu repos, you have to get it straight from them.
@@ -69,7 +73,7 @@ electronversion=""
 #* Note:
 #* When adding support for new VSCode versions, update this case
 #* By the time you're working on this project, things are likely going to differ!
-case (code --version) in
+case `code --version` in
    #* Each version of VSCode has a corresponding Electron version and Node version
    #* These are used when
    1.66.*) electronversion="17.2.0"; nodeversion="16.13.0";;
@@ -87,10 +91,10 @@ dryrun npm install electron-rebuild yo generator-code
 dryrun npm install
 
 # Use electron-rebuild to rebuild electron
-if (( electronversion !="" )); then
+if [ "$electronversion" != "" ]; then
    dryrun electron-rebuild --version $electronversion
 else
-   printf "%s/n%s/n%s/n%s/n"                                                             \
+   printf "%s\n%s\n%s\n%s\n"                                                             \
    "Open Visual Studio Code, select the 'Help' tab in the toolbar, and go to 'About'."   \
    "Find the line that says 'Electron: [electron version]'"                              \
    "Run the command below, filling in the Electron version with the one from that menu:" \

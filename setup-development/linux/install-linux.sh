@@ -7,12 +7,12 @@ export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 ELEVATE='';if (( $UID !=0 )); then ELEVATE='sudo';fi
 
 help () {
-   echo "Usage: $0 [-g path/to/git/directory]"
+   echo "Usage: $0 [-d] [-g path/to/git/directory]"
    exit 0
 }
 
 
-gitdir="~/git"
+gitdir=~/git
 
 # Get option flags:
 dry=false
@@ -33,7 +33,7 @@ function dryrun {
    fi
 }
 
-setupdir="Mind_Reader/setup-development"
+setupdir="Mind_Reader/setup-development/linux"
 repouri="https://github.com/We-Dont-Byte/Mind_Reader.git"
 
 # Install git
@@ -50,12 +50,13 @@ fi #? TODO: other package managers?
 
 echo Cloning repository into "$gitdir"
 dryrun mkdir "$gitdir"
-cd $gitdir && git clone "$repouri"
+cd $gitdir && dryrun git clone "$repouri"
 
 # TODO: remove this when merging!
    cd Mind_Reader
-   dryrun git checkout origin/johnBreaux
+   dryrun git checkout johnBreaux
 # TODO: remove this when merging!
 
 cd "$gitdir/$setupdir"
-bash ./linux-update.sh
+pwd
+bash ./upgrade-linux.sh $@
