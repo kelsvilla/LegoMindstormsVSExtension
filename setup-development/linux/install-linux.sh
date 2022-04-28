@@ -4,7 +4,7 @@
 #* Ensures git is installed, clones the repo, and then runs
 
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
-ELEVATE='';if (( $UID != 0 )); then ELEVATE='sudo';fi
+ELEVATE='';if (( $UID !=0 )); then ELEVATE='sudo';fi
 
 help () {
    echo "Usage: $0 [-g path/to/git/directory]"
@@ -12,7 +12,7 @@ help () {
 }
 
 
-GITDIR = "~/git"
+GITDIR="~/git"
 
 # Get option flags:
 dry=false
@@ -32,8 +32,8 @@ function dryrun {
       $@
 }
 
-SETUPDIR= "Mind_Reader/setup-development"
-REPOURI = "https://github.com/We-Dont-Byte/Mind_Reader.git"
+SETUPDIR="Mind_Reader/setup-development"
+REPOURI="https://github.com/We-Dont-Byte/Mind_Reader.git"
 
 # Install git
 if which git; then

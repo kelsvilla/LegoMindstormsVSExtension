@@ -7,7 +7,7 @@
 # If run with bash -vx, print useful information instead of just a + sign
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # If run as root, it could be because sudo isn't installed (some people disagree with sudo, especially on Arch)
-ELEVATE='';if (( $UID != 0 )); then;ELEVATE='sudo';fi
+ELEVATE='';if (( $UID !=0 )); then;ELEVATE='sudo';fi
 
 # Get option flags:
 dry=false
@@ -65,14 +65,14 @@ cd ../..
 
 # Check the VSCode version
 nodeversion="node"
-electronversion = ""
+electronversion=""
 #* Note:
 #* When adding support for new VSCode versions, update this case
 #* By the time you're working on this project, things are likely going to differ!
 case (code --version) in
    #* Each version of VSCode has a corresponding Electron version and Node version
    #* These are used when
-   1.66.*) electronversion = "17.2.0"; nodeversion = "16.13.0";;
+   1.66.*) electronversion="17.2.0"; nodeversion="16.13.0";;
    *) ;;
 esac
 
@@ -87,7 +87,7 @@ dryrun npm install electron-rebuild yo generator-code
 dryrun npm install
 
 # Use electron-rebuild to rebuild electron
-if (( electronversion != "" )); then
+if (( electronversion !="" )); then
    dryrun electron-rebuild --version $electronversion
 else
    printf "%s/n%s/n%s/n%s/n"                                                             \
