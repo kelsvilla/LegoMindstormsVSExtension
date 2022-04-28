@@ -76,7 +76,7 @@ electronversion=""
 case `code --version` in
    #* Each version of VSCode has a corresponding Electron version and Node version
    #* These are used when
-   1.66.*) electronversion="17.2.0"; nodeversion="16.13.0";;
+   1.66.*) electronversion="17.2.0"; nodeversion="16.14.2";;
    *) ;;
 esac
 
@@ -89,6 +89,9 @@ dryrun npm install electron-rebuild yo generator-code
 
 # use npm to acquire dependencies for Mind-Reader
 dryrun npm install
+
+# automatically update vulnerable packages, if possible
+dryrun npm audit fix
 
 # Use electron-rebuild to rebuild electron
 if [ "$electronversion" != "" ]; then
