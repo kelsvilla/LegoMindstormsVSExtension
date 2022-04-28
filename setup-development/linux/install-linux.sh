@@ -12,13 +12,13 @@ help () {
 }
 
 
-GITDIR="~/git"
+gitdir="~/git"
 
 # Get option flags:
 dry=false
 while getopts ghd arg; do
    case $arg in
-      g) GITDIR="$OPTARG";;
+      g) gitdir="$OPTARG";;
       h) help;;
       d) dry=true;;
    esac
@@ -32,8 +32,8 @@ function dryrun {
       $@
 }
 
-SETUPDIR="Mind_Reader/setup-development"
-REPOURI="https://github.com/We-Dont-Byte/Mind_Reader.git"
+setupdir="Mind_Reader/setup-development"
+repouri="https://github.com/We-Dont-Byte/Mind_Reader.git"
 
 # Install git
 if which git; then
@@ -47,14 +47,14 @@ elif which apt; then
    dryrun $ELEVATE apt-get install git -y
 fi #? TODO: other package managers?
 
-echo Cloning repository into "$GITDIR"
-dryrun mkdir "$GITDIR"
-cd $GITDIR && git clone "$REPOURI"
+echo Cloning repository into "$gitdir"
+dryrun mkdir "$gitdir"
+cd $gitdir && git clone "$repouri"
 
 # TODO: remove this when merging!
    cd Mind_Reader
    dryrun git checkout origin/johnBreaux
 # TODO: remove this when merging!
 
-cd "$GITDIR/$SETUPDIR"
+cd "$gitdir/$setupdir"
 bash ./linux-update.sh
