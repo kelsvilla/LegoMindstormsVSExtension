@@ -30,6 +30,7 @@ function dryrun {
    else
       echo "> $*"
       $@
+   fi
 }
 
 setupdir="Mind_Reader/setup-development"
