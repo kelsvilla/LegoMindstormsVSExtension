@@ -76,12 +76,14 @@ export default class HubManager {
 
     // get full lines in buffer
 
-    let msgs = this.receiveBuffer.split(/\r/); // split by newline
+    let msgs = this.receiveBuffer.split(/[\r>]/); // split by newline
     this.receiveBuffer = msgs.pop()!; // store unhandled data
 
-    msgs = msgs.filter(x => !x.startsWith('{"m":0,"p":')); // drop sensor broadcast response spam
+    msgs = msgs.filter(x => !x.match(/{"m":\d+,"p":/)); // drop sensor broadcast response spam
 
     for (const msg of msgs) {
+      // check if message is actually json
+      if (!msg.includes("{")) { continue; }
       // check if this msg is a response to a pending request
       try {
         let json: { [key: string]: any };
@@ -112,11 +114,15 @@ export default class HubManager {
             case 'runtime_error':
               logger.error(Buffer.from(params[3], 'base64').toString());
               break;
+            case 2:
+              logger.info(`Battery at ${params[0]}V`);
+              break;
           }
           vscode.window.showErrorMessage("Program Error.");
+          console.log(`Program error: ${msg}`);
         }
       } catch (err) {
-        console.log('Could not parse JSON:', msg);
+        console.log('Could not parse JSON:', msg, err);
       }
     }
   }
