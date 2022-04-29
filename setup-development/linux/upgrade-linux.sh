@@ -39,17 +39,18 @@ esac
 
 if which pacman; then
    # Install dependencies with pacman
-   dryrun $ELEVATE pacman -S - < package-managers/pacman.dependencies
+   cat ./package-managers/pacman.dependencies | dryrun $ELEVATE pacman -S -
+
 elif which apt-get; then
    # Install dependencies using apt-get
    dryrun xargs -a ./package-managers/apt.dependencies $ELEVATE apt-get install -y
 
    # Install Node Version Manager (nvm)
    # TODO: Find a better way to install nvm on Ubuntu, the official NodeJS for <20.04 is so out of date it's unsupported.
-   dryrun curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-   export NVM_DIR="$HOME/.nvm"
-   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+   curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | dryrun bash
+   dryrun export NVM_DIR="$HOME/.nvm"
+   dryrun [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+   dryrun [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
    # Check if vscode exists, if not, install it.
    # Microsoft doesn't put it in any Ubuntu repos, you have to get it straight from them.
