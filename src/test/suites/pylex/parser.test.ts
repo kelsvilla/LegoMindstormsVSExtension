@@ -7,7 +7,7 @@ import LexNode from '../../../pylex/node';
 import LineToken from '../../../pylex/token';
 import { Symbol } from '../../../pylex/token';
 
-import { root,indent,empty } from '../../util';
+import { root, statement } from '../../util';
 
 /**
  * Test Descriptor
@@ -23,23 +23,24 @@ const tests: ParserTest[] = [
   { name: 'Single Empty Line', input: [''], output: root(null) },
   {
     name: 'Single Whitespace Only Line',
-    input: ['                 '],
+    input: ['                    '], // length 20
     output: root([
-      empty(0)
+      new LexNode(Symbol.EMPTY, 0, new LineToken(Symbol.EMPTY, 0, 20 / 4)) // 4 spaces per indent
     ])
   },
   {
     name: 'Single Comment Only Line',
-    input: ['# ur mom likes peas'],
+    input: ['# this is a comment'],
     output: root([
-      empty(0)
+      new LexNode(Symbol.EMPTY, 0, new LineToken(Symbol.COMMENT, 0, 0, "this is a comment"))
     ])
   },
   {
     name: 'Single Non-Control Line',
     input: ['my_age = 42'],
     output: root([
-      indent(0, 0)
+      //statement(0, 0)
+      new LexNode("name", 0, new LineToken(Symbol.STATEMENT, 0, 0, 'my_age = 42'))
     ])
   },
   {
@@ -55,7 +56,10 @@ const tests: ParserTest[] = [
       'bar = "Blue M&Ms make me happy <:)"',
       'reba = "A hard working gal"'
     ],
-    output: root([indent(0,0), indent(1,0)]),
+    output: root([
+      new LexNode("name", 0, new LineToken(Symbol.STATEMENT, 0, 0, 'bar = "Blue M&Ms make me happy <:)"')),
+      new LexNode("name", 0, new LineToken(Symbol.STATEMENT, 1, 0, 'reba = "A hard working gal"'))
+    ]),
   },
 
   {
@@ -66,11 +70,13 @@ const tests: ParserTest[] = [
       'billy = "Scrubbly Bubbles!"'
     ],
     output: root([
-      new LexNode('if radioshack',
-        vscode.TreeItemCollapsibleState.None,
+      new LexNode('if radioshack', 0,
         new LineToken(Symbol.IF, 0, 0, 'radioshack'),
-        [indent(1, 1)]),
-      indent(2, 0)
+        [
+          new LexNode('print radioshack.hours', 0, new LineToken(Symbol.STATEMENT, 1, 1, 'print radioshack.hours'))
+        ]
+      ),
+      new LexNode('billy = "Scrubbly Bubbles!"', 0, new LineToken(Symbol.STATEMENT, 2, 0, 'billy = "Scrubbly Bubbles!"'))
     ])
   },
 
@@ -82,11 +88,12 @@ const tests: ParserTest[] = [
       '    print radioshack.hours'
     ],
     output: root([
-      indent(0, 0),
-      new LexNode('if radioshack',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.IF, 1, 0, 'radioshack'),
-        [indent(2, 1)])
+      new LexNode('billy = "Scrubbly Bubbles!"', 0, new LineToken(Symbol.STATEMENT, 0, 0, 'billy = "Scrubbly Bubbles!"')),
+      new LexNode('if radioshack', 0, new LineToken(Symbol.IF, 1, 0, 'radioshack'),
+        [
+          new LexNode('print radioshack.hours', 0, new LineToken(Symbol.STATEMENT, 2, 1, 'print radioshack.hours'))
+        ]
+      )
     ])
   },
 
@@ -101,15 +108,18 @@ const tests: ParserTest[] = [
       '    print("You really eat this?")',
     ],
     output: root([
-      new LexNode('if yummy',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.IF, 0, 0, 'yummy'), [indent(1, 1)]),
-      new LexNode('elif just_ok',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.ELIF, 2, 0, 'just_ok'), [indent(3, 1)]),
-      new LexNode('else',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.ELSE, 4, 0), [indent(5,1)]),
+      new LexNode('if yummy', 0, new LineToken(Symbol.IF, 0, 0, 'yummy'),
+        [
+          statement(1, 1, 'print("HOoray!")')
+        ]),
+      new LexNode('elif just_ok', 0, new LineToken(Symbol.ELIF, 2, 0, 'just_ok'),
+        [
+          statement(3, 1, 'print("Do you have anything else?")')
+        ]),
+      new LexNode('else', 0, new LineToken(Symbol.ELSE, 4, 0),
+        [
+          statement(5, 1, 'print("You really eat this?")')
+        ]),
     ])
   },
 
@@ -122,13 +132,14 @@ const tests: ParserTest[] = [
     ],
     output: root([
       new LexNode('if yummy',
-        vscode.TreeItemCollapsibleState.None,
+        0,
         new LineToken(Symbol.IF, 0, 0, 'yummy'),
         [
-          new LexNode('if in_my_tummy',
-            vscode.TreeItemCollapsibleState.None,
-            new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
-            [indent(2, 2)])
+          new LexNode('if in_my_tummy', 0, new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
+            [
+              statement(2, 2, 'exclaim("Scrumdiddlyumptious!")')
+            ]
+          )
         ],
       )
     ])
@@ -141,23 +152,20 @@ const tests: ParserTest[] = [
       '    if in_my_tummy:',
       '        exclaim("Scrumdiddlyumptious!")',
       'else:',
-      '    exclaim("DAESGUSTEN~)"'
+      '    exclaim("DISGUSTING!")'
     ],
     output: root([
-      new LexNode('if yummy',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.IF, 0, 0, 'yummy'),
+      new LexNode('if yummy', 0, new LineToken(Symbol.IF, 0, 0, 'yummy'),
         [
-          new LexNode('if in_my_tummy',
-            vscode.TreeItemCollapsibleState.None,
-            new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
-            [indent(2, 2)])
+          new LexNode('if in_my_tummy', 0, new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
+            [
+              statement(2, 2, 'exclaim("Scrumdiddlyumptious!")')
+            ]
+          )
         ]
       ),
-      new LexNode('else',
-        vscode.TreeItemCollapsibleState.None,
-        new LineToken(Symbol.ELSE, 3, 0),
-        [indent(4, 1)]
+      new LexNode('else', 0, new LineToken(Symbol.ELSE, 3, 0),
+        [statement(4, 1, 'exclaim("DISGUSTING!")')]
       )
     ])
   },
@@ -168,31 +176,27 @@ const tests: ParserTest[] = [
       'if yummy:',
       '    if in_my_tummy:',
       '        if looks_like_a_mummy:',
-      '            print("you have a spot on your tummy"',
+      '            print("you have a spot on your tummy")',
       'else:',
       '    print("Food is food...")'
     ],
     output: root([
       new LexNode('if yummy',
-        vscode.TreeItemCollapsibleState.None,
+        0,
         new LineToken(Symbol.IF, 0, 0, 'yummy'),
         [
-          new LexNode('if in_my_tummy',
-            vscode.TreeItemCollapsibleState.None,
-            new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
+          new LexNode('if in_my_tummy', 0, new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
             [
-              new LexNode('if looks_like_a_mummy',
-                vscode.TreeItemCollapsibleState.None,
-                new LineToken(Symbol.IF, 2, 2, 'looks_like_a_mummy'),
-                [indent(3, 3)])
+              new LexNode('if looks_like_a_mummy', 0, new LineToken(Symbol.IF, 2, 2, 'looks_like_a_mummy'),
+                [statement(3, 3, 'print("you have a spot on your tummy")')])
             ]
           )
         ]
       ),
-        new LexNode('else',
-        vscode.TreeItemCollapsibleState.None,
+      new LexNode('else',
+        0,
         new LineToken(Symbol.ELSE, 4, 0),
-        [indent(5, 1)]
+        [statement(5, 1, 'print("Food is food...")')]
       )
     ])
   },
@@ -203,44 +207,42 @@ const tests: ParserTest[] = [
       'if yummy:',
       '    if in_my_tummy:',
       '        if looks_like_a_mummy:',
-      '            print("you have a spot on your tummy"',
+      '            print("you have a spot on your tummy")',
       '        else:',
-      '            print("eek! a zombie!)',
+      '            print("eek! a zombie!")',
       '    elif in_my_mouth:',
-      '        print("itll be in my tummy soon!"',
+      '        print("itll be in my tummy soon!")',
       'else:',
       '    print("Food is food...")'
     ],
     output: root([
-      new LexNode('if yummy',
-        vscode.TreeItemCollapsibleState.None,
+      new LexNode('if yummy', 0,
         new LineToken(Symbol.IF, 0, 0, 'yummy'),
         [
-          new LexNode('if in_my_tummy',
-            vscode.TreeItemCollapsibleState.None,
+          new LexNode('if in_my_tummy', 0,
             new LineToken(Symbol.IF, 1, 1, 'in_my_tummy'),
             [
               new LexNode('if looks_like_a_mummy',
-                vscode.TreeItemCollapsibleState.None,
+                0,
                 new LineToken(Symbol.IF, 2, 2, 'looks_like_a_mummy'),
-                [indent(3, 3)]),
+                [statement(3, 3, 'print("you have a spot on your tummy")')]),
               new LexNode('else',
-                vscode.TreeItemCollapsibleState.None,
+                0,
                 new LineToken(Symbol.ELSE, 4, 2),
-                [indent(5, 3)])
+                [statement(5, 3, 'print("eek! a zombie!")')])
             ]
           ),
           new LexNode('elif in_my_mouth',
-            vscode.TreeItemCollapsibleState.None,
+            0,
             new LineToken(Symbol.ELIF, 6, 1, 'in_my_mouth'),
-            [indent(7, 2)]
+            [statement(7, 2, 'print("itll be in my tummy soon!")')]
           )
         ]
       ),
-        new LexNode('else',
-        vscode.TreeItemCollapsibleState.None,
+      new LexNode('else',
+        0,
         new LineToken(Symbol.ELSE, 8, 0),
-        [indent(9, 1)]
+        [statement(9, 1, 'print("Food is food...")')]
       )
     ])
   },
@@ -248,21 +250,24 @@ const tests: ParserTest[] = [
     name: 'Multiline Block',
     input: [
       'if yummy:',
-      '    print("you have a spot on your tummy"',
+      '    print("you have a spot on your tummy")',
       '    print("eek! a zombie!)',
-      '    print("itll be in my tummy soon!"',
+      '    print("itll be in my tummy soon!")',
       'else:',
       '    print("Food is food...")'
     ],
     output: root([
       new LexNode('if yummy', 0, new LineToken(Symbol.IF, 0, 0, 'yummy'),
         [
-          indent(1, 1),
-          indent(2, 1),
-          indent(3, 1),
+          statement(1, 1, 'print("you have a spot on your tummy")'),
+          statement(2, 1, 'print("eek! a zombie!)'),
+          statement(3, 1, 'print("itll be in my tummy soon!")'),
         ]
       ),
-      new LexNode('else', 0, new LineToken(Symbol.ELSE, 4, 0), [indent(5, 1)])
+      new LexNode('else', 0, new LineToken(Symbol.ELSE, 4, 0),
+        [
+          statement(5, 1, 'print("Food is food...")')
+        ])
     ])
   }
 ];

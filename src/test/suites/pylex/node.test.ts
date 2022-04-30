@@ -13,7 +13,7 @@ suite('LexNode Test Suite', () => {
   });
 
   test('children() of leaf', () => {
-    let n: LexNode = new LexNode('leafLexNode', vscode.TreeItemCollapsibleState.None, new LineToken(Symbol.INDENT, 0, 0));
+    let n: LexNode = new LexNode('leafLexNode', vscode.TreeItemCollapsibleState.None, new LineToken(Symbol.STATEMENT, 0, 0));
     assert.strictEqual(n.children(), null);
   });
 
