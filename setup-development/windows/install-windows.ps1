@@ -66,9 +66,9 @@ if ($h -or $Help) {
 }
 
 # .description
-# Command-Available: Checks whether a given command is available.
+# Get-CommandAvailable: Checks whether a given command is available.
 # If command is available, returns $false
-function Command-Available {
+function Get-CommandAvailable {
    param ($command)
    # Use a wildcard here so the command doesn't throw an exception we'd have to trycatch
    # It's not a filthy hack if it's elegant!
@@ -76,8 +76,8 @@ function Command-Available {
 }
 
 #.description
-# Dry-Run a powershell statement
-function Dry-Run {
+# Invoke-DryRun a powershell statement
+function Invoke-DryRun {
    param ([string] $command)
    $prompt = "> "
    if ($DryRun) {
@@ -90,8 +90,8 @@ function Dry-Run {
 }
 
 #.description
-# Reload-Path: Reload the Path environment variable
-function Reload-Path {
+# Reset-Path: Reload the Path environment variable
+function Reset-Path {
    Write-Output "Reloading Path..."
    #* Courtesy of user [mpen](https://stackoverflow.com/users/65387/mpen) on [StackOverflow](https://stackoverflow.com/a/31845512)
    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
@@ -99,7 +99,7 @@ function Reload-Path {
 
 
 # Check if Winget is available
-if ( -not (Command-Available winget) ) {
+if ( -not (Get-CommandAvailable winget) ) {
    Write-Warning "It looks like winget isn't available.`n"
    Write-Host "Update 'App Installer' through the Microsoft Store, or grab the '.msixbundle' from the winget-cli repository:"
    Write-Host "( https://github.com/microsoft/winget-cli/releases/latest )`n" -ForegroundColor White
@@ -118,7 +118,7 @@ if ( ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5
       if (!$NoPrompt) {
          for ( $i = 3; $i -gt 0; $i--) {
             Write-Host "Press Ctrl+C to exit. Continuing in $i...`r" -NoNewLine
-            sleep 1
+            Start-Sleep 1
          }
          Write-Host    "Press any key to continue...               "
          [void][Console]::ReadKey(1) # Equivalent to Command Prompt's `pause` command
@@ -130,11 +130,11 @@ if ( ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5
 }
 
 # Install Git
-if ( -not (Command-Available git) ) {
+if ( -not (Get-CommandAvailable git) ) {
    Write-Host "`nInstalling Git with winget..."
-   Dry-Run 'winget install --id Git.Git'
-   Reload-Path
-   if ( -not (Command-Available git)) {
+   Invoke-DryRun 'winget install --id Git.Git'
+   Reset-Path
+   if ( -not (Get-CommandAvailable git)) {
       Throw "Git failed to install. Aborting."
    }
 } else {
@@ -143,37 +143,37 @@ if ( -not (Command-Available git) ) {
 
 # Create git directory in GitDir
 if ( -not (Test-Path "$GitDir") ) {
-   Dry-Run "mkdir '$GitDir'"
+   Invoke-DryRun "mkdir '$GitDir'"
 }
 
 # Clone the repository in GitDir
 $dir = $pwd
-cd $GitDir
-Dry-Run "git clone '$RepoURI'"
+Set-Location $GitDir
+Invoke-DryRun "git clone '$RepoURI'"
 
 # TODO: Remove this when merging
-cd Mind_reader
-Dry-Run "git checkout johnBreaux"
-cd ..
+Set-Location Mind_reader
+Invoke-DryRun "git checkout johnBreaux"
+Set-Location ..
 # TODO: Remove this when merging
 
 # Run the install script
 if ( -not (Test-Path "$SetupPath")) {
    Throw "Repository contains no subdirectory '$SetupPath'."
 }
-cd $SetupPath
+Set-Location $SetupPath
 # Run upgrade-windows to install the rest of the dependency chain.
-$args = if ($AllowAdministrator) {" -AllowAdministrator"} else {""}
-$args += if ($DryRun) {" -DryRun"} else {""}
-PowerShell ("./upgrade-windows.ps1 -Install -NoPrompt" + $args)
-Reload-Path
+$upgradeArgs = if ($AllowAdministrator) {" -AllowAdministrator"} else {""}
+$upgradeArgs += if ($DryRun) {" -DryRun"} else {""}
+PowerShell ("./upgrade-windows.ps1 -Install -NoPrompt" + $upgradeArgs)
+Reset-Path
 
 # Open VSCode in the repository location
 Write-Host "`nOpening Visual Studio Code"
-cd $RepoPath
-Dry-Run "code ."
+Set-Location $RepoPath
+Invoke-DryRun "code ."
 
-cd $dir
+Set-Location $dir
 if ( -not $NoPrompt ) {
    Write-Host "`nPress any key to exit."; [void][Console]::ReadKey(1)
 }
