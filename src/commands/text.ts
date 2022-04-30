@@ -19,11 +19,11 @@ export const textCommands: CommandEntry[] = [
         callback: getLeadingSpaces,
     },
     {
-        name: 'mind-reader.runLineContext',
+        name: 'mind-reader.getLineScope',
         callback: runLineContext,
     },
     {
-        name: 'mind-reader.runCursorContext',
+        name: 'mind-reader.getWordsUnderCursor',
         callback: runCursorContext
     }
 ];
@@ -168,16 +168,16 @@ function createContextString(context: pl.LexNode[], line: number): string {
     // Print the current line
     if (context[0].token && context[0].token.attr) {
         let tokenTypeString: string = `${context[0].token.type.toString()}`;
-        contextString += `: ${tokenTypeString !== 'INDENT'?tokenTypeString:""
+        contextString += `: ${tokenTypeString !== pl.PylexSymbol.STATEMENT?tokenTypeString:""
         } ${context[0].token.attr.toString()}`;
     }
 
     for (let i: number = 1; i < context.length; i++) {
         const node: pl.LexNode = context[i];
-        const inside: string = "in";
+        const inside: string = "inside";
         // Node contains information relevant to the current line
         if (node.token && node.token.type !== pl.PylexSymbol.EMPTY &&
-            node.token.type !== pl.PylexSymbol.INDENT) {
+            node.token.type !== pl.PylexSymbol.STATEMENT) {
             contextString += ` ${inside} ${node.token.type.toString()}`;
             if (node.token.attr) {
                 contextString += ` ${node.token.attr.toString()}`;

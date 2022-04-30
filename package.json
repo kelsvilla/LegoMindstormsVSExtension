@@ -4,7 +4,7 @@
 	"repository": "https://github.com/We-Dont-Byte/Mind_Reader",
 	"version": "1.0.0",
 	"engines": {
-		"vscode": "^1.60.0"
+		"vscode": "^1.66.0"
 	},
 	"categories": [
 		"Other"
@@ -60,13 +60,13 @@
 				"category": "Mind Reader"
 			},
 			{
-				"command": "mind-reader.runLineContext",
-				"title": "Get the Context of the Current Line",
+				"command": "mind-reader.getLineScope",
+				"title": "Get Scope of the Current Line",
 				"category": "Mind Reader"
 			},
 			{
-				"command": "mind-reader.runCursorContext",
-				"title": "Get the Context of Text Under Cursor",
+				"command": "mind-reader.getWordsUnderCursor",
+				"title": "Get Words Under the Cursor",
 				"category": "Mind Reader"
 			},
 			{
@@ -215,7 +215,7 @@
 				"when": "editorTextFocus"
 			},
 			{
-				"command": "mind-reader.runLineContext",
+				"command": "mind-reader.getLineScope",
 				"key": "Ctrl+Shift+/ C",
 				"mac": "Cmd+Shift+[Slash] C",
 				"when": "editorTextFocus && editorLangId == python"

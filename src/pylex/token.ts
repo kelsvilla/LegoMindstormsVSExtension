@@ -16,8 +16,10 @@ export enum Symbol {
   EXCEPT = "except",
   FINALLY = "finally",
   WITH = "with",
-  INDENT = "INDENT", // Indent token, default if not EOF, only contains indent information
+  STATEMENT = "statement", // Indent token, contains non-empty code lines
+  COMMENT = "comment",
   EMPTY = "EMPTY", // empty line, used only to associate with the previous line
+  INVALID = "INVALID",
   EOF = "EOF"
 }
 

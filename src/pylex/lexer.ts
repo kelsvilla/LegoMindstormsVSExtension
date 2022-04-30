@@ -57,12 +57,16 @@ const rules: Rule[] = [
         type: Symbol.WITH
     },
     {
-        pattern: /^\s*(#.*)?$/,
+        pattern: /^\s*#+\s*(?<attr>.*)\s*$/,
+        type: Symbol.COMMENT
+    },
+    {
+        pattern: /^\s*$/,
         type: Symbol.EMPTY
     },
     {
-        pattern: /\s*(?<attr>[^#]+)?$/,
-        type: Symbol.INDENT
+        pattern: /^\s*(?<attr>[^#]+)+\s*$/,
+        type: Symbol.STATEMENT
     }
 ];
 
@@ -151,7 +155,7 @@ export default class Lexer {
                 }
             }
             // No rules matched
-            token = new LineToken(Symbol.EMPTY, this.pos, 999999);
+            token = new LineToken(Symbol.INVALID, this.pos, 999999);
             this._currToken = token;
             this.pos++;
 
@@ -218,7 +222,8 @@ export default class Lexer {
             indent = leadingSpace;
         }
         else {
-            // use spaces
+            // used spaces
+            //? indent = Math.round(leadingSpace / tabFmt.size! * 10) / 10; // fractional indentation support?
             indent = Math.ceil(leadingSpace / tabFmt.size!);
         }
 
