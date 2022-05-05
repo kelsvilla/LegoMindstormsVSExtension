@@ -14,8 +14,7 @@ export const logger   = new Logger(outputChannel);
 let parser: pl.Parser = new pl.Parser();
 
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Mind_Reader is loaded!");
-
+  // Engage LineHighlighter
   lineHighlighter();
 
   parser.parse("Beep Boop");
@@ -41,6 +40,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   let hubProvider = new CommandNodeProvider(hubCommands);
   vscode.window.registerTreeDataProvider("hubActions", hubProvider);
+
+  vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
 
 export function deactivate() {}
