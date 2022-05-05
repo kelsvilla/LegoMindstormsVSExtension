@@ -17,7 +17,7 @@ export enum Symbol {
   FINALLY = "finally",
   WITH = "with",
   STATEMENT = "statement", // Indent token, contains non-empty code lines
-  COMMENT = "comment",
+  COMMENT = "Comment",
   EMPTY = "EMPTY", // empty line, used only to associate with the previous line
   INVALID = "INVALID",
   EOF = "EOF"

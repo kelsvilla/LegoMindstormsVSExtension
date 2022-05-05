@@ -83,7 +83,7 @@ function Invoke-Dryrun {
 # Reset-Path: Reload the Path environment variable
 function Reset-Path {
    Write-Output "Reloading Path..."
-   #* Courtesy of user [mpen](https://stackoverflow.com/users/65387/mpen) on [StackOverflow](https://stackoverflow.com/a/31845512)
+   #* This code was created by user [mpen](https://stackoverflow.com/users/65387/mpen) on [StackOverflow](https://stackoverflow.com/a/31845512) and is used in accordance with Creative Commons CC BY-SA 3.0
    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 

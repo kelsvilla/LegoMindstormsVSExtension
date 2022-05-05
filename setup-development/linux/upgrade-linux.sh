@@ -3,7 +3,6 @@
 #* linux-update.sh: Install and update dependencies of Mind_Reader, on linux.
 #* Heads-up, this expects to be run from Mind_Reader/setup-development/linux.
 
-
 # If run with bash -vx, print useful information instead of just a + sign
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # If run as root, it could be because sudo isn't installed (some people disagree with sudo, especially on Arch)
@@ -26,6 +25,31 @@ function dryrun {
    fi
 }
 
+# Get whether the user is running in Windows Subsystem for Linux
+function getwsl {
+   grep "[Mm]icrosoft" /proc/version > /dev/null
+   return $?
+}
+
+# Get the user's default login shell
+function getsh {
+   #* This code was created by user [Todd A. Jacobs](https://stackoverflow.com/users/1301972/todd-a-jacobs) on [StackOverflow](https://stackoverflow.com/a/11059152) and is used in accordance with Creative Commons CC BY-SA 3.0
+   getent passwd $LOGNAME | cut -d: -f7
+}
+
+# Install NVM (this is gross, but the recommended way to install nvm)
+function installnvm {
+   # nvm's install script tries to be smart, so we have to work around its supposed cleverness
+   usershell=`getsh`
+   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | dryrun "$usershell"
+   # Reload profile
+   case $usershell in
+      */bash) dryrun . ~/.bashrc ~/.bashprofile;;
+      */zsh)  dryrun . ~/.zshrc;;
+      *) "Your shell, $usershell, is currently unsupported by nvm. It's up to you to set up your development environment."; exit;;
+   esac
+}
+
 # Set these variables if you need to install for a different architecture
 # Valid architectures are "x64", "arm64", "armhf"
 arch=""
@@ -39,29 +63,31 @@ esac
 
 if which pacman; then
    # Install dependencies with pacman
+   printf "Installing dependencies with pacman...\n"
    cat ./package-managers/pacman.dependencies | dryrun $ELEVATE pacman -S -
+   # If not in Windows Subsystem for Linux, install vscode
+   [[ !(getwsl) ]] && dryrun $ELEVATE pacman -S code
+   # Install Node Version Manager
+   installnvm
 
 elif which apt-get; then
    # Install dependencies using apt-get
+   printf "Installing dependencies with apt...\n"
    dryrun xargs -a ./package-managers/apt.dependencies $ELEVATE apt-get install -y
-
-   # Install Node Version Manager (nvm)
-   # TODO: Find a better way to install nvm on Ubuntu, the official NodeJS for <20.04 is so out of date it's unsupported.
-   curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | dryrun bash
-   dryrun export NVM_DIR="$HOME/.nvm"
-   dryrun [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-   dryrun [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
    # Check if vscode exists, if not, install it.
    # Microsoft doesn't put it in any Ubuntu repos, you have to get it straight from them.
    # This does have the side effect, however, of installing the official repository
-   if !(which code); then
+   # Don't attempt to install vscode if running in WSL; it can cause problems.
+   if !(which code) && !(getwsl); then
       #* Install VSCode
       vscodepackagename="code_amd64.deb"
       dryrun wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-$arch" -O ./code.deb
       dryrun $ELEVATE apt install ./code.deb
       dryrun rm ./code.deb
    fi
+      # Install Node Version Manager (nvm)
+   installnvm
+
 fi
 
 cdir=$(pwd)
@@ -76,7 +102,7 @@ electronversion=""
 #* By the time you're working on this project, things are likely going to differ!
 case `code --version` in
    #* Each version of VSCode has a corresponding Electron version and Node version
-   #* These are used when
+   #* These are used when configuring nvm
    1.66.*) electronversion="17.2.0"; nodeversion="16.14.2";;
    *) nodeversion="--lts";;
 esac
@@ -95,7 +121,7 @@ dryrun npm install
 dryrun npm audit fix
 
 # Use electron-rebuild to rebuild electron
-if [ "$electronversion" != "" ]; then
+if [[ "$electronversion" != "" ]]; then
    dryrun electron-rebuild --version $electronversion
 else
    printf "%s\n%s\n%s\n%s\n"                                                             \

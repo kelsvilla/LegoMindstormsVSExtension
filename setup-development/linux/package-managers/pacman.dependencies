@@ -1,5 +1,4 @@
 base-devel
-code
 git
-nvm
+wget
 python3
