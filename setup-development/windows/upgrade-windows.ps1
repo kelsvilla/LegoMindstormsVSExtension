@@ -49,9 +49,9 @@ Allow script to be run as Administrator
 
 param (
    [switch]$AllowAdministrator, # Force allow installation as administrator
-   [switch]$NoPrompt,           # Disable the 3-second wait and press-any-key prompt
-   [switch]$Install,            # Perform all installations, even when commands are present
-   [switch]$DryRun,             # Run script without installing
+   [switch]$NoPrompt, # Disable the 3-second wait and press-any-key prompt
+   [switch]$Install, # Perform all installations, even when commands are present
+   [switch]$DryRun, # Run script without installing
    [switch]$NoWinget            # Don't update dependdencies with winget
 )
 
@@ -84,7 +84,7 @@ function Invoke-Dryrun {
 function Reset-Path {
    Write-Output "Reloading Path..."
    #* This code was created by user [mpen](https://stackoverflow.com/users/65387/mpen) on [StackOverflow](https://stackoverflow.com/a/31845512) and is used in accordance with Creative Commons CC BY-SA 3.0
-   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+   $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
 
@@ -114,7 +114,8 @@ if ( ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5
          Write-Host    "Press any key to continue...               "
          [void][Console]::ReadKey(1) # Equivalent to Command Prompt's `pause` command
       }
-   } else {
+   }
+   else {
       # Throw a fatal errorOccurred if the user tries to run as administrator.
       Throw "Script must be run as a normal user."
    }
@@ -158,7 +159,8 @@ function EnsureNodePackageInstalled {
       if ( -not (Get-CommandAvailable $command[0])) {
          Throw "$command failed to install. Aborting."
       }
-   } else {
+   }
+   else {
       Write-Host "`n$($command[0]) already installed." -ForegroundColor green
    }
 }
@@ -182,28 +184,27 @@ Invoke-Dryrun "npm audit fix"
 
 # if we're on a known VSCode version, go ahead and run electron-rebuild
 switch -Regex (code --version) {
-<#   "1\.6[7-9]\.[0-9]+"   {
-      #?: Do we update this in the future, or stop maintaining it and remove this entire switch block?
-   } #>
-   "1\.66\.[0-9]+"       { # 1.66
-      Write-Host "`nRebuilding Electron for your version of VSCode..."
-      Invoke-Dryrun 'electron-rebuild --version="17.2.0"'
-      Write-Host "Done!" -ForegroundColor green
-      break
-   }
-   "\d+\.\d+\.\d+"              { # Anything else
-      Write-Host "`nOpen Visual Studio Code, select the `"Help`" tab in the Toolbar, and go to `"About`".`nYou should see a page that looks like the following:" -ForegroundColor darkcyan
+   #?: Do we update this in the future, or stop maintaining it and remove this entire switch block?
+   "1\.67\.\d+" { $electronversion = "17.4.1"; break } # April 2022 update
+   "1\.66\.\d+" { $electronversion = "17.2.0"; break } # March 2022 update
+   default { $electronversion = $false } # Unknown update
+}
 
-      Write-Host "   `(i`) Visual Studio Code`n`n   Version: 1.66.2 `(user setup`)`n   Commit: [Commit ID]`n   Date: 2022-04-11T07:46:01.075Z`n   Electron: 17.2.0`n   [ ... ]" -ForegroundColor White
+if ( $electronversion ) {
+   Write-Host "`nRebuilding Electron for your version of VSCode..."
+   Invoke-Dryrun "electron-rebuild --version='$electronversion'"
+   Write-Host "Done!" -ForegroundColor green
+}
+else {
+   Write-Host "`nOpen Visual Studio Code, select the `"Help`" tab in the Toolbar, and go to `"About`".`nYou should see a page that looks like the following:" -ForegroundColor darkcyan
 
-      Write-Host "Note the Electron version `(17.2.0 in the above example`)." -ForegroundColor darkcyan
+   Write-Host "   `(i`) Visual Studio Code`n`n   Version: 1.66.2 `(user setup`)`n   Commit: [Commit ID]`n   Date: 2022-04-11T07:46:01.075Z`n   Electron: 17.2.0`n   [ ... ]" -ForegroundColor White
 
-      Write-Host "Run the command " -NoNewLine
-      Write-Host "electron-rebuild --version ELECTRON_VERSION" -NoNewLine -ForegroundColor green
-      Write-Host " in Mind-Reader`'s root folder.`n"
-      break # Don't process the next items in the collection.
-   }
-   default { } # Leave blank
+   Write-Host "Note the Electron version `(17.2.0 in the above example`)." -ForegroundColor darkcyan
+
+   Write-Host "Run the command " -NoNewLine
+   Write-Host "electron-rebuild --version ELECTRON_VERSION" -NoNewLine -ForegroundColor green
+   Write-Host " in Mind-Reader`'s root folder.`n"
 }
 
 # Return from whence we came

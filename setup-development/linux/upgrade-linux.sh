@@ -103,7 +103,8 @@ electronversion=""
 case `code --version` in
    #* Each version of VSCode has a corresponding Electron version and Node version
    #* These are used when configuring nvm
-   1.66.*) electronversion="17.2.0"; nodeversion="16.14.2";;
+   1.66.*) electronversion="17.2.0"; nodeversion="16.13.0";;
+   1.67.*) electronversion="17.4.1"; nodeversion="16.13.0";;
    *) nodeversion="--lts";;
 esac
 
