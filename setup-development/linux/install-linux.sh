@@ -48,7 +48,7 @@ elif which apt; then
    dryrun $ELEVATE apt-get install git -y
 fi #? TODO: other package managers?
 
-echo "Cloning repository into $gitdir"
+printf "\nCloning repository into $gitdir\n"
 dryrun mkdir "$gitdir"
 cd $gitdir && dryrun git clone "$repouri"
 
