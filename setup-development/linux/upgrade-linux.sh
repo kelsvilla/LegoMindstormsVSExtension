@@ -108,23 +108,28 @@ case `code --version` in
 esac
 
 # Install NodeJS and npm
+printf "\nInstalling node $nodeversion\n"
 dryrun nvm install "$nodeversion"
 dryrun nvm use "$nodeversion"
 
 # Use npm to install electron-rebuild and yo
+printf "Installing electron-rebuild, yo, and generator-code\n"
 dryrun npm install electron-rebuild yo generator-code
 
 # use npm to acquire dependencies for Mind-Reader
+printf "\nAcquiring dependencies...\n"
 dryrun npm install
 
 # automatically update vulnerable packages, if possible
+printf "\nUpdating vulnerable packages, if possible...\n"
 dryrun npm audit fix
 
 # Use electron-rebuild to rebuild electron
 if [[ "$electronversion" != "" ]]; then
+   printf "\nRebuilding electron with version $electronversion...\n"
    dryrun electron-rebuild --version $electronversion
 else
-   printf "%s\n%s\n%s\n%s\n"                                                             \
+   printf "\n%s\n%s\n%s\n%s\n"                                                             \
    "Open Visual Studio Code, select the 'Help' tab in the toolbar, and go to 'About'."   \
    "Find the line that says 'Electron: [electron version]'"                              \
    "Run the command below, filling in the Electron version with the one from that menu:" \
@@ -132,3 +137,4 @@ else
 fi
 
 cd $cdir
+echo "Done!"

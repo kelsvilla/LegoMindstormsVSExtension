@@ -48,7 +48,7 @@ elif which apt; then
    dryrun $ELEVATE apt-get install git -y
 fi #? TODO: other package managers?
 
-echo Cloning repository into "$gitdir"
+echo "Cloning repository into $gitdir"
 dryrun mkdir "$gitdir"
 cd $gitdir && dryrun git clone "$repouri"
 
@@ -58,5 +58,8 @@ cd $gitdir && dryrun git clone "$repouri"
 # TODO: remove this when merging!
 
 cd "$gitdir/$setupdir"
-pwd
 bash ./upgrade-linux.sh $@
+
+echo "Opening VS Code..."
+cd $gitdir/Mind_Reader
+code .
