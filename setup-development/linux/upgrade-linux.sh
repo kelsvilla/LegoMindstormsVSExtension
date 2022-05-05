@@ -64,9 +64,9 @@ esac
 if which pacman; then
    # Install dependencies with pacman
    printf "Installing dependencies with pacman...\n"
-   cat ./package-managers/pacman.dependencies | dryrun $ELEVATE pacman -S -
+   cat ./package-managers/pacman.dependencies | dryrun $ELEVATE pacman -S --needed -
    # If not in Windows Subsystem for Linux, install vscode
-   [[ !(getwsl) ]] && dryrun $ELEVATE pacman -S code
+   [[ !(getwsl) ]] && dryrun $ELEVATE pacman -S --needed code
    # Install Node Version Manager
    installnvm
 
