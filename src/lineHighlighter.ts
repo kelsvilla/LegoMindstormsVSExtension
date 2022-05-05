@@ -6,6 +6,7 @@
 * ? ██║  ██║██║╚██████╔╝██║  ██║███████╗██║╚██████╔╝██║  ██║   ██║         ██║   ██║
 * ? ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝         ╚═╝   ╚═╝
 **/
+'use strict';
 import { Position, window, workspace, TextEditorDecorationType, TextEditor, WorkspaceConfiguration, Range } from 'vscode';
 
 export { lineHighlighter };
@@ -19,8 +20,7 @@ function lineHighlighter(): void {
     let multiLineIsEnabled: boolean    | undefined   = getMultiLineHighlighterStatus();
 
     /**
-     *  Trigger the line highlight when the extension
-     *  loads so current line gets highlighted
+     *  Trigger the line highlight when the extension loads so current line gets highlighted
      */
     triggerHighlight();
 
@@ -40,7 +40,6 @@ function lineHighlighter(): void {
      */
     window.onDidChangeTextEditorSelection((editor) => {
         if (!editor.textEditor) {
-            console.error(`[*] onDidChangeTextEditorSelection(${editor}) -> no active text editor`);
             return;
         }
 
@@ -50,9 +49,8 @@ function lineHighlighter(): void {
     /**
      * Trigger for when the text document changes
      */
-    workspace.onDidChangeTextDocument((editor) => {
+    workspace.onDidChangeTextDocument(() => {
         if (!activeTextEditor) {
-            console.error(`[*] onDidChangeTextDocument(${editor}) -> no active text editor`);
             return;
         }
 
@@ -78,15 +76,11 @@ function lineHighlighter(): void {
             return;
         }
 
-        // Dump existing styling
-        highlightStyle.dispose();
-        // check if line highlighter is enable/disabled
-        isEnabled          = getHighlighterStatus();
-        multiLineIsEnabled = getMultiLineHighlighterStatus();
-        // get new line highlighter styling
-        highlightStyle     = getHighlighterStyle();
-        // trigger highlight with new styling
-        triggerHighlight();
+        highlightStyle.dispose();                              // Dump existing styling
+        isEnabled          = getHighlighterStatus();           // check if line highlighter is enable/disabled
+        multiLineIsEnabled = getMultiLineHighlighterStatus();  // Check if multiline highlighting is enabled/disabled
+        highlightStyle     = getHighlighterStyle();            // get new line highlighter styling
+        triggerHighlight();                                    // trigger highlight with new styling
     });
 
     /**
@@ -94,7 +88,6 @@ function lineHighlighter(): void {
      */
     function triggerHighlight(): void {
         if (!activeTextEditor) {
-            console.error("[*] NO Active Text Editor");
             return;
         }
 
@@ -108,78 +101,77 @@ function lineHighlighter(): void {
              *      set the decorations with our chosen highlighting style on the selection
              *      otherwise (highlighter is disabled) dump our highlighting style
              */
-            // (isEnabled)
-            //     ? activeTextEditor!.setDecorations(highlightStyle, activeTextEditor!.selections)
-            //     : highlightStyle.dispose();
             switch (isEnabled) {
-                case true: // isEnabled is true
+                case true: /* isEnabled is true */
                     switch (multiLineIsEnabled) {
-                        case true: // isEnabled is true and multiLineIsEnabled is true
-                            // const startLine = activeTextEditor!.selection.start;
-                            // const endLine   = activeTextEditor!.selection.end;
-                            // const rangeToHighlight = { range: new Range(startLine, endLine) };
-                            // activeTextEditor!.setDecorations(highlightStyle, [rangeToHighlight]);
-                            // const currentLineRange = activeTextEditor!.document.lineAt(activeTextEditor!.selection.anchor).range;
-                            // activeTextEditor!.setDecorations(highlightStyle, [currentLineRange]);
-                            // const startLine = activeTextEditor!.selection.start.line;
-                            // const endLine   = activeTextEditor!.selection.end;
-                            // const rangeToHighlight = { range: new Range(startLine, endLine) };
+                        case true: /* isEnabled is true and multiLineIsEnabled is true */
                             activeTextEditor.setDecorations(highlightStyle, activeTextEditor.selections);
                             break;
-                        case false: // isEnabled is true and multiLineIsEnabled is false
+                        case false: /* isEnabled is true and multiLineIsEnabled is false */
                             switch (activeTextEditor.selection.isSingleLine) {
-                                case true: // isEnabled is true and multiLineIsEnabled is false and VSCode is reporting a single line
+                                case true: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting a single line */
                                     let currentPosition = [];
                                     for (let i = 0; i < activeTextEditor.selections.length; i++) {
                                         currentPosition[i] = { range: new Range(activeTextEditor.selections[i].anchor, activeTextEditor.selections[i].anchor) };
                                     }
 
                                     activeTextEditor.setDecorations(highlightStyle, currentPosition);
-                                    // const currentLine = activeTextEditor.selection.active.line;
-                                    // const newDecoration = { range: new Range(currentPosition, currentPosition) };
-                                    // const singleLineHighlight = { range: new Range(activeTextEditor!.selection.anchor.line, activeTextEditor!.selection.anchor.line) };
-                                    // activeTextEditor!.setDecorations(highlightStyle, [singleLineRange]);
-                                    // activeTextEditor.setDecorations(highlightStyle, [activeTextEditor.selection]);
                                     break;
-                                case false: // isEnabled is true and multiLineIsEnabled is false and VSCode is reporting multiple lines
+                                case false: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting multiple lines */
                                     // Dispose of our highlighting style so multiple lines aren't all highlighted when clicking and dragging to highlight
-                                    // highlightStyle.dispose();
-                                    activeTextEditor.setDecorations(highlightStyle, []);
-                                    // Since we disposed of our highlighting style, we need to re-acquire it for highlighting to continue to work after clicking and dragging to highlight
-                                    // highlightStyle = getHighlighterStyle();
+                                    activeTextEditor.setDecorations(highlightStyle, []); // This will dispose of a single editor instead of all editors
                                     break;
-                                default: // isEnabled is true and multiLineIsEnabled is false and VSCode is reporting something else - break out of 3rd switch
+                                default: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting something else - break out of 3rd switch */
                                     break;
                             }
                             break;
-                        default: // isEnabled is true and multiLineIsEnabled is undetected - break out of 2nd switch statement
+                        default: /* isEnabled is true and multiLineIsEnabled is undetected - break out of 2nd switch statement */
                             break;
                     }
                     break;
-                case false: // isEnabled is false
+                case false: /* isEnabled is false */
                     highlightStyle.dispose();
                     break;
-                default: // break out of initial switch is true or false not found
+                default: /* break out of initial switch if 'true or false' is not found */
                     break;
             }
 
-            //  Track new position, without this the line the the cursor begins on will never get styled
+            // Keep track of position
             new Position(activeTextEditor.selection.start.line, activeTextEditor.selection.start.character);
         }
     }
 
     /**
-     * Function to get the user configured highlighting styles, or use defaults
+     * * Function to get the user configured highlighting styles, or use defaults
      *
-     * Designed with user configuration in mind, able to control different sides
-     * independently from each other (in most cases). This allows for many different
-     * configurations.
+     * * Designed with user configuration in mind, able to control different sides
+     * * independently from each other (in most cases). This allows for many different
+     * * configurations.
+     *
+     * ? Colors Can be input with the following values:
+     * * https://www.w3schools.com/cssref/css_colors.asp for string based color values
+     * * Hex -> #<value> | rgb(###, ###, ###) | rgba(###, ###, ###, ###) | hsla(##, ##%, ##%, .#)
+     * 
+     * ? Width Input Values
+     * ! Some work better than others, if one isn't working try a different method:
+     * * thin | medium | thick | px | rem | em | cm | % | inherit
+     *
+     * ? Other values
+     * * font-style    : normal|italic|oblique|initial|inherit;
+     * * font-weight   : normal|bold|bolder|lighter|number|initial|inherit;
+     * * border-style  : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit;
+     * * outline-style : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit;
+     * * outline-width : medium|thin|thick|length|initial|inherit;
+     * * border-width  : medium|thin|thick|length|initial|inherit;
+     * ! https://www.w3schools.com/cssref/pr_text_text-decoration.asp for text-decoration
+     * 
+     * ! borderWidthRight acts weirdly, on my system 16px works best with the other directions set to 1px
      *
      * @returns highlighterStyle
      */
     function getHighlighterStyle(): TextEditorDecorationType {
-        // Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlight') on every line, ie: shorthand
-        const userConfig: WorkspaceConfiguration = workspace.getConfiguration('mind-reader.lineHighlight');
+        // Used so we don't have to type out workspace.getConfiguration('mindReader.lineHighlighter') on every line, ie: shorthand
+        const userConfig: WorkspaceConfiguration = workspace.getConfiguration('mindReader.lineHighlighter');
 
         const borderWidthTop    : string = userConfig.get('borderWidthTop')    || "1px";
         const borderWidthRight  : string = userConfig.get('borderWidthRight')  || "16px";
@@ -245,9 +237,9 @@ function lineHighlighter(): void {
          * otherwise, "isEnabled" is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mind-reader.lineHighlight").get("isEnabled") === undefined)
+        (workspace.getConfiguration("mindReader.lineHighlighter").get("isEnabled") === undefined)
             ? (enabledStatus = true)
-            : (enabledStatus = workspace.getConfiguration("mind-reader.lineHighlight").get("isEnabled"));
+            : (enabledStatus = workspace.getConfiguration("mindReader.lineHighlighter").get("isEnabled"));
 
         // return the enabledStatus
         return enabledStatus;
@@ -263,9 +255,9 @@ function lineHighlighter(): void {
          * otherwise, "isEnabled" is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mind-reader.lineHighlight").get("multiLineIsEnabled") === undefined)
+        (workspace.getConfiguration("mindReader.lineHighlighter").get("multiLineIsEnabled") === undefined)
             ? (multiLineIsEnabled = true)
-            : (multiLineIsEnabled = workspace.getConfiguration("mind-reader.lineHighlight").get("multiLineIsEnabled"));
+            : (multiLineIsEnabled = workspace.getConfiguration("mindReader.lineHighlighter").get("multiLineIsEnabled"));
 
         // return the enabledStatus
         return multiLineIsEnabled;
@@ -279,86 +271,3 @@ export function deactivate() {
 		highlightStyle.dispose();
 	}
 }
-
-        /**
-         * Border Width Settings
-         *      borderWidthTop    = Top    Border Width
-         *      borderWidthRight  = Right  Border Width * Right border is a little finicky, I have all others at 1px, but need 15px for this one to match
-         *      borderWidthBottom = Bottom Border Width
-         *      borderWidthLeft   = Left   Border Width
-         *
-         * Uses CSS so should accept:
-         *      thin | medium | thick
-         *      px
-         *      rem
-         *      em
-         *      cm
-         *      % - Weird behavior
-         *      inherit
-         *
-         * If no value is found in the settings, we set the value after the double pipes (||) instead
-         */
-
-        /**
-         * Border Style Settings
-         *      borderStyleTop    = Top    Border Style
-         *      borderStyleRight  = Right  Border Style
-         *      borderStyleBottom = Bottom Border Style
-         *      borderStyleLeft   = Left   Border Style
-         *
-         * Uses CSS so should accept: (Some of them I can't tell a difference, but they do something)
-         *      none
-         *      hidden
-         *      dotted
-         *      dashed
-         *      solid
-         *      double
-         *      groove
-         *      ridge
-         *      inset
-         *      outset
-         *
-         * If no value is found in the settings, we set the value after the double pipes (||) instead
-         */
-
-        /**
-         * Border Color Settings
-         *      borderColorRight  = Right  Border Color
-         *      borderColorBottom = Bottom Border Color
-         *      borderColorTop    = Top    Border Color
-         *      borderColorLeft   = Left   Border Color
-         *
-         * Uses CSS so should accept: (Some of them I can't tell a difference, but they do something)
-         *      none - This one doesn't play nice
-         *      string value like "red" | "blue" | "orange" etc - https://www.w3schools.com/cssref/css_colors.asp
-         *      #<value>
-         *      rgb(###, ###, ###)
-         *      rgba(###, ###, ###, ###)
-         *      hsla(##, ##%, ##%, .#);
-         *      inherit - This one has weird behavior as well
-         *
-         * If no value is found in the settings, we set the value after the double pipes (||) instead
-         */
-
-        /**
-         * Color of the background
-         *
-         * Uses CSS so should accept:
-         *      none - This one doesn't play nice
-         *      string value like "red" | "blue" | "orange" etc - https://www.w3schools.com/cssref/css_colors.asp
-         *      #<value>
-         *      rgb(###, ###, ###)
-         *      rgba(###, ###, ###, ###)
-         *      hsla(##, ##%, ##%, .#);
-         *      inherit - This one has weird behavior as well
-         *
-         * If no value is found in the settings, we set the value after the double pipes (||) instead
-         */
-
-        /**
-         * font-style: normal|italic|oblique|initial|inherit
-         */
-
-        /**
-         * font-weight: normal|bold|bolder|lighter|number|initial|inherit
-         */
