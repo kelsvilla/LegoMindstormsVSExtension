@@ -64,8 +64,7 @@ function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
          * default: false
          */
         const calculateLeadingSpaces: boolean = false;          // change boolean value to change method
-        const lineNum: number = (fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
-        const line   : any = editor.document.lineAt(lineNum);
+        const line   : any    = fetchLine(editor);
 
         /* If true, calculate by arithmetic otherwise get index */
         numSpaces = (calculateLeadingSpaces)
@@ -126,6 +125,8 @@ function getNumberOfSelectedLines(): void {
     else {
         window.showErrorMessage('No document currently active');
     }
+
+    window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
 }
 
 /*  Function
@@ -142,6 +143,8 @@ function getLineNumber(): void {
     else {
         window.showErrorMessage('No document currently active');
     }
+
+    window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
 }
 
 /* Function
@@ -151,14 +154,14 @@ function getIndent(): void {
     const editor: any = window.activeTextEditor;
 
     if (editor) {
-        const lineNum: number = (fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
-        const line   : any = editor.document.lineAt(lineNum);
+        const lineNum: number = (fetchLineNumber(editor));
+        const line   : any    = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
             window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
         }
         else {
-            // Grab tab format from open document
+            /* Grab tab format from open document */
             const tabFmt: any = {
                 size: editor.options.tabSize,
                 hard: !editor.options.insertSpaces
@@ -173,6 +176,8 @@ function getIndent(): void {
     else {
         window.showErrorMessage('No document currently active');
     }
+
+    window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
 }
 
 /* Function
@@ -200,6 +205,8 @@ function getLeadingSpaces(): void {
     else {
         window.showErrorMessage('No document currently active');
     }
+
+    window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
 }
 
 /* Function
@@ -207,22 +214,21 @@ function getLeadingSpaces(): void {
  * This feature was a request from Senior Design Day Spring 2022
  */
 function selectLeadingWhitespace(): void {
-    const editor  : any    = window.activeTextEditor;
+    const editor : any = window.activeTextEditor;
 
     if (editor) {
-        const numSpaces = fetchNumberOfLeadingSpaces(editor);   // This will be used for the output message
-        const lineNum : number = (fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
+        const numSpaces = fetchNumberOfLeadingSpaces(editor); // This will be used for the output message
+        const lineNum : number = (fetchLineNumber(editor));   // Get the displayed line number
 
         /* If numSpaces isn't greater than 1, then there is no leading whitespace to select */
         if (numSpaces >= 1) {
-            const line    : any    = editor.document.lineAt(lineNum);       // Get our line
+            const line    : any    = fetchLine(editor);
             const startPos: any    = line.range.start.character;            // Start at the starting character position
             const endPos  : any    = line.firstNonWhitespaceCharacterIndex; // End at the first non whitespace character index
 
             /* Apply our selection */
-            editor.selection       = new Selection(new Position(lineNum, startPos), new Position(lineNum, endPos));
-            /* After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted */
-            window.showTextDocument(editor.document);
+            /* We need to subtract 1 from lineNum because we added 1 during the fetchLineNumber above and we want the 0-index for position, so remove it */
+            editor.selection       = new Selection(new Position((lineNum - 1), startPos), new Position((lineNum - 1), endPos));
 
 
             /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
@@ -232,12 +238,13 @@ function selectLeadingWhitespace(): void {
         }
         else {
             window.showErrorMessage(`Line ${lineNum.toString()}: No leading spaces to select!`); // No whitespace to select
-            window.showTextDocument(editor.document);                                            // Refocus editor
         }
     }
     else {
         window.showErrorMessage('No document currently active'); // No active document
     }
+
+    window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
 }
 
 function runLineContext(): void {
