@@ -5,6 +5,7 @@
 * ? ██╔══██║██║██║   ██║██╔══██║██║     ██║██║   ██║██╔══██║   ██║   ╚════╝██║   ██║
 * ? ██║  ██║██║╚██████╔╝██║  ██║███████╗██║╚██████╔╝██║  ██║   ██║         ██║   ██║
 * ? ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝         ╚═╝   ╚═╝
+* TODO: Add ability for user to change options through a command pallette configurator
 **/
 'use strict';
 import { Position, window, workspace, TextEditorDecorationType, TextEditor, WorkspaceConfiguration, Range } from 'vscode';
@@ -151,27 +152,27 @@ function lineHighlighter(): void {
      * ? Colors Can be input with the following values:
      * * https://www.w3schools.com/cssref/css_colors.asp for string based color values
      * * Hex -> #<value> | rgb(###, ###, ###) | rgba(###, ###, ###, ###) | hsla(##, ##%, ##%, .#)
-     * 
+     *
      * ? Width Input Values
      * ! Some work better than others, if one isn't working try a different method:
-     * * thin | medium | thick | px | rem | em | cm | % | inherit
+     * * thin | medium | thick | px | rem | em | cm
      *
      * ? Other values
-     * * font-style    : normal|italic|oblique|initial|inherit;
-     * * font-weight   : normal|bold|bolder|lighter|number|initial|inherit;
-     * * border-style  : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit;
-     * * outline-style : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit;
-     * * outline-width : medium|thin|thick|length|initial|inherit;
-     * * border-width  : medium|thin|thick|length|initial|inherit;
-     * ! https://www.w3schools.com/cssref/pr_text_text-decoration.asp for text-decoration
-     * 
+     * * font-style    : none|normal|italic|oblique;
+     * * font-weight   : none|normal|bold|bolder|lighter|number;
+     * * border-style  : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset;
+     * * outline-style : none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset;
+     * * outline-width : none|medium|thin|thick|length;
+     * * border-width  : none|medium|thin|thick|length;
+     * ? https://www.w3schools.com/cssref/pr_text_text-decoration.asp for text-decoration
+     *
      * ! borderWidthRight acts weirdly, on my system 16px works best with the other directions set to 1px
      *
      * @returns highlighterStyle
      */
     function getHighlighterStyle(): TextEditorDecorationType {
-        // Used so we don't have to type out workspace.getConfiguration('mindReader.lineHighlighter') on every line, ie: shorthand
-        const userConfig: WorkspaceConfiguration = workspace.getConfiguration('mindReader.lineHighlighter');
+        // Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
+        const userConfig: WorkspaceConfiguration = workspace.getConfiguration('mind-reader.lineHighlighter');
 
         const borderWidthTop    : string = userConfig.get('borderWidthTop')    || "1px";
         const borderWidthRight  : string = userConfig.get('borderWidthRight')  || "16px";
@@ -237,9 +238,9 @@ function lineHighlighter(): void {
          * otherwise, "isEnabled" is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mindReader.lineHighlighter").get("isEnabled") === undefined)
+        (workspace.getConfiguration("mind-reader.lineHighlighter").get("isEnabled") === undefined)
             ? (enabledStatus = true)
-            : (enabledStatus = workspace.getConfiguration("mindReader.lineHighlighter").get("isEnabled"));
+            : (enabledStatus = workspace.getConfiguration("mind-reader.lineHighlighter").get("isEnabled"));
 
         // return the enabledStatus
         return enabledStatus;
@@ -255,9 +256,9 @@ function lineHighlighter(): void {
          * otherwise, "isEnabled" is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mindReader.lineHighlighter").get("multiLineIsEnabled") === undefined)
+        (workspace.getConfiguration("mind-reader.lineHighlighter").get("multiLineIsEnabled") === undefined)
             ? (multiLineIsEnabled = true)
-            : (multiLineIsEnabled = workspace.getConfiguration("mindReader.lineHighlighter").get("multiLineIsEnabled"));
+            : (multiLineIsEnabled = workspace.getConfiguration("mind-reader.lineHighlighter").get("multiLineIsEnabled"));
 
         // return the enabledStatus
         return multiLineIsEnabled;
