@@ -1,6 +1,4 @@
 import * as vscode      from "vscode";
-// import * as fs       from "fs";
-// import * as os       from 'os';
 
 import { CommandEntry } from "./commandEntry";
 
@@ -89,10 +87,6 @@ function openWebview(): void {
   panel.webview.html = getWebviewContent();
 }
 
-// function getWebviewContent(filepath: string) {
-//   return fs.readFileSync(filepath, {encoding: 'utf-8'});
-// }
-
 function getWebviewContent() {
       return `<!DOCTYPE html>
       <html lang="en">
@@ -138,89 +132,3 @@ function getWebviewContent() {
       </body>
       </html>`;
 }
-
-// export function getPlatform(): 'windows' | 'mac' | 'linux' | undefined {
-//   let platform: 'windows' | 'mac' | 'linux' | undefined;
-
-//   if (os.platform().toUpperCase() === 'WIN32') {
-//     platform = 'windows';
-//     return platform;
-//   }
-
-//   if (os.platform().toUpperCase() === 'DARWIN') {
-//     platform = 'mac';
-//     return platform;
-//   }
-
-//   if (os.platform().toUpperCase() === 'linux') {
-//     platform = 'linux';
-//     return platform;
-//   }
-
-//   platform = undefined;
-//   return platform;
-// }
-
-// function getDocumentWorkspaceFolder(): string | undefined {
-//   const fileName = vscode.window.activeTextEditor?.document.fileName;
-//   return vscode.workspace.workspaceFolders
-//     ?.map((folder) => folder.uri.fsPath)
-//     .filter((fsPath) => fileName?.startsWith(fsPath))[0];
-// }
-
-// function openKeyBindWin(): void {
-//   //vscode.commands.executeCommand('workbench.action.zoomOut');
-//   const panel = vscode.window.createWebviewPanel(
-//     'mindReader', // Identifies the type of the webview. Used internally
-//     'MR Key Bindings', // Title of the panel displayed to the user
-//     vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-//     {}
-//   ); // Webview options. More on these later.
-
-//   const userPlatform: 'windows' | 'mac' | 'linux' | undefined = getPlatform();
-
-//   switch (userPlatform) {
-//     case 'windows':
-//       if(vscode.workspace.workspaceFolders !== undefined) {
-//         let wf = vscode.workspace.workspaceFolders[0].uri.path;
-//         let f = vscode.workspace.workspaceFolders[0].uri.fsPath;
-//         const message = `YOUR-EXTENSION: folder: ${wf} - ${f}`;
-//         vscode.window.showInformationMessage(message);
-//     }
-//     else {
-//         const message = "YOUR-EXTENSION: Working folder not found, open a folder an try again" ;
-//         vscode.window.showErrorMessage(message);
-//     }
-//       // panel.webview.html = getWebviewContent('media/html/winkeys.html');
-//       break;
-//     case 'mac':
-//       // panel.webview.html = getWebviewContent('media/html/mackeys.html');
-//       break;
-//     case 'linux':
-//       // panel.webview.html = getWebviewContent('media/html/linuxkeys.html');
-//       break;
-//     default:
-//       // panel.webview.html = getWebviewContent("../../media/html/main.html");
-//       break;
-//   }
-// }
-
-// function openKeyBindWin(os: 'Mac' | 'Windows'): void {
-//   //vscode.commands.executeCommand('workbench.action.zoomOut');
-//   const panel = vscode.window.createWebviewPanel(
-//     'mindReader', // Identifies the type of the webview. Used internally
-//     'MR Key Bindings', // Title of the panel displayed to the user
-//     vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-//     {}
-//   ); // Webview options. More on these later.
-
-//   if (os === 'Windows') {
-//     panel.webview.html = getWebviewContent('WINDOWS');
-//     // panel.webview.html = getWebviewContent('/media/html/winkeys.html');
-//   } else if (os === 'Mac') {
-//     panel.webview.html = getWebviewContent('MAC');
-//     // panel.webview.html = getWebviewContent('/media/html/mackeys.html');
-//   }
-// }
-
-//vscode.commands.executeCommand('workbench.action.openGlobalKeybindings');
