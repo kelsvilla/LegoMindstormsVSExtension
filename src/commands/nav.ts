@@ -78,7 +78,7 @@ export const navCommands: CommandEntry[] = [
 // COMMAND CALLBACK IMPLEMENTATIONS
 function openWebview(): void {
   const panel = vscode.window.createWebviewPanel(
-    "mindReader",          // Identifies the type of the webview. Used internally
+    "mind-reader",          // Identifies the type of the webview. Used internally
     "Mind Reader",         // Title of the panel displayed to the user
     vscode.ViewColumn.One, // Editor column to show the new webview panel in.
     {}
