@@ -297,10 +297,115 @@
 					"type": "string",
 					"markdownDescription": "The default port to try and establish a connection on."
 				},
-				"mindReader.connection.clearOutputOnRun": {
+				"mindReader.lineHighlighter.isEnabled": {
 					"type": "boolean",
-					"description": "Whether to clear the output each time the program is run",
+					"description": "Enable/Disable the line highlighter",
 					"default": "true"
+				},
+				"mindReader.lineHighlighter.multiLineIsEnabled": {
+					"type": "boolean",
+					"description": "Turn off the line highlighter if highlighting multiple lines",
+					"default": "false"
+				},
+				"mindReader.lineHighlighter.backgroundColor": {
+					"type": "string",
+					"markdownDescription": "Set the background color of the line highlighter",
+					"default": "#232C5C"
+				},
+				"mindReader.lineHighlighter.outlineColor": {
+					"type": "string",
+					"markdownDescription": "Set the outline color of the line highlighter",
+					"default": "#4866FE"
+				},
+				"mindReader.lineHighlighter.outlineWidth": {
+					"type": "string",
+					"markdownDescription": "Set the outline width of the line highlighter",
+					"default": "1px"
+				},
+				"mindReader.lineHighlighter.outlineStyle": {
+					"type": "string",
+					"markdownDescription": "Set the outline style of the line highlighter",
+					"default": "solid"
+				},
+				"mindReader.lineHighlighter.borderColorTop": {
+					"type": "string",
+					"markdownDescription": "Set the top border color of the line highlighter",
+					"default": "#FFFFFF"
+				},
+				"mindReader.lineHighlighter.borderColorRight": {
+					"type": "string",
+					"markdownDescription": "Set the right border color of the line highlighter",
+					"default": "#FFFFFF"
+				},
+				"mindReader.lineHighlighter.borderColorBottom": {
+					"type": "string",
+					"markdownDescription": "Set the bottom border color of the line highlighter",
+					"default": "#FFFFFF"
+				},
+				"mindReader.lineHighlighter.borderColorLeft": {
+					"type": "string",
+					"markdownDescription": "Set the left border color of the line highlighter",
+					"default": "#FFFFFF"
+				},
+				"mindReader.lineHighlighter.borderWidthTop": {
+					"type": "string",
+					"markdownDescription": "Set the top border width of the line highlighter",
+					"default": "1px"
+				},
+				"mindReader.lineHighlighter.borderWidthRight": {
+					"type": "string",
+					"markdownDescription": "Set the right border width of the line highlighter",
+					"default": "16px"
+				},
+				"mindReader.lineHighlighter.borderWidthBottom": {
+					"type": "string",
+					"markdownDescription": "Set the bottom border width of the line highlighter",
+					"default": "1px"
+				},
+				"mindReader.lineHighlighter.borderWidthLeft": {
+					"type": "string",
+					"markdownDescription": "Set the left border width of the line highlighter",
+					"default": "1px"
+				},
+				"mindReader.lineHighlighter.borderStyleTop": {
+					"type": "string",
+					"markdownDescription": "Set the top border style of the line highlighter",
+					"default": "solid"
+				},
+				"mindReader.lineHighlighter.borderStyleRight": {
+					"type": "string",
+					"markdownDescription": "Set the right border style of the line highlighter",
+					"default": "solid"
+				},
+				"mindReader.lineHighlighter.borderStyleBottom": {
+					"type": "string",
+					"markdownDescription": "Set the bottom border style of the line highlighter",
+					"default": "solid"
+				},
+				"mindReader.lineHighlighter.borderStyleLeft": {
+					"type": "string",
+					"markdownDescription": "Set the left border style of the line highlighter",
+					"default": "solid"
+				},
+				"mindReader.lineHighlighter.fontStyle": {
+					"type": "string",
+					"markdownDescription": "Set the font style of the line highlighter",
+					"default": "normal"
+				},
+				"mindReader.lineHighlighter.fontWeight": {
+					"type": "string",
+					"markdownDescription": "Set the font weight of the line highlighter",
+					"default": "bolder"
+				},
+				"mindReader.lineHighlighter.textDecoration": {
+					"type": "string",
+					"markdownDescription": "Set the text decoration of the line highlighter",
+					"default": "none"
+				},
+				"mindReader.lineHighlighter.textColor": {
+					"type": "string",
+					"markdownDescription": "Set the text color of the line highlighter",
+					"default": "#FFFFFF"
 				}
 			}
 		},
