@@ -1,9 +1,9 @@
-import { LineToken } from '.';
+import { LineToken }                 from '.';
 import { Symbol, EOFTOKEN, TabInfo } from './token';
 
 type Rule = {
     pattern: RegExp,
-    type: Symbol,
+    type   : Symbol,
 };
 
 /**
@@ -11,8 +11,7 @@ type Rule = {
  * The first item is a recognition pattern, used to recognize the token
  * the second item is the token type
  */
-const rules: Rule[] = [
-    {
+const rules: Rule[] = [{
         pattern: /^\s*def\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)\(/,
         type: Symbol.FUNCTION
     },
@@ -74,8 +73,8 @@ const rules: Rule[] = [
  * Line-By-Line Lexer
  */
 export default class Lexer {
-    private textLines: string[] = []; // array of text lines
-    private pos: number = 0;
+    private textLines : string[] = []; // array of text lines
+    private pos       : number = 0;
     private _currToken: LineToken = EOFTOKEN;
 
     /**
@@ -105,8 +104,8 @@ export default class Lexer {
      * @param `text` The new text to lex.
      */
     restart(text ? : string): void {
-        this.pos = 0;
-        this._currToken = EOFTOKEN; // if no input, already on EOFTOKEN
+        this.pos           = 0;
+        this._currToken    = EOFTOKEN; // if no input, already on EOFTOKEN
         if (text) {
             this.textLines = text.split('\n');
             this.next(); // advance to the first token
@@ -132,9 +131,9 @@ export default class Lexer {
 
         // Until a LineToken is found, or EOF
         while (this.pos < this.textLines.length) {
-            const line: string = this.textLines[this.pos];
+            const line  : string = this.textLines[this.pos];
             const indent: number = Lexer.getIndent(line, this.tabFmt!);
-            let token: LineToken;
+            let token   : LineToken;
 
             for (var r of rules) {
                 // Does line match pattern?
@@ -143,8 +142,7 @@ export default class Lexer {
                     // Yes...
                     if (match.groups) {
                         token = new LineToken(r.type, this.pos, indent, match.groups["attr"]);
-                    }
-                    else {
+                    } else {
                         token = new LineToken(r.type, this.pos, indent);
                     }
 

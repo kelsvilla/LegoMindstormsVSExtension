@@ -1,9 +1,7 @@
 "use strict";
-import { CommandEntry } from './commandEntry';
-import vscode = require("vscode");
-import pl = require("../pylex");
-
-type TextEditor = vscode.TextEditor | undefined;
+import pl     = require("../pylex");
+import { CommandEntry }                                                 from './commandEntry';
+import { Position, Selection, TextEditor, TextLine, window, workspace } from "vscode";
 
 export const textCommands: CommandEntry[] = [
     {
@@ -19,6 +17,14 @@ export const textCommands: CommandEntry[] = [
         callback: getLeadingSpaces,
     },
     {
+        name: 'mind-reader.selectLeadingWhitespace',
+        callback: selectLeadingWhitespace
+    },
+    {
+        name: 'mind-reader.getNumberOfSelectedLines',
+        callback: getNumberOfSelectedLines,
+    },
+    {
         name: 'mind-reader.getLineScope',
         callback: runLineContext,
     },
@@ -28,43 +34,131 @@ export const textCommands: CommandEntry[] = [
     }
 ];
 
-/* Helper Function
- * This function returns the line number of the active text editor window
+/** Helper Function
+ *
+ * @param editor
+ * @returns numSpaces
+ ** There are two methods that can be used to find the leading spaces:
+ ** method 1:
+ **    calculates the number of leading spaces by finding the length of the current line
+ **    then subtracting from that the length of the text after trimming the whitespace at the start
+ **    which will equal the number of whitespace characters
+ **
+ **    TO-USE: set calculateLeadingSpaces to true
+ **
+ ** method 2 (default):
+ **    finds the index position of the first non-whitespace character in a 0-index
+ **    this number will equal the number of spaces preceding the non-whitespace character
+ **   due to the nature of 0-indexes.
+ **
+ **    TO-USE: set calculateLeadingSpaces to false
  */
-function fetchLineNumber(editor: TextEditor): number {
-    return editor? editor.selection.active.line + 1: -1;
-}
+function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
+    let numSpaces: number = 0;
 
-/* Helper Function
- * This function returns the text from the current line of the active text editor window
- */
-function fetchTextLine(editor: TextEditor): vscode.TextLine|undefined {
-    return editor? editor.document.lineAt(fetchLineNumber(editor) - 1): undefined;
-}
-
-// Function that outputs the current line number the cursor is on
-function getLineNumber(): void {
-    const editor: TextEditor = vscode.window.activeTextEditor;
 
     if (editor) {
-        const lineNum: number = fetchLineNumber(editor);
+        /*
+         * set  true to use method 1: find the number of leading spaces through arithmetic
+         * set false to use method 2: find the index position of the first non-whitespace character in a 0-index
+         * default: false
+         */
+        const calculateLeadingSpaces: boolean = false;          // change boolean value to change method
+        const line   : TextLine = fetchLine(editor);
 
-        vscode.window.showInformationMessage(`Line ${lineNum.toString()}`);
+        /* If true, calculate by arithmetic otherwise get index */
+        numSpaces = (calculateLeadingSpaces)
+            ? pl.Lexer.getLeadingSpacesByArithmetic(line)
+            : pl.Lexer.getLeadingSpacesByIndex(line);
+    }
+
+    return numSpaces;
+}
+
+/** Helper Function
+* * This function returns the number of selected lines in the active text editor window
+    @param editor
+    @returns numberOfSelectedLines
+*/
+function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
+    let numberOfSelectedLines: number = 0;
+
+    if (editor) {
+        numberOfSelectedLines = editor.selections.reduce((prev, curr) => prev + (curr.end.line - curr.start.line), 1);
+    }
+
+    return numberOfSelectedLines;
+}
+
+/** Helper Function
+ ** This function returns the line number of the active text editor window
+ *  @param editor
+ *  @returns editor!.selection.active.line + 1
+ */
+function fetchLineNumber(editor: TextEditor | undefined): number {
+    return editor!.selection.active.line + 1; // line numbers start at 1, not 0, so we add 1 to the result
+}
+
+/** Helper Function
+ ** This function returns the text from the current line of the active text editor window
+ *  @param editor
+ *  @returns editor.document.lineAt(fetchLineNumber(editor) - 1)
+ */
+function fetchLine(editor: TextEditor | undefined): TextLine {
+    return editor!.document.lineAt(fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
+}
+
+/* Function
+ * Function to return the number of selected (highlighted) lines
+ * Changes output to 'Line' for 1 line and 'Lines' for all other instances
+ */
+function getNumberOfSelectedLines(): void {
+    const editor: TextEditor | undefined = window.activeTextEditor;
+
+    if (editor) {
+        const numberOfSelectedLines: number = fetchNumberOfSelectedLines(editor);
+
+        (numberOfSelectedLines !== 1)
+            ? window.showInformationMessage(`${numberOfSelectedLines.toString()} Lines Selected`)
+            : window.showInformationMessage(`${numberOfSelectedLines.toString()} Line Selected`);
+        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
-        vscode.window.showErrorMessage('No document currently active');
+        window.showErrorMessage('No document currently active');
     }
+
 }
 
-function getIndent(): void {
-    const editor: TextEditor = vscode.window.activeTextEditor;
+/*  Function
+ *  Outputs the current line number the cursor is on
+ */
+function getLineNumber(): void {
+    const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
-        const textLine: vscode.TextLine = editor.document.lineAt(lineNum - 1);
 
-        if (textLine.isEmptyOrWhitespace) {
-            vscode.window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
+        window.showInformationMessage(`Line ${lineNum.toString()}`);
+        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
+    }
+    else {
+        window.showErrorMessage('No document currently active');
+    }
+
+}
+
+/* Function
+ * Used to get the number of indents on a line
+ */
+function getIndent(): void {
+    const editor: TextEditor | undefined = window.activeTextEditor;
+
+    if (editor) {
+        const lineNum: number = (fetchLineNumber(editor));
+        const line   : TextLine = fetchLine(editor);
+
+        if (line.isEmptyOrWhitespace) {
+            window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
         }
         else {
             // Grab tab format from open document
@@ -72,77 +166,99 @@ function getIndent(): void {
                 size: typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4,
                 hard: !editor.options.insertSpaces
             };
-            const i: number = pl.Lexer.getIndent(textLine.text, tabFmt);
+            const i: number = pl.Lexer.getIndent(line.text, tabFmt);
 
-            vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`);
+            (i !== 1)
+                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`)
+                : window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indent`);
         }
+        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
-        vscode.window.showErrorMessage('No document currently active');
+        window.showErrorMessage('No document currently active');
     }
+
 }
 
-/* Function -> Returns the number of leading spaces on the line the cursor is on
- * There are two methods that can be used to find the leading spaces:
- *  method 1:
- *      calculates the number of leading spaces by finding the length of the current line
- *      then subtracting from that the length of the text after trimming the whitespace at the start
- *      which will equal the number of whitespace characters
- *
- *      TO-USE: set calculateLeadingSpaces to true
- *
- * method 2 (default):
- *      finds the index position of the first non-whitespace character in a 0-index
- *      this number will equal the number of spaces preceding the non-whitespace character
- *      due to the nature of 0-indexes.
- *
- *      TO-USE: set calculateLeadingSpaces to false
+/* Function
+ * Returns the number of leading spaces on the line the cursor is on
  */
 function getLeadingSpaces(): void {
-    const editor: any = vscode.window.activeTextEditor;
+    const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
-        const lineNum: number = fetchLineNumber(editor);
-        const textLine: vscode.TextLine|undefined = fetchTextLine(editor);
-        // If there's no line, or the line is empty, say the line is empty
-        if (!textLine || textLine.isEmptyOrWhitespace) {
-            vscode.window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
+        const lineNum : number = fetchLineNumber(editor);
+        const line    : TextLine | undefined = fetchLine(editor);
+
+        if (line.isEmptyOrWhitespace) {
+            window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
         }
         else {
-            /*
-             * set  true to use method 1: find the number of leading spaces through arithmetic
-             * set false to use method 2: find the index position of the first non-whitespace character in a 0-index
-             *
-             * default: false
-             */
-            const calculateLeadingSpaces: boolean = false; // change boolean value to change method
-            const numSpaces: number = (calculateLeadingSpaces) ?
-                pl.Lexer.getLeadingSpacesByArithmetic(textLine) :
-                pl.Lexer.getLeadingSpacesByIndex(textLine);
+            const numSpaces = fetchNumberOfLeadingSpaces(editor);
 
             /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
-            (numSpaces !== 1) ?
-            vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`):
-                vscode.window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
+            (numSpaces !== 1)
+                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`)
+                : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
         }
+        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
-        vscode.window.showErrorMessage('No document currently active');
+        window.showErrorMessage('No document currently active');
     }
+
+}
+
+/* Function
+ * Selects the leading whitespace at the beginning of a line
+ * This feature was a request from Senior Design Day Spring 2022
+ */
+function selectLeadingWhitespace(): void {
+    const editor : TextEditor | undefined = window.activeTextEditor;
+
+    if (editor) {
+        const numSpaces = fetchNumberOfLeadingSpaces(editor); // This will be used for the output message
+        const lineNum : number = (fetchLineNumber(editor));   // Get the displayed line number
+
+        /* If numSpaces isn't greater than 1, then there is no leading whitespace to select */
+        if (numSpaces >= 1) {
+            const line    : TextLine = fetchLine(editor);
+            const startPos: number = line.range.start.character;            // Start at the starting character position
+            const endPos  : number = line.firstNonWhitespaceCharacterIndex; // End at the first non whitespace character index
+
+            /* Apply our selection */
+            /* We need to subtract 1 from lineNum because we added 1 during the fetchLineNumber above and we want the 0-index for position, so remove it */
+            editor.selection       = new Selection(new Position((lineNum - 1), startPos), new Position((lineNum - 1), endPos));
+
+
+            /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
+            (numSpaces !== 1)
+                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces selected`)
+                : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space selected`);
+        }
+        else {
+            window.showErrorMessage(`Line ${lineNum.toString()}: No leading spaces to select!`); // No whitespace to select
+        }
+        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
+    }
+    else {
+        window.showErrorMessage('No document currently active'); // No active document
+    }
+
 }
 
 function runLineContext(): void {
-    const editor: TextEditor = vscode.window.activeTextEditor;
+    const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
         // current text and line number
-        const editorText: string = editor.document.getText();
-        const line: number = editor.selection.active.line;
+        const editorText: string    = editor.document.getText();
+        const line      : number    = editor.selection.active.line;
         // get tab info settings
-        const size: number = typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4;
-        const hard: boolean = !editor.options.insertSpaces;
+        const size      : number    = typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4;
+        const hard      : boolean   = !editor.options.insertSpaces;
         // initialize parser
-        const parser: pl.Parser = new pl.Parser(editorText, {
+        const parser    : pl.Parser = new pl.Parser(editorText, {
             size,
             hard
         });
@@ -152,10 +268,10 @@ function runLineContext(): void {
         // build text
         const contentString: string = createContextString(context, line);
 
-        vscode.window.showInformationMessage(contentString);
+        window.showInformationMessage(contentString);
     }
     else {
-        vscode.window.showErrorMessage('No document currently active');
+        window.showErrorMessage('No document currently active');
     }
 }
 
@@ -186,8 +302,8 @@ function createContextString(context: pl.LexNode[], line: number): string {
         // Node is the document root
         if (node.label === 'root') {
             // Append the name (relative path) of the document in the workspace
-            if (vscode.window.activeTextEditor?.document.uri) {
-                contextString += ` ${inside} ${vscode.workspace.asRelativePath(vscode.window.activeTextEditor?.document.uri)}`;
+            if (window.activeTextEditor?.document.uri) {
+                contextString += ` ${inside} ${workspace.asRelativePath(window.activeTextEditor?.document.uri)}`;
             } else {
                 contextString += ` ${inside} the Document`;
             }
@@ -198,25 +314,27 @@ function createContextString(context: pl.LexNode[], line: number): string {
     return contextString;
 }
 
-// find up to `n` words around the cursor, where `n` is
-// the value of `#mindReader.reader.contextWindow`
+/*
+ * find up to `n` words around the cursor, where `n` is
+ * the value of `#mindReader.reader.contextWindow`
+ */
 function runCursorContext(): void {
-    const editor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+    const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (!editor) {
-        vscode.window.showErrorMessage('RunCursorContext: No Active Editor');
+        window.showErrorMessage('RunCursorContext: No Active Editor');
         return;
     }
 
-    const cursorPos: vscode.Position = editor.selection.active;
-    const text: string = editor.document.lineAt(cursorPos).text;
-    const windowSize: any = vscode.workspace.getConfiguration('mindReader').get('reader.contextWindow');
-    let trimmedText: string = text.trimStart(); // trim leading whitespace
-    const leadingWS: number = text.length - trimmedText.length; // # of characters of leading whitespace
-    let pos: number = leadingWS;
-    const maxPos: number = text.length;
+    const cursorPos  : Position = editor.selection.active;
+    const text       : string   = editor.document.lineAt(cursorPos).text;
+    const windowSize : any      = workspace.getConfiguration('mindReader').get('reader.contextWindow');
+    let   trimmedText: string   = text.trimStart(); // trim leading whitespace
+    const leadingWS  : number   = text.length - trimmedText.length; // # of characters of leading whitespace
+    let   pos        : number   = leadingWS;
+    const maxPos     : number   = text.length;
     // clamp cursor start/end to new range
-    let col: number = cursorPos.character; // effective column of the cursor position
+    let   col        : number = cursorPos.character; // effective column of the cursor position
 
     trimmedText = trimmedText.trimEnd(); // trim trailing whitespace
 
@@ -251,7 +369,7 @@ function runCursorContext(): void {
 
     // find word the user is in
     let contextStart: number = -1;
-    let contextEnd: number = -1;
+    let contextEnd  : number = -1;
 
     for (let i: number = 0; i < spaceWords.length; i++) {
         if (col >= spaceWords[i].start && col <= spaceWords[i].end) {
@@ -265,7 +383,7 @@ function runCursorContext(): void {
                 contextString += spaceWords[i].word + ' ';
             }
             // output cursor context string
-            vscode.window.showInformationMessage(contextString);
+            window.showInformationMessage(contextString);
             return;
         }
     }
