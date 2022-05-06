@@ -121,7 +121,6 @@ function getNumberOfSelectedLines(): void {
         (numberOfSelectedLines !== 1)
             ? window.showInformationMessage(`${numberOfSelectedLines.toString()} Lines Selected`)
             : window.showInformationMessage(`${numberOfSelectedLines.toString()} Line Selected`);
-        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -139,7 +138,6 @@ function getLineNumber(): void {
         const lineNum: number = fetchLineNumber(editor);
 
         window.showInformationMessage(`Line ${lineNum.toString()}`);
-        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -172,7 +170,6 @@ function getIndent(): void {
                 ? window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`)
                 : window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indent`);
         }
-        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -201,7 +198,6 @@ function getLeadingSpaces(): void {
                 ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`)
                 : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
         }
-        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -239,8 +235,9 @@ function selectLeadingWhitespace(): void {
         else {
             window.showErrorMessage(`Line ${lineNum.toString()}: No leading spaces to select!`); // No whitespace to select
         }
-        window.showTextDocument(editor.document); // After the selection is made, the editor loses focus. We need to re-focus the editor so typing isn't interrupted
-    }
+        // Move the cursor to the new selection
+        window.showTextDocument(editor.document);
+        }
     else {
         window.showErrorMessage('No document currently active'); // No active document
     }
