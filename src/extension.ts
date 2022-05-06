@@ -7,7 +7,7 @@ import { lineHighlighter }                                        from "./lineHi
 import { accessCommands, hubCommands, navCommands, textCommands } from "./commands";
 
 // Output Logger
-const product: string = vscode.workspace.getConfiguration("mindReader").get("productType")!;
+const product: string = vscode.workspace.getConfiguration("mind-reader").get("productType")!;
 const outputChannel   = vscode.window.createOutputChannel(product + " Output");
 export const logger   = new Logger(outputChannel);
 

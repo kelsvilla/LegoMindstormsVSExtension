@@ -65,7 +65,7 @@ async function connectHub(): Promise<void> {
         return;
       }
 
-      let portPath: string | undefined = vscode.workspace.getConfiguration('mindReader.connection').get('portPath');
+      let portPath: string | undefined = vscode.workspace.getConfiguration('mind-reader.connection').get('portPath');
 
       if (!portPath) {
         let slots: vscode.QuickPickItem[] = [];

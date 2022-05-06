@@ -244,17 +244,17 @@
 			{
 				"command": "editor.action.fontZoomOut",
 				"key": "Shift+Alt+z -",
-				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
+				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "editor.action.fontZoomIn",
 				"key": "Shift+Alt+z =",
-				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
+				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "editor.action.fontZoomReset",
 				"key": "Shift+Alt+z 0",
-				"when": "editorTextFocus && config.mindReader.reader.screenReader != JAWS"
+				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
 			},
 			{
 				"command": "mind-reader.getIndent",

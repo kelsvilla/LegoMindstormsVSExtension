@@ -316,7 +316,7 @@ function createContextString(context: pl.LexNode[], line: number): string {
 
 /*
  * find up to `n` words around the cursor, where `n` is
- * the value of `#mindReader.reader.contextWindow`
+ * the value of `#mind-reader.reader.contextWindow`
  */
 function runCursorContext(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
@@ -328,7 +328,7 @@ function runCursorContext(): void {
 
     const cursorPos  : Position = editor.selection.active;
     const text       : string   = editor.document.lineAt(cursorPos).text;
-    const windowSize : any      = workspace.getConfiguration('mindReader').get('reader.contextWindow');
+    const windowSize : any      = workspace.getConfiguration('mind-reader').get('reader.contextWindow');
     let   trimmedText: string   = text.trimStart(); // trim leading whitespace
     const leadingWS  : number   = text.length - trimmedText.length; // # of characters of leading whitespace
     let   pos        : number   = leadingWS;
