@@ -231,12 +231,13 @@ function selectLeadingWhitespace(): void {
             (numSpaces !== 1)
                 ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces selected`)
                 : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space selected`);
+
+            // Move the cursor to the new selection
+            window.showTextDocument(editor.document);
         }
         else {
             window.showErrorMessage(`Line ${lineNum.toString()}: No leading spaces to select!`); // No whitespace to select
         }
-        // Move the cursor to the new selection
-        window.showTextDocument(editor.document);
         }
     else {
         window.showErrorMessage('No document currently active'); // No active document
