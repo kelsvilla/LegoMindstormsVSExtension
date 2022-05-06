@@ -1,10 +1,10 @@
 <#
 .synopsis
-Dependency installer for Mind-Reader on Windows.
+Dependency installer for Mind Reader on Windows.
 This sets up a development environment from a BARE windows install.
 
 .description
-Install Git for Windows, clone the Mind-Reader repository, and install all dependencies.
+Install Git for Windows, clone the Mind Reader repository, and install all dependencies.
 
 The script uses winget (A.K.A. "App Installer") to download and install the latest versions of each dependency, defined in winget/dependencies.json
 
@@ -32,7 +32,7 @@ Perform a "dry run" of the script, changing directories and running commands, bu
 
 .example
 ./install-windows.ps1
-Perform a default upgrade of all Mind_Reader dependencies
+Perform a default upgrade of all Mind Reader dependencies
 
 .example
 ./install-windows.ps1 -DryRun

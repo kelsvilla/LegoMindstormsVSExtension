@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#* linux-update.sh: Install and update dependencies of Mind_Reader, on linux.
+#* linux-update.sh: Install and update dependencies of Mind Reader, on linux.
 #* Heads-up, this expects to be run from Mind_Reader/setup-development/linux.
 
 # If run with bash -vx, print useful information instead of just a + sign

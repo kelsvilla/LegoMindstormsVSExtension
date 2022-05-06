@@ -98,7 +98,7 @@ function getWebviewContent() {
       <body>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6a4XaqHkKcxJ6ZFms1RNrRurcOfl-diW90DAdpAx0Kv-rtrLJXovIhcUpayqFHATkrQ&usqp=CAU" width="600" />
           <p></p>
-          <h1>Welcome to Mind_Reader!</h1>
+          <h1>Welcome to Mind Reader!</h1>
           <p>We are the Single Semester Snobs and this is our tool to Help Blind Students Program Lego Mindstorms Robots in Python.</p>
           <ul>
             <li>

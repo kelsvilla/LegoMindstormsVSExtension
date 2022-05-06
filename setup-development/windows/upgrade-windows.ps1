@@ -1,6 +1,6 @@
 <#
 .synopsis
-Dependency updater for Mind-Reader on Windows.
+Dependency updater for Mind Reader on Windows.
 This script expects to be run from Mind_Reader/setup-development
 
 .description
@@ -32,7 +32,7 @@ Perform a "dry run" of the script, changing directories and running commands, bu
 
 .example
 ./upgrade-windows.ps1
-Perform a default upgrade of all Mind_Reader dependencies
+Perform a default upgrade of all Mind Reader dependencies
 
 .example
 ./upgrade-windows.ps1 -DryRun
@@ -204,7 +204,7 @@ else {
 
    Write-Host "Run the command " -NoNewLine
    Write-Host "electron-rebuild --version ELECTRON_VERSION" -NoNewLine -ForegroundColor green
-   Write-Host " in Mind-Reader`'s root folder.`n"
+   Write-Host " in Mind Reader`'s root folder.`n"
 }
 
 # Return from whence we came

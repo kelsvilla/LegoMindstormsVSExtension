@@ -3,7 +3,7 @@
 <img alt="Mind Reader Logo" src="media/logo.png"></img>
 </p>
 
-<h1>Mind_Reader</h1>
+<h1>Mind Reader</h1>
 
 <!-- overview description -->
 
@@ -42,7 +42,7 @@ Python programming with LEGO Mindstorms. Our goal is to:
 <img width="50%" height="50%" alt="tools for native modules page with tool installation checked" src="media/nodejs_setup.png"></img>
 </p>
 
-If the compiled serial port version is incompatible, you may see no options presented in the Mind_Reader actions panel:
+If the compiled serial port version is incompatible, you may see no options presented in the Mind Reader actions panel:
 
 <p align="center">
 <img width="50%" height="50%" alt="mind reader actions panel with no items:" src="media/missing_actions.png"></img>
@@ -73,7 +73,7 @@ The electron version should be listed, e.g.: `Electron: 13.5.2`
 <img width="35%" height="35%" alt="vscode information" src="media/vscode_info.png"></img>
 </p>
 
-### 3 Finding the Mind_Reader extension directory
+### 3 Finding the Mind Reader extension directory
 On MacOS and Linux this is `~/.vscode/extensions`.
 
 On Windows this is `C:\<YOUR USER>\.vscode\extensions\`. However, in Git Bash, it will appear like on MacOS and Linux
@@ -81,7 +81,7 @@ e.g.: `~/.vscode/extensions`.
 
 ---
 
-Find the Mind_Reader extension folder, this should look like `xxx.mind-reader-x.x.x`.
+Find the Mind Reader extension folder, this should look like `xxx.mind-reader-x.x.x`.
 
 Navigate to the found folder in the terminal.
 
@@ -102,8 +102,8 @@ $ electron-rebuild --version=ELECTRON_VERSION
 Use the following to set up the extension for development.
 
 ```console
-$ git clone https://github.com/SingleSemesterSnobs/Mind_Reader.git
-$ cd Mind_Reader
+$ git clone https://github.com/SingleSemesterSnobs/Mind Reader.git
+$ cd Mind Reader
 $ npm install
 ```
 
