@@ -5,7 +5,44 @@
 * ? ██╔══██║██║██║   ██║██╔══██║██║     ██║██║   ██║██╔══██║   ██║   ╚════╝██║   ██║
 * ? ██║  ██║██║╚██████╔╝██║  ██║███████╗██║╚██████╔╝██║  ██║   ██║         ██║   ██║
 * ? ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝         ╚═╝   ╚═╝
-* TODO: Add ability for user to change options through a command pallette configurator
+* ! Initial Setup:
+* ! Open settings.json (ctrl+shift+p type 'settings' choose: 'Preferences: Open Settings (JSON))
+* ! Add the following to the bottom (may have to add a comma to the line above if it's not there, also remove the *s):
+* "mind-reader.lineHighlighter.isEnabled"          : true,
+* "mind-reader.lineHighlighter.multiLineIsEnabled" : false,
+*
+* "mind-reader.lineHighlighter.backgroundColor"    : "#232C5C",
+
+* "mind-reader.lineHighlighter.outlineColor"       : "#4866FE",
+* "mind-reader.lineHighlighter.outlineWidth"       : "1px",
+* "mind-reader.lineHighlighter.outlineStyle"       : "solid",
+*
+* "mind-reader.lineHighlighter.borderColorTop"     : "#FFFFFF",
+* "mind-reader.lineHighlighter.borderColorRight"   : "#FFFFFF",
+* "mind-reader.lineHighlighter.borderColorBottom"  : "#FFFFFF",
+* "mind-reader.lineHighlighter.borderColorLeft"    : "#FFFFFF",
+*
+* "mind-reader.lineHighlighter.borderWidthTop"     : "1px",
+* "mind-reader.lineHighlighter.borderWidthRight"   : "16px",
+* "mind-reader.lineHighlighter.borderWidthBottom"  : "1px",
+* "mind-reader.lineHighlighter.borderWidthLeft"    : "1px",
+*
+* "mind-reader.lineHighlighter.borderStyleTop"     : "solid",
+* "mind-reader.lineHighlighter.borderStyleRight"   : "solid",
+* "mind-reader.lineHighlighter.borderStyleBottom"  : "solid",
+* "mind-reader.lineHighlighter.borderStyleLeft"    : "solid",
+*
+* "mind-reader.lineHighlighter.fontStyle"          : "normal",
+* "mind-reader.lineHighlighter.fontWeight"         : "bolder",
+* "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
+*
+* ! Restart VSCode for changes to take effect (if they didn't automatically)
+* ! Afterwards you can now edit using the settings window, or manually edit them
+* ! directly in settings.json by editing the values.
+*
+* TODO: FEATURE: Add ability for user to change options through a command pallette configurator
+* TODO: FEATURE: Add hotkey to toggle linehighlighter on/off
+* TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
 'use strict';
 import { Position, window, workspace, TextEditorDecorationType, TextEditor, WorkspaceConfiguration, Range } from 'vscode';
@@ -233,14 +270,14 @@ function lineHighlighter(): void {
         let enabledStatus: boolean | undefined;
 
         /***
-         * if "isEnabled" is missing from the settings (aka undefined)
+         * if 'isEnabled' is missing from the settings (aka undefined)
          *      - set our variable to true (default)
-         * otherwise, "isEnabled" is listed in the settings
+         * otherwise, 'isEnabled' is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mind-reader.lineHighlighter").get("isEnabled") === undefined)
+        (workspace.getConfiguration('mind-reader.lineHighlighter').get('isEnabled') === undefined)
             ? (enabledStatus = true)
-            : (enabledStatus = workspace.getConfiguration("mind-reader.lineHighlighter").get("isEnabled"));
+            : (enabledStatus = workspace.getConfiguration('mind-reader.lineHighlighter').get('isEnabled'));
 
         // return the enabledStatus
         return enabledStatus;
@@ -251,14 +288,14 @@ function lineHighlighter(): void {
         let multiLineIsEnabled: boolean | undefined;
 
         /***
-         * if "isEnabled" is missing from the settings (aka undefined)
+         * if 'isEnabled' is missing from the settings (aka undefined)
          *      - set our variable to true (default)
-         * otherwise, "isEnabled" is listed in the settings
+         * otherwise, 'isEnabled' is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration("mind-reader.lineHighlighter").get("multiLineIsEnabled") === undefined)
+        (workspace.getConfiguration('mind-reader.lineHighlighter').get('multiLineIsEnabled') === undefined)
             ? (multiLineIsEnabled = true)
-            : (multiLineIsEnabled = workspace.getConfiguration("mind-reader.lineHighlighter").get("multiLineIsEnabled"));
+            : (multiLineIsEnabled = workspace.getConfiguration('mind-reader.lineHighlighter').get('multiLineIsEnabled'));
 
         // return the enabledStatus
         return multiLineIsEnabled;
