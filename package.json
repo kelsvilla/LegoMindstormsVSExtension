@@ -417,13 +417,13 @@
 					"order": 4,
 					"type": "boolean",
 					"markdownDescription": "Enable/Disable the line highlighter.\n\n\n* `Enabled (our default)`: Checked: Line Highlighter is turned `ON`\n* `Disabled`: Unchecked: Line Highlighter is turned `OFF`\n\n### `NOTE`: You Must Close Settings And RESTART Visual Studio Code For The Line Highlighter To Function\n#### Even If No Changes Were Made",
-					"default": "true"
+					"default": true
 				},
 				"mind-reader.lineHighlighter.multiLineIsEnabled": {
 					"order": 5,
 					"type": "boolean",
 					"markdownDescription": "Temporarily Disable highlighting when highlighting multiple lines.\n\n\n* `Enabled`: Checked: Multiline Highlighting is turned `ON`:\n* * When you click and drag line highlights will be applied to all lines\n* `Disabled (our default)`: Unchecked: Multiline Highlighting is turned `OFF`:\n* * When you click and drag the line highlighter will disable itself then re-enable itself when you click onto a single line.",
-					"default": "false"
+					"default": false
 				},
 				"mind-reader.lineHighlighter.backgroundColor": {
 					"order": 6,
