@@ -50,19 +50,19 @@ function root(nodes: LexNode[] | null): LexNode {
 }
 
 /* short hand for returning an indentation token for a certain line and indentation */
-function indent(linenr: number, indentLevel: number): LexNode {
-  return new LexNode('INDENT', 0, new LineToken(PylexSymbol.INDENT, linenr, indentLevel));
+function statement(linenr: number, indentLevel: number, text: string = ""): LexNode {
+  return new LexNode(PylexSymbol.STATEMENT, 0, new LineToken(PylexSymbol.STATEMENT, linenr, indentLevel, text));
 }
 
 /* short hand for returning an empty token for a certain line*/
 function empty(linenr: number): LexNode {
-  return new LexNode('EMPTY', 0, new LineToken(PylexSymbol.EMPTY, linenr, 999999));
+  return new LexNode(PylexSymbol.EMPTY, 0, new LineToken(PylexSymbol.EMPTY, linenr, 999999));
 }
 
 
 export {
   deparent,
   root,
-  indent,
+  statement as statement,
   empty
 };

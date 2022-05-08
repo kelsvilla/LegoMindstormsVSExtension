@@ -16,8 +16,10 @@ export enum Symbol {
   EXCEPT = "except",
   FINALLY = "finally",
   WITH = "with",
-  INDENT = "INDENT", // Indent token, default if not EOF, only contains indent information
+  STATEMENT = "statement", // Indent token, contains non-empty code lines
+  COMMENT = "Comment",
   EMPTY = "EMPTY", // empty line, used only to associate with the previous line
+  INVALID = "INVALID",
   EOF = "EOF"
 }
 
@@ -53,7 +55,7 @@ export default class LineToken {
    * @return A string representation of the token
    */
   toString(): string {
-    return this.type + ", linenr:" + (this.linenr+1) + ", indentLevel: " + this.indentLevel + ", attr: " + this.attr;
+    return `${this.type}, linenr: ${this.linenr+1}, indentLevel: ${this.indentLevel}, attr: ${this.attr}`;
   }
 }
 

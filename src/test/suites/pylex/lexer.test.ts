@@ -12,7 +12,7 @@ suite('Lexer Test Suite', () => {
   });
 
   test('Empty String', () => {
-    let l: Lexer = new Lexer(undefined);
+    let l: Lexer = new Lexer("");
     assert.deepStrictEqual(l.currToken(), EOFTOKEN);
   });
 
@@ -22,18 +22,19 @@ suite('Lexer Test Suite', () => {
   });
 
   test('Whitespace', () => {
-    let l: Lexer = new Lexer('  \t\t'.repeat(4).repeat(4));
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.EMPTY, 0, 999999));
+    let s: string = '    '.repeat(4).repeat(4);
+    let l: Lexer = new Lexer(s);
+    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.EMPTY, 0, s.length/4));
   });
 
   test('Comment', () => {
-    let l: Lexer = new Lexer('# ur mom eats toes');
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.EMPTY, 0, 999999));
+    let l: Lexer = new Lexer('# this is a comment');
+    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.COMMENT, 0, 0, 'this is a comment'));
   });
 
   test('Non-Whitespace with no construct', () => {
     let l: Lexer = new Lexer('foobar');
-    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.INDENT, 0, 0));
+    assert.deepStrictEqual(l.currToken(), new LineToken(Symbol.STATEMENT, 0, 0, 'foobar'));
   });
 
   test('getIndent() accuracy, spaces', () => {
@@ -50,11 +51,14 @@ suite('Lexer Test Suite', () => {
     }
   });
 
-  test('getIndent() accuracy, spaces with incomplete tab', () => {
+  test('getIndent() accuracy, spaces with incomplete indentation', () => {
+    let size: number = 4;
     for (var i = 0; i < 100; i++) {
       for (var j = 1; j <= 3; j++) {
-        let l: Lexer = new Lexer('    '.repeat(i) + ' '.repeat(j) + 'foobar', {size: 4, hard: false});
-        assert.strictEqual(l.currToken().indentLevel, i+1);
+        let l: Lexer = new Lexer('    '.repeat(i) + ' '.repeat(j) + 'foobar', {size: size, hard: false});
+        // TODO: Swap these out when fractional indentation is used
+        //assert.strictEqual(l.currToken().indentLevel, i + (Math.round(j / size * 100) / 100));
+        assert.strictEqual(l.currToken().indentLevel, i + 1);
       }
     }
   });
@@ -150,7 +154,7 @@ suite('Lexer Test Suite', () => {
   test('retract() 1-100', () => {
     let lines: string[] = Array.from(Array(100), (_, i) => 'line' + i);
     let reference: LineToken[] = lines.map((_, i) => {
-      return new LineToken(Symbol.INDENT, i, 0);
+      return new LineToken(Symbol.STATEMENT, i, 0, `line${i}`);
     });
 
     for (var i = 0; i < 100; i++) {
@@ -169,7 +173,7 @@ suite('Lexer Test Suite', () => {
   test('2 full lex and retract passes', () => {
     let lines: string[] = Array.from(Array(100), (_, i)=> 'line' + i);
     let reference: LineToken[] = lines.map((_, i) => {
-      return new LineToken(Symbol.INDENT, i, 0);
+      return new LineToken(Symbol.STATEMENT, i, 0, `line${i}`);
     });
 
     let l: Lexer = new Lexer(lines.join('\n'));

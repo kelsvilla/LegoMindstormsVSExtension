@@ -74,8 +74,9 @@ export default class Parser {
         return children;
       }
 
-      if (this.lexer.currToken().type === Symbol.INDENT ||
-          this.lexer.currToken().type === Symbol.EMPTY) {
+      if (this.lexer.currToken().type === Symbol.STATEMENT ||
+          this.lexer.currToken().type === Symbol.EMPTY     ||
+          this.lexer.currToken().type === Symbol.INVALID) {
         const label = this.lexer.currToken().type;
         // regular code, advance and stay in same block
         children.push(new LexNode(
