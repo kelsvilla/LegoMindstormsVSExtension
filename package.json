@@ -300,74 +300,75 @@
 				}
 			],
 			"mind-reader.editor.context": [
+
+				{
+					"command": "mind-reader.openKeybinds",
+					"group": "0_mind-reader@0",
+					"when": "activeEditor"
+				},
 				{
 					"command": "mind-reader.selectTheme",
-					"group": "mind-reader",
+					"group": "0_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.increaseFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.decreaseFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.resetFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.increaseEditorScale",
-					"group": "mind-reader",
+					"group": "2_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.decreaseEditorScale",
-					"group": "mind-reader",
+					"group": "2_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.resetEditorScale",
-					"group": "mind-reader",
+					"group": "2_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLineNumber",
-					"group": "mind-reader",
+					"group": "3_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getIndent",
-					"group": "mind-reader",
+					"group": "3_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLeadingSpaces",
-					"group": "mind-reader",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.selectLeadingWhitespace",
-					"group": "mind-reader",
+					"group": "3_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getNumberOfSelectedLines",
-					"group": "mind-reader",
+					"group": "3_mind-reader@3",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.selectLeadingWhitespace",
+					"group": "4_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.openWebview",
-					"group": "mind-reader",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.openKeybinds",
-					"group": "mind-reader",
+					"group": "z_mind-reader@99",
 					"when": "activeEditor"
 				}
 			]
