@@ -117,67 +117,27 @@
 			},
 			{
 				"command": "mind-reader.getLineNumber",
-				"title": "Get The Current Line Number"
-			},
-			{
-				"command": "mind-reader.getIndent",
-				"title": "Get The Number Of Line Indentations"
-			},
-			{
-				"command": "mind-reader.getLeadingSpaces",
-				"title": "Get The Number Of Leading Spaces"
-			},
-			{
-				"command": "mind-reader.selectLeadingWhitespace",
-				"title": "Select The Leading Whitespace"
-			},
-			{
-				"command": "mind-reader.getNumberOfSelectedLines",
-				"title": "Get The Number Of Selected Lines"
-			},
-			{
-				"command": "mind-reader.connectHub",
-				"title": "Connect LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.disconnectHub",
-				"title": "Disconnect LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload Current File to LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.runProgram",
-				"title": "Run a Program on the LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.stopExecution",
-				"title": "Stop Running Program on the LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.deleteProgram",
-				"title": "Delete a Program from the LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.getLeadingSpaces",
-				"title": "Get Leading Spaces",
+				"title": "Get The Current Line Number",
 				"category": "Mind Reader"
 			},
 			{
-				"command": "mind-reader.getLineNumber",
-				"title": "Get Line Number",
+				"command": "mind-reader.getIndent",
+				"title": "Get The Number Of Line Indentations",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.getLeadingSpaces",
+				"title": "Get The Number Of Leading Spaces",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.selectLeadingWhitespace",
+				"title": "Select The Leading Whitespace",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.getNumberOfSelectedLines",
+				"title": "Get The Number Of Selected Lines",
 				"category": "Mind Reader"
 			},
 			{
@@ -238,23 +198,62 @@
 				"command": "mind-reader.showCommands",
 				"title": "Show All Commands",
 				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.connectHub",
+				"title": "Connect a LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.disconnectHub",
+				"title": "Disconnect a LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.runProgram",
+				"title": "Run a Program on the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.stopExecution",
+				"title": "Stop Running Program on the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.deleteProgram",
+				"title": "Delete a Program from the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.uploadCurrentFile",
+				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
+				"category": "SPIKE Prime"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "editor.action.fontZoomOut",
-				"key": "Shift+Alt+z -",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "accessActions.focus",
+				"comment": "This opens the Access Actions menu",
+				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
+				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
 			{
-				"command": "editor.action.fontZoomIn",
-				"key": "Shift+Alt+z =",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "mind-reader.decreaseFontScale",
+				"key": "Shift+Alt+Z -",
+				"mac": "Cmd+Shift+Z -",
+				"when": "editorTextFocus"
 			},
 			{
-				"command": "editor.action.fontZoomReset",
-				"key": "Shift+Alt+z 0",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "mind-reader.increaseFontScale",
+				"key": "Shift+Alt+Z =",
+				"mac": "Cmd+Shift+Z =",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.resetFontScale",
+				"key": "Shift+Alt+Z 0",
+				"mac": "Cmd+Shift+Z 0",
+				"when": "editorTextFocus"
 			},
 			{
 				"command": "mind-reader.getIndent",
@@ -266,8 +265,7 @@
 				"command": "mind-reader.getLeadingSpaces",
 				"key": "Ctrl+Shift+/ S",
 				"mac": "Cmd+Shift+[Slash] S",
-				"when": "editorTextFocus",
-				"comment": "Requires python language"
+				"when": "editorTextFocus && editorLangId == python"
 			},
 			{
 				"command": "mind-reader.getLineNumber",
@@ -285,6 +283,16 @@
 				"command": "mind-reader.openKeybinds",
 				"key": "Ctrl+Shift+/ K",
 				"mac": "Cmd+Shift+[Slash] K"
+			},
+			{
+				"command": "mind-reader.getNumberOfSelectedLines",
+				"key": "Ctrl+Shift+/ N",
+				"mac": "Cmd+Shift+[Slash] N"
+			},
+			{
+				"command": "mind-reader.selectLeadingWhitespace",
+				"key": "Ctrl+Shift+/ W",
+				"mac": "Cmd+Shift+[Slash] W"
 			}
 		],
 		"menus": {
@@ -296,73 +304,73 @@
 			],
 			"mind-reader.editor.context": [
 				{
-					"command": "mind-reader.selectTheme",
-					"group": "mind-reader",
+					"command": "mind-reader.openKeybinds",
+					"group": "0_mind-reader@0",
+					"when": "activeEditor"
+				},
+				{
+					"command": "workbench.action.selectTheme",
+					"group": "0_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.increaseFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.decreaseFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.resetFontScale",
-					"group": "mind-reader",
+					"group": "1_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.increaseEditorScale",
-					"group": "mind-reader",
+					"command": "workbench.action.zoomIn",
+					"group": "2_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.decreaseEditorScale",
-					"group": "mind-reader",
+					"command": "workbench.action.zoomOut",
+					"group": "2_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.resetEditorScale",
-					"group": "mind-reader",
+					"command": "workbench.action.zoomReset",
+					"group": "2_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLineNumber",
-					"group": "mind-reader",
+					"group": "3_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getIndent",
-					"group": "mind-reader",
+					"group": "3_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLeadingSpaces",
-					"group": "mind-reader",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.selectLeadingWhitespace",
-					"group": "mind-reader",
+					"group": "3_mind-reader@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getNumberOfSelectedLines",
-					"group": "mind-reader",
+					"group": "3_mind-reader@3",
+					"when": "activeEditor"
+				},
+				{
+					"command": "mind-reader.selectLeadingWhitespace",
+					"group": "4_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.openWebview",
-					"group": "mind-reader",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.openKeybinds",
-					"group": "mind-reader",
+					"group": "z_mind-reader@99",
 					"when": "activeEditor"
 				}
 			]
@@ -563,7 +571,7 @@
 			}
 		],
 		"views": {
-			"MindReader": [
+			"Mind-Reader": [
 				{
 					"id": "accessActions",
 					"name": "Access Actions",
@@ -581,8 +589,8 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "MindReader",
-					"title": "MindReader Actions",
+					"id": "Mind-Reader",
+					"title": "Mind Reader Actions",
 					"icon": "media/dep.svg"
 				}
 			]
