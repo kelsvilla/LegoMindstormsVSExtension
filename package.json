@@ -305,73 +305,73 @@
 			"mind-reader.editor.context": [
 				{
 					"command": "mind-reader.openKeybinds",
-					"group": "0_mind-reader@0",
+					"group": "0_configuration@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "workbench.action.selectTheme",
-					"group": "0_mind-reader@1",
+					"group": "0_configuration@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.increaseFontScale",
-					"group": "1_mind-reader@0",
+					"group": "1_font-zoom@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.decreaseFontScale",
-					"group": "1_mind-reader@1",
+					"group": "1_font-zoom@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.resetFontScale",
-					"group": "1_mind-reader@2",
+					"group": "1_font-zoom@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "workbench.action.zoomIn",
-					"group": "2_mind-reader@0",
+					"group": "2_workbench-zoom@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "workbench.action.zoomOut",
-					"group": "2_mind-reader@1",
+					"group": "2_workbench-zoom@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "workbench.action.zoomReset",
-					"group": "2_mind-reader@2",
+					"group": "2_workbench-zoom@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLineNumber",
-					"group": "3_mind-reader@0",
+					"group": "3_getter-functions@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getIndent",
-					"group": "3_mind-reader@1",
+					"group": "3_getter-functions@1",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getLeadingSpaces",
-					"group": "3_mind-reader@2",
+					"group": "3_getter-functions@2",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.getNumberOfSelectedLines",
-					"group": "3_mind-reader@3",
+					"group": "3_getter-functions@3",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.selectLeadingWhitespace",
-					"group": "4_mind-reader@0",
+					"group": "4_selector-functions@0",
 					"when": "activeEditor"
 				},
 				{
 					"command": "mind-reader.openWebview",
-					"group": "z_mind-reader@99",
-					"when": "activeEditor"
+					"group": "z_disabled@99",
+					"when": "false"
 				}
 			]
 		},
