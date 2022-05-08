@@ -233,23 +233,27 @@
 		"keybindings": [
 			{
 				"command": "accessActions.focus",
+				"comment": "This opens the Access Actions menu",
 				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
 			{
-				"command": "editor.action.fontZoomOut",
-				"key": "Shift+Alt+z -",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "mind-reader.decreaseFontScale",
+				"key": "Shift+Alt+Z -",
+				"mac": "Cmd+Shift+Z -",
+				"when": "editorTextFocus"
 			},
 			{
-				"command": "editor.action.fontZoomIn",
-				"key": "Shift+Alt+z =",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "mind-reader.increaseFontScale",
+				"key": "Shift+Alt+Z =",
+				"mac": "Cmd+Shift+Z =",
+				"when": "editorTextFocus"
 			},
 			{
-				"command": "editor.action.fontZoomReset",
-				"key": "Shift+Alt+z 0",
-				"when": "editorTextFocus && config.mind-reader.reader.screenReader != JAWS"
+				"command": "mind-reader.resetFontScale",
+				"key": "Shift+Alt+Z 0",
+				"mac": "Cmd+Shift+Z 0",
+				"when": "editorTextFocus"
 			},
 			{
 				"command": "mind-reader.getIndent",
@@ -261,8 +265,7 @@
 				"command": "mind-reader.getLeadingSpaces",
 				"key": "Ctrl+Shift+/ S",
 				"mac": "Cmd+Shift+[Slash] S",
-				"when": "editorTextFocus",
-				"comment": "Requires python language"
+				"when": "editorTextFocus && editorLangId == python"
 			},
 			{
 				"command": "mind-reader.getLineNumber",
@@ -289,7 +292,7 @@
 			{
 				"command": "mind-reader.selectLeadingWhitespace",
 				"key": "Ctrl+Shift+/ W",
-				"mac": "Ctrl+Shift+[Slash] W"
+				"mac": "Cmd+Shift+[Slash] W"
 			}
 		],
 		"menus": {
@@ -300,14 +303,13 @@
 				}
 			],
 			"mind-reader.editor.context": [
-
 				{
 					"command": "mind-reader.openKeybinds",
 					"group": "0_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.selectTheme",
+					"command": "workbench.action.selectTheme",
 					"group": "0_mind-reader@1",
 					"when": "activeEditor"
 				},
@@ -327,17 +329,17 @@
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.increaseEditorScale",
+					"command": "workbench.action.zoomIn",
 					"group": "2_mind-reader@0",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.decreaseEditorScale",
+					"command": "workbench.action.zoomOut",
 					"group": "2_mind-reader@1",
 					"when": "activeEditor"
 				},
 				{
-					"command": "mind-reader.resetEditorScale",
+					"command": "workbench.action.zoomReset",
 					"group": "2_mind-reader@2",
 					"when": "activeEditor"
 				},
