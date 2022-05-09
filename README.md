@@ -182,7 +182,7 @@ After adding the code block, the `settings.json` file should look similar to thi
 7. Save and close `settings.json`
 
 ### Line Highlighter Settings Table
-| **Item**               | **Description**                                              | **Expected Value**                                                           | **Default Values** |
+| **Item**               | **Description**                                              | **Accepted Value**                                                           | **Default Values** |
 |------------------------|-------------------------------------------------------|------------------------------------------------------------------------------|--------------------|
 | **isEnabled**          | Enable/Disables the line highlighter                  | boolean                                                                      | true               |
 | **multiLineIsEnabled** | Highlight when clicking and dragging to select lines  | boolean                                                                      | false              |
