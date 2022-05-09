@@ -139,7 +139,7 @@ Before running Mind Reader for the first time it is recommended to add the follo
 3. The Command Palette should appear at the top of your screen ready for you to type
 4. Type `settings` and highlight the option that appears saying `Preferences: Open Settings (JSON)` then select it
 5. Your `settings.json` window should appear, scroll to the bottom and make sure the last item has a `,`  before the closing curly bracket `}`
-6. Paste the following code block after the comma `,`, but before the closing curly bracket `}`:
+6. Paste the following code block after the last comma `,`, but before the closing curly bracket `}`:
 ```
     "mind-reader.lineHighlighter.isEnabled"          : true,
     "mind-reader.lineHighlighter.multiLineIsEnabled" : false,
