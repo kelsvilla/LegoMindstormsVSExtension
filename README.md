@@ -130,8 +130,8 @@ directions above.
 See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
 API page if you need more help.
 
-# Setting Up Line Highlighter
-Before running Mind Reader for the first time it is recommended to add the following code block to your settings.json
+# First Time Setting Up the Line Highlighter Feature
+Before running Mind Reader for the first time it is recommended to add the following code block to your `settings.json` file
 
 ### Opening Settings.json
 1. Launch VS Code
