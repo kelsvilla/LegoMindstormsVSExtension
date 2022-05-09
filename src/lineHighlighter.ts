@@ -34,6 +34,7 @@
 *
 * "mind-reader.lineHighlighter.fontStyle"          : "normal",
 * "mind-reader.lineHighlighter.fontWeight"         : "bolder",
+* "mind-reader.lineHighlighter.textDecoration"     : "none",
 * "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
 *
 * ! Restart VSCode for changes to take effect (if they didn't automatically)
