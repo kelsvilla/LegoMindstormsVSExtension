@@ -186,26 +186,26 @@ After adding the code block, the `settings.json` file should look similar to thi
 |------------------------|-------------------------------------------------------|------------------------------------------------------------------------------|--------------------|
 | **isEnabled**          | Enable/Disables the line highlighter                  | boolean                                                                      | true               |
 | **multiLineIsEnabled** | Highlight when clicking and dragging to select lines  | boolean                                                                      | false              |
-| **backgroundColor**    | Changes the background color of the highlight         | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#232C5C"          |
-| **outlineColor**       | Outline Color                                         | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#4866FE"          |
-| **outlineWidth**       | Outline Width                                         | "medium", "thin", "thick", length, or none                                   | "1px"              |
+| **backgroundColor**    | Changes the background color of the highlight         | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#232C5C"          |
+| **outlineColor**       | Outline Color                                         | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#4866FE"          |
+| **outlineWidth**       | Outline Width                                         | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
 | **outlineStyle**       | Outline Style                                         | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
-| **borderColorTop**     | Top Border Color                                      | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#FFFFFF"          |
-| **borderColorRight**   | Right Border Color                                    | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#FFFFFF"          |
-| **borderColorBottom**  | Bottom Border Color                                   | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#FFFFFF"          |
-| **borderColorLeft**    | Left Border Color                                     | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#FFFFFF"          |
-| **borderWidthTop**     | Top Border Width                                      | "medium", "thin", "thick", length, or none                                   | "1px"              |
-| **borderWidthRight**   | Right Border Width                                    | "medium", "thin", "thick", length, or none                                   | "16px"             |
-| **borderWidthBottom**  | Bottom Border Width                                   | "medium", "thin", "thick", length, or none                                   | "1px"              |
-| **borderWidthLeft**    | Left Border Width                                     | "medium", "thin", "thick", length, or none                                   | "1px"              |
+| **borderColorTop**     | Top Border Color                                      | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
+| **borderColorRight**   | Right Border Color                                    | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
+| **borderColorBottom**  | Bottom Border Color                                   | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
+| **borderColorLeft**    | Left Border Color                                     | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
+| **borderWidthTop**     | Top Border Width                                      | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
+| **borderWidthRight**   | Right Border Width                                    | "medium", "thin", "thick", length, or "none"                                 | "16px"             |
+| **borderWidthBottom**  | Bottom Border Width                                   | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
+| **borderWidthLeft**    | Left Border Width                                     | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
 | **borderStyleTop**     | Top Border Style                                      | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderStyleRight**   | Right Border Style                                    | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderStyleBottom**  | Bottom Border Style                                   | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderStyleLeft**    | Left Border Style                                     | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
-| **fontStyle**          | Styling to the font contained within the highlight    | normal, italic, oblique, or none                                             | "normal"           |
+| **fontStyle**          | Styling to the font contained within the highlight    | "normal", "italic", "oblique", or "none"                                     | "normal"           |
 | **fontWeight**         | Weight of the font contained within the highlight     | "normal", "bold", "bolder", "lighter", string based number, "none"           | "bolder"           |
 | **textDecoration**     | Decoration of the font contained within the highlight | See: https://www.w3schools.com/cssref/pr_text_text-decoration.asp            | "none"             |
-| **textColor**          | Color of the font contained within the highlight      | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#FFFFFF"          |
+| **textColor**          | Color of the font contained within the highlight      | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 
 
 # Contact Information
