@@ -176,7 +176,7 @@ Changes made directly in the settings.json will take effect automatically; howev
 After adding the code block, the `settings.json` file should look similar to this:
 
 <p align="center">
-<img width="35%" height="35%" alt="line highlighter first time setup" src="media/line_highlighter_setup.png"></img>
+<img width="35%" height="35%" alt="line highlighter first time setup" src="media/line_highlighter_setup.PNG"></img>
 </p>
 
 7. Save and close `settings.json`
@@ -185,7 +185,7 @@ After adding the code block, the `settings.json` file should look similar to thi
 | **Item**               | **Description**                                              | **Expected Value**                                                           | **Default Values** |
 |------------------------|-------------------------------------------------------|------------------------------------------------------------------------------|--------------------|
 | **isEnabled**          | Enable/Disables the line highlighter                  | boolean                                                                      | true               |
-| **multiLineIsEnabled** | Highlight when clicking and dragging to select        | boolean                                                                      | false              |
+| **multiLineIsEnabled** | Highlight when clicking and dragging to select lines  | boolean                                                                      | false              |
 | **backgroundColor**    | Changes the background color of the highlight         | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#232C5C"          |
 | **outlineColor**       | Outline Color                                         | HEX(A), RGB(A), HSL(A), String,  or none                                     | "#4866FE"          |
 | **outlineWidth**       | Outline Width                                         | "medium", "thin", "thick", length, or none                                   | "1px"              |
