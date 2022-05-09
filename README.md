@@ -188,16 +188,16 @@ After adding the code block, the `settings.json` file should look similar to thi
 | **multiLineIsEnabled** | Highlight when clicking and dragging to select lines  | boolean                                                                      | false              |
 | **backgroundColor**    | Changes the background color of the highlight         | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#232C5C"          |
 | **outlineColor**       | Outline Color                                         | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#4866FE"          |
-| **outlineWidth**       | Outline Width                                         | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
+| **outlineWidth**       | Outline Width                                         | "medium", "thin", "thick", length (integer + string unit), or "none"         | "1px"              |
 | **outlineStyle**       | Outline Style                                         | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderColorTop**     | Top Border Color                                      | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 | **borderColorRight**   | Right Border Color                                    | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 | **borderColorBottom**  | Bottom Border Color                                   | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 | **borderColorLeft**    | Left Border Color                                     | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
-| **borderWidthTop**     | Top Border Width                                      | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
-| **borderWidthRight**   | Right Border Width                                    | "medium", "thin", "thick", length, or "none"                                 | "16px"             |
-| **borderWidthBottom**  | Bottom Border Width                                   | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
-| **borderWidthLeft**    | Left Border Width                                     | "medium", "thin", "thick", length, or "none"                                 | "1px"              |
+| **borderWidthTop**     | Top Border Width                                      | "medium", "thin", "thick", length (integer + string unit), or "none"         | "1px"              |
+| **borderWidthRight**   | Right Border Width                                    | "medium", "thin", "thick", length (integer + string unit), or "none"         | "16px"             |
+| **borderWidthBottom**  | Bottom Border Width                                   | "medium", "thin", "thick", length (integer + string unit), or "none"         | "1px"              |
+| **borderWidthLeft**    | Left Border Width                                     | "medium", "thin", "thick", length (integer + string unit), or "none"         | "1px"              |
 | **borderStyleTop**     | Top Border Style                                      | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderStyleRight**   | Right Border Style                                    | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
 | **borderStyleBottom**  | Bottom Border Style                                   | none, hidden, dotted, dashed, solid, double, groove, ridge, inset, or outset | "solid"            |
