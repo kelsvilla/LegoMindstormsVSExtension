@@ -9,7 +9,7 @@
 
 The current editor options available lack the level of accessibility that is
 required to allow people who are visually impaired to adequately write, edit,
-and debug code. 
+and debug code.
 
 This tool extends Visual Studio Code’s existing
 accessibility options to enable people with a visual impairment to learn
@@ -21,7 +21,7 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 ## Major Features
 
-- Compatibility with major screen readers:
+- Compatible with major screen readers:
 
     - [NVDA](https://www.nvaccess.org/)
     - [JAWS](https://www.freedomscientific.com/products/software/jaws/)
@@ -29,106 +29,9 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 - Present a summary of the scope for an individual line of code.
 
-- Save and load programs directly onto the LEGO Hub from within Visual Studio Code
+- Save, Load, Run, and Delete programs directly onto the LEGO SPIKE Prime Hub from within Visual Studio Code
 
-## Dependencies
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en/)
-
-**NOTE**: While installing Node.js, there will be a section titled "Tools for Native Modules". Make sure that
-'Automatically install the necessary tools' is checked:
-
-<p align="center">
-<img width="50%" height="50%" alt="tools for native modules page with tool installation checked" src="media/nodejs_setup.png"></img>
-</p>
-
-If the compiled serial port version is incompatible, you may see no options presented in the Mind Reader actions panel:
-
-<p align="center">
-<img width="50%" height="50%" alt="mind reader actions panel with no items:" src="media/missing_actions.png"></img>
-</p>
-
-In this case, you will also need to rebuild the serial port component with `electron-rebuild`. This is a one-time setup
-for each version of Visual Studio Code. You may need to repeat this process if you update your version of Visual Studio
-Code.
-
-## Installing `electron-rebuild`
-**Use Git Bash on Windows, and the terminal on MacOS/Linux. These steps will refer to this as 'the terminal'**
-
-### 1 Install the `electron-rebuild` tool
-In the terminal install electron rebuild with `npm` that is included with [Node.js](https://nodejs.org/en/):
-
-```console
-$ npm install -g electron-rebuild
-```
-
-### 2 Finding your electron version
-On MacOS, go to Code > About Visual Studio Code.
-
-On Windows and Linux, go to Help > About.
-
-The electron version should be listed, e.g.: `Electron: 13.5.2`
-
-<p align="center">
-<img width="35%" height="35%" alt="vscode information" src="media/vscode_info.png"></img>
-</p>
-
-### 3 Finding the Mind Reader extension directory
-On MacOS and Linux this is `~/.vscode/extensions`.
-
-On Windows this is `C:\<YOUR USER>\.vscode\extensions\`. However, in Git Bash, it will appear like on MacOS and Linux
-e.g.: `~/.vscode/extensions`.
-
----
-
-Find the Mind Reader extension folder, this should look like `xxx.mind-reader-x.x.x`.
-
-Navigate to the found folder in the terminal.
-
-```console
-$ cd ~/.vscode/extensions/<mind_reader_folder>
-```
-
-### 4 Running `electron-rebuild`
-
-Then, run `electron-rebuild` with `ELECTRON_VERSION` replaced with the electron version found in step 2:
-
-```console
-$ electron-rebuild --version=ELECTRON_VERSION
-```
-
-# For Developers
-## Development Quick Start
-Use the following to set up the extension for development.
-
-```console
-$ git clone https://github.com/SingleSemesterSnobs/Mind Reader.git
-$ cd Mind Reader
-$ npm install
-```
-
-While inside the repository do
-
-```console
-$ code .
-```
-
-to open the cloned repository in VS Code.
-
-Then, use "Run > Start Debugging" on the menu bar to start the [Extension
-Development Host](https://code.visualstudio.com/api/advanced-topics/extension-host)
-(<kbd>F5</kbd> by default).
-
----
-
-If you get an error about a `NODE_MODULE_VERSION` incompatibility or that a file is not a Windows executable,
-this is likely the error described above. Run `npm i -g electron-rebuild` if you have not done so and follow the
-directions above.
-
----
-
-See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
-API page if you need more help.
+- Line highlighting with customizable colors and formats
 
 # First Time Setting Up the Line Highlighter Feature
 Before running Mind Reader for the first time it is recommended to add the following code block to your `settings.json` file
@@ -143,28 +46,28 @@ Before running Mind Reader for the first time it is recommended to add the follo
 ```
     "mind-reader.lineHighlighter.isEnabled"          : true,
     "mind-reader.lineHighlighter.multiLineIsEnabled" : false,
-        
+
     "mind-reader.lineHighlighter.backgroundColor"    : "#232C5C",
-        
+
     "mind-reader.lineHighlighter.outlineColor"       : "#4866FE",
     "mind-reader.lineHighlighter.outlineWidth"       : "1px",
     "mind-reader.lineHighlighter.outlineStyle"       : "solid",
-        
+
     "mind-reader.lineHighlighter.borderColorTop"     : "#FFFFFF",
     "mind-reader.lineHighlighter.borderColorRight"   : "#FFFFFF",
     "mind-reader.lineHighlighter.borderColorBottom"  : "#FFFFFF",
     "mind-reader.lineHighlighter.borderColorLeft"    : "#FFFFFF",
-        
+
     "mind-reader.lineHighlighter.borderWidthTop"     : "1px",
     "mind-reader.lineHighlighter.borderWidthRight"   : "16px",
     "mind-reader.lineHighlighter.borderWidthBottom"  : "1px",
-    "mind-reader.lineHighlighter.borderWidthLeft"    : "1px", 
-        
+    "mind-reader.lineHighlighter.borderWidthLeft"    : "1px",
+
     "mind-reader.lineHighlighter.borderStyleTop"     : "solid",
     "mind-reader.lineHighlighter.borderStyleRight"   : "solid",
     "mind-reader.lineHighlighter.borderStyleBottom"  : "solid",
     "mind-reader.lineHighlighter.borderStyleLeft"    : "solid",
-        
+
     "mind-reader.lineHighlighter.fontStyle"          : "normal",
     "mind-reader.lineHighlighter.fontWeight"         : "bolder",
     "mind-reader.lineHighlighter.textDecoration"     : "none",
@@ -208,6 +111,23 @@ After adding the code block, the `settings.json` file should look similar to thi
 | **textColor**          | Color of the font contained within the highlight      | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 
 
+
+# For Developers
+## Developer Dependencies
+
+### Development environment setup guide
+
+### Windows 10 or 11
+* Download [install-windows.ps1](setup-development/windows/install-windows.ps1)
+* Run `./install-windows.ps1` in PowerShell as a normal user, and accept any UAC prompts that pop up. The installation should take around 8 minutes. If an installer doesn't pop up, don't be alarmed.
+
+For other platforms, or to install the extension manually, check out our [Developer Install Guide](../../wiki/Developer-Install-Guide). This is also where you should search if you encounter errors.
+
+
+
+See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
+API page if you need more help.
+
 # Contact Information
 
 ### Single Semester Snobs
@@ -224,4 +144,4 @@ After adding the code block, the `settings.json` file should look similar to thi
 - Thomas Lane: [\<ThomasLane2@my.unt.edu\>](mailto:ThomasLane2@my.unt.edu)
 - Kendrick Johnson: [\<KendrickJohnson@my.unt.edu\>](mailto:KendrickJohnson@my.unt.edu)
 - Ryan Tolbert: [\<RyanTolbert@my.unt.edu\>](mailto:RyanTolbert@my.unt.edu)
-- Pedro Alvarez: [\<PedroAlvarez3@my.unt.edu\>](mailto:PedroAlvarez3@my.unt.edu) 
+- Pedro Alvarez: [\<PedroAlvarez3@my.unt.edu\>](mailto:PedroAlvarez3@my.unt.edu)
