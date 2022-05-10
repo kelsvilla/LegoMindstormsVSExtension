@@ -52,11 +52,6 @@ printf "\nCloning repository into $gitdir\n"
 dryrun mkdir "$gitdir"
 cd $gitdir && dryrun git clone "$repouri"
 
-# TODO: remove this when merging!
-   cd Mind_Reader
-   dryrun git checkout johnBreaux
-# TODO: remove this when merging!
-
 cd "$gitdir/$setupdir"
 bash ./upgrade-linux.sh $@
 

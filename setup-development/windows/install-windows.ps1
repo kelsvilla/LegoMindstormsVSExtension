@@ -151,12 +151,6 @@ $dir = $pwd
 Set-Location $GitDir
 Invoke-DryRun "git clone '$RepoURI'"
 
-# TODO: Remove this when merging
-Set-Location Mind_reader
-Invoke-DryRun "git checkout johnBreaux"
-Set-Location ..
-# TODO: Remove this when merging
-
 # Run the install script
 if ( -not (Test-Path "$SetupPath")) {
    Throw "Repository contains no subdirectory '$SetupPath'."
