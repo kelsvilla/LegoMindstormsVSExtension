@@ -165,11 +165,11 @@ function EnsureNodePackageInstalled {
    }
 }
 
-# Check if electron-rebuild is installed, if not, install it
+# electron-rebuild is used to rebuild the extension for a given version of Electron
 EnsureNodePackageInstalled electron-rebuild
 
-# These are useful (but not necessary) packages to have installed when working on new VSCode extensions
-EnsureNodePackageInstalled yo, generator-code
+# vsce is used to package the extension
+EnsureNodePackageInstalled vsce
 
 # We're about to do some path traversal, so save the current directory
 $prev_directory = $pwd
