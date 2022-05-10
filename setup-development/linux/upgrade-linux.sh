@@ -114,8 +114,8 @@ dryrun nvm install "$nodeversion"
 dryrun nvm use "$nodeversion"
 
 # Use npm to install electron-rebuild and yo
-printf "Installing electron-rebuild, yo, and generator-code\n"
-dryrun npm install electron-rebuild yo generator-code
+printf "Installing electron-rebuild and vsce\n"
+dryrun npm install -g electron-rebuild vsce
 
 # use npm to acquire dependencies for Mind-Reader
 printf "\nAcquiring dependencies...\n"
