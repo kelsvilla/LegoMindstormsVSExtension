@@ -106,6 +106,18 @@ if ( -not (Get-CommandAvailable winget) ) {
    exit
 }
 
+# Install VSCode
+if ( -not (Get-CommandAvailable code) ) {
+   Write-Host "`nInstalling VSCode with winget..."
+   Invoke-DryRun 'winget install --id Microsoft.VisualStudioCode'
+   Reset-Path
+   if ( -not (Get-CommandAvailable code)) {
+      Throw "VSCode failed to install. Aborting."
+   }
+} else {
+   Write-Host "VSCode already installed." -ForegroundColor green
+}
+
 # Install NodeJS
 if ( -not (Get-CommandAvailable node) ) {
    Write-Host "`nInstalling NodeJS with winget..."
@@ -142,16 +154,17 @@ if ( ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5
 }
 
 # Install Git
-if ( -not (Get-CommandAvailable git) ) {
-   Write-Host "`nInstalling Git with winget..."
-   Invoke-DryRun 'winget install --id Git.Git'
-   Reset-Path
-   if ( -not (Get-CommandAvailable git)) {
-      Throw "Git failed to install. Aborting."
-   }
-} else {
-   Write-Host "Git already installed." -ForegroundColor green
-}
+#if ( -not (Get-CommandAvailable git) ) {
+#   Write-Host "`nInstalling Git with winget..."
+#   Invoke-DryRun 'winget install --id Git.Git'
+#   Reset-Path
+#   if ( -not (Get-CommandAvailable git)) {
+#      Throw "Git failed to install. Aborting."
+#   }
+#} else {
+#   Write-Host "Git already installed." -ForegroundColor green
+#}
+Invoke-DryRun 'winget install --id Git.Git'
 
 # Create git directory in GitDir
 if ( -not (Test-Path "$GitDir") ) {
