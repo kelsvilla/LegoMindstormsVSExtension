@@ -203,6 +203,12 @@ else {
    Write-Host " in Mind Reader`'s root folder.`n"
 }
 
+#Compile extension
+vsce package
+
+#Install extension
+code --install-extension mind-reader-2.0.1.vsix
+
 # Return from whence we came
 Set-Location $prev_directory
 if ( -not $NoPrompt ) {
