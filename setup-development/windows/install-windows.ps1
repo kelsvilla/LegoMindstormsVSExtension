@@ -56,8 +56,8 @@ param (
    [switch]$DryRun                 # Run script without installing
 )
 
-$RepoURI   = "https://github.com/jcode999/TBA.git"
-$RepoPath  = "$GitDir\Mind_Reader"
+$RepoURI   = "https://github.com/jcode999/Mind-Reader.git"
+$RepoPath  = "$GitDir\Mind-Reader"
 $SetupPath = "$RepoPath\setup-development\windows"
 
 if ($h -or $Help) {

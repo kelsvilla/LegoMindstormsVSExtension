@@ -184,7 +184,7 @@ Invoke-Dryrun "npm audit fix"
 
 # Get Electon version from current VSCode installation.
 $vscodejson =  Get-Content "$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\package.json" -Raw | ConvertFrom-json
-$electronversion $vscodejson.devDependencies.electron
+$electronversion = $vscodejson.devDependencies.electron
 
 if ( $electronversion ) {
    Write-Host "`nRebuilding Electron for your version of VSCode..."
