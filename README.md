@@ -150,6 +150,6 @@ API page if you need more help.
 #### Fall 2022 Semester
 - Zachary Chenausky: [\<zacharychenausky@my.unt.edu\>](mailto:zacharychenausky@my.unt.edu)
 - Jigme Rinji Sherpa: [\<jigmesherpa@my.unt.edu\>](mailto:jigmesherpa@my.unt.edu)
-- Clay Lewis: [\<ClayLewis2@my.unt.edu\>](mailto:ClayLewis2@my.unt.edu)
+- Clay Lewis: [\<claylewis2@my.unt.edu\>](mailto:ClayLewis2@my.unt.edu)
 - Haris Javed: [\<harisjaved@my.unt.edu\>](mailto:harisjaved@my.unt.edu)
 - Saad Javed: [\<saadjaved@my.unt.edu\>](mailto:saadjaved@my.unt.edu)
