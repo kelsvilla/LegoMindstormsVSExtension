@@ -182,13 +182,9 @@ Invoke-Dryrun "npm install"
 # Run npm audit fix to upgrade vulnerable dependencies, except breaking changes.
 Invoke-Dryrun "npm audit fix"
 
-# if we're on a known VSCode version, go ahead and run electron-rebuild
-switch -Regex (code --version) {
-   #?: Do we update this in the future, or stop maintaining it and remove this entire switch block?
-   "1\.67\.\d+" { $electronversion = "17.4.1"; break } # April 2022 update
-   "1\.66\.\d+" { $electronversion = "17.2.0"; break } # March 2022 update
-   default { $electronversion = $false } # Unknown update
-}
+# Get Electon version from current VSCode installation.
+$vscodejson =  Get-Content "$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\package.json" -Raw | ConvertFrom-json
+$electronversion $vscodejson.devDependencies.electron
 
 if ( $electronversion ) {
    Write-Host "`nRebuilding Electron for your version of VSCode..."

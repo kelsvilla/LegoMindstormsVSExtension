@@ -56,7 +56,7 @@ param (
    [switch]$DryRun                 # Run script without installing
 )
 
-$RepoURI   = "https://github.com/We-Dont-Byte/Mind_Reader.git"
+$RepoURI   = "https://github.com/jcode999/TBA.git"
 $RepoPath  = "$GitDir\Mind_Reader"
 $SetupPath = "$RepoPath\setup-development\windows"
 
@@ -104,6 +104,18 @@ if ( -not (Get-CommandAvailable winget) ) {
    Write-Host "Update 'App Installer' through the Microsoft Store, or grab the '.msixbundle' from the winget-cli repository:"
    Write-Host "( https://github.com/microsoft/winget-cli/releases/latest )`n" -ForegroundColor White
    exit
+}
+
+# Install NodeJS
+if ( -not (Get-CommandAvailable node) ) {
+   Write-Host "`nInstalling NodeJS with winget..."
+   Invoke-DryRun 'winget install OpenJS.NodeJS.LTS'
+   Reset-Path
+   if ( -not (Get-CommandAvailable git)) {
+      Throw "NodeJS failed to install. Aborting."
+   }
+} else {
+   Write-Host "NodeJS already installed." -ForegroundColor green
 }
 
 # Check if the user ran the script with administrator privileges.
