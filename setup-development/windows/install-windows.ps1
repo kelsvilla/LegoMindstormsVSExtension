@@ -111,7 +111,7 @@ if ( -not (Get-CommandAvailable node) ) {
    Write-Host "`nInstalling NodeJS with winget..."
    Invoke-DryRun 'winget install OpenJS.NodeJS.LTS'
    Reset-Path
-   if ( -not (Get-CommandAvailable git)) {
+   if ( -not (Get-CommandAvailable node)) {
       Throw "NodeJS failed to install. Aborting."
    }
 } else {
