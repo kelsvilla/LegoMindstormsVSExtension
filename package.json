@@ -228,6 +228,11 @@
 				"command": "mind-reader.uploadCurrentFile",
 				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
 				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.callvoice",
+				"title": "Start voice listener",
+				"category": "Voice Commands"
 			}
 		],
 		"keybindings": [
@@ -293,6 +298,11 @@
 				"command": "mind-reader.selectLeadingWhitespace",
 				"key": "Ctrl+Shift+/ W",
 				"mac": "Cmd+Shift+[Slash] W"
+			},
+			{
+				"command": "mind-reader.callvoice",
+				"key": "Ctrl+Shift+/ M",
+				"mac": "Cmd+Shift+[Slash] M"
 			}
 		],
 		"menus": {
@@ -617,9 +627,13 @@
 		"glob": "^7.1.7",
 		"mocha": "^10.0.0",
 		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2"
+		"vscode-test": "^1.5.2",
+		"@types/ws": "^6.0.0"
 	},
 	"dependencies": {
-		"serialport": "^9.2.5"
+		"serialport": "^9.2.5",
+		"vscode-languageclient": "^5.1.0-next.9",
+		"ws": "^6.2.2",
+		"server": "^1"
 	}
 }
