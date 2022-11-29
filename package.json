@@ -64,7 +64,7 @@
 			{
 				"command": "mind-reader.voiceToText",
 				"title": "Voice To Text",
-				"category": "Mind Redaer"
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.increaseFontScale",
@@ -233,6 +233,11 @@
 				"command": "mind-reader.uploadCurrentFile",
 				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
 				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.suggestionFilter",
+				"title": "Filter Suggestions From Intellisense",
+				"category": "Mind Reader"
 			}
 		],
 		"keybindings": [

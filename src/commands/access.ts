@@ -44,6 +44,10 @@ export const accessCommands: CommandEntry[] = [
     name: 'mind-reader.voiceToText',
     callback: voiceToText,
 },
+{
+  name:'mind-reader.suggestionFilter',
+  callback:suggestionFilter,
+}
 ];
 
 function increaseFontScale(): void {
@@ -81,5 +85,64 @@ async function voiceToText(): Promise<void> {
     getLineNumber();
   }
 }
+
+async function suggestionFilter() {
+	const activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		return;
+	}
+	//gather suggestions from Language Server
+	const completion = await vscode.commands.executeCommand<vscode.CompletionList[]>(
+		'vscode.executeCompletionItemProvider',
+		activeEditor.document.uri,
+		activeEditor.selection.active,
+	);
+	//categorize suggestions
+	var functions:vscode.QuickPickItem[] = [];
+	var varibales:vscode.QuickPickItem[] = [];
+	var attributes:vscode.QuickPickItem[] = [];
+	/* although the text editor marks the following code as error,
+	no issues are detected while running the program and generates expected items */
+	for(var item of completion.items){
+		if(item.kind ===2){
+			functions.push(item);
+		}
+	}
+	//test for the above bug
+	console.log("List of functions: ");
+	for(var i of functions)
+	{
+		console.log(i.label);
+	}
+	//show user options to select what type of suggestions they are looking for
+	var options:vscode.QuickPickItem[] = [];
+	const test:vscode.QuickPickItem = {
+		alwaysShow:true,
+		'label':"function",
+	};
+	options.push({label:'Attribute'});
+	options.push(test);
+	const kindQp = vscode.window.createQuickPick();
+	kindQp.items = options;
+	kindQp.show();
+	kindQp.onDidAccept(()=>{
+		var selectedKind = kindQp.selectedItems[0].label;
+		const selectQp = vscode.window.createQuickPick();
+		if(selectedKind==='function')
+		{
+			selectQp.items = functions;
+		}
+		selectQp.show();
+		selectQp.onDidAccept(()=>{
+		activeEditor.edit(editBuilder =>{
+		editBuilder.replace(activeEditor.selection.active,selectQp.selectedItems[0].label);
+		selectQp.dispose();
+		});
+	});
+	kindQp.dispose();
+	});
+
+}
+
 
 
