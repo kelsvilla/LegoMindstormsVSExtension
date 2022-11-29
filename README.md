@@ -38,7 +38,6 @@ Python programming with LEGO Mindstorms. Our goal is to:
 - Voice functions through the use of an exterior python server.
 
 - Relevant autocomplete voiceovers on demand.
-
 # First Time Setting Up the Line Highlighter Feature
 Before running Mind Reader for the first time it is recommended to add the following code block to your `settings.json` file
 
