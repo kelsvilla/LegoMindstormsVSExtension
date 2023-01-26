@@ -1,104 +1,5 @@
 import * as vscode from 'vscode';
-import { getLineNumber } from './text';
-import { CommandEntry } from './commandEntry';
-import { voiceCommandCaller } from './commandCaller';
-import { suggestionFilter } from './suggestionFilter';
-
-//test input for voiceCommandCaller
-let testInput = "Get The Current Line Number";
-
-// Accessibility Commands
-export const accessCommands: CommandEntry[] = [
-  {
-    name: 'mind-reader.selectTheme',
-
-    // callbacks can be inlined...
-    callback: () => vscode.commands.executeCommand('workbench.action.selectTheme'),
-  },
-  /* command to run after receiving textual commands generated through voice */
-  {
-    name: 'mind-reader.voiceCommandCaller',
-    callback: () => voiceCommandCaller(testInput)
-  },
-
-  {
-    name: 'mind-reader.increaseFontScale',
-    callback: increaseFontScale, // ...or factored out into separate functions below
-  },
-
-  {
-    name: 'mind-reader.decreaseFontScale',
-    callback: decreaseFontScale,
-  },
-
-  {
-    name: 'mind-reader.resetFontScale',
-    callback: resetFontScale,
-  },
-
-  {
-    name: 'mind-reader.increaseEditorScale',
-    callback: increaseEditorScale,
-  },
-
-  {
-    name: 'mind-reader.decreaseEditorScale',
-    callback: decreaseEditorScale,
-  },
-
-  {
-    name: 'mind-reader.resetEditorScale',
-    callback: resetEditorScale,
-  },
-  {
-    name: 'mind-reader.voiceToText',
-    callback: voiceToText,
-},
-{
-  name:'mind-reader.suggestionFilter',
-  callback:suggestionFilter,
-}
-
-
-];
-
-function increaseFontScale(): void {
-  vscode.commands.executeCommand('editor.action.fontZoomIn');
-}
-
-function decreaseFontScale(): void {
-  vscode.commands.executeCommand('editor.action.fontZoomOut');
-}
-
-function resetFontScale(): void {
-  vscode.commands.executeCommand('editor.action.fontZoomReset');
-}
-
-function increaseEditorScale(): void {
-  vscode.commands.executeCommand('workbench.action.zoomIn');
-}
-
-function decreaseEditorScale(): void {
-  vscode.commands.executeCommand('workbench.action.zoomOut');
-}
-
-function resetEditorScale(): void {
-  vscode.commands.executeCommand('workbench.action.zoomReset');
-}
-
-async function voiceToText(): Promise<void> {
-  vscode.window.showInformationMessage("Voice-To-Text Active");
-  const ans = await vscode.window.showInputBox();
-  if (ans === "Increase Font") {
-    increaseFontScale();
-  } else if ( ans === "Decrease Font") {
-    decreaseFontScale();
-  } else if ( ans === "Get Line Number") {
-    getLineNumber();
-  }
-}
-
-/*async function suggestionFilter() {
+export async function suggestionFilter() {
 	const activeEditor = vscode.window.activeTextEditor;
 	if (!activeEditor) {
 		return;
@@ -124,7 +25,7 @@ async function voiceToText(): Promise<void> {
   var property:vscode.QuickPickItem[] = [];
 	/* although the text editor marks the following code as error,
 	no issues are detected while running the program and generates expected items */
-	/*for(var item of completion.items){
+	for(var item of completion.items){
      if(item.kind===1){
       methods.push(item);
     }
@@ -162,7 +63,7 @@ async function voiceToText(): Promise<void> {
 		console.log(i.label);
 	}*/
 	//show user types of suggestions they are looking for
-	/*var options:vscode.QuickPickItem[] = [];
+	var options:vscode.QuickPickItem[] = [];
   options.push({label:'Functions'});
 	options.push({label:'Attribute'});
   options.push({label:'Constructor'});
@@ -201,7 +102,7 @@ async function voiceToText(): Promise<void> {
       Replace and then insert.
       Maybe figuring out position can be helpful.
       */
-    /*var position = new vscode.Position(lineAt.line,lineAt.character);
+    var position = new vscode.Position(lineAt.line,lineAt.character);
 		editBuilder.replace(position,selectQp.selectedItems[0].label);
 		selectQp.dispose();
 		});
@@ -210,4 +111,8 @@ async function voiceToText(): Promise<void> {
 	});
 
 }
-*/
+
+
+
+
+

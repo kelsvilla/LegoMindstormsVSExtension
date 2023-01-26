@@ -1,6 +1,7 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind Reader",
+	
 	"homepage": "https://github.com/We-Dont-Byte/Mind_Reader/wiki",
 	"repository": {
 		"type": "git",
@@ -64,6 +65,11 @@
 			{
 				"command": "mind-reader.voiceToText",
 				"title": "Voice To Text",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.voiceCommandCaller",
+				"title": "Voice Command Caller",
 				"category": "Mind Reader"
 			},
 			{
@@ -182,7 +188,7 @@
 			},
 			{
 				"command": "mind-reader.quickOpen",
-				"title": "Go to File...",
+				"title": "Go to File",
 				"category": "Mind Reader"
 			},
 			{
@@ -191,7 +197,7 @@
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
-				"title": "Go to Symbol in Workspace...",
+				"title": "Go to Symbol in Workspace",
 				"category": "Mind Reader"
 			},
 			{
