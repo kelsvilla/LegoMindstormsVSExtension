@@ -68,11 +68,6 @@
 				"category": "Mind Reader"
 			},
 			{
-				"command": "mind-reader.voiceCommandCaller",
-				"title": "Voice Command Caller",
-				"category": "Mind Reader"
-			},
-			{
 				"command": "mind-reader.increaseFontScale",
 				"title": "Increase Font Scale",
 				"category": "Mind Reader"
