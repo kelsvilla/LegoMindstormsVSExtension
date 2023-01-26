@@ -1,4 +1,12 @@
 import * as vscode from 'vscode';
+
+function getReplaceIndex(line:string){
+        const position = line.search(/\./);
+        if(position!==0){
+          return position +1;
+        }
+        return 0;
+}
 export async function suggestionFilter() {
 	const activeEditor = vscode.window.activeTextEditor;
 	if (!activeEditor) {
@@ -97,15 +105,19 @@ export async function suggestionFilter() {
 		selectQp.show();
 		selectQp.onDidAccept(()=>{
 		activeEditor.edit(editBuilder =>{
-      /*fix-me
-      Currently appends suggestions to the text already present.
-      Replace and then insert.
-      Maybe figuring out position can be helpful.
-      */
-    var position = new vscode.Position(lineAt.line,lineAt.character);
-		editBuilder.replace(position,selectQp.selectedItems[0].label);
+    const replacePosition = getReplaceIndex(activeEditor.document.lineAt(lineAt).text);
+    var startPosition = new vscode.Position(lineAt.line,replacePosition);
+    var endPosition = new vscode.Position(lineAt.line,activeEditor.document.lineAt(lineAt).text.length);
+    var range = new vscode.Range(startPosition,endPosition);
+    editBuilder.delete(range);
+		editBuilder.replace(startPosition,selectQp.selectedItems[0].label);
 		selectQp.dispose();
-		});
+		}).then(success=>{
+      if(success){
+        var postion = activeEditor.selection.end;
+        activeEditor.selection = new vscode.Selection(postion, postion);
+      }
+    });
 	});
 	kindQp.dispose();
 	});
