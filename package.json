@@ -64,7 +64,7 @@
 			{
 				"command": "mind-reader.voiceToText",
 				"title": "Voice To Text",
-				"category": "Mind Redaer"
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.increaseFontScale",
