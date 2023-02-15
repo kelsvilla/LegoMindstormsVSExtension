@@ -2,13 +2,17 @@ import * as vscode from 'vscode';
 import { getLineNumber } from './text';
 import { CommandEntry } from './commandEntry';
 
-import { suggestionFilter } from './suggestionFilter';
+import { suggestionFilter, hoverProvider } from './suggestionFilter';
 
 
 
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
+  {
+    name:'mind-reader.hoverProvider',
+    callback : hoverProvider
+  },
   {
     name: 'mind-reader.selectTheme',
 

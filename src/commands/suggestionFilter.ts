@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+var player = require('play-sound')(opts= {});
 
 
 function getReplaceIndex(line:string){
@@ -127,9 +128,15 @@ export async function suggestionFilter() {
     editBuilder.delete(range);
     //then replace
 		editBuilder.replace(startPosition,selectQp.selectedItems[0].label);
-		selectQp.dispose();
 		}).then(success=>{
       if(success){
+        
+          player.play('typing.mp3',{ timeout: 900 }, function(err: any){
+          if (err){
+          throw err;
+          }
+          });
+        selectQp.dispose();
         /*the editor selects the entire texts that has been completed which causes the complete text to be replaced
         if we immediatedly start typing after completion. To solve this create a new selection with position marking
         the end of the completed text*/
@@ -143,6 +150,23 @@ export async function suggestionFilter() {
 
 }
 
+export async function hoverProvider()
+{
+  const activeEditor = vscode.window.activeTextEditor;
+	if (!activeEditor) {
+		return;
+	}
+  var foo = await vscode.commands.executeCommand<vscode.DefinitionLink[]>(
+    'vscode.executeDefinitionProvider',
+    activeEditor.document.uri,
+		activeEditor.selection.active,
+
+  );
+  if (foo!==undefined){
+      console.log(foo[0].uri.toString());
+      console.log(foo[0]);
+  }
+}
 
 
 
