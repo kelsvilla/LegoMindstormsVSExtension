@@ -62,6 +62,11 @@
 	"contributes": {
 		"commands": [
 			{
+				"command": "languageServerExample.startStreaming",
+				"title": "Start Streaming",
+				"category": "Voice Commands"
+			},
+			{
 				"command": "mind-reader.increaseFontScale",
 				"title": "Increase Font Scale",
 				"category": "Mind Reader"

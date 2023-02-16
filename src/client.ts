@@ -15,13 +15,27 @@ export function runClient(serverModule: string) {
     const socketPort = workspace.getConfiguration('languageServerExample').get('port', 12152);
 
 	commands.registerCommand('languageServerExample.startStreaming', () => {
+		//todo: run server using command line
+		//for testing: run server maually through command line
 		// Establish websocket connection
 		socket = new WebSocket(`ws://localhost:${socketPort}`);
+		console.log('[client socket created] : ',socket);
+		console.log('[client socket status]: ',socket.OPEN);
+		if(socket!==null){
+
+		socket.on('open',()=>{
+			socket?.send('Hello from client, client connected ...');
+		});
+		socket.onmessage = function(event) {
+			console.log(`[message] Data received from server: ${event.data}`);
+		  };
+		}
 	});
 
 	// The debug options for the server
 	// --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
-	const debugOptions = { execArgv: ['--nolazy', '--inspect=6009'] };
+	const debugOptions = { execArgv: ['--nolazy', '--inspect=12152'] }; //I assume since our server can only handle one connection at a time
+	//the server refuses connection from the debugger.
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
@@ -53,7 +67,10 @@ export function runClient(serverModule: string) {
 	);
 
 	// Start the client. This will also launch the server
+	console.log('[Start] starting client..');
 	client.start();
+	console.log('[Start] started client..');
+
 }
 
 export function callVoice() {
