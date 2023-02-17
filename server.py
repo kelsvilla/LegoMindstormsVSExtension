@@ -2,11 +2,29 @@ import subprocess, sys
 import os
 #Install necessary modules for speech recognition usage.
 #subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'SpeechRecognition', 'keyboard', 'PocketSphinx', 'pyaudio'])
-import requests
 import speech_recognition as sr
 import keyboard, socket, time
 import hashlib
 import base64, struct
+
+
+def voice_to_text():
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+        print('Please give your command. Listening...')
+
+        audio = r.listen(source)
+
+        try:
+            cmd =  r.recognize_google(audio)
+            print('Did you say : ' + cmd)
+
+
+        except Exception as e:
+            print("Error r "+ str(e) )
+    return cmd
 
 def handle_syn_ack(clientsocket):
     #syn msg is received from the client upon successful connection
@@ -48,25 +66,22 @@ while True:
     handle_syn_ack(clientsocket) #initail handshake
 
     #send message to client test
-    msg = bytes('Hello Word'.encode('utf-8'))
+    msg = bytes(voice_to_text().encode('utf-8'))
     msg_len = len(msg)
     # Create a websocket frame
     frame = bytearray()
     
     # Append frame header, (use hexadeciaml) 
     frame.append(0x81)  # FIN + OpCode (1 byte)
+    #to-do: get the right size of message in hex, used 10 for testing purposes
     frame.append(0x0A)  # Payload length (1 byte), 
     # Append payload
     frame.extend(msg)
-
+    
+    #send message to client
     clientsocket.send(frame)
-    #Initialize microphone as default audio input.
 
-    microphone = sr.Microphone()
-    
-    #Initialize recognizer object.
-    recognizeMachine = sr.Recognizer()
-    
+    #to-do: figure out if the connection should be terminated or kept persistent for multiple commands
    
     
     
