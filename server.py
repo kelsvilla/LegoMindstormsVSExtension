@@ -45,8 +45,8 @@ def handle_syn_ack(clientsocket):
 
     #send ack message to client
     clientsocket.sendall(b'HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: '+accept+b'\r\n\r\n')
-    print('Handshake Complete with client: ')
-    #send message:
+    print('Handshake Complete with client ',clientsocket.getsockname())
+    
 
 #Port to connect to VSCode using.
 TCP_PORT = 12152
@@ -64,17 +64,19 @@ while True:
     print('cliensocket: ',clientsocket)
     print('clienaddr: ',clientaddr)
     handle_syn_ack(clientsocket) #initail handshake
-
-    #send message to client test
+    
+    #send message to client
     msg = bytes(voice_to_text().encode('utf-8'))
     msg_len = len(msg)
-    # Create a websocket frame
+    #a message should be sent following the websocket protocol.
+
+    # Create a websocket frame containing the message
     frame = bytearray()
     
-    # Append frame header, (use hexadeciaml) 
+    # Append frame header, (use hexadecimal) 
     frame.append(0x81)  # FIN + OpCode (1 byte)
-    #to-do: get the right size of message in hex, used 10 for testing purposes
-    frame.append(0x0A)  # Payload length (1 byte), 
+    #to-do: append the right size of message in hex, used 10 for testing purposes
+    frame.append(0x0A)  # Payload length (10 byte), 
     # Append payload
     frame.extend(msg)
     
