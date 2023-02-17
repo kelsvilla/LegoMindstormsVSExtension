@@ -1,6 +1,7 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind Reader",
+	
 	"homepage": "https://github.com/We-Dont-Byte/Mind_Reader/wiki",
 	"repository": {
 		"type": "git",
@@ -65,6 +66,16 @@
 				"command": "languageServerExample.startStreaming",
 				"title": "Start Streaming",
 				"category": "Voice Commands"
+			},
+			{
+				"command": "mind-reader.voiceToText",
+				"title": "Voice To Text",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.voiceCommandCaller",
+				"title": "Voice Command Caller",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.increaseFontScale",
@@ -182,7 +193,7 @@
 			},
 			{
 				"command": "mind-reader.quickOpen",
-				"title": "Go to File...",
+				"title": "Go to File",
 				"category": "Mind Reader"
 			},
 			{
@@ -191,7 +202,7 @@
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
-				"title": "Go to Symbol in Workspace...",
+				"title": "Go to Symbol in Workspace",
 				"category": "Mind Reader"
 			},
 			{
@@ -246,6 +257,10 @@
 				"comment": "This opens the Access Actions menu",
 				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
+			},
+			{
+				"command": "mind-reader.voiceToText",
+				"key":"ctrl+v"
 			},
 			{
 				"command": "mind-reader.decreaseFontScale",

@@ -131,7 +131,7 @@ function getNumberOfSelectedLines(): void {
 /*  Function
  *  Outputs the current line number the cursor is on
  */
-function getLineNumber(): void {
+export function getLineNumber(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
