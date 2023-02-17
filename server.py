@@ -67,13 +67,11 @@ while True:
     handle_syn_ack(clientsocket) #initail handshake
     
     #send message to client
-    #msg = bytes(voice_to_text().encode('utf-8'))
-    user_input = input('Enter your command')
+    user_input = input('Enter your command: ')
     msg = bytes(user_input.encode('utf-8'))
     print('sending message to client: ',msg)
     msg_len = int(hex(len(msg)),16)
-    print('test: msg_len type',type(msg_len))
-    print('test: msg_len type',type(0x0A))
+   
     #a message should be sent following the websocket protocol.
 
     # Create a websocket frame containing the message
@@ -81,8 +79,7 @@ while True:
     
     # Append frame header, (use hexadecimal) 
     frame.append(0x81)  # FIN + OpCode (1 byte)
-    #to-do: append the right size of message in hex, used 10 for testing purposes
-    frame.append(msg_len)  # Payload length (10 byte), 
+    frame.append(msg_len)  # Payload length (msg_len byte), 
     # Append payload
     frame.extend(msg)
     
