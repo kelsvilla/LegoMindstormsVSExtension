@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { getLineNumber } from './text';
 import { CommandEntry } from './commandEntry';
 import { voiceCommandCaller } from './commandCaller';
+import { startStreaming } from '../client01';
 
 
 //test input for voiceCommandCaller
@@ -53,7 +54,11 @@ export const accessCommands: CommandEntry[] = [
   {
     name: 'mind-reader.voiceToText',
     callback: voiceToText,
-},
+  },
+  {
+    name:'voice-command.startStreaming',
+    callback: startStreaming,
+  }
 
 ];
 

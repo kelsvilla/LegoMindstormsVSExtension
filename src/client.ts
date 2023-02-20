@@ -1,6 +1,6 @@
 import { workspace, commands } from 'vscode';
 import * as WebSocket from 'ws';
-
+//var exec = require('child_process').exec;
 import {
 	LanguageClient,
 	LanguageClientOptions,
@@ -10,6 +10,7 @@ import {
 
 const pjson = require('../package.json');//this is where the registered commands are fetched from
 import * as vscode from 'vscode';
+
 export function voiceCommandCaller(input:string) {
 
     //break down the input string
@@ -66,8 +67,8 @@ export function runClient(serverModule: string) {
     const socketPort = workspace.getConfiguration('languageServerExample').get('port', 12152);
 
 	commands.registerCommand('languageServerExample.startStreaming', () => {
-		//todo: run server using command line
-		//for testing: run server maually through command line
+		//todo: run server using exec
+		//activateVoiceServer();
 		// Establish websocket connection
 		socket = new WebSocket(`ws://localhost:${socketPort}`);
 		console.log('[client socket created] : ',socket);
@@ -77,7 +78,7 @@ export function runClient(serverModule: string) {
 				console.log('[client] is ready to communicate..',event.target.OPEN);
 				//socket?.send('Hello I am Client');
 			});
-			socket.on('message',(message) => {
+		socket.on('message',(message) => {
 			let command = message.toString();
 			console.log(`[message] Data received from server: `,command);
 			voiceCommandCaller(command);
@@ -126,11 +127,7 @@ export function runClient(serverModule: string) {
 
 }
 
-export function callVoice() {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send("PING");
-    }
-}
+
 
 export function deactivate() {
 	if (!client) {

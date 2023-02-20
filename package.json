@@ -63,10 +63,11 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "languageServerExample.startStreaming",
+				"command": "voice-command.startStreaming",
 				"title": "Start Streaming",
 				"category": "Voice Commands"
 			},
+
 			{
 				"command": "mind-reader.voiceToText",
 				"title": "Voice To Text",

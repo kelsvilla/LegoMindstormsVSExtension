@@ -34,6 +34,9 @@ commands.forEach((command: vscode.Command) => {
         //test
         console.log('[test] identified command to run: ', commandToRun);
        }
+       else{
+        commandToRun = "";
+       }
     }
     /* keep record of the rejected tokens for further analysis.
       for example:
@@ -50,6 +53,9 @@ commands.forEach((command: vscode.Command) => {
 if (commandToRun!==""){
 const cmd = vscode.commands.executeCommand(commandToRun);
 console.log(cmd);
+}
+else{
+  console.log('The command cannot be fulfilled.');
 }
 }
 
