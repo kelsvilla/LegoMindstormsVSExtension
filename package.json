@@ -1,14 +1,14 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind Reader",
-	"homepage": "https://github.com/We-Dont-Byte/Mind_Reader/wiki",
+	"homepage": "https://github.com/jcode999/Mind_Reader/wiki",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/We-Dont-Byte/Mind_Reader"
+		"url": "https://github.com/jcode999/Mind_Reader"
 	},
 	"bugs": {
 		"type": "git",
-		"url": "https://github.com/We-Dont-Byte/Mind_Reader/issues"
+		"url": "https://github.com/jcode999/Mind_Reader/issues"
 	},
 	"contributors": [
 		{
@@ -46,6 +46,26 @@
 		{
 			"name": "Pedro Alvarez",
 			"email": "PedroAlvarez3@my.unt.edu"
+		},
+		{
+			"name": "Zachary Chenausky",
+			"email": "zacharychenausky@my.unt.edu"
+		},
+		{
+			"name": "Jigme Rinji Sherpa",
+			"email": "jigmesherpa@my.unt.edu"
+		},
+		{
+			"name": "Clay Lewis",
+			"email": "ClayLewis2@my.unt.edu"
+		},
+		{
+			"name": "Haris Javed",
+			"email": "harisjaved@my.unt.edu"
+		},
+		{
+			"name": "Saad Javed",
+			"email": "saadjaved@my.unt.edu"
 		}
 	],
 	"version": "2.0.1",
@@ -62,8 +82,18 @@
 	"contributes": {
 		"commands": [
 			{
+				"command": "voice-command.startStreaming",
+				"title": "Start Streaming",
+				"category": "Voice Commands"
+			},
+			{
 				"command": "mind-reader.voiceToText",
 				"title": "Voice To Text",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.voiceCommandCaller",
+				"title": "Voice Command Caller",
 				"category": "Mind Reader"
 			},
 			{
@@ -182,7 +212,7 @@
 			},
 			{
 				"command": "mind-reader.quickOpen",
-				"title": "Go to File...",
+				"title": "Go to File",
 				"category": "Mind Reader"
 			},
 			{
@@ -191,7 +221,7 @@
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
-				"title": "Go to Symbol in Workspace...",
+				"title": "Go to Symbol in Workspace",
 				"category": "Mind Reader"
 			},
 			{
@@ -202,6 +232,46 @@
 			{
 				"command": "mind-reader.showCommands",
 				"title": "Show All Commands",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertIfLadder",
+				"title": "Insert If Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertIfElseLadder",
+				"title": "Insert If Else Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertForLoop",
+				"title": "Insert For Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertForNumberLoop",
+				"title": "Insert For Number Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertNestedForLoop",
+				"title": "Insert Nested For Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertNestedForNumberLoop",
+				"title": "Insert Nested For Number Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertTryLadder",
+				"title": "Insert Try Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertMindstormImport",
+				"title": "Insert Mindstorm Imports",
 				"category": "Mind Reader"
 			},
 			{
@@ -233,6 +303,11 @@
 				"command": "mind-reader.uploadCurrentFile",
 				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
 				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.callvoice",
+				"title": "Start voice listener",
+				"category": "Voice Commands"
 			}
 		],
 		"keybindings": [
@@ -244,7 +319,7 @@
 			},
 			{
 				"command": "mind-reader.voiceToText",
-				"key":"ctrl+v"
+				"key": "ctrl+v"
 			},
 			{
 				"command": "mind-reader.decreaseFontScale",
@@ -302,6 +377,11 @@
 				"command": "mind-reader.selectLeadingWhitespace",
 				"key": "Ctrl+Shift+/ W",
 				"mac": "Cmd+Shift+[Slash] W"
+			},
+			{
+				"command": "mind-reader.callvoice",
+				"key": "Ctrl+Shift+/ M",
+				"mac": "Cmd+Shift+[Slash] M"
 			}
 		],
 		"menus": {
@@ -619,6 +699,7 @@
 		"@types/node": "16.x",
 		"@types/serialport": "^8.0.2",
 		"@types/vscode": "^1.60.0",
+		"@types/ws": "^6.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
 		"@vscode/test-electron": "^1.6.2",
@@ -629,6 +710,9 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
-		"serialport": "^9.2.5"
+		"serialport": "^9.2.5",
+		"server": "^1",
+		"vscode-languageclient": "^5.1.0-next.9",
+		"ws": "^6.2.2"
 	}
 }

@@ -1,6 +1,12 @@
 import * as vscode from 'vscode';
 import { getLineNumber } from './text';
 import { CommandEntry } from './commandEntry';
+import { voiceCommandCaller } from './commandCaller';
+import { startStreaming } from '../client01';
+
+
+//test input for voiceCommandCaller
+let testInput = "Get The Current Line Number";
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
@@ -9,6 +15,11 @@ export const accessCommands: CommandEntry[] = [
 
     // callbacks can be inlined...
     callback: () => vscode.commands.executeCommand('workbench.action.selectTheme'),
+  },
+  /* command to run after receiving textual commands generated through voice */
+  {
+    name: 'mind-reader.voiceCommandCaller',
+    callback: () => voiceCommandCaller(testInput)
   },
 
   {
@@ -43,7 +54,12 @@ export const accessCommands: CommandEntry[] = [
   {
     name: 'mind-reader.voiceToText',
     callback: voiceToText,
-},
+  },
+  {
+    name:'voice-command.startStreaming',
+    callback: startStreaming,
+  }
+
 ];
 
 function increaseFontScale(): void {
@@ -81,5 +97,4 @@ async function voiceToText(): Promise<void> {
     getLineNumber();
   }
 }
-
 
