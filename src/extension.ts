@@ -5,7 +5,7 @@ import Logger                                                     from "./log";
 import { lineHighlighter }                                        from "./lineHighlighter";
 //import * as path from 'path';
 //const { fork } = require('child_process');
-import { accessCommands, hubCommands, navCommands, textCommands } from "./commands";
+import { accessCommands, hubCommands, navCommands, textCommands, voicetotextCommands } from "./commands";
 //import { runClient } from "./client";
 
 // Output Logger
@@ -52,6 +52,12 @@ export function activate(context: vscode.ExtensionContext) {
     navCommands,
     textCommands,
   ].flat(1);
+
+  voicetotextCommands.forEach((command) => {
+    context.subscriptions.push(
+      vscode.commands.registerTextEditorCommand(command.name, command.callback)
+    );
+  });
 
   // Register Commands
   allCommands.forEach((command) => {

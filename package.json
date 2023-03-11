@@ -1,14 +1,14 @@
 {
 	"name": "mind-reader",
 	"displayName": "Mind Reader",
-	"homepage": "https://github.com/We-Dont-Byte/Mind_Reader/wiki",
+	"homepage": "https://github.com/jcode999/Mind_Reader/wiki",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/We-Dont-Byte/Mind_Reader"
+		"url": "https://github.com/jcode999/Mind_Reader"
 	},
 	"bugs": {
 		"type": "git",
-		"url": "https://github.com/We-Dont-Byte/Mind_Reader/issues"
+		"url": "https://github.com/jcode999/Mind_Reader/issues"
 	},
 	"contributors": [
 		{
@@ -46,6 +46,26 @@
 		{
 			"name": "Pedro Alvarez",
 			"email": "PedroAlvarez3@my.unt.edu"
+		},
+		{
+			"name": "Zachary Chenausky",
+			"email": "zacharychenausky@my.unt.edu"
+		},
+		{
+			"name": "Jigme Rinji Sherpa",
+			"email": "jigmesherpa@my.unt.edu"
+		},
+		{
+			"name": "Clay Lewis",
+			"email": "ClayLewis2@my.unt.edu"
+		},
+		{
+			"name": "Haris Javed",
+			"email": "harisjaved@my.unt.edu"
+		},
+		{
+			"name": "Saad Javed",
+			"email": "saadjaved@my.unt.edu"
 		}
 	],
 	"version": "2.0.1",
@@ -212,6 +232,46 @@
 			{
 				"command": "mind-reader.showCommands",
 				"title": "Show All Commands",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertIfLadder",
+				"title": "Insert If Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertIfElseLadder",
+				"title": "Insert If Else Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertForLoop",
+				"title": "Insert For Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertForNumberLoop",
+				"title": "Insert For Number Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertNestedForLoop",
+				"title": "Insert Nested For Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertNestedForNumberLoop",
+				"title": "Insert Nested For Number Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertTryLadder",
+				"title": "Insert Try Ladder",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertMindstormImport",
+				"title": "Insert Mindstorm Imports",
 				"category": "Mind Reader"
 			},
 			{
