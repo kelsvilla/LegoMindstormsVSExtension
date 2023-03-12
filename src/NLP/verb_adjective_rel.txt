@@ -1,0 +1,6 @@
+increase size scale
+decrease size scale
+change number color size scale
+select number
+update size scale 
+get number

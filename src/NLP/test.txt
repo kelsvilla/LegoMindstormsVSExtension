@@ -1,0 +1,2 @@
+increase the font color
+increase the current font size

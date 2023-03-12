@@ -1,0 +1,3 @@
+Increase Font Scale
+Decrase Font Scale
+Change Theme

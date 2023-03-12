@@ -67,7 +67,7 @@ def main():
     user_input = ''
     while user_input!='Exit': # TO-DO: compare with messag from voice-to-text later.
         #send message to client
-        user_input = input('Enter your command: ')
+        user_input = input('Enter your command.')
         msg = bytes(user_input.encode('utf-8'))
         print('sending message to client: ',msg)
         msg_len = int(hex(len(msg)),16)
@@ -85,6 +85,7 @@ def main():
         
         #send message to client
         clientsocket.send(frame)
+        break
     clientsocket.close()
 
         #to-do: figure out if the connection should be terminated or kept persistent for multiple commands
