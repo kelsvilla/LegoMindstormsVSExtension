@@ -4,7 +4,7 @@ import CommandNodeProvider                                        from "./comman
 import Logger                                                     from "./log";
 import { lineHighlighter }                                        from "./lineHighlighter";
 //import * as path from 'path';
-//const { fork } = require('child_process');
+const { fork } = require('child_process');
 import { accessCommands, hubCommands, navCommands, textCommands } from "./commands";
 //import { runClient } from "./client";
 
@@ -18,22 +18,22 @@ let parser: pl.Parser = new pl.Parser();
 export function activate(context: vscode.ExtensionContext) {
     /*activate voice command server
     //create a new child process to activate python voice server
-    //fork is used so that the main thread does not have to wait for child process to complete.
+    //fork is used so that the main thread does not have to wait for child process to complete.*/
     const child = fork('activateServer.ts');
     console.log('Foked to start server with pid.',child.pid);
 
-    Issue:
+    /*Issue:
     The creation of child is successful. The child.connected is 'true' indicating parent and child
-    processes are ready to communicate, but when using child.send(msg), the child does not receive the message
+    processes are ready to communicate, but when using child.send(msg), the child does not receive the message*/
 
-    if( child.connected === true){
-      console.log('parent and child is connected.');
+    //if( child.connected === true){
+      //console.log('parent and child is connected.');
       //send message to child
       child.send('start');
-      console.log(child.stdout);
-    }
-    console.log('parent and child is status ',child.connected);
-    console.log(child.stdout);
+   // }
+  //   child.stdout.on('data', function (data:string) {
+  //     console.log('stdout: ' + data);
+  // });
 
 	  /*const serverModule = context.asAbsolutePath(
 		path.join('node_modules', 'server', 'server.js')
