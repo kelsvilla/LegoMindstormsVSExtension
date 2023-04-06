@@ -1,2 +1,33 @@
-increase the font color
-increase the current font size
+increase font scale
+decrease font scale
+reset font scale
+increase editor scale
+decrease editor scale
+reset editor scale
+select theme
+edit keybinds
+get scope of the current line
+get words under the cursor
+get the current line number
+get the number of line indentations
+get the number of leading spaces
+select the leading whitespace
+get the number of selected lines
+go back in quick input
+go to line
+go to symbol
+navigate backward
+navigate forward
+go to next problem in files
+go to previous problem in files
+go to file
+quick open previous recently used editor in group
+go to symbol in workspace
+show problems
+show all commands
+connect a LEGO SPIKE Prime hub
+disconnect a LEGO SPIKE Prime Hub
+run a program on the LEGO SPIKE Prime Hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+Delete a Program from the LEGO SPIKE Prime Hub
+Upload Current File to the LEGO SPIKE Prime Hub

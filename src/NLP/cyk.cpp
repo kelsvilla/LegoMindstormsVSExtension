@@ -310,13 +310,9 @@ vector<string> processInput(string input){
     separetedInput.push_back(input.substr(start, end - start));
     return separetedInput;
 }
-void icreaseFontSize(int newSize){
-    cout<<"Increasing font to "<<newSize<<endl;
-}
-vector<string> getSynonyms(string token){
-    
-}
-vector<string> buildCommand(vector<string> gramaticalKnowledge){
+
+
+/*vector<string> buildCommand(vector<string> gramaticalKnowledge){
         string verb = gramaticalKnowledge.at(0);
         string noun = gramaticalKnowledge.at(1);
         if (gramaticalKnowledge.size()==3){
@@ -325,7 +321,7 @@ vector<string> buildCommand(vector<string> gramaticalKnowledge){
          }
         else
         return verb + noun; 
-}
+}*/
 int main(int argc, char *argv[])
 {
     cout<<"argc: "<<argc<<endl;
@@ -342,13 +338,14 @@ int main(int argc, char *argv[])
     cout<<"input: "<<input<<endl;
     vector<string> separetedInput = processInput(input);
     
-    char *rules[39] = {
+    char *rules[48] = {
         //terminals [part of speech]
-        "N=font","N=line","N=character","N=class","N=hub","N=editor","N=whitespace","N=theme",//nouns
-        "V=increase","V=decrease","V=go","V=select","V=start","V=open","V=delete","V=change","V=connect","V=reset","V=get","V=update",//verbs
-        "A=last", "A=first","A=latest","A=current","A=leading","A=new",//adverbs
+        "N=font","N=line","N=character","N=class","N=hub","N=editor","N=whitespace","N=theme","N=webview","N=keybinds",
+        "N=scope","N=word","N=indentations","N=spaces","N=whitespace",//nouns
+        "V=increase","V=decrease","V=go","V=select","V=start","V=open","V=delete","V=change","V=connect","V=reset","V=get","V=update","V=edit",//verbs
+        "A=last", "A=first","A=latest","A=current","A=new","A=under","A=leading",//adjective
         "D=the","D=a",//determinators
-        "J=size","J=scale","J=number",//adJectives [restricted to a single lenght states/symbols. update cyk to accept multi length variables ]
+        "J=size","J=scale","J=number",//adverb [restricted to a single lenght states/symbols. update cyk to accept multi length variables ]
         //non terminals 
 
         //input: 'select the first line'
@@ -369,7 +366,7 @@ int main(int argc, char *argv[])
         "B=NJ",
          };
 
-    int n_rules = 39;
+    int n_rules = 48;
     string states = "SNVADPXBJ";
     vector<string> gramaticalKnowlegde;
     bool*** table = cyk(separetedInput, rules, n_rules, states,traceback,gramaticalKnowlegde);
@@ -385,7 +382,7 @@ int main(int argc, char *argv[])
         {
             cout<<"   "<<gramaticalKnowlegde.at(x)<<endl;
         }
-        string possible_command = buildCommand(gramaticalKnowlegde);
+        /*string possible_command = buildCommand(gramaticalKnowlegde);
         cout<<"Possible Command: "<<possible_command<<endl;
 
           ofstream myfile;
@@ -393,9 +390,10 @@ int main(int argc, char *argv[])
           myfile << possible_command;
           myfile.close();
           return 0;
-        }
+        }*/
     
     }
-    return 1;
+    }
+    return 0;
 
 }

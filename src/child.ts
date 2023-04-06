@@ -1,4 +1,6 @@
-const {exec} = require('child_process');
+//import { ChildProcess } from "child_process";
+
+const { exec } = require('child_process');
 //create an event listener for incomming message from parent
 //issue: for some reason this event listerner is not activate after parent sends some message.
 process.on('message',(message)=>{
@@ -11,6 +13,7 @@ process.on('message',(message)=>{
         }
 	 });
 });
+
     /*if(message ==='start'){
      console.log('pid of server : ',exec.pid);
 	 console.log('Activating virtual environment.');
