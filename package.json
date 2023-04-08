@@ -197,11 +197,11 @@
 			},
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
-				"title": "View: Quick Open Previous Recently Used Editor in Group"
+				"title": "View: Quick Open Recently Used Editor in Group"
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
-				"title": "Go to Symbol in Workspace",
+				"title": "Go to a symbol in Workspace",
 				"category": "Mind Reader"
 			},
 			{
@@ -216,12 +216,12 @@
 			},
 			{
 				"command": "mind-reader.connectHub",
-				"title": "Connect a LEGO SPIKE Prime Hub",
+				"title": "Connect to the LEGO SPIKE PRIME Hub",
 				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.disconnectHub",
-				"title": "Disconnect a LEGO SPIKE Prime Hub",
+				"title": "Disconnect LEGO SPIKE PRIME Hub",
 				"category": "SPIKE Prime"
 			},
 			{

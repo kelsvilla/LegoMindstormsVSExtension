@@ -1,114 +1,130 @@
 import nltk
 from nltk.corpus import brown, verbnet, wordnet
 from nltk import grammar
-import json
+from nltk.chunk.regexp import *
 
-def preProcess(sentence,prefixed):
+import json
+def syns_load():
+    f = open("syns.txt", "r",newline='\n')
+    lines = f.readlines()
+    syns = []
+    for line in lines:
+        nl =line.rstrip('\n').split(',')
+        syns.append(nl)
+    return syns
+
+def get_synomymns(syns,words):
+    for word in words:
+        tokens = nltk.word_tokenize(word)
+        print(tokens)
+    multi_token_syns = []
+    for token in tokens:
+        for i in syns:
+            for j in i:
+                if(j==token) and len(tokens) == 1:
+                    return i[0]
+                elif j == token:
+                    multi_token_syns.append(i[0])
+    return ' '.join(multi_token_syns)
+
+def entity_action_recognizer(sentence,prefixed):
+    # f = open('pos.txt','a')
     sentence = sentence.lower()
     tokens = nltk.word_tokenize(sentence)
     action = '' # only one verb per command ? change if accepting multiple commands
+    default_pos_tags = nltk.pos_tag(tokens)
+    # f.write(sentence)
+    # f.write('\n')
+    # for tok,tag in default_pos_tags:
+    #     f.write(tok + ' --> '+tag)
+    #     f.write('\n')
+    grammar_np = r"""
+                    Entity: {<NN><NN>}
+                    Entity: {<JJ><NN>+}
+                    Entity: {<NNS>}
+                    Entity: {<NN>}
+                    Entity: {<VBN><NN>}
+                    Entity: {<VBN><NNS>}
+                    Entity: {<VBG><NN>}
+                    Entity: {<VBG><NNS>}
+                    Entity: {<VBD><NN>}
+                    Entity: {<VBG><NNS>}   
+                    Entity: {<NN><NNS>}            
+                """
+    chunk_parser = nltk.RegexpParser(grammar_np)
+    chunk_result = chunk_parser.parse(default_pos_tags)
     entities = []
+    for subtree in chunk_result.subtrees(filter=lambda t: t.label() == 'Entity'):
+        entity = []
+        for item in subtree:
+            entity.append(item[0])
+        entities.append(' '.join(entity))
+    
+    #todo deal with verbs later
     verbs = []
+    tokens = nltk.word_tokenize(sentence)
     default_pos_tags = nltk.pos_tag(tokens,tagset='universal')
-    print("Sentence: ",sentence)
-    print(" Default:\n",default_pos_tags)
-
-
-    #grouping nouns 
-    new_noun = ''
-    for i in range(0,len(default_pos_tags)):
-        if default_pos_tags[i][1] == 'NOUN':
-            new_noun = new_noun + " " + default_pos_tags[i][0]
-            if i+1 <= len(default_pos_tags)-1:
-                if default_pos_tags[i+1][1] == 'PRT' or default_pos_tags[i+1][1] == 'ADP':
-                    entities.append(new_noun)
-                    new_noun = ''
-            else:
-                entities.append(new_noun)
-        
-        elif default_pos_tags[i][1] == 'VERB':
-            verbs.append(default_pos_tags[i][0])
-            
-    #to do fix no entities, maybe misclassified as other POS
-    if len(entities)==0:
-        print(' [problem] : no entities')
-    else:
-        print(' Entities Identified: \n',entities)
-
-    #multiple verbs??
-    if len(verbs) ==2 and prefixed:
+    for tok,tag in default_pos_tags:
+        if tag == 'VERB':
+            verbs.append(tok)
+    
+        #multiple verbs??
+    if len(verbs) == 2 and prefixed:
         action = verbs[1]
         print(' action: ',action)
-    elif len(verbs) > 2:
-        action = 'confusion'
-        print(' [problem]: multiple verbs')
-    
-    print('-----------------------------------------\n')
-
-
-    #tagset = []
-    
-    # token_index = 0
-    # for token in tokens:
-    #     result = [item for item in brown.tagged_words() if item[0] == token]
-    #     unique = set(result)
-    #     pos_tags = []
-    #     if len(unique) != 0:
-    #         for word,tag in unique:
-    #             pos_tags.append(tag)
-    #     pos_tags.append(default_pos_tags[token_index][1])
-    #     token_index = token_index + 1    
-    #     tagset.append((token,set(pos_tags)))
-    #todo: use default tagset as primary, use brown.tagged_words only when default is not available
     return entities,action
-
-
-
-def compare(cmd_tagset,ext_cmd_tagset_list):
-    token_match_percent = []
-    ext_cmd_index = 0
-    for cmd_token,cmd_tok_tags in cmd_tagset:
-        for ext_cmd_tagset in ext_cmd_tagset_list:
-            matched_tokens = 0
-            for ext_cmd_token, ext_cmd_tok_tags in ext_cmd_tagset:
-                if cmd_token == ext_cmd_token:
-                    matched_tokens += 1
-                if matched_tokens == len(cmd_tagset):
-                    return ext_cmd_index
-            token_match_percent.append((ext_cmd_index,matched_tokens/len(cmd_tagset)*100))
-            ext_cmd_index += 1
-
+            
 #perform pos tags on the current commands list and store them
 def identify_command(entities,action):
+    f = open("demofile2.txt", "w")
     packageFile = open('package.json')
     package = json.load(packageFile)
-    extention_commands_tagset = []
-    
+    syns = syns_load()
+    entity_match = set()
+    action_match = set()
+    f.write('cmd_entities: '+ ' '.join(entities) + '\n')
+    f.write('cmd_action: ' + action + '\n')
+    f.write('-----Comparision with ext --- \n')
+    command_index = 0
     for i in package['contributes']['commands']:
-        ext_entities,ext_action = preProcess('can you ' + i['title'],True)
+        ext_entities,ext_action = entity_action_recognizer('can you ' + i['title'],True)
+        f.write(i['title'] + '\n')
+        f.write(' - Entities: '+ ' '.join(ext_entities)+'\n')
+        f.write(' - Action: '+ ext_action)
+        f.write('\n')
         entity_found = False
-        action_matched  = False
+        action_found  = False
         for j in entities:
             for k in ext_entities:
+                f.write(' **comparing entities: ' + j + " vs "+k + '\n')
                 if(j==k):
-                    print('Entity found in ext commands')
+                    print(' Entity found in ext commands')
+                    f.write(' --entity matched\n')
                     entity_found = True
+                    entity_match.add(command_index)
         if action == ext_action:
-            print('Action Matched')
-            action_matched = True
-        if entity_found and action_matched:
-            return i['command']
-    if entity_found== False and action_matched == False:
-        print('command not recognized')
-    return 'command not recognized'
+            f.write(' --Action Matched\n')
+            action_found = True
+            action_match.add(command_index)
+        
+        command_index += 1
+    packageFile.close()
+    similar = list(action_match.intersection(entity_match))
+    if len(similar) == 1:
+        return package['contributes']['commands'][similar[0]]['command']
+    
+    #try with synonyms, currently only deals with command with 1 entity recognized
+    print('command not recognized, trying with synonyms')
+    entity_synonym = get_synomymns(syns,entities)
+    if entity_synonym != '':
+        return identify_command([entity_synonym],action)
+    return 'NULL'
 
-def test():
-    cmd1 = 'can you go to symbol'
-    ext_cmd  = 'can you Go to Symbol'
-    entity,action = preProcess(cmd1,True)
-    ext_entity,ext_action = preProcess(ext_cmd,True)
-    print(entity,action)
-    print(ext_entity,ext_cmd)
+
+
+
+
+
 
 
 

@@ -1,0 +1,613 @@
+can you increase font size
+can you increase font size
+can --> VERB
+you --> PRON
+increase --> VERB
+font --> ADJ
+size --> NOUN
+can you start streaming
+can --> VERB
+you --> PRON
+start --> VERB
+streaming --> VERB
+can you voice to text
+can --> VERB
+you --> PRON
+voice --> VERB
+to --> PRT
+text --> VERB
+can you voice command caller
+can --> VERB
+you --> PRON
+voice --> VERB
+command --> NUM
+caller --> NOUN
+can you increase font scale
+can --> VERB
+you --> PRON
+increase --> VERB
+font --> ADJ
+scale --> NOUN
+can you decrease font scale
+can --> VERB
+you --> PRON
+decrease --> VERB
+font --> ADJ
+scale --> NOUN
+can you reset font scale
+can --> VERB
+you --> PRON
+reset --> VERB
+font --> ADJ
+scale --> NOUN
+can you increase editor scale
+can --> VERB
+you --> PRON
+increase --> VERB
+editor --> NOUN
+scale --> NOUN
+can you decrease editor scale
+can --> VERB
+you --> PRON
+decrease --> VERB
+editor --> NOUN
+scale --> NOUN
+can you reset editor scale
+can --> VERB
+you --> PRON
+reset --> VERB
+editor --> NOUN
+scale --> NOUN
+can you select theme
+can --> VERB
+you --> PRON
+select --> VERB
+theme --> NOUN
+can you mind reader webview
+can --> VERB
+you --> PRON
+mind --> VERB
+reader --> ADJ
+webview --> NOUN
+can you edit keybinds
+can --> VERB
+you --> PRON
+edit --> VERB
+keybinds --> NOUN
+can you get scope of the current line
+can --> VERB
+you --> PRON
+get --> VERB
+scope --> NOUN
+of --> ADP
+the --> DET
+current --> ADJ
+line --> NOUN
+can you get words under the cursor
+can --> VERB
+you --> PRON
+get --> VERB
+words --> NOUN
+under --> ADP
+the --> DET
+cursor --> NOUN
+can you get the current line number
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+current --> ADJ
+line --> NOUN
+number --> NOUN
+can you get the number of line indentations
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+line --> NOUN
+indentations --> NOUN
+can you get the number of leading spaces
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+leading --> VERB
+spaces --> NOUN
+can you select the leading whitespace
+can --> VERB
+you --> PRON
+select --> VERB
+the --> DET
+leading --> VERB
+whitespace --> NOUN
+can you get the number of selected lines
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+selected --> VERB
+lines --> NOUN
+can you go back in quick input
+can --> VERB
+you --> PRON
+go --> VERB
+back --> ADV
+in --> ADP
+quick --> NOUN
+input --> NOUN
+can you go to line
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+line --> NOUN
+can you go to symbol
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+symbol --> VERB
+can you navigate backward
+can --> VERB
+you --> PRON
+navigate --> VERB
+backward --> NOUN
+can you navigate forward
+can --> VERB
+you --> PRON
+navigate --> VERB
+forward --> NOUN
+can you go to next problem in files (error, warning, info)
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+next --> ADJ
+problem --> NOUN
+in --> ADP
+files --> NOUN
+( --> .
+error --> NOUN
+, --> .
+warning --> NOUN
+, --> .
+info --> NOUN
+) --> .
+can you go to previous problem in files (error, warning, info)
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+previous --> ADJ
+problem --> NOUN
+in --> ADP
+files --> NOUN
+( --> .
+error --> NOUN
+, --> .
+warning --> NOUN
+, --> .
+info --> NOUN
+) --> .
+can you go to file
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+file --> VERB
+can you view: quick open previous recently used editor in group
+can --> VERB
+you --> PRON
+view --> VERB
+: --> .
+quick --> ADJ
+open --> VERB
+previous --> ADJ
+recently --> ADV
+used --> VERB
+editor --> NOUN
+in --> ADP
+group --> NOUN
+can you go to symbol in workspace
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+symbol --> VERB
+in --> ADP
+workspace --> NOUN
+can you show problems
+can --> VERB
+you --> PRON
+show --> VERB
+problems --> NOUN
+can you show all commands
+can --> VERB
+you --> PRON
+show --> VERB
+all --> DET
+commands --> NOUN
+can you connect a lego spike prime hub
+can --> VERB
+you --> PRON
+connect --> VERB
+a --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you disconnect a lego spike prime hub
+can --> VERB
+you --> PRON
+disconnect --> VERB
+a --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you run a program on the lego spike prime hub
+can --> VERB
+you --> PRON
+run --> VERB
+a --> DET
+program --> NOUN
+on --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you stop running program on the lego spike prime hub
+can --> VERB
+you --> PRON
+stop --> VERB
+running --> VERB
+program --> NOUN
+on --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you delete a program from the lego spike prime hub
+can --> VERB
+you --> PRON
+delete --> VERB
+a --> DET
+program --> NOUN
+from --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you upload current file to the lego spike prime hub
+can --> VERB
+you --> PRON
+upload --> VERB
+current --> ADJ
+file --> NOUN
+to --> PRT
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you start voice listener
+can --> VERB
+you --> PRON
+start --> VERB
+voice --> NOUN
+listener --> NOUN
+can you increase font size
+can --> VERB
+you --> PRON
+increase --> VERB
+font --> ADJ
+size --> NOUN
+can you start streaming
+can --> VERB
+you --> PRON
+start --> VERB
+streaming --> VERB
+can you voice to text
+can --> VERB
+you --> PRON
+voice --> VERB
+to --> PRT
+text --> VERB
+can you voice command caller
+can --> VERB
+you --> PRON
+voice --> VERB
+command --> NUM
+caller --> NOUN
+can you increase font scale
+can --> VERB
+you --> PRON
+increase --> VERB
+font --> ADJ
+scale --> NOUN
+can you decrease font scale
+can --> VERB
+you --> PRON
+decrease --> VERB
+font --> ADJ
+scale --> NOUN
+can you reset font scale
+can --> VERB
+you --> PRON
+reset --> VERB
+font --> ADJ
+scale --> NOUN
+can you increase editor scale
+can --> VERB
+you --> PRON
+increase --> VERB
+editor --> NOUN
+scale --> NOUN
+can you decrease editor scale
+can --> VERB
+you --> PRON
+decrease --> VERB
+editor --> NOUN
+scale --> NOUN
+can you reset editor scale
+can --> VERB
+you --> PRON
+reset --> VERB
+editor --> NOUN
+scale --> NOUN
+can you select theme
+can --> VERB
+you --> PRON
+select --> VERB
+theme --> NOUN
+can you mind reader webview
+can --> VERB
+you --> PRON
+mind --> VERB
+reader --> ADJ
+webview --> NOUN
+can you edit keybinds
+can --> VERB
+you --> PRON
+edit --> VERB
+keybinds --> NOUN
+can you get scope of the current line
+can --> VERB
+you --> PRON
+get --> VERB
+scope --> NOUN
+of --> ADP
+the --> DET
+current --> ADJ
+line --> NOUN
+can you get words under the cursor
+can --> VERB
+you --> PRON
+get --> VERB
+words --> NOUN
+under --> ADP
+the --> DET
+cursor --> NOUN
+can you get the current line number
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+current --> ADJ
+line --> NOUN
+number --> NOUN
+can you get the number of line indentations
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+line --> NOUN
+indentations --> NOUN
+can you get the number of leading spaces
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+leading --> VERB
+spaces --> NOUN
+can you select the leading whitespace
+can --> VERB
+you --> PRON
+select --> VERB
+the --> DET
+leading --> VERB
+whitespace --> NOUN
+can you get the number of selected lines
+can --> VERB
+you --> PRON
+get --> VERB
+the --> DET
+number --> NOUN
+of --> ADP
+selected --> VERB
+lines --> NOUN
+can you go back in quick input
+can --> VERB
+you --> PRON
+go --> VERB
+back --> ADV
+in --> ADP
+quick --> NOUN
+input --> NOUN
+can you go to line
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+line --> NOUN
+can you go to symbol
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+symbol --> VERB
+can you navigate backward
+can --> VERB
+you --> PRON
+navigate --> VERB
+backward --> NOUN
+can you navigate forward
+can --> VERB
+you --> PRON
+navigate --> VERB
+forward --> NOUN
+can you go to next problem in files (error, warning, info)
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+next --> ADJ
+problem --> NOUN
+in --> ADP
+files --> NOUN
+( --> .
+error --> NOUN
+, --> .
+warning --> NOUN
+, --> .
+info --> NOUN
+) --> .
+can you go to previous problem in files (error, warning, info)
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+previous --> ADJ
+problem --> NOUN
+in --> ADP
+files --> NOUN
+( --> .
+error --> NOUN
+, --> .
+warning --> NOUN
+, --> .
+info --> NOUN
+) --> .
+can you go to file
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+file --> VERB
+can you view: quick open previous recently used editor in group
+can --> VERB
+you --> PRON
+view --> VERB
+: --> .
+quick --> ADJ
+open --> VERB
+previous --> ADJ
+recently --> ADV
+used --> VERB
+editor --> NOUN
+in --> ADP
+group --> NOUN
+can you go to symbol in workspace
+can --> VERB
+you --> PRON
+go --> VERB
+to --> PRT
+symbol --> VERB
+in --> ADP
+workspace --> NOUN
+can you show problems
+can --> VERB
+you --> PRON
+show --> VERB
+problems --> NOUN
+can you show all commands
+can --> VERB
+you --> PRON
+show --> VERB
+all --> DET
+commands --> NOUN
+can you connect a lego spike prime hub
+can --> VERB
+you --> PRON
+connect --> VERB
+a --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you disconnect a lego spike prime hub
+can --> VERB
+you --> PRON
+disconnect --> VERB
+a --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you run a program on the lego spike prime hub
+can --> VERB
+you --> PRON
+run --> VERB
+a --> DET
+program --> NOUN
+on --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you stop running program on the lego spike prime hub
+can --> VERB
+you --> PRON
+stop --> VERB
+running --> VERB
+program --> NOUN
+on --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you delete a program from the lego spike prime hub
+can --> VERB
+you --> PRON
+delete --> VERB
+a --> DET
+program --> NOUN
+from --> ADP
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you upload current file to the lego spike prime hub
+can --> VERB
+you --> PRON
+upload --> VERB
+current --> ADJ
+file --> NOUN
+to --> PRT
+the --> DET
+lego --> NOUN
+spike --> NOUN
+prime --> ADJ
+hub --> NOUN
+can you start voice listener
+can --> VERB
+you --> PRON
+start --> VERB
+voice --> NOUN
+listener --> NOUN

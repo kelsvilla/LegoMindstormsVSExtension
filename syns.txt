@@ -1,0 +1,42 @@
+increase,enlarge,expand,heighten,raise,bump
+font,text,typeface,font style,lettering
+scale,size,magnitude,dimension
+reset,restore,revert,undo,return to default
+editor,text editor,code editor,source code editor
+decrease,reduce,shrink,lessen,minimize,cut back
+select,choose, pick,opt for,decide on,highlight
+theme,color scheme,visual theme,design scheme,design
+edit,modify,change,adjust,alter,tweak
+keybinds,keyboard shortcuts,hotkeys,key combinations
+get,retrieve,obtain,fetch,access,acquire
+scope,context,range,extent,boundaries,limits
+current,present,existing,ongoing,active,in use,latest
+line,row,sequence,series,queue
+words,terms,vocabulary,language,lexicon,phrasing
+cursor,pointer,marker,indicator,arrow
+number,count,quantity,figure,total,amount
+indentations,spacing,tabulation,alignment,layout,formatting
+leading,initial,first,foremost,primary,top
+spaces,gaps,intervals,breaks,empty spaces,void
+whitespace,blank space,empty space,padding,margin
+selected,highlighted,picked,chosen,opted for,marked
+go back,return,backtrack,reverse,undo,retreat
+quick input,shortcut,rapid input,fast entry,quick command
+symbol,icon,logo,emblem,representation,sign
+navigate,move,browse,explore,travel,scroll
+backward,reverse,previous,earlier,preceding,past
+forward,next,ahead,later,following,upcoming
+next problem,next issue,next error,next warning
+previous problem,previous issue,previous error,previous warning
+file,document,source file,project file,code file
+quick open,fast access,quick launch,rapid open,swift access
+recently used,recently opened,recent documents,recent files
+group,category,folder,collection,set
+show,display,present,reveal,exhibit,demonstrate
+connect,link,attach,join,pair,establish connection
+LEGO SPIKE Prime Hub,LEGO robot,LEGO device,LEGO machine,LEGO
+disconnect,detach,separate,unplug,cut off,break connection
+run,execute,launch,start,initiate,activate
+stop running,halt,pause,suspend,end,terminate
+delete,remove,erase,clear,eliminate,wipe out
+upload,transfer,send,copy,move,transmit

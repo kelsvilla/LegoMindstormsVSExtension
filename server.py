@@ -6,8 +6,24 @@ import speech_recognition as sr
 import socket
 import hashlib
 import base64
-import keyboard
-from nlp import preProcess,identify_command
+from tkinter import *
+
+from nlp import entity_action_recognizer,identify_command,syns_load
+
+def ui_test():
+    root = Tk()
+    w = Canvas(root, width=200, height=200)
+    w.pack()
+
+    # Draw the speech bubble
+    w.create_oval(50,50,150,150,fill="white")
+
+    # Draw the wavy lines
+    w.create_arc(50,50,150,150,start=180,extent=180,style=ARC)
+    w.create_arc(50,50,150,150,start=0,extent=180,style=ARC)
+
+    # Show the icon
+    root.mainloop()
 
 
 
@@ -15,19 +31,20 @@ def voice_to_text():
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-        print('Please give your command. Listening...')
+        while(True):
+            r.adjust_for_ambient_noise(source)
+            print('Please give your command. Listening...')
 
-        audio = r.listen(source)
+            audio = r.listen(source,timeout=7,phrase_time_limit=5)
 
-        try:
-            cmd =  r.recognize_google(audio)
-            print('Did you say : ' + cmd)
-            return str(cmd)
+            try:
+                cmd =  r.recognize_google(audio)
+                print('Did you say : ' + cmd)
+                return str(cmd)
 
 
-        except Exception as e:
-            print("Error r "+ str(e) )
+            except Exception as e:
+                print("Error r "+ str(e) )
     
 
 def handle_syn_ack(clientsocket):
@@ -46,7 +63,15 @@ def handle_syn_ack(clientsocket):
     #send ack message to client
     clientsocket.sendall(b'HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: '+accept+b'\r\n\r\n')
     print('Handshake Complete with client ',clientsocket.getsockname())
-    
+#test
+def test():
+    syns = syns_load()
+    uin = input('Enter your command: ')
+    entities,action = entity_action_recognizer('can you '+ uin,True)
+    command_to_run = identify_command(entities,action)
+    print(command_to_run)
+
+
 
 #Port to connect to VSCode using.
 def tcp_connection():
@@ -60,14 +85,14 @@ def tcp_connection():
     print('Server Socket Created and Listening: \n Server:',serversocket)
     clientsocket, clientaddr = serversocket.accept()
     print('[connected with client]: ',clientsocket)
-    print('[clienaddr]: ',clientaddr)
     handle_syn_ack(clientsocket) #initail handshake
     #Connect to VSCode client code.
+    syns = syns_load()
     user_input = ''
     while user_input!='Exit': # TO-DO: compare with messag from voice-to-text later.
         #send message to client
         user_input = voice_to_text()
-        entities,action = preProcess('can you '+ user_input,True)
+        entities,action = entity_action_recognizer('can you '+ user_input,True)
         command_to_run = identify_command(entities,action)
         msg = bytes(command_to_run.encode('utf-8'))
         print('sending message to client: ',msg)
@@ -91,3 +116,5 @@ def tcp_connection():
 
 if __name__ == '__main__':
    tcp_connection()
+
+   
