@@ -1,5 +1,5 @@
-cmd_entities: words cursor
-cmd_action: get
+cmd_entities: loop
+cmd_action: insert
 -----Comparision with ext --- 
 Start Streaming
  - Entities: 
@@ -10,234 +10,208 @@ Voice To Text
 Voice Command Caller
  - Entities: caller
  - Action: voice
- **comparing entities: words vs caller
- **comparing entities: cursor vs caller
+ **comparing entities: loop vs caller
 Increase Font Scale
  - Entities: font scale
  - Action: increase
- **comparing entities: words vs font scale
- **comparing entities: cursor vs font scale
+ **comparing entities: loop vs font scale
 Decrease Font Scale
  - Entities: font scale
  - Action: decrease
- **comparing entities: words vs font scale
- **comparing entities: cursor vs font scale
+ **comparing entities: loop vs font scale
 Reset Font Scale
  - Entities: font scale
  - Action: reset
- **comparing entities: words vs font scale
- **comparing entities: cursor vs font scale
+ **comparing entities: loop vs font scale
 Increase Editor Scale
  - Entities: editor scale
  - Action: increase
- **comparing entities: words vs editor scale
- **comparing entities: cursor vs editor scale
+ **comparing entities: loop vs editor scale
 Decrease Editor Scale
  - Entities: editor scale
  - Action: decrease
- **comparing entities: words vs editor scale
- **comparing entities: cursor vs editor scale
+ **comparing entities: loop vs editor scale
 Reset Editor Scale
  - Entities: editor scale
  - Action: reset
- **comparing entities: words vs editor scale
- **comparing entities: cursor vs editor scale
+ **comparing entities: loop vs editor scale
 Select Theme
  - Entities: theme
  - Action: select
- **comparing entities: words vs theme
- **comparing entities: cursor vs theme
+ **comparing entities: loop vs theme
 Mind Reader Webview
  - Entities: webview
  - Action: mind
- **comparing entities: words vs webview
- **comparing entities: cursor vs webview
+ **comparing entities: loop vs webview
 Edit Keybinds
  - Entities: keybinds
  - Action: edit
- **comparing entities: words vs keybinds
- **comparing entities: cursor vs keybinds
+ **comparing entities: loop vs keybinds
 Get Scope of the Current Line
  - Entities: scope current line
  - Action: get
- **comparing entities: words vs scope
- **comparing entities: words vs current line
- **comparing entities: cursor vs scope
- **comparing entities: cursor vs current line
- --Action Matched
+ **comparing entities: loop vs scope
+ **comparing entities: loop vs current line
 Get Words Under the Cursor
  - Entities: words cursor
  - Action: get
- **comparing entities: words vs words
- --entity matched
- **comparing entities: words vs cursor
- **comparing entities: cursor vs words
- **comparing entities: cursor vs cursor
- --entity matched
- --Action Matched
+ **comparing entities: loop vs words
+ **comparing entities: loop vs cursor
 Get The Current Line Number
  - Entities: line number
  - Action: get
- **comparing entities: words vs line number
- **comparing entities: cursor vs line number
- --Action Matched
+ **comparing entities: loop vs line number
 Get The Number Of Line Indentations
  - Entities: number line indentations
  - Action: get
- **comparing entities: words vs number
- **comparing entities: words vs line
- **comparing entities: words vs indentations
- **comparing entities: cursor vs number
- **comparing entities: cursor vs line
- **comparing entities: cursor vs indentations
- --Action Matched
+ **comparing entities: loop vs number
+ **comparing entities: loop vs line
+ **comparing entities: loop vs indentations
 Get The Number Of Leading Spaces
  - Entities: number spaces
  - Action: 
- **comparing entities: words vs number
- **comparing entities: words vs spaces
- **comparing entities: cursor vs number
- **comparing entities: cursor vs spaces
+ **comparing entities: loop vs number
+ **comparing entities: loop vs spaces
 Select The Leading Whitespace
  - Entities: whitespace
  - Action: 
- **comparing entities: words vs whitespace
- **comparing entities: cursor vs whitespace
+ **comparing entities: loop vs whitespace
 Get The Number Of Selected Lines
  - Entities: number lines
  - Action: 
- **comparing entities: words vs number
- **comparing entities: words vs lines
- **comparing entities: cursor vs number
- **comparing entities: cursor vs lines
+ **comparing entities: loop vs number
+ **comparing entities: loop vs lines
 Go Back in Quick Input
  - Entities: quick input
  - Action: go
- **comparing entities: words vs quick input
- **comparing entities: cursor vs quick input
+ **comparing entities: loop vs quick input
 Go to Line
  - Entities: line
  - Action: go
- **comparing entities: words vs line
- **comparing entities: cursor vs line
+ **comparing entities: loop vs line
 Go to Symbol
  - Entities: 
  - Action: 
 Navigate Backward
  - Entities: backward
  - Action: navigate
- **comparing entities: words vs backward
- **comparing entities: cursor vs backward
+ **comparing entities: loop vs backward
 Navigate Forward
  - Entities: forward
  - Action: navigate
- **comparing entities: words vs forward
- **comparing entities: cursor vs forward
+ **comparing entities: loop vs forward
 Go to Next Problem in Files (Error, Warning, Info)
  - Entities: next problem files error warning info
  - Action: go
- **comparing entities: words vs next problem
- **comparing entities: words vs files
- **comparing entities: words vs error
- **comparing entities: words vs warning
- **comparing entities: words vs info
- **comparing entities: cursor vs next problem
- **comparing entities: cursor vs files
- **comparing entities: cursor vs error
- **comparing entities: cursor vs warning
- **comparing entities: cursor vs info
+ **comparing entities: loop vs next problem
+ **comparing entities: loop vs files
+ **comparing entities: loop vs error
+ **comparing entities: loop vs warning
+ **comparing entities: loop vs info
 Go to Previous Problem in Files (Error, Warning, Info)
  - Entities: previous problem files error warning info
  - Action: go
- **comparing entities: words vs previous problem
- **comparing entities: words vs files
- **comparing entities: words vs error
- **comparing entities: words vs warning
- **comparing entities: words vs info
- **comparing entities: cursor vs previous problem
- **comparing entities: cursor vs files
- **comparing entities: cursor vs error
- **comparing entities: cursor vs warning
- **comparing entities: cursor vs info
+ **comparing entities: loop vs previous problem
+ **comparing entities: loop vs files
+ **comparing entities: loop vs error
+ **comparing entities: loop vs warning
+ **comparing entities: loop vs info
 Go to File
  - Entities: 
  - Action: 
 View: Quick Open Recently Used Editor in Group
  - Entities: editor group
  - Action: 
- **comparing entities: words vs editor
- **comparing entities: words vs group
- **comparing entities: cursor vs editor
- **comparing entities: cursor vs group
+ **comparing entities: loop vs editor
+ **comparing entities: loop vs group
 Go to a symbol in Workspace
  - Entities: symbol workspace
  - Action: go
- **comparing entities: words vs symbol
- **comparing entities: words vs workspace
- **comparing entities: cursor vs symbol
- **comparing entities: cursor vs workspace
+ **comparing entities: loop vs symbol
+ **comparing entities: loop vs workspace
 Show Problems
  - Entities: problems
  - Action: show
- **comparing entities: words vs problems
- **comparing entities: cursor vs problems
+ **comparing entities: loop vs problems
 Show All Commands
  - Entities: commands
  - Action: show
- **comparing entities: words vs commands
- **comparing entities: cursor vs commands
+ **comparing entities: loop vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: loop vs ladder
+ --Action Matched
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: loop vs else ladder
+ --Action Matched
+Insert For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: loop vs loop
+ --entity matched
+ --Action Matched
+Insert For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: loop vs number loop
+ --Action Matched
+Insert Nested For Loop
+ - Entities: loop
+ - Action: 
+ **comparing entities: loop vs loop
+ --entity matched
+Insert Nested For Number Loop
+ - Entities: number loop
+ - Action: 
+ **comparing entities: loop vs number loop
+Insert Try Ladder
+ - Entities: ladder
+ - Action: 
+ **comparing entities: loop vs ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: loop vs mindstorm
+ **comparing entities: loop vs imports
+ --Action Matched
 Connect to the LEGO SPIKE PRIME Hub
  - Entities: lego spike prime hub
  - Action: connect
- **comparing entities: words vs lego spike
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs lego spike
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs lego spike
+ **comparing entities: loop vs prime hub
 Disconnect LEGO SPIKE PRIME Hub
  - Entities: lego prime hub
  - Action: disconnect
- **comparing entities: words vs lego
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs lego
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs lego
+ **comparing entities: loop vs prime hub
 Run a Program on the LEGO SPIKE Prime Hub
  - Entities: program lego spike prime hub
  - Action: run
- **comparing entities: words vs program
- **comparing entities: words vs lego spike
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs program
- **comparing entities: cursor vs lego spike
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs program
+ **comparing entities: loop vs lego spike
+ **comparing entities: loop vs prime hub
 Stop Running Program on the LEGO SPIKE Prime Hub
  - Entities: program lego spike prime hub
  - Action: 
- **comparing entities: words vs program
- **comparing entities: words vs lego spike
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs program
- **comparing entities: cursor vs lego spike
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs program
+ **comparing entities: loop vs lego spike
+ **comparing entities: loop vs prime hub
 Delete a Program from the LEGO SPIKE Prime Hub
  - Entities: program lego spike prime hub
  - Action: delete
- **comparing entities: words vs program
- **comparing entities: words vs lego spike
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs program
- **comparing entities: cursor vs lego spike
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs program
+ **comparing entities: loop vs lego spike
+ **comparing entities: loop vs prime hub
 Upload Current File to the LEGO SPIKE Prime Hub
  - Entities: current file lego spike prime hub
  - Action: upload
- **comparing entities: words vs current file
- **comparing entities: words vs lego spike
- **comparing entities: words vs prime hub
- **comparing entities: cursor vs current file
- **comparing entities: cursor vs lego spike
- **comparing entities: cursor vs prime hub
+ **comparing entities: loop vs current file
+ **comparing entities: loop vs lego spike
+ **comparing entities: loop vs prime hub
 Start voice listener
  - Entities: voice listener
  - Action: start
- **comparing entities: words vs voice listener
- **comparing entities: cursor vs voice listener
+ **comparing entities: loop vs voice listener

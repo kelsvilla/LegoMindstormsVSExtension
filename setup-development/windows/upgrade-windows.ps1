@@ -13,7 +13,7 @@ If you download Microsoft's developer VM, you have it!
 As WinGet is built into Windows, it sidesteps any annoying third-party package managers, and is the lowest common denominator for package installation.
 
 .link
-https://github.com/We-Dont-Byte/Mind_Reader/
+https://github.com/jcode999/Mind_Reader/
 
 .parameter GitDir
 Path to clone the git repo into (Default: $HOME/git/)
@@ -183,7 +183,13 @@ Invoke-Dryrun "npm install"
 Invoke-Dryrun "npm audit fix"
 
 # Get Electon version from current VSCode installation.
-$vscodejson =  Get-Content "$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\package.json" -Raw | ConvertFrom-json
+if(Test-Path -Path "$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\package.json" -PathType Leaf){
+   $vscodejson =  Get-Content "$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\package.json" -Raw | ConvertFrom-json
+}
+if(Test-Path -Path "$env:PROGRAMFILES\Microsoft VS Code\resources\app\package.json" -PathType Leaf){
+   $vscodejson =  Get-Content "$env:PROGRAMFILES\Microsoft VS Code\resources\app\package.json" -Raw | ConvertFrom-json
+}
+
 $electronversion = $vscodejson.devDependencies.electron
 
 if ( $electronversion ) {

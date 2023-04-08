@@ -41,8 +41,7 @@ def voice_to_text():
                 cmd =  r.recognize_google(audio)
                 print('Did you say : ' + cmd)
                 return str(cmd)
-
-
+            
             except Exception as e:
                 print("Error r "+ str(e) )
     
