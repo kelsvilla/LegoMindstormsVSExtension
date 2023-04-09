@@ -275,6 +275,16 @@
 				"category": "Mind Reader"
 			},
 			{
+				"command": "mind-reader.insertWhileLoop",
+				"title": "Insert While Loop",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.insertDoWhileLoop",
+				"title": "Insert Do While Loop",
+				"category": "Mind Reader"
+			},
+			{
 				"command": "mind-reader.connectHub",
 				"title": "Connect a LEGO SPIKE Prime Hub",
 				"category": "SPIKE Prime"
