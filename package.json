@@ -83,12 +83,12 @@
 		"commands": [
 			{
 				"command": "voice-command.startStreaming",
-				"title": "Start Streaming",
+				"title": "Start Voice Commands",
 				"category": "Voice Commands"
 			},
 			{
 				"command": "mind-reader.voiceToText",
-				"title": "Voice To Text",
+				"title": "Start voice to text",
 				"category": "Mind Reader"
 			},
 			{
@@ -128,31 +128,31 @@
 			},
 			{
 				"command": "mind-reader.selectTheme",
-				"title": "Select Theme",
+				"title": "Select theme",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.openWebview",
-				"title": "Mind Reader Webview"
+				"title": "Open webview"
 			},
 			{
 				"command": "mind-reader.openKeybinds",
-				"title": "Edit Keybinds",
+				"title": "Edit keybinds",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getLineScope",
-				"title": "Get Scope of the Current Line",
+				"title": "Get Scope of the current line",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getWordsUnderCursor",
-				"title": "Get Words Under the Cursor",
+				"title": "Get Words under the cursor",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.getLineNumber",
-				"title": "Get The Current Line Number",
+				"title": "Get the current line number",
 				"category": "Mind Reader"
 			},
 			{
@@ -182,7 +182,7 @@
 			},
 			{
 				"command": "mind-reader.gotoLine",
-				"title": "Go to Line",
+				"title": "Go to line number",
 				"category": "Mind Reader"
 			},
 			{
@@ -212,12 +212,13 @@
 			},
 			{
 				"command": "mind-reader.quickOpen",
-				"title": "Go to File",
+				"title": "Go to a file in work space",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
-				"title": "View: Quick Open Recently Used Editor in Group"
+				"title": "View: Quick Open Recently Used Editor in Group",
+				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
@@ -246,27 +247,27 @@
 			},
 			{
 				"command": "mind-reader.insertForLoop",
-				"title": "Insert For Loop",
+				"title": "Insert a For Loop",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.insertForNumberLoop",
-				"title": "Insert For Number Loop",
+				"title": "Insert a For Number Loop",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.insertNestedForLoop",
-				"title": "Insert Nested For Loop",
+				"title": "Insert a Nested For Loop",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.insertNestedForNumberLoop",
-				"title": "Insert Nested For Number Loop",
+				"title": "Insert a Nested For Number Loop",
 				"category": "Mind Reader"
 			},
 			{
 				"command": "mind-reader.insertTryLadder",
-				"title": "Insert Try Ladder",
+				"title": "Insert a Try Ladder",
 				"category": "Mind Reader"
 			},
 			{
@@ -281,27 +282,27 @@
 			},
 			{
 				"command": "mind-reader.disconnectHub",
-				"title": "Disconnect LEGO SPIKE PRIME Hub",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.runProgram",
-				"title": "Run a Program on the LEGO SPIKE Prime Hub",
+				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.stopExecution",
-				"title": "Stop Running Program on the LEGO SPIKE Prime Hub",
+				"title": "Stop Running Program on the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.deleteProgram",
-				"title": "Delete a Program from the LEGO SPIKE Prime Hub",
+				"title": "Delete a Program from the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime"
 			},
 			{
 				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload Current File to the LEGO SPIKE Prime Hub",
+				"title": "Upload The Current File to the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime"
 			},
 			{

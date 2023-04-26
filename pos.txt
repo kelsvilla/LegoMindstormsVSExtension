@@ -1,613 +1,501 @@
-can you increase font size
-can you increase font size
-can --> VERB
-you --> PRON
-increase --> VERB
-font --> ADJ
-size --> NOUN
-can you start streaming
-can --> VERB
-you --> PRON
-start --> VERB
-streaming --> VERB
-can you voice to text
-can --> VERB
-you --> PRON
-voice --> VERB
-to --> PRT
-text --> VERB
-can you voice command caller
-can --> VERB
-you --> PRON
-voice --> VERB
-command --> NUM
-caller --> NOUN
-can you increase font scale
-can --> VERB
-you --> PRON
-increase --> VERB
-font --> ADJ
-scale --> NOUN
-can you decrease font scale
-can --> VERB
-you --> PRON
-decrease --> VERB
-font --> ADJ
-scale --> NOUN
-can you reset font scale
-can --> VERB
-you --> PRON
-reset --> VERB
-font --> ADJ
-scale --> NOUN
-can you increase editor scale
-can --> VERB
-you --> PRON
-increase --> VERB
-editor --> NOUN
-scale --> NOUN
-can you decrease editor scale
-can --> VERB
-you --> PRON
-decrease --> VERB
-editor --> NOUN
-scale --> NOUN
-can you reset editor scale
-can --> VERB
-you --> PRON
-reset --> VERB
-editor --> NOUN
-scale --> NOUN
-can you select theme
-can --> VERB
-you --> PRON
-select --> VERB
-theme --> NOUN
-can you mind reader webview
-can --> VERB
-you --> PRON
-mind --> VERB
-reader --> ADJ
-webview --> NOUN
-can you edit keybinds
-can --> VERB
-you --> PRON
-edit --> VERB
-keybinds --> NOUN
-can you get scope of the current line
-can --> VERB
-you --> PRON
-get --> VERB
-scope --> NOUN
-of --> ADP
-the --> DET
-current --> ADJ
-line --> NOUN
-can you get words under the cursor
-can --> VERB
-you --> PRON
-get --> VERB
-words --> NOUN
-under --> ADP
-the --> DET
-cursor --> NOUN
-can you get the current line number
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-current --> ADJ
-line --> NOUN
-number --> NOUN
-can you get the number of line indentations
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-line --> NOUN
-indentations --> NOUN
-can you get the number of leading spaces
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-leading --> VERB
-spaces --> NOUN
-can you select the leading whitespace
-can --> VERB
-you --> PRON
-select --> VERB
-the --> DET
-leading --> VERB
-whitespace --> NOUN
-can you get the number of selected lines
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-selected --> VERB
-lines --> NOUN
-can you go back in quick input
-can --> VERB
-you --> PRON
-go --> VERB
-back --> ADV
-in --> ADP
-quick --> NOUN
-input --> NOUN
-can you go to line
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-line --> NOUN
-can you go to symbol
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-symbol --> VERB
-can you navigate backward
-can --> VERB
-you --> PRON
-navigate --> VERB
-backward --> NOUN
-can you navigate forward
-can --> VERB
-you --> PRON
-navigate --> VERB
-forward --> NOUN
-can you go to next problem in files (error, warning, info)
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-next --> ADJ
-problem --> NOUN
-in --> ADP
-files --> NOUN
-( --> .
-error --> NOUN
-, --> .
-warning --> NOUN
-, --> .
-info --> NOUN
-) --> .
-can you go to previous problem in files (error, warning, info)
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-previous --> ADJ
-problem --> NOUN
-in --> ADP
-files --> NOUN
-( --> .
-error --> NOUN
-, --> .
-warning --> NOUN
-, --> .
-info --> NOUN
-) --> .
-can you go to file
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-file --> VERB
-can you view: quick open previous recently used editor in group
-can --> VERB
-you --> PRON
-view --> VERB
-: --> .
-quick --> ADJ
-open --> VERB
-previous --> ADJ
-recently --> ADV
-used --> VERB
-editor --> NOUN
-in --> ADP
-group --> NOUN
-can you go to symbol in workspace
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-symbol --> VERB
-in --> ADP
-workspace --> NOUN
-can you show problems
-can --> VERB
-you --> PRON
-show --> VERB
-problems --> NOUN
-can you show all commands
-can --> VERB
-you --> PRON
-show --> VERB
-all --> DET
-commands --> NOUN
-can you connect a lego spike prime hub
-can --> VERB
-you --> PRON
-connect --> VERB
-a --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you disconnect a lego spike prime hub
-can --> VERB
-you --> PRON
-disconnect --> VERB
-a --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you run a program on the lego spike prime hub
-can --> VERB
-you --> PRON
-run --> VERB
-a --> DET
-program --> NOUN
-on --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you stop running program on the lego spike prime hub
-can --> VERB
-you --> PRON
-stop --> VERB
-running --> VERB
-program --> NOUN
-on --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you delete a program from the lego spike prime hub
-can --> VERB
-you --> PRON
-delete --> VERB
-a --> DET
-program --> NOUN
-from --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you upload current file to the lego spike prime hub
-can --> VERB
-you --> PRON
-upload --> VERB
-current --> ADJ
-file --> NOUN
-to --> PRT
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you start voice listener
-can --> VERB
-you --> PRON
-start --> VERB
-voice --> NOUN
-listener --> NOUN
-can you increase font size
-can --> VERB
-you --> PRON
-increase --> VERB
-font --> ADJ
-size --> NOUN
-can you start streaming
-can --> VERB
-you --> PRON
-start --> VERB
-streaming --> VERB
-can you voice to text
-can --> VERB
-you --> PRON
-voice --> VERB
-to --> PRT
-text --> VERB
-can you voice command caller
-can --> VERB
-you --> PRON
-voice --> VERB
-command --> NUM
-caller --> NOUN
-can you increase font scale
-can --> VERB
-you --> PRON
-increase --> VERB
-font --> ADJ
-scale --> NOUN
-can you decrease font scale
-can --> VERB
-you --> PRON
-decrease --> VERB
-font --> ADJ
-scale --> NOUN
-can you reset font scale
-can --> VERB
-you --> PRON
-reset --> VERB
-font --> ADJ
-scale --> NOUN
-can you increase editor scale
-can --> VERB
-you --> PRON
-increase --> VERB
-editor --> NOUN
-scale --> NOUN
-can you decrease editor scale
-can --> VERB
-you --> PRON
-decrease --> VERB
-editor --> NOUN
-scale --> NOUN
-can you reset editor scale
-can --> VERB
-you --> PRON
-reset --> VERB
-editor --> NOUN
-scale --> NOUN
-can you select theme
-can --> VERB
-you --> PRON
-select --> VERB
-theme --> NOUN
-can you mind reader webview
-can --> VERB
-you --> PRON
-mind --> VERB
-reader --> ADJ
-webview --> NOUN
-can you edit keybinds
-can --> VERB
-you --> PRON
-edit --> VERB
-keybinds --> NOUN
-can you get scope of the current line
-can --> VERB
-you --> PRON
-get --> VERB
-scope --> NOUN
-of --> ADP
-the --> DET
-current --> ADJ
-line --> NOUN
-can you get words under the cursor
-can --> VERB
-you --> PRON
-get --> VERB
-words --> NOUN
-under --> ADP
-the --> DET
-cursor --> NOUN
-can you get the current line number
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-current --> ADJ
-line --> NOUN
-number --> NOUN
-can you get the number of line indentations
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-line --> NOUN
-indentations --> NOUN
-can you get the number of leading spaces
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-leading --> VERB
-spaces --> NOUN
-can you select the leading whitespace
-can --> VERB
-you --> PRON
-select --> VERB
-the --> DET
-leading --> VERB
-whitespace --> NOUN
-can you get the number of selected lines
-can --> VERB
-you --> PRON
-get --> VERB
-the --> DET
-number --> NOUN
-of --> ADP
-selected --> VERB
-lines --> NOUN
-can you go back in quick input
-can --> VERB
-you --> PRON
-go --> VERB
-back --> ADV
-in --> ADP
-quick --> NOUN
-input --> NOUN
-can you go to line
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-line --> NOUN
-can you go to symbol
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-symbol --> VERB
-can you navigate backward
-can --> VERB
-you --> PRON
-navigate --> VERB
-backward --> NOUN
-can you navigate forward
-can --> VERB
-you --> PRON
-navigate --> VERB
-forward --> NOUN
-can you go to next problem in files (error, warning, info)
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-next --> ADJ
-problem --> NOUN
-in --> ADP
-files --> NOUN
-( --> .
-error --> NOUN
-, --> .
-warning --> NOUN
-, --> .
-info --> NOUN
-) --> .
-can you go to previous problem in files (error, warning, info)
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-previous --> ADJ
-problem --> NOUN
-in --> ADP
-files --> NOUN
-( --> .
-error --> NOUN
-, --> .
-warning --> NOUN
-, --> .
-info --> NOUN
-) --> .
-can you go to file
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-file --> VERB
-can you view: quick open previous recently used editor in group
-can --> VERB
-you --> PRON
-view --> VERB
-: --> .
-quick --> ADJ
-open --> VERB
-previous --> ADJ
-recently --> ADV
-used --> VERB
-editor --> NOUN
-in --> ADP
-group --> NOUN
-can you go to symbol in workspace
-can --> VERB
-you --> PRON
-go --> VERB
-to --> PRT
-symbol --> VERB
-in --> ADP
-workspace --> NOUN
-can you show problems
-can --> VERB
-you --> PRON
-show --> VERB
-problems --> NOUN
-can you show all commands
-can --> VERB
-you --> PRON
-show --> VERB
-all --> DET
-commands --> NOUN
-can you connect a lego spike prime hub
-can --> VERB
-you --> PRON
-connect --> VERB
-a --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you disconnect a lego spike prime hub
-can --> VERB
-you --> PRON
-disconnect --> VERB
-a --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you run a program on the lego spike prime hub
-can --> VERB
-you --> PRON
-run --> VERB
-a --> DET
-program --> NOUN
-on --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you stop running program on the lego spike prime hub
-can --> VERB
-you --> PRON
-stop --> VERB
-running --> VERB
-program --> NOUN
-on --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you delete a program from the lego spike prime hub
-can --> VERB
-you --> PRON
-delete --> VERB
-a --> DET
-program --> NOUN
-from --> ADP
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you upload current file to the lego spike prime hub
-can --> VERB
-you --> PRON
-upload --> VERB
-current --> ADJ
-file --> NOUN
-to --> PRT
-the --> DET
-lego --> NOUN
-spike --> NOUN
-prime --> ADJ
-hub --> NOUN
-can you start voice listener
-can --> VERB
-you --> PRON
-start --> VERB
-voice --> NOUN
-listener --> NOUN
+Start Streaming
+can --> MD
+you --> PRP
+Start --> VB
+Streaming --> VBG
+   - Entities: 
+   - Action: start
+----------------------------------
+Voice To Text
+can --> MD
+you --> PRP
+Voice --> VB
+To --> TO
+Text --> VB
+   - Entities: 
+   - Action: voice text
+----------------------------------
+Voice Command Caller
+can --> MD
+you --> PRP
+Voice --> NNP
+Command --> NNP
+Caller --> NNP
+   - Entities: caller
+   - Action: voice
+----------------------------------
+Increase Font Scale
+can --> MD
+you --> PRP
+Increase --> VB
+Font --> NNP
+Scale --> NNP
+   - Entities: font scale
+   - Action: increase
+----------------------------------
+Decrease Font Scale
+can --> MD
+you --> PRP
+Decrease --> VB
+Font --> NNP
+Scale --> NNP
+   - Entities: font scale
+   - Action: decrease
+----------------------------------
+Reset Font Scale
+can --> MD
+you --> PRP
+Reset --> VB
+Font --> NNP
+Scale --> NNP
+   - Entities: font scale
+   - Action: reset
+----------------------------------
+Increase Editor Scale
+can --> MD
+you --> PRP
+Increase --> VB
+Editor --> NNP
+Scale --> NNP
+   - Entities: editor scale
+   - Action: increase
+----------------------------------
+Decrease Editor Scale
+can --> MD
+you --> PRP
+Decrease --> VB
+Editor --> NNP
+Scale --> NNP
+   - Entities: editor scale
+   - Action: decrease
+----------------------------------
+Reset Editor Scale
+can --> MD
+you --> PRP
+Reset --> VB
+Editor --> NNP
+Scale --> NNP
+   - Entities: editor scale
+   - Action: reset
+----------------------------------
+Select Theme
+can --> MD
+you --> PRP
+Select --> VB
+Theme --> NNP
+   - Entities: theme
+   - Action: select
+----------------------------------
+Mind Reader Webview
+can --> MD
+you --> PRP
+Mind --> VB
+Reader --> NNP
+Webview --> NNP
+   - Entities: webview
+   - Action: mind
+----------------------------------
+Edit Keybinds
+can --> MD
+you --> PRP
+Edit --> VB
+Keybinds --> NNS
+   - Entities: keybinds
+   - Action: edit
+----------------------------------
+Get Scope of the Current Line
+can --> MD
+you --> PRP
+Get --> VB
+Scope --> NNP
+of --> IN
+the --> DT
+Current --> NNP
+Line --> NNP
+   - Entities: scope current line
+   - Action: get
+----------------------------------
+Get Words Undser the Cursor
+can --> MD
+you --> PRP
+Get --> VB
+Words --> NNP
+Undser --> NNP
+the --> DT
+Cursor --> NNP
+   - Entities: words cursor
+   - Action: get
+----------------------------------
+Get The Current Line Number
+can --> MD
+you --> PRP
+Get --> VB
+The --> DT
+Current --> NNP
+Line --> NNP
+Number --> NNP
+   - Entities: line number
+   - Action: get
+----------------------------------
+Get The Number Of Line Indentations
+can --> MD
+you --> PRP
+Get --> VB
+The --> DT
+Number --> NNP
+Of --> IN
+Line --> NNP
+Indentations --> NNP
+   - Entities: number line indentations
+   - Action: get
+----------------------------------
+Get The Number Of Leading Spaces
+can --> MD
+you --> PRP
+Get --> VB
+The --> DT
+Number --> NNP
+Of --> IN
+Leading --> NNP
+Spaces --> NNS
+   - Entities: number spaces
+   - Action: get
+----------------------------------
+Select The Leading Whitespace
+can --> MD
+you --> PRP
+Select --> VB
+The --> DT
+Leading --> NNP
+Whitespace --> NNP
+   - Entities: whitespace
+   - Action: select
+----------------------------------
+Get The Number Of Selected Lines
+can --> MD
+you --> PRP
+Get --> VB
+The --> DT
+Number --> NNP
+Of --> IN
+Selected --> NNP
+Lines --> NNP
+   - Entities: number lines
+   - Action: get
+----------------------------------
+Go Back in Quick Input
+can --> MD
+you --> PRP
+Go --> VB
+Back --> RB
+in --> IN
+Quick --> NNP
+Input --> NNP
+   - Entities: quick input
+   - Action: go
+----------------------------------
+Go to line number
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+line --> NN
+number --> NN
+   - Entities: line number
+   - Action: go
+----------------------------------
+Go to Symbol
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+Symbol --> VB
+   - Entities: 
+   - Action: go symbol
+----------------------------------
+Navigate Backward
+can --> MD
+you --> PRP
+Navigate --> VB
+Backward --> NNP
+   - Entities: backward
+   - Action: navigate
+----------------------------------
+Navigate Forward
+can --> MD
+you --> PRP
+Navigate --> VB
+Forward --> NNP
+   - Entities: forward
+   - Action: navigate
+----------------------------------
+Go to Next Problem in Files (Error, Warning, Info)
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+Next --> NNP
+Problem --> NNP
+in --> IN
+Files --> NNP
+( --> (
+Error --> NNP
+, --> ,
+Warning --> NNP
+, --> ,
+Info --> NNP
+) --> )
+   - Entities: next problem files error warning info
+   - Action: go
+----------------------------------
+Go to Previous Problem in Files (Error, Warning, Info)
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+Previous --> NNP
+Problem --> NNP
+in --> IN
+Files --> NNP
+( --> (
+Error --> NNP
+, --> ,
+Warning --> NNP
+, --> ,
+Info --> NNP
+) --> )
+   - Entities: previous problem files error warning info
+   - Action: go
+----------------------------------
+Go to a file in work space
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+a --> DT
+file --> NN
+in --> IN
+work --> NN
+space --> NN
+   - Entities: file work space
+   - Action: go
+----------------------------------
+View: Quick Open Recently Used Editor in Group
+can --> MD
+you --> PRP
+View --> VB
+: --> :
+Quick --> NNP
+Open --> NNP
+Recently --> NNP
+Used --> VBD
+Editor --> NNP
+in --> IN
+Group --> NNP
+   - Entities: editor group
+   - Action: view open
+----------------------------------
+Go to a symbol in Workspace
+can --> MD
+you --> PRP
+Go --> VB
+to --> TO
+a --> DT
+symbol --> NN
+in --> IN
+Workspace --> NNP
+   - Entities: symbol workspace
+   - Action: go
+----------------------------------
+Show Problems
+can --> MD
+you --> PRP
+Show --> VB
+Problems --> NNS
+   - Entities: problems
+   - Action: show
+----------------------------------
+Show All Commands
+can --> MD
+you --> PRP
+Show --> VB
+All --> DT
+Commands --> NNS
+   - Entities: commands
+   - Action: show
+----------------------------------
+Insert If Ladder
+can --> MD
+you --> PRP
+Insert --> VB
+If --> IN
+Ladder --> NNP
+   - Entities: ladder
+   - Action: insert
+----------------------------------
+Insert If Else Ladder
+can --> MD
+you --> PRP
+Insert --> VB
+If --> IN
+Else --> JJ
+Ladder --> NN
+   - Entities: else ladder
+   - Action: insert
+----------------------------------
+Insert a For Loop
+can --> MD
+you --> PRP
+Insert --> VB
+a --> DT
+For --> IN
+Loop --> NNP
+   - Entities: loop
+   - Action: insert
+----------------------------------
+Insert a For Number Loop
+can --> MD
+you --> PRP
+Insert --> VB
+a --> DT
+For --> IN
+Number --> NNP
+Loop --> NNP
+   - Entities: number loop
+   - Action: insert
+----------------------------------
+Insert a Nested For Loop
+can --> MD
+you --> PRP
+Insert --> VB
+a --> DT
+Nested --> NNP
+For --> IN
+Loop --> NNP
+   - Entities: loop
+   - Action: insert
+----------------------------------
+Insert a Nested For Number Loop
+can --> MD
+you --> PRP
+Insert --> VB
+a --> DT
+Nested --> NNP
+For --> IN
+Number --> NNP
+Loop --> NNP
+   - Entities: number loop
+   - Action: insert
+----------------------------------
+Insert a Try Ladder
+can --> MD
+you --> PRP
+Insert --> VB
+a --> DT
+Try --> NNP
+Ladder --> NNP
+   - Entities: try ladder
+   - Action: insert
+----------------------------------
+Insert Mindstorm Imports
+can --> MD
+you --> PRP
+Insert --> VB
+Mindstorm --> NNP
+Imports --> NNS
+   - Entities: mindstorm imports
+   - Action: insert
+----------------------------------
+Connect to the LEGO SPIKE PRIME Hub
+can --> MD
+you --> PRP
+Connect --> VB
+to --> TO
+the --> DT
+LEGO --> NNP
+SPIKE --> NNP
+PRIME --> NNP
+Hub --> NNP
+   - Entities: lego spike prime hub
+   - Action: connect
+----------------------------------
+Disconnect LEGO SPIKE PRIME Hub
+can --> MD
+you --> PRP
+Disconnect --> VB
+LEGO --> NNP
+SPIKE --> NNP
+PRIME --> NNP
+Hub --> NNP
+   - Entities: lego prime hub
+   - Action: disconnect
+----------------------------------
+Run a Program on the LEGO SPIKE Prime Hub
+can --> MD
+you --> PRP
+Run --> VB
+a --> DT
+Program --> NN
+on --> IN
+the --> DT
+LEGO --> NNP
+SPIKE --> NNP
+Prime --> NNP
+Hub --> NNP
+   - Entities: program lego spike prime hub
+   - Action: run
+----------------------------------
+Stop Running Program on the LEGO SPIKE Prime Hub
+can --> MD
+you --> PRP
+Stop --> VB
+Running --> VBG
+Program --> NNP
+on --> IN
+the --> DT
+LEGO --> NNP
+SPIKE --> NNP
+Prime --> NNP
+Hub --> NNP
+   - Entities: program lego spike prime hub
+   - Action: stop
+----------------------------------
+Delete a Program from the LEGO SPIKE Prime Hub
+can --> MD
+you --> PRP
+Delete --> VB
+a --> DT
+Program --> NN
+from --> IN
+the --> DT
+LEGO --> NNP
+SPIKE --> NNP
+Prime --> NNP
+Hub --> NNP
+   - Entities: program lego spike prime hub
+   - Action: delete
+----------------------------------
+Upload Current File to the LEGO SPIKE Prime Hub
+can --> MD
+you --> PRP
+Upload --> VB
+Current --> NNP
+File --> NNP
+to --> TO
+the --> DT
+LEGO --> NNP
+SPIKE --> NNP
+Prime --> NNP
+Hub --> NNP
+   - Entities: current file lego spike prime hub
+   - Action: upload
+----------------------------------
+Start voice listener
+can --> MD
+you --> PRP
+Start --> VB
+voice --> NN
+listener --> NN
+   - Entities: voice listener
+   - Action: start
+----------------------------------

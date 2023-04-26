@@ -12,12 +12,12 @@ get,retrieve,obtain,fetch,access,acquire
 scope,context,range,extent,boundaries,limits
 current,present,existing,ongoing,active,in use,latest
 line,row,sequence,series,queue
-words,terms,vocabulary,language,lexicon,phrasing
+words,terms,vocabulary,language,lexicon,phrasing,texts
 cursor,pointer,marker,indicator,arrow
 number,count,quantity,figure,total,amount
 indentations,spacing,tabulation,alignment,layout,formatting
 leading,initial,first,foremost,primary,top
-spaces,gaps,intervals,breaks,empty spaces,void
+spaces,gaps,intervals,breaks,empty spaces,void,white space
 whitespace,blank space,empty space,padding,margin
 selected,highlighted,picked,chosen,opted for,marked
 go back,return,backtrack,reverse,undo,retreat
@@ -40,3 +40,5 @@ run,execute,launch,start,initiate,activate
 stop running,halt,pause,suspend,end,terminate
 delete,remove,erase,clear,eliminate,wipe out
 upload,transfer,send,copy,move,transmit
+workspace,current folder
+command,action

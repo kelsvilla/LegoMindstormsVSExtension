@@ -1,0 +1,3579 @@
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: 
+cmd_action: 
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities:  vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities:  vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities:  vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities:  vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities:  vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities:  vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities:  vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities:  vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities:  vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities:  vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities:  vs scope
+ **comparing entities:  vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities:  vs words
+ **comparing entities:  vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities:  vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities:  vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities:  vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities:  vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities:  vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities:  vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities:  vs next problem
+ **comparing entities:  vs files
+ **comparing entities:  vs error
+ **comparing entities:  vs warning
+ **comparing entities:  vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities:  vs previous problem
+ **comparing entities:  vs files
+ **comparing entities:  vs error
+ **comparing entities:  vs warning
+ **comparing entities:  vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities:  vs file
+ **comparing entities:  vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities:  vs editor
+ **comparing entities:  vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities:  vs symbol
+ **comparing entities:  vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities:  vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities:  vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities:  vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities:  vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities:  vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities:  vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities:  vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities:  vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities:  vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities:  vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities:  vs lego
+ **comparing entities:  vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities:  vs current file
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities:  vs voice listener
+cmd_entities: 
+cmd_action: 
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities:  vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities:  vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities:  vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities:  vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities:  vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities:  vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities:  vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities:  vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities:  vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities:  vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities:  vs scope
+ **comparing entities:  vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities:  vs words
+ **comparing entities:  vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities:  vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities:  vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities:  vs number
+ **comparing entities:  vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities:  vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities:  vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities:  vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities:  vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities:  vs next problem
+ **comparing entities:  vs files
+ **comparing entities:  vs error
+ **comparing entities:  vs warning
+ **comparing entities:  vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities:  vs previous problem
+ **comparing entities:  vs files
+ **comparing entities:  vs error
+ **comparing entities:  vs warning
+ **comparing entities:  vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities:  vs file
+ **comparing entities:  vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities:  vs editor
+ **comparing entities:  vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities:  vs symbol
+ **comparing entities:  vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities:  vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities:  vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities:  vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities:  vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities:  vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities:  vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities:  vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities:  vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities:  vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities:  vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities:  vs lego
+ **comparing entities:  vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities:  vs program
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities:  vs current file
+ **comparing entities:  vs lego spike
+ **comparing entities:  vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities:  vs voice listener
+cmd_entities: font
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font vs font scale
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font vs scope
+ **comparing entities: font vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font vs words
+ **comparing entities: font vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font vs number
+ **comparing entities: font vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font vs number
+ **comparing entities: font vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font vs number
+ **comparing entities: font vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font vs next problem
+ **comparing entities: font vs files
+ **comparing entities: font vs error
+ **comparing entities: font vs warning
+ **comparing entities: font vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font vs previous problem
+ **comparing entities: font vs files
+ **comparing entities: font vs error
+ **comparing entities: font vs warning
+ **comparing entities: font vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font vs file
+ **comparing entities: font vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font vs editor
+ **comparing entities: font vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font vs symbol
+ **comparing entities: font vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font vs lego spike
+ **comparing entities: font vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font vs lego
+ **comparing entities: font vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font vs program
+ **comparing entities: font vs lego spike
+ **comparing entities: font vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font vs program
+ **comparing entities: font vs lego spike
+ **comparing entities: font vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font vs program
+ **comparing entities: font vs lego spike
+ **comparing entities: font vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font vs current file
+ **comparing entities: font vs lego spike
+ **comparing entities: font vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: font scale
+cmd_action: increase
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: font scale vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: font scale vs font scale
+ --entity matched
+ --Action Matched
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: font scale vs font scale
+ --entity matched
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: font scale vs font scale
+ --entity matched
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: font scale vs editor scale
+ --Action Matched
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: font scale vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: font scale vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: font scale vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: font scale vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: font scale vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: font scale vs scope
+ **comparing entities: font scale vs current line
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: font scale vs words
+ **comparing entities: font scale vs cursor
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: font scale vs line number
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs line indentations
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs spaces
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: font scale vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: font scale vs number
+ **comparing entities: font scale vs lines
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: font scale vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: font scale vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: font scale vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: font scale vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs next problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: font scale vs previous problem
+ **comparing entities: font scale vs files
+ **comparing entities: font scale vs error
+ **comparing entities: font scale vs warning
+ **comparing entities: font scale vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: font scale vs file
+ **comparing entities: font scale vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: font scale vs editor
+ **comparing entities: font scale vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: font scale vs symbol
+ **comparing entities: font scale vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: font scale vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: font scale vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: font scale vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: font scale vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: font scale vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: font scale vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: font scale vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: font scale vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: font scale vs lego
+ **comparing entities: font scale vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: font scale vs program
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: font scale vs current file
+ **comparing entities: font scale vs lego spike
+ **comparing entities: font scale vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: font scale vs voice listener
+cmd_entities: words
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+cmd_entities: words
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+cmd_entities: words
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+cmd_entities: words
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+cmd_entities: words cursor
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+ **comparing entities: cursor vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+ **comparing entities: cursor vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+ **comparing entities: cursor vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+ **comparing entities: cursor vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ **comparing entities: cursor vs scope
+ **comparing entities: cursor vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ **comparing entities: cursor vs words
+ **comparing entities: cursor vs cursor
+ --entity matched
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ **comparing entities: cursor vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+ **comparing entities: cursor vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+ **comparing entities: cursor vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+ **comparing entities: cursor vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+ **comparing entities: cursor vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+ **comparing entities: cursor vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+ **comparing entities: cursor vs next problem
+ **comparing entities: cursor vs files
+ **comparing entities: cursor vs error
+ **comparing entities: cursor vs warning
+ **comparing entities: cursor vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+ **comparing entities: cursor vs previous problem
+ **comparing entities: cursor vs files
+ **comparing entities: cursor vs error
+ **comparing entities: cursor vs warning
+ **comparing entities: cursor vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+ **comparing entities: cursor vs file
+ **comparing entities: cursor vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+ **comparing entities: cursor vs editor
+ **comparing entities: cursor vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+ **comparing entities: cursor vs symbol
+ **comparing entities: cursor vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+ **comparing entities: cursor vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+ **comparing entities: cursor vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+ **comparing entities: cursor vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+ **comparing entities: cursor vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+ **comparing entities: cursor vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+ **comparing entities: cursor vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+ **comparing entities: cursor vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+ **comparing entities: cursor vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+ **comparing entities: cursor vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+ **comparing entities: cursor vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs lego
+ **comparing entities: cursor vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs current file
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+ **comparing entities: cursor vs voice listener
+cmd_entities: words cursor
+cmd_action: get
+-----Comparision with ext --- 
+Start Streaming
+ - Entities: 
+ - Action: start
+Voice To Text
+ - Entities: 
+ - Action: voice text
+Voice Command Caller
+ - Entities: caller
+ - Action: voice
+ **comparing entities: words vs caller
+ **comparing entities: cursor vs caller
+Increase Font Scale
+ - Entities: font scale
+ - Action: increase
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Decrease Font Scale
+ - Entities: font scale
+ - Action: decrease
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Reset Font Scale
+ - Entities: font scale
+ - Action: reset
+ **comparing entities: words vs font scale
+ **comparing entities: cursor vs font scale
+Increase Editor Scale
+ - Entities: editor scale
+ - Action: increase
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Decrease Editor Scale
+ - Entities: editor scale
+ - Action: decrease
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Reset Editor Scale
+ - Entities: editor scale
+ - Action: reset
+ **comparing entities: words vs editor scale
+ **comparing entities: cursor vs editor scale
+Select Theme
+ - Entities: theme
+ - Action: select
+ **comparing entities: words vs theme
+ **comparing entities: cursor vs theme
+Mind Reader Webview
+ - Entities: webview
+ - Action: mind
+ **comparing entities: words vs webview
+ **comparing entities: cursor vs webview
+Edit Keybinds
+ - Entities: keybinds
+ - Action: edit
+ **comparing entities: words vs keybinds
+ **comparing entities: cursor vs keybinds
+Get Scope of the Current Line
+ - Entities: scope current line
+ - Action: get
+ **comparing entities: words vs scope
+ **comparing entities: words vs current line
+ **comparing entities: cursor vs scope
+ **comparing entities: cursor vs current line
+ --Action Matched
+Get Words Under the Cursor
+ - Entities: words cursor
+ - Action: get
+ **comparing entities: words vs words
+ --entity matched
+ **comparing entities: words vs cursor
+ **comparing entities: cursor vs words
+ **comparing entities: cursor vs cursor
+ --entity matched
+ --Action Matched
+Get The Current Line Number
+ - Entities: line number
+ - Action: get
+ **comparing entities: words vs line number
+ **comparing entities: cursor vs line number
+ --Action Matched
+Get The Number Of Line Indentations
+ - Entities: number line indentations
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs line indentations
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs line indentations
+ --Action Matched
+Get The Number Of Leading Spaces
+ - Entities: number spaces
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs spaces
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs spaces
+ --Action Matched
+Select The Leading Whitespace
+ - Entities: whitespace
+ - Action: select
+ **comparing entities: words vs whitespace
+ **comparing entities: cursor vs whitespace
+Get The Number Of Selected Lines
+ - Entities: number lines
+ - Action: get
+ **comparing entities: words vs number
+ **comparing entities: words vs lines
+ **comparing entities: cursor vs number
+ **comparing entities: cursor vs lines
+ --Action Matched
+Go Back in Quick Input
+ - Entities: quick input
+ - Action: go
+ **comparing entities: words vs quick input
+ **comparing entities: cursor vs quick input
+Go to line number
+ - Entities: line number
+ - Action: go
+ **comparing entities: words vs line number
+ **comparing entities: cursor vs line number
+Go to Symbol
+ - Entities: 
+ - Action: go symbol
+Navigate Backward
+ - Entities: backward
+ - Action: navigate
+ **comparing entities: words vs backward
+ **comparing entities: cursor vs backward
+Navigate Forward
+ - Entities: forward
+ - Action: navigate
+ **comparing entities: words vs forward
+ **comparing entities: cursor vs forward
+Go to Next Problem in Files (Error, Warning, Info)
+ - Entities: next problem files error warning info
+ - Action: go
+ **comparing entities: words vs next problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+ **comparing entities: cursor vs next problem
+ **comparing entities: cursor vs files
+ **comparing entities: cursor vs error
+ **comparing entities: cursor vs warning
+ **comparing entities: cursor vs info
+Go to Previous Problem in Files (Error, Warning, Info)
+ - Entities: previous problem files error warning info
+ - Action: go
+ **comparing entities: words vs previous problem
+ **comparing entities: words vs files
+ **comparing entities: words vs error
+ **comparing entities: words vs warning
+ **comparing entities: words vs info
+ **comparing entities: cursor vs previous problem
+ **comparing entities: cursor vs files
+ **comparing entities: cursor vs error
+ **comparing entities: cursor vs warning
+ **comparing entities: cursor vs info
+Go to a file in work space
+ - Entities: file work space
+ - Action: go
+ **comparing entities: words vs file
+ **comparing entities: words vs work space
+ **comparing entities: cursor vs file
+ **comparing entities: cursor vs work space
+View: Quick Open Recently Used Editor in Group
+ - Entities: editor group
+ - Action: view open
+ **comparing entities: words vs editor
+ **comparing entities: words vs group
+ **comparing entities: cursor vs editor
+ **comparing entities: cursor vs group
+Go to a symbol in Workspace
+ - Entities: symbol workspace
+ - Action: go
+ **comparing entities: words vs symbol
+ **comparing entities: words vs workspace
+ **comparing entities: cursor vs symbol
+ **comparing entities: cursor vs workspace
+Show Problems
+ - Entities: problems
+ - Action: show
+ **comparing entities: words vs problems
+ **comparing entities: cursor vs problems
+Show All Commands
+ - Entities: commands
+ - Action: show
+ **comparing entities: words vs commands
+ **comparing entities: cursor vs commands
+Insert If Ladder
+ - Entities: ladder
+ - Action: insert
+ **comparing entities: words vs ladder
+ **comparing entities: cursor vs ladder
+Insert If Else Ladder
+ - Entities: else ladder
+ - Action: insert
+ **comparing entities: words vs else ladder
+ **comparing entities: cursor vs else ladder
+Insert a For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+ **comparing entities: cursor vs loop
+Insert a For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+ **comparing entities: cursor vs number loop
+Insert a Nested For Loop
+ - Entities: loop
+ - Action: insert
+ **comparing entities: words vs loop
+ **comparing entities: cursor vs loop
+Insert a Nested For Number Loop
+ - Entities: number loop
+ - Action: insert
+ **comparing entities: words vs number loop
+ **comparing entities: cursor vs number loop
+Insert a Try Ladder
+ - Entities: try ladder
+ - Action: insert
+ **comparing entities: words vs try ladder
+ **comparing entities: cursor vs try ladder
+Insert Mindstorm Imports
+ - Entities: mindstorm imports
+ - Action: insert
+ **comparing entities: words vs mindstorm imports
+ **comparing entities: cursor vs mindstorm imports
+Connect to the LEGO SPIKE PRIME Hub
+ - Entities: lego spike prime hub
+ - Action: connect
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Disconnect LEGO SPIKE PRIME Hub
+ - Entities: lego prime hub
+ - Action: disconnect
+ **comparing entities: words vs lego
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs lego
+ **comparing entities: cursor vs prime hub
+Run a Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: run
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Stop Running Program on the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: stop
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Delete a Program from the LEGO SPIKE Prime Hub
+ - Entities: program lego spike prime hub
+ - Action: delete
+ **comparing entities: words vs program
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs program
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Upload Current File to the LEGO SPIKE Prime Hub
+ - Entities: current file lego spike prime hub
+ - Action: upload
+ **comparing entities: words vs current file
+ **comparing entities: words vs lego spike
+ **comparing entities: words vs prime hub
+ **comparing entities: cursor vs current file
+ **comparing entities: cursor vs lego spike
+ **comparing entities: cursor vs prime hub
+Start voice listener
+ - Entities: voice listener
+ - Action: start
+ **comparing entities: words vs voice listener
+ **comparing entities: cursor vs voice listener

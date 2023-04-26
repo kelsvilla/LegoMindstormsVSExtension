@@ -6,24 +6,11 @@ import speech_recognition as sr
 import socket
 import hashlib
 import base64
-from tkinter import *
+import colorama
 
-from nlp import entity_action_recognizer,identify_command,syns_load
 
-def ui_test():
-    root = Tk()
-    w = Canvas(root, width=200, height=200)
-    w.pack()
 
-    # Draw the speech bubble
-    w.create_oval(50,50,150,150,fill="white")
-
-    # Draw the wavy lines
-    w.create_arc(50,50,150,150,start=180,extent=180,style=ARC)
-    w.create_arc(50,50,150,150,start=0,extent=180,style=ARC)
-
-    # Show the icon
-    root.mainloop()
+from nlp import entity_action_recognizer,identify_command2,syns_load,get_synomymns
 
 
 
@@ -49,7 +36,7 @@ def voice_to_text():
 def handle_syn_ack(clientsocket):
     #syn msg is received from the client upon successful connection
     syn_request = clientsocket.recv(2000)
-    print('syn_request ',syn_request)
+    #print('syn_request ',syn_request)
     request = syn_request.decode('utf-8')
     #collect key to generate accept key
     keys_pos = request.find('Sec-WebSocket-Key')
@@ -61,13 +48,14 @@ def handle_syn_ack(clientsocket):
 
     #send ack message to client
     clientsocket.sendall(b'HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: '+accept+b'\r\n\r\n')
-    print('Handshake Complete with client ',clientsocket.getsockname())
+    #print('Handshake Complete with client ',clientsocket.getsockname())
+    print('Ready to communicate with MindReader\n')
 #test
 def test():
     syns = syns_load()
-    uin = input('Enter your command: ')
+    uin = voice_to_text()
     entities,action = entity_action_recognizer('can you '+ uin,True)
-    command_to_run = identify_command(entities,action)
+    command_to_run = identify_command2(entities,action)
     print(command_to_run)
 
 
@@ -75,28 +63,51 @@ def test():
 #Port to connect to VSCode using.
 def tcp_connection():
     TCP_PORT = 12152
-    print('Starting server .. [pid] : ',os.getpid())
+    print('Voice Server Activated [pid] ',os.getpid())
     #Start server socket to communicate.
     serversocket = socket.socket()
    
     serversocket.bind(('', TCP_PORT))
     serversocket.listen()
-    print('Server Socket Created and Listening: \n Server:',serversocket)
+    #print('Server Socket Created and Listening: \n Server:',serversocket)
     clientsocket, clientaddr = serversocket.accept()
-    print('[connected with client]: ',clientsocket)
+    print('MindReader connected')
     handle_syn_ack(clientsocket) #initail handshake
     #Connect to VSCode client code.
     syns = syns_load()
     user_input = ''
+    print()
+    print('Please select the command input mode.\n')
+    
+    mode = 1
+    mode = input('   [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n')
+    
     while user_input!='Exit': # TO-DO: compare with messag from voice-to-text later.
         #send message to client
-        user_input = voice_to_text()
-        entities,action = entity_action_recognizer('can you '+ user_input,True)
-        command_to_run = identify_command(entities,action)
-        msg = bytes(command_to_run.encode('utf-8'))
-        print('sending message to client: ',msg)
-        msg_len = int(hex(len(msg)),16)
-    
+        if int(mode) == 1:
+            print('[Text Mode]')
+            user_input = input('Enter your command: ')
+        elif int(mode) == 2:
+            user_input = voice_to_text()
+        entities,actions,preposition = entity_action_recognizer('can you '+ user_input,True)
+        known_entities = []
+        new_entities = []
+        for entity in entities:
+            known_entities.append((entity,get_synomymns(syns,[entity])))
+        for knw_ents in known_entities:
+            #print('Known Entities after searching for root words: ',knw_ents[1])
+            new_entities.append(knw_ents[1])
+        if len(new_entities) == len(entities):
+            command_to_run,msg = identify_command2(new_entities,actions,preposition)
+            response = command_to_run + ',' + msg
+            #print('********',msg)
+        else:
+            command_to_run,msg = identify_command2(entities,actions,preposition)
+            response = command_to_run + ',' + msg
+        response = bytes(response.encode('utf-8'))
+        print('Action Completed: ',msg)
+        response_len = int(hex(len(response)),16)
+        print()
         #a message should be sent following the websocket protocol.
 
         # Create a websocket frame containing the message
@@ -104,9 +115,9 @@ def tcp_connection():
         
         # Append frame header, (use hexadecimal) 
         frame.append(0x81)  # FIN + OpCode (1 byte)
-        frame.append(msg_len)  # Payload length (msg_len byte), 
+        frame.append(response_len)  # Payload length (msg_len byte), 
         # Append payload
-        frame.extend(msg)
+        frame.extend(response)
         
         #send message to client
         clientsocket.send(frame)
