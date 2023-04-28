@@ -270,8 +270,8 @@
 				"category": "Mind Reader"
 			},
 			{
-				"command": "mind-reader.insertMindstormImport",
-				"title": "Insert Mindstorm Imports",
+				"command": "mind-reader.insertev3Import",
+				"title": "Insert ev3 Imports",
 				"category": "Mind Reader"
 			},
 			{

@@ -32,8 +32,8 @@ export const voicetotextCommands: CommandEntry[] = [
         callback: insertTryLadder,
     },
     {
-        name: 'mind-reader.insertMindstormImport',
-        callback: insertMindstormImport,
+        name: 'mind-reader.insertev3Import',
+        callback: insertev3Import,
     },
     {
         name: 'mind-reader.insertWhileLoop',
@@ -127,13 +127,13 @@ function insertForLoop(): void {
             }
             // Set text to add
             let text = "\n" + indenthandler
-            + "for i in list:\n" + indenthandler
+            + "for i in forlist:\n" + indenthandler
             + "\tprint(i)";
             // Insert created text
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created for loop through all members of list.');
+            window.showInformationMessage('Created for loop through all members of list called for list.');
     }
     else {
         // Editor is not defined
@@ -204,15 +204,15 @@ function insertNestedForLoop(): void {
             }
             // Set text to add
             let text = "\n" + indenthandler
-            + "for i in list:\n" + indenthandler
-            + "\tfor j in list2:\n" + indenthandler
+            + "for i in forlist:\n" + indenthandler
+            + "\tfor j in forlist2:\n" + indenthandler
             + "\t\tprint(i)\n" + indenthandler
             + "\tprint(j)";
             // Insert created text
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created nested for loop through all members of list and list 2.');
+            window.showInformationMessage('Created nested for loop through all members of for list and for list 2.');
     }
     else {
         // Editor is not defined
@@ -327,7 +327,7 @@ function insertTryLadder(): void {
 }
 
 // Write standard Mindstorm imports to text editor
-function insertMindstormImport(): void {
+function insertev3Import(): void {
     // Only effect current open text editor
     const editor: TextEditor | undefined = window.activeTextEditor;
     // If editor is defined
@@ -349,7 +349,7 @@ function insertMindstormImport(): void {
             editor.edit(editBuilder => {
                 editBuilder.insert(new Position(0, 0), text);
             });
-        window.showInformationMessage('Inserted standard MindStorms imports and setup features for use with robot systems.');
+        window.showInformationMessage('Inserted standard ev3 imports and basics for use with robot systems.');
     }
     else {
         // Editor is not defined
@@ -372,13 +372,13 @@ function insertWhileLoop(): void {
             // Set text to add
             let text = '\n' + indenthandler
             + 'whiledone = False\n' + indenthandler
-            + 'while !whiledone:\n' + indenthandler
+            + 'while whiledone != True:\n' + indenthandler
             + '\tprint("Action")';
             // Insert created text
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created while loop that will continue until variable while done is false.');
+            window.showInformationMessage('Created while loop that will run until variable while done is false.');
     }
     else {
         // Editor is not defined
@@ -409,7 +409,7 @@ function insertDoWhileLoop(): void {
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created do while loop that will continue until variable breakervar is true.');
+            window.showInformationMessage('Created do while loop that will run until variable breakervar is true.');
     }
     else {
         // Editor is not defined
