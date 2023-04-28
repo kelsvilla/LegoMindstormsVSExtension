@@ -333,11 +333,18 @@ function insertMindstormImport(): void {
     // If editor is defined
     if (editor) {
             // Set text to add
-            let text = "from mindstorms import MSHub, Motor, MotorPair, ColorSensor, DistanceSensor, App\n"
-            + "from minstorms.control import wait_for_seconds, wait_until, Timer\n"
-            + "from minstorms.operator import greater_than, greater_than_or_equal_to, less_than, less_than_or_equal_to, equal_to, not_equal_to\n"
+            let text = "#!/usr/bin/env pybricks-micropython\n\n"
+            + "from pybricks import ev3brick as brick\n"
+            + "from pybricks.ev3devices import Motor, TouchSensor, ColorSensor, InfraredSensor, UltrasonicSensor, GyroSensor\n"
+            + "from pybricks.parameters import Port, Stop, Direction, Button, Color, SoundFile, ImageFile, Align\n"
+            + "from pybricks.tools import print, wait, StopWatch\n"
+            + "from pybricks.robotics import DriveBase\n\n"
             + "import math\n\n"
-            + "hub = MSHub()\nmovement_motors = MotorPair('A','B')\nmovement_motors.set_default_speed(50)\ndistance_sensor = DistanceSensor('D')\n";
+            + "left_motor = Motor(Port.B)\n"
+            + "right_motor = Motor(Port.C)\n"
+            + "wheel_diameter = 56\n"
+            + "axle_track = 118\n\n"
+            + "evmsbrick = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)\n\n";
             // Insert created text
             editor.edit(editBuilder => {
                 editBuilder.insert(new Position(0, 0), text);
