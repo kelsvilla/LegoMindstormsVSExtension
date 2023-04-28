@@ -176,10 +176,11 @@ def identify_command2(entities,actions,preposition):
         print('command not recognized.')
         return 'NULL','NULL'
 
-def buildEntities(root_entities):
-    for root_entity in root_entities:
-        
-        
+#def buildEntities(root_entities):
+ #   for root_entity in root_entities:
+
+
+
 
 
 def test():
@@ -217,11 +218,11 @@ def syn_test(sentence):
     for entity in entities:
         root_entities.append(alternatives(syns,[entity]))
     print(len(root_entities))
-    buildEntities(root_entities)
+   # buildEntities(root_entities)
 #test()
-cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']
-for cmd in cmds:
-    syn_test(cmd)
+#cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']
+#for cmd in cmds:
+ #   syn_test(cmd)
 
 
 
