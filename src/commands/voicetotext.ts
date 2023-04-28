@@ -181,7 +181,8 @@ async function insertForNumberLoop(): Promise<void> {
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created for loop from 0 to ${end}.');
+            let output = 'Created for loop from 0 to ' + end + '.';
+            window.showInformationMessage(output);
     }
     else {
         // Editor is not defined
@@ -280,6 +281,8 @@ async function insertNestedForNumberLoop(): Promise<void> {
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
+        let output = 'Created nested for loops, outside from 0 to ' + end1 + ', inside from 0 to ' + end2 + '.';
+        window.showInformationMessage(output);
     }
     else {
         // Editor is not defined
@@ -315,6 +318,7 @@ function insertTryLadder(): void {
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
+        window.showInformationMessage('Inserted a try and except ladder for handling exceptions.');
     }
     else {
         // Editor is not defined
@@ -338,6 +342,7 @@ function insertMindstormImport(): void {
             editor.edit(editBuilder => {
                 editBuilder.insert(new Position(0, 0), text);
             });
+        window.showInformationMessage('Inserted standard MindStorms imports and setup features for use with robot systems.');
     }
     else {
         // Editor is not defined
@@ -397,7 +402,7 @@ function insertDoWhileLoop(): void {
             editor.edit(editBuilder => {
                 editBuilder.insert(editor.selection.active, text);
             });
-            window.showInformationMessage('Created do while loop that will continue until variable while done is false.');
+            window.showInformationMessage('Created do while loop that will continue until variable breakervar is true.');
     }
     else {
         // Editor is not defined
