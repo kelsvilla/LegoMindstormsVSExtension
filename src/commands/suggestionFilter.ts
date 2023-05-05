@@ -100,8 +100,10 @@ export async function suggestionFilter() {
     {
       selectQp.items = variables;
     }
-    //todo -- harish
-    //follow the above if else pattern and complete the rest
+    else if(selectedKind==='Fields')
+    {
+      selectQp.items = fields;
+    }
 		selectQp.show();
 		selectQp.onDidAccept(()=>{
 		activeEditor.edit(editBuilder =>{
