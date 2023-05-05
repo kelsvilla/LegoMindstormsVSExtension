@@ -1,719 +1,685 @@
 {
-	"name": "mind-reader",
-	"displayName": "Mind Reader",
-	"homepage": "https://github.com/jcode999/Mind_Reader/wiki",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/jcode999/Mind_Reader"
-	},
-	"bugs": {
-		"type": "git",
-		"url": "https://github.com/jcode999/Mind_Reader/issues"
-	},
-	"contributors": [
-		{
-			"name": "Jake Grossman",
-			"email": "JacobGrossman2@my.unt.edu"
-		},
-		{
-			"name": "Cal Wooten",
-			"email": "calwooten@my.unt.edu"
-		},
-		{
-			"name": "Josiah Mosesn",
-			"email": "josiahmoses@my.unt.edu"
-		},
-		{
-			"name": "Sophia Drewfs",
-			"email": "sophiadrewfs@my.unt.edu"
-		},
-		{
-			"name": "John Breaux",
-			"email": "JohnBreaux@my.unt.edu"
-		},
-		{
-			"name": "Thomas Lane",
-			"email": "ThomasLane2@my.unt.edu"
-		},
-		{
-			"name": "Ryan Tolbert",
-			"email": "RyanTolbert@my.unt.edu"
-		},
-		{
-			"name": "Kendrick Johnson",
-			"email": "KendrickJohnson@my.unt.edu"
-		},
-		{
-			"name": "Pedro Alvarez",
-			"email": "PedroAlvarez3@my.unt.edu"
-		},
-		{
-			"name": "Zachary Chenausky",
-			"email": "zacharychenausky@my.unt.edu"
-		},
-		{
-			"name": "Jigme Rinji Sherpa",
-			"email": "jigmesherpa@my.unt.edu"
-		},
-		{
-			"name": "Clay Lewis",
-			"email": "ClayLewis2@my.unt.edu"
-		},
-		{
-			"name": "Haris Javed",
-			"email": "harisjaved@my.unt.edu"
-		},
-		{
-			"name": "Saad Javed",
-			"email": "saadjaved@my.unt.edu"
-		}
-	],
-	"version": "2.0.1",
-	"engines": {
-		"vscode": "^1.66.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onStartupFinished"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "voice-command.startStreaming",
-				"title": "Start Voice Commands",
-				"category": "Voice Commands"
-			},
-			{
-				"command": "mind-reader.voiceToText",
-				"title": "Start voice to text",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.voiceCommandCaller",
-				"title": "Voice Command Caller",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.increaseFontScale",
-				"title": "Increase Font Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.decreaseFontScale",
-				"title": "Decrease Font Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.resetFontScale",
-				"title": "Reset Font Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.increaseEditorScale",
-				"title": "Increase Editor Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.decreaseEditorScale",
-				"title": "Decrease Editor Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.resetEditorScale",
-				"title": "Reset Editor Scale",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.selectTheme",
-				"title": "Select theme",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.openWebview",
-				"title": "Open webview"
-			},
-			{
-				"command": "mind-reader.openKeybinds",
-				"title": "Edit keybinds",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getLineScope",
-				"title": "Get Scope of the current line",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getWordsUnderCursor",
-				"title": "Get Words under the cursor",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getLineNumber",
-				"title": "Get the current line number",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getIndent",
-				"title": "Get The Number Of Line Indentations",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getLeadingSpaces",
-				"title": "Get The Number Of Leading Spaces",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.selectLeadingWhitespace",
-				"title": "Select The Leading Whitespace",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getNumberOfSelectedLines",
-				"title": "Get The Number Of Selected Lines",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.getQuickInputBack",
-				"title": "Go Back in Quick Input",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.gotoLine",
-				"title": "Go to line number",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.gotoSymbol",
-				"title": "Go to Symbol",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.navigateBack",
-				"title": "Navigate Backward",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.navigateForward",
-				"title": "Navigate Forward",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.nextInFiles",
-				"title": "Go to Next Problem in Files (Error, Warning, Info)",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.prevInFiles",
-				"title": "Go to Previous Problem in Files (Error, Warning, Info)",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.quickOpen",
-				"title": "Go to a file in work space",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
-				"title": "View: Quick Open Recently Used Editor in Group",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.showAllSymbols",
-				"title": "Go to a symbol in Workspace",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.showProblems",
-				"title": "Show Problems",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.showCommands",
-				"title": "Show All Commands",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertIfLadder",
-				"title": "Insert If Ladder",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertIfElseLadder",
-				"title": "Insert If Else Ladder",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertForLoop",
-				"title": "Insert a For Loop",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertForNumberLoop",
-				"title": "Insert a For Number Loop",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertNestedForLoop",
-				"title": "Insert a Nested For Loop",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertNestedForNumberLoop",
-				"title": "Insert a Nested For Number Loop",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertTryLadder",
-				"title": "Insert a Try Ladder",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.insertMindstormImport",
-				"title": "Insert Mindstorm Imports",
-				"category": "Mind Reader"
-			},
-			{
-				"command": "mind-reader.connectHub",
-				"title": "Connect to the LEGO SPIKE PRIME Hub",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.disconnectHub",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.runProgram",
-				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.stopExecution",
-				"title": "Stop Running Program on the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.deleteProgram",
-				"title": "Delete a Program from the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.uploadCurrentFile",
-				"title": "Upload The Current File to the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.callvoice",
-				"title": "Start voice listener",
-				"category": "Voice Commands"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "accessActions.focus",
-				"comment": "This opens the Access Actions menu",
-				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
-				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
-			},
-			{
-				"command": "mind-reader.voiceToText",
-				"key": "ctrl+v"
-			},
-			{
-				"command": "mind-reader.decreaseFontScale",
-				"key": "Shift+Alt+Z -",
-				"mac": "Cmd+Shift+Z -",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "mind-reader.increaseFontScale",
-				"key": "Shift+Alt+Z =",
-				"mac": "Cmd+Shift+Z =",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "mind-reader.resetFontScale",
-				"key": "Shift+Alt+Z 0",
-				"mac": "Cmd+Shift+Z 0",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "mind-reader.getIndent",
-				"key": "Ctrl+Shift+/ I",
-				"mac": "Cmd+Shift+[Slash] I",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "mind-reader.getLeadingSpaces",
-				"key": "Ctrl+Shift+/ S",
-				"mac": "Cmd+Shift+[Slash] S",
-				"when": "editorTextFocus && editorLangId == python"
-			},
-			{
-				"command": "mind-reader.getLineNumber",
-				"key": "Ctrl+Shift+/ L",
-				"mac": "Cmd+Shift+[Slash] L",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "mind-reader.getLineScope",
-				"key": "Ctrl+Shift+/ C",
-				"mac": "Cmd+Shift+[Slash] C",
-				"when": "editorTextFocus && editorLangId == python"
-			},
-			{
-				"command": "mind-reader.openKeybinds",
-				"key": "Ctrl+Shift+/ K",
-				"mac": "Cmd+Shift+[Slash] K"
-			},
-			{
-				"command": "mind-reader.getNumberOfSelectedLines",
-				"key": "Ctrl+Shift+/ N",
-				"mac": "Cmd+Shift+[Slash] N"
-			},
-			{
-				"command": "mind-reader.selectLeadingWhitespace",
-				"key": "Ctrl+Shift+/ W",
-				"mac": "Cmd+Shift+[Slash] W"
-			},
-			{
-				"command": "mind-reader.callvoice",
-				"key": "Ctrl+Shift+/ M",
-				"mac": "Cmd+Shift+[Slash] M"
-			}
-		],
-		"menus": {
-			"editor/context": [
-				{
-					"submenu": "mind-reader.editor.context",
-					"group": "mind-reader"
-				}
-			],
-			"mind-reader.editor.context": [
-				{
-					"command": "mind-reader.openKeybinds",
-					"group": "0_configuration@0",
-					"when": "activeEditor"
-				},
-				{
-					"command": "workbench.action.selectTheme",
-					"group": "0_configuration@1",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.increaseFontScale",
-					"group": "1_font-zoom@0",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.decreaseFontScale",
-					"group": "1_font-zoom@1",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.resetFontScale",
-					"group": "1_font-zoom@2",
-					"when": "activeEditor"
-				},
-				{
-					"command": "workbench.action.zoomIn",
-					"group": "2_workbench-zoom@0",
-					"when": "activeEditor"
-				},
-				{
-					"command": "workbench.action.zoomOut",
-					"group": "2_workbench-zoom@1",
-					"when": "activeEditor"
-				},
-				{
-					"command": "workbench.action.zoomReset",
-					"group": "2_workbench-zoom@2",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.getLineNumber",
-					"group": "3_getter-functions@0",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.getIndent",
-					"group": "3_getter-functions@1",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.getLeadingSpaces",
-					"group": "3_getter-functions@2",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.getNumberOfSelectedLines",
-					"group": "3_getter-functions@3",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.selectLeadingWhitespace",
-					"group": "4_selector-functions@0",
-					"when": "activeEditor"
-				},
-				{
-					"command": "mind-reader.openWebview",
-					"group": "z_disabled@99",
-					"when": "false"
-				}
-			]
-		},
-		"submenus": [
-			{
-				"id": "mind-reader.editor.context",
-				"label": "Mind Reader"
-			}
-		],
-		"configuration": [
-			{
-				"title": "Mind Reader",
-				"order": 0,
-				"properties": {
-					"mind-reader.productType": {
-						"order": 1,
-						"type": "string",
-						"description": "Specifies the LEGO® product.",
-						"default": "SPIKE Prime",
-						"enum": [
-							"MINDSTORMS EV3",
-							"SPIKE Prime"
-						],
-						"enumDescriptions": [
-							"LEGO® MINDSTORMS® EV3 (31313)",
-							"LEGO® Education SPIKE™ Prime Set (45678)"
-						]
-					},
-					"mind-reader.reader.screenReader": {
-						"order": 0,
-						"type": "string",
-						"description": "Specifies which screen reader to optimize for.",
-						"default": "NVDA",
-						"enum": [
-							"JAWS",
-							"NVDA",
-							"Orca",
-							"VoiceOver"
-						],
-						"enumDescriptions": [
-							"Job Access With Speech (Windows)",
-							"NonVisual Desktop Access (Windows)",
-							"Orca (Linux)",
-							"Apple VoiceOver (macOS)"
-						]
-					},
-					"mind-reader.reader.contextWindow": {
-						"order": 3,
-						"type": "number",
-						"description": "The number of words around the cursor to use when reading the cursor context",
-						"default": 1
-					},
-					"mind-reader.connection.portPath": {
-						"order": 2,
-						"type": "string",
-						"markdownDescription": "The default port to try and establish a connection on."
-					}
-				}
-			},
-			{
-				"title": "Line Highlighter [Must Close Settings And RESTART VSCode For The Line Highlighter To Function]",
-				"order": 1,
-				"properties": {
-					"mind-reader.lineHighlighter.isEnabled": {
-						"order": 4,
-						"type": "boolean",
-						"markdownDescription": "Enable/Disable the line highlighter.\n\n\n* `Enabled (our default)`: Checked: Line Highlighter is turned `ON`\n* `Disabled`: Unchecked: Line Highlighter is turned `OFF`\n\n### `NOTE`: You Must Close Settings And RESTART Visual Studio Code For The Line Highlighter To Function\n#### Even If No Changes Were Made",
-						"default": true
-					},
-					"mind-reader.lineHighlighter.multiLineIsEnabled": {
-						"order": 5,
-						"type": "boolean",
-						"markdownDescription": "Temporarily Disable highlighting when highlighting multiple lines.\n\n\n* `Enabled`: Checked: Multiline Highlighting is turned `ON`:\n* * When you click and drag line highlights will be applied to all lines\n* `Disabled (our default)`: Unchecked: Multiline Highlighting is turned `OFF`:\n* * When you click and drag the line highlighter will disable itself then re-enable itself when you click onto a single line.",
-						"default": false
-					},
-					"mind-reader.lineHighlighter.backgroundColor": {
-						"order": 6,
-						"type": "string",
-						"markdownDescription": "Set the background color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#232C5C` is our default",
-						"default": "#232C5C"
-					},
-					"mind-reader.lineHighlighter.outlineColor": {
-						"order": 7,
-						"type": "string",
-						"markdownDescription": "Set the outline color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#4866FE` is our default",
-						"default": "#4866FE"
-					},
-					"mind-reader.lineHighlighter.outlineWidth": {
-						"order": 8,
-						"type": "string",
-						"markdownDescription": "Set the outline width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium outline. (usual default)\n* `thin`: Specifies a thin outline\n* `thick`: Specifies a thick outline\n* `length`: you to define the thickness of the outline in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No outline width will be applied\n* `1px` is our default",
-						"default": "1px"
-					},
-					"mind-reader.lineHighlighter.outlineStyle": {
-						"order": 9,
-						"type": "string",
-						"markdownDescription": "Set the outline style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the outline-color value.\n* `ridge`: 3D ridged border, depends on the outline-color value.\n* `inset`: 3D inset border, depends on the outline-color value.\n* `outset`: 3D outset border, depends on the outline-color value.",
-						"default": "solid"
-					},
-					"mind-reader.lineHighlighter.borderColorTop": {
-						"order": 10,
-						"type": "string",
-						"markdownDescription": "Set the top border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
-						"default": "#FFFFFF"
-					},
-					"mind-reader.lineHighlighter.borderColorRight": {
-						"order": 11,
-						"type": "string",
-						"markdownDescription": "Set the right border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
-						"default": "#FFFFFF"
-					},
-					"mind-reader.lineHighlighter.borderColorBottom": {
-						"order": 12,
-						"type": "string",
-						"markdownDescription": "Set the bottom border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
-						"default": "#FFFFFF"
-					},
-					"mind-reader.lineHighlighter.borderColorLeft": {
-						"order": 13,
-						"type": "string",
-						"markdownDescription": "Set the left border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
-						"default": "#FFFFFF"
-					},
-					"mind-reader.lineHighlighter.borderWidthTop": {
-						"order": 14,
-						"type": "string",
-						"markdownDescription": "Set the top border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
-						"default": "1px"
-					},
-					"mind-reader.lineHighlighter.borderWidthRight": {
-						"order": 15,
-						"type": "string",
-						"markdownDescription": "Set the right border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `16px` is our default\n\n#### \nborderWidthRight exhibits odd behavior, play around with different sizes to find what works best for your environment.",
-						"default": "16px"
-					},
-					"mind-reader.lineHighlighter.borderWidthBottom": {
-						"order": 16,
-						"type": "string",
-						"markdownDescription": "Set the bottom border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
-						"default": "1px"
-					},
-					"mind-reader.lineHighlighter.borderWidthLeft": {
-						"order": 17,
-						"type": "string",
-						"markdownDescription": "Set the left border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
-						"default": "1px"
-					},
-					"mind-reader.lineHighlighter.borderStyleTop": {
-						"order": 18,
-						"type": "string",
-						"markdownDescription": "Set the top border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
-						"default": "solid"
-					},
-					"mind-reader.lineHighlighter.borderStyleRight": {
-						"order": 19,
-						"type": "string",
-						"markdownDescription": "Set the right border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
-						"default": "solid"
-					},
-					"mind-reader.lineHighlighter.borderStyleBottom": {
-						"order": 20,
-						"type": "string",
-						"markdownDescription": "Set the bottom border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
-						"default": "solid"
-					},
-					"mind-reader.lineHighlighter.borderStyleLeft": {
-						"order": 21,
-						"type": "string",
-						"markdownDescription": "Set the left border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
-						"default": "solid"
-					},
-					"mind-reader.lineHighlighter.fontStyle": {
-						"order": 22,
-						"type": "string",
-						"markdownDescription": "Set the font style to be used by the line highlighter.\n\nSyntax: `normal` or `italic` or `oblique` or `none`\n* `normal (our default)`: Displays a normal font style. This is default\n* `italic`: Displays an italic font style\n* `oblique`: Displays an oblique font style\n* `none`: No font style will be applied",
-						"default": "normal"
-					},
-					"mind-reader.lineHighlighter.fontWeight": {
-						"order": 23,
-						"type": "string",
-						"markdownDescription": "Set the font weight to be used by the line highlighter.\n\nSyntax: `normal` or `bold` or `bolder` or `lighter` or _number_ or `none`\n* `normal`: Normal Characters. (usual default)\n* `bold`: Thick Characters\n* `bolder (our default)`: Thicker Characters\n* `lighter`: Lighter Characters\n * _number_: From `thin` to `thick` characters: `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, or `900`: `400` is the same as normal, and `700` is the same as bold.\n* `none`: No font weight will be applied",
-						"default": "bolder"
-					},
-					"mind-reader.lineHighlighter.textDecoration": {
-						"order": 24,
-						"type": "string",
-						"markdownDescription": "Set the text decoration to be used by the line highlighter.\n\nSyntax: `(text-decoration-line)` `(text-decoration-color)` `(text-decoration-style)` `(text-decoration-thickness)`\n* `text-decoration-line (required)`: Sets the kind of text decoration to use: `underline`, `overline`, `line-through`\n* `text-decoration-color`: Sets the color of the text decoration\n* `text-decoration-style`: Sets the style of the text decoration: `solid`, `wavy`, `dotted`, `dashed`, `double`\n* `text-decoration-thickness`: Sets the thickness of the decoration line\n* `none (our default)`: No text decorations will be applied\n\n`Examples`:\n1. underline blue wavy 5px\n2. line-through\n3. underline overline dotted red",
-						"default": "none"
-					},
-					"mind-reader.lineHighlighter.textColor": {
-						"order": 25,
-						"type": "string",
-						"markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
-						"default": "#FFFFFF"
-					}
-				}
-			}
-		],
-		"views": {
-			"Mind-Reader": [
-				{
-					"id": "accessActions",
-					"name": "Access Actions",
-					"icon": "media/dep.svg",
-					"contextualTitle": "Accessibility Menu Actions"
-				},
-				{
-					"id": "hubActions",
-					"name": "Hub Actions",
-					"icon": "media/dep.svg",
-					"contextualTitle": "Hub Connection Actions"
-				}
-			]
-		},
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "Mind-Reader",
-					"title": "Mind Reader Actions",
-					"icon": "media/dep.svg"
-				}
-			]
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.2.2",
-		"@types/node": "16.x",
-		"@types/serialport": "^8.0.2",
-		"@types/vscode": "^1.60.0",
-		"@types/ws": "^6.0.0",
-		"@typescript-eslint/eslint-plugin": "^4.26.0",
-		"@typescript-eslint/parser": "^4.26.0",
-		"@vscode/test-electron": "^1.6.2",
-		"eslint": "^7.27.0",
-		"glob": "^7.1.7",
-		"mocha": "^10.0.0",
-		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2"
-	},
-	"dependencies": {
-		"serialport": "^9.2.5",
-		"server": "^1",
-		"vscode-languageclient": "^5.1.0-next.9",
-		"ws": "^6.2.2"
-	}
+  "name": "mind-reader",
+  "displayName": "Mind Reader",
+  "homepage": "https://github.com/jcode999/Mind_Reader/wiki",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcode999/Mind_Reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jcode999/Mind_Reader/issues"
+  },
+  "contributors": [
+    "Jake Grossman <JacobGrossman2@my.unt.edu>",
+    "Cal Wooten <calwooten@my.unt.edu>",
+    "Josiah Mosesn <josiahmoses@my.unt.edu>",
+    "Sophia Drewfs <sophiadrewfs@my.unt.edu>",
+    "John Breaux <JohnBreaux@my.unt.edu>",
+    "Thomas Lane <ThomasLane2@my.unt.edu>",
+    "Ryan Tolbert <RyanTolbert@my.unt.edu>",
+    "Kendrick Johnson <KendrickJohnson@my.unt.edu>",
+    "Pedro Alvarez <PedroAlvarez3@my.unt.edu>",
+    "Zachary Chenausky <zacharychenausky@my.unt.edu>",
+    "Jigme Rinji Sherpa <jigmesherpa@my.unt.edu>",
+    "Clay Lewis <ClayLewis2@my.unt.edu>",
+    "Haris Javed <harisjaved@my.unt.edu>",
+    "Saad Javed <saadjaved@my.unt.edu>"
+  ],
+  "version": "2.0.1",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "voice-command.startStreaming",
+        "title": "Start Voice Commands",
+        "category": "Voice Commands"
+      },
+      {
+        "command": "mind-reader.voiceToText",
+        "title": "Start voice to text",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.voiceCommandCaller",
+        "title": "Voice Command Caller",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.increaseFontScale",
+        "title": "Increase Font Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.decreaseFontScale",
+        "title": "Decrease Font Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.resetFontScale",
+        "title": "Reset Font Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.increaseEditorScale",
+        "title": "Increase Editor Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.decreaseEditorScale",
+        "title": "Decrease Editor Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.resetEditorScale",
+        "title": "Reset Editor Scale",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.selectTheme",
+        "title": "Select theme",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.openWebview",
+        "title": "Open webview"
+      },
+      {
+        "command": "mind-reader.openKeybinds",
+        "title": "Edit keybinds",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getLineScope",
+        "title": "Get the scope of the current line",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getWordsUnderCursor",
+        "title": "Get Words under the cursor",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getLineNumber",
+        "title": "Get the current line number",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getIndent",
+        "title": "Get The Number Of Line Indentations",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getLeadingSpaces",
+        "title": "Get The Number Of Leading Spaces",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.selectLeadingWhitespace",
+        "title": "Select The Leading Whitespace",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getNumberOfSelectedLines",
+        "title": "Get The Number Of Selected Lines",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.getQuickInputBack",
+        "title": "Go Back in Quick Input",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.gotoLine",
+        "title": "Go to line number",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.gotoSymbol",
+        "title": "Go to Symbol",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.navigateBack",
+        "title": "Navigate Backward",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.navigateForward",
+        "title": "Navigate Forward",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.nextInFiles",
+        "title": "Go to Next Problem in Files (Error, Warning, Info)",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.prevInFiles",
+        "title": "Go to Previous Problem in Files (Error, Warning, Info)",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.quickOpen",
+        "title": "Go to a file in work space",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "title": "View: Quick Open Recently Used Editor in Group",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.showAllSymbols",
+        "title": "Go to a symbol in Workspace",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.showProblems",
+        "title": "Show Problems",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.showCommands",
+        "title": "Show All Commands",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertIfLadder",
+        "title": "Insert If Ladder",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertIfElseLadder",
+        "title": "Insert If Else Ladder",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertForLoop",
+        "title": "Insert a For Loop",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertForNumberLoop",
+        "title": "Insert a For Number Loop",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertNestedForLoop",
+        "title": "Insert a Nested For Loop",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertNestedForNumberLoop",
+        "title": "Insert a Nested For Number Loop",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertTryLadder",
+        "title": "Insert a Try Ladder",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.insertMindstormImport",
+        "title": "Insert Mindstorm Imports",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.connectHub",
+        "title": "Connect to the LEGO SPIKE PRIME Hub",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.disconnectHub",
+        "title": "Disconnect LEGO SPIKE PRIME HUB",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.runProgram",
+        "title": "Run a Program on the LEGO SPIKE PRIME HUB",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.stopExecution",
+        "title": "Stop Running Program on the LEGO SPIKE PRIME HUB",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.deleteProgram",
+        "title": "Delete a Program from the LEGO SPIKE PRIME HUB",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.uploadCurrentFile",
+        "title": "Upload The Current File to the LEGO SPIKE PRIME HUB",
+        "category": "SPIKE Prime"
+      },
+      {
+        "command": "mind-reader.callvoice",
+        "title": "Start voice listener",
+        "category": "Voice Commands"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "accessActions.focus",
+        "comment": "This opens the Access Actions menu",
+        "key": "Ctrl+Shift+/ Ctrl+Shift+/",
+        "mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
+      },
+      {
+        "command": "mind-reader.voiceToText",
+        "key": "ctrl+v"
+      },
+      {
+        "command": "mind-reader.decreaseFontScale",
+        "key": "Shift+Alt+Z -",
+        "mac": "Cmd+Shift+Z -",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.increaseFontScale",
+        "key": "Shift+Alt+Z =",
+        "mac": "Cmd+Shift+Z =",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.resetFontScale",
+        "key": "Shift+Alt+Z 0",
+        "mac": "Cmd+Shift+Z 0",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.getIndent",
+        "key": "Ctrl+Shift+/ I",
+        "mac": "Cmd+Shift+[Slash] I",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.getLeadingSpaces",
+        "key": "Ctrl+Shift+/ S",
+        "mac": "Cmd+Shift+[Slash] S",
+        "when": "editorTextFocus && editorLangId == python"
+      },
+      {
+        "command": "mind-reader.getLineNumber",
+        "key": "Ctrl+Shift+/ L",
+        "mac": "Cmd+Shift+[Slash] L",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.getLineScope",
+        "key": "Ctrl+Shift+/ C",
+        "mac": "Cmd+Shift+[Slash] C",
+        "when": "editorTextFocus && editorLangId == python"
+      },
+      {
+        "command": "mind-reader.openKeybinds",
+        "key": "Ctrl+Shift+/ K",
+        "mac": "Cmd+Shift+[Slash] K"
+      },
+      {
+        "command": "mind-reader.getNumberOfSelectedLines",
+        "key": "Ctrl+Shift+/ N",
+        "mac": "Cmd+Shift+[Slash] N"
+      },
+      {
+        "command": "mind-reader.selectLeadingWhitespace",
+        "key": "Ctrl+Shift+/ W",
+        "mac": "Cmd+Shift+[Slash] W"
+      },
+      {
+        "command": "mind-reader.callvoice",
+        "key": "Ctrl+Shift+/ M",
+        "mac": "Cmd+Shift+[Slash] M"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "mind-reader.editor.context",
+          "group": "mind-reader"
+        }
+      ],
+      "mind-reader.editor.context": [
+        {
+          "command": "mind-reader.openKeybinds",
+          "group": "0_configuration@0",
+          "when": "activeEditor"
+        },
+        {
+          "command": "workbench.action.selectTheme",
+          "group": "0_configuration@1",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.increaseFontScale",
+          "group": "1_font-zoom@0",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.decreaseFontScale",
+          "group": "1_font-zoom@1",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.resetFontScale",
+          "group": "1_font-zoom@2",
+          "when": "activeEditor"
+        },
+        {
+          "command": "workbench.action.zoomIn",
+          "group": "2_workbench-zoom@0",
+          "when": "activeEditor"
+        },
+        {
+          "command": "workbench.action.zoomOut",
+          "group": "2_workbench-zoom@1",
+          "when": "activeEditor"
+        },
+        {
+          "command": "workbench.action.zoomReset",
+          "group": "2_workbench-zoom@2",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.getLineNumber",
+          "group": "3_getter-functions@0",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.getIndent",
+          "group": "3_getter-functions@1",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.getLeadingSpaces",
+          "group": "3_getter-functions@2",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.getNumberOfSelectedLines",
+          "group": "3_getter-functions@3",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.selectLeadingWhitespace",
+          "group": "4_selector-functions@0",
+          "when": "activeEditor"
+        },
+        {
+          "command": "mind-reader.openWebview",
+          "group": "z_disabled@99",
+          "when": "false"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "mind-reader.editor.context",
+        "label": "Mind Reader"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Mind Reader",
+        "order": 0,
+        "properties": {
+          "mind-reader.productType": {
+            "order": 1,
+            "type": "string",
+            "description": "Specifies the LEGO® product.",
+            "default": "SPIKE Prime",
+            "enum": [
+              "MINDSTORMS EV3",
+              "SPIKE Prime"
+            ],
+            "enumDescriptions": [
+              "LEGO® MINDSTORMS® EV3 (31313)",
+              "LEGO® Education SPIKE™ Prime Set (45678)"
+            ]
+          },
+          "mind-reader.reader.screenReader": {
+            "order": 0,
+            "type": "string",
+            "description": "Specifies which screen reader to optimize for.",
+            "default": "NVDA",
+            "enum": [
+              "JAWS",
+              "NVDA",
+              "Orca",
+              "VoiceOver"
+            ],
+            "enumDescriptions": [
+              "Job Access With Speech (Windows)",
+              "NonVisual Desktop Access (Windows)",
+              "Orca (Linux)",
+              "Apple VoiceOver (macOS)"
+            ]
+          },
+          "mind-reader.reader.contextWindow": {
+            "order": 3,
+            "type": "number",
+            "description": "The number of words around the cursor to use when reading the cursor context",
+            "default": 1
+          },
+          "mind-reader.connection.portPath": {
+            "order": 2,
+            "type": "string",
+            "markdownDescription": "The default port to try and establish a connection on."
+          }
+        }
+      },
+      {
+        "title": "Line Highlighter [Must Close Settings And RESTART VSCode For The Line Highlighter To Function]",
+        "order": 1,
+        "properties": {
+          "mind-reader.lineHighlighter.isEnabled": {
+            "order": 4,
+            "type": "boolean",
+            "markdownDescription": "Enable/Disable the line highlighter.\n\n\n* `Enabled (our default)`: Checked: Line Highlighter is turned `ON`\n* `Disabled`: Unchecked: Line Highlighter is turned `OFF`\n\n### `NOTE`: You Must Close Settings And RESTART Visual Studio Code For The Line Highlighter To Function\n#### Even If No Changes Were Made",
+            "default": true
+          },
+          "mind-reader.lineHighlighter.multiLineIsEnabled": {
+            "order": 5,
+            "type": "boolean",
+            "markdownDescription": "Temporarily Disable highlighting when highlighting multiple lines.\n\n\n* `Enabled`: Checked: Multiline Highlighting is turned `ON`:\n* * When you click and drag line highlights will be applied to all lines\n* `Disabled (our default)`: Unchecked: Multiline Highlighting is turned `OFF`:\n* * When you click and drag the line highlighter will disable itself then re-enable itself when you click onto a single line.",
+            "default": false
+          },
+          "mind-reader.lineHighlighter.backgroundColor": {
+            "order": 6,
+            "type": "string",
+            "markdownDescription": "Set the background color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#232C5C` is our default",
+            "default": "#232C5C"
+          },
+          "mind-reader.lineHighlighter.outlineColor": {
+            "order": 7,
+            "type": "string",
+            "markdownDescription": "Set the outline color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#4866FE` is our default",
+            "default": "#4866FE"
+          },
+          "mind-reader.lineHighlighter.outlineWidth": {
+            "order": 8,
+            "type": "string",
+            "markdownDescription": "Set the outline width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium outline. (usual default)\n* `thin`: Specifies a thin outline\n* `thick`: Specifies a thick outline\n* `length`: you to define the thickness of the outline in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No outline width will be applied\n* `1px` is our default",
+            "default": "1px"
+          },
+          "mind-reader.lineHighlighter.outlineStyle": {
+            "order": 9,
+            "type": "string",
+            "markdownDescription": "Set the outline style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the outline-color value.\n* `ridge`: 3D ridged border, depends on the outline-color value.\n* `inset`: 3D inset border, depends on the outline-color value.\n* `outset`: 3D outset border, depends on the outline-color value.",
+            "default": "solid"
+          },
+          "mind-reader.lineHighlighter.borderColorTop": {
+            "order": 10,
+            "type": "string",
+            "markdownDescription": "Set the top border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+            "default": "#FFFFFF"
+          },
+          "mind-reader.lineHighlighter.borderColorRight": {
+            "order": 11,
+            "type": "string",
+            "markdownDescription": "Set the right border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+            "default": "#FFFFFF"
+          },
+          "mind-reader.lineHighlighter.borderColorBottom": {
+            "order": 12,
+            "type": "string",
+            "markdownDescription": "Set the bottom border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+            "default": "#FFFFFF"
+          },
+          "mind-reader.lineHighlighter.borderColorLeft": {
+            "order": 13,
+            "type": "string",
+            "markdownDescription": "Set the left border color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+            "default": "#FFFFFF"
+          },
+          "mind-reader.lineHighlighter.borderWidthTop": {
+            "order": 14,
+            "type": "string",
+            "markdownDescription": "Set the top border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
+            "default": "1px"
+          },
+          "mind-reader.lineHighlighter.borderWidthRight": {
+            "order": 15,
+            "type": "string",
+            "markdownDescription": "Set the right border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `16px` is our default\n\n#### \nborderWidthRight exhibits odd behavior, play around with different sizes to find what works best for your environment.",
+            "default": "16px"
+          },
+          "mind-reader.lineHighlighter.borderWidthBottom": {
+            "order": 16,
+            "type": "string",
+            "markdownDescription": "Set the bottom border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
+            "default": "1px"
+          },
+          "mind-reader.lineHighlighter.borderWidthLeft": {
+            "order": 17,
+            "type": "string",
+            "markdownDescription": "Set the left border width to be used by the line highlighter.\n\nSyntax: `medium` or `thin` or `thick` or `length` or `none`\n* `medium`: Specifies a medium border. (usual default)\n* `thin`: Specifies a thin border\n* `thick`: Specifies a thick border\n* `length`: you to define the thickness of the border in [length](https://www.w3schools.com/cssref/css_units.asp) units.\n* `none`: No border width will be applied\n* `1px` is our default",
+            "default": "1px"
+          },
+          "mind-reader.lineHighlighter.borderStyleTop": {
+            "order": 18,
+            "type": "string",
+            "markdownDescription": "Set the top border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
+            "default": "solid"
+          },
+          "mind-reader.lineHighlighter.borderStyleRight": {
+            "order": 19,
+            "type": "string",
+            "markdownDescription": "Set the right border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
+            "default": "solid"
+          },
+          "mind-reader.lineHighlighter.borderStyleBottom": {
+            "order": 20,
+            "type": "string",
+            "markdownDescription": "Set the bottom border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
+            "default": "solid"
+          },
+          "mind-reader.lineHighlighter.borderStyleLeft": {
+            "order": 21,
+            "type": "string",
+            "markdownDescription": "Set the left border style to be used by the line highlighter.\n\nSyntax: `none` or `hidden` or `dotted` or `dashed` or `solid` or `double` or `groove` or `ridge` or `inset` or `outset`\n* `none`: No border will be applied (usual default)\n* `hidden`: The same as `none`\n* `dotted`: Dotted border\n* `dashed`: Dashed border\n* `solid (our default)`: Solid border\n* `double`: Double border\n* `groove`: 3D grooved border, depends on the border-color value.\n* `ridge`: 3D ridged border, depends on the border-color value.\n* `inset`: 3D inset border, depends on the border-color value.\n* `outset`: 3D outset border, depends on the border-color value.",
+            "default": "solid"
+          },
+          "mind-reader.lineHighlighter.fontStyle": {
+            "order": 22,
+            "type": "string",
+            "markdownDescription": "Set the font style to be used by the line highlighter.\n\nSyntax: `normal` or `italic` or `oblique` or `none`\n* `normal (our default)`: Displays a normal font style. This is default\n* `italic`: Displays an italic font style\n* `oblique`: Displays an oblique font style\n* `none`: No font style will be applied",
+            "default": "normal"
+          },
+          "mind-reader.lineHighlighter.fontWeight": {
+            "order": 23,
+            "type": "string",
+            "markdownDescription": "Set the font weight to be used by the line highlighter.\n\nSyntax: `normal` or `bold` or `bolder` or `lighter` or _number_ or `none`\n* `normal`: Normal Characters. (usual default)\n* `bold`: Thick Characters\n* `bolder (our default)`: Thicker Characters\n* `lighter`: Lighter Characters\n * _number_: From `thin` to `thick` characters: `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, or `900`: `400` is the same as normal, and `700` is the same as bold.\n* `none`: No font weight will be applied",
+            "default": "bolder"
+          },
+          "mind-reader.lineHighlighter.textDecoration": {
+            "order": 24,
+            "type": "string",
+            "markdownDescription": "Set the text decoration to be used by the line highlighter.\n\nSyntax: `(text-decoration-line)` `(text-decoration-color)` `(text-decoration-style)` `(text-decoration-thickness)`\n* `text-decoration-line (required)`: Sets the kind of text decoration to use: `underline`, `overline`, `line-through`\n* `text-decoration-color`: Sets the color of the text decoration\n* `text-decoration-style`: Sets the style of the text decoration: `solid`, `wavy`, `dotted`, `dashed`, `double`\n* `text-decoration-thickness`: Sets the thickness of the decoration line\n* `none (our default)`: No text decorations will be applied\n\n`Examples`:\n1. underline blue wavy 5px\n2. line-through\n3. underline overline dotted red",
+            "default": "none"
+          },
+          "mind-reader.lineHighlighter.textColor": {
+            "order": 25,
+            "type": "string",
+            "markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+            "default": "#FFFFFF"
+          }
+        }
+      }
+    ],
+    "views": {
+      "Mind-Reader": [
+        {
+          "id": "accessActions",
+          "name": "Access Actions",
+          "icon": "media/dep.svg",
+          "contextualTitle": "Accessibility Menu Actions"
+        },
+        {
+          "id": "hubActions",
+          "name": "Hub Actions",
+          "icon": "media/dep.svg",
+          "contextualTitle": "Hub Connection Actions"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "Mind-Reader",
+          "title": "Mind Reader Actions",
+          "icon": "media/dep.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "electron_rebuild": "electron-rebuild -f -w 22.4.8",
+    "startVoiceServer": "source venv/bin/activate && python3 server.py"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.2.13",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "16.x",
+    "@types/serialport": "^8.0.2",
+    "@types/vscode": "^1.60.0",
+    "@types/ws": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "@vscode/test-electron": "^1.6.2",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^10.0.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "electron": "^24.2.0",
+    "electron-rebuild": "^3.2.9",
+    "serialport": "^11.0.0",
+    "server": "^1",
+    "vscode-languageclient": "^5.1.0-next.9",
+    "ws": "^6.2.2"
+  },
+  "description": "<!-- header with logo --> <p align=\"center\"> <img alt=\"Mind Reader Logo\" src=\"media/logo.png\"></img> </p>",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

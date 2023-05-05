@@ -29,6 +29,15 @@
 				"${workspaceFolder}/out/test/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
+		},
+		{
+			"name":"Activate Voice Server",
+			"type":"python",
+			"request":"launch",
+			"program": "${workspaceFolder}/server.py",
+			"console": "integratedTerminal",
+			"preLaunchTask": "${defaultBuildTask}"
+
 		}
 	]
 }

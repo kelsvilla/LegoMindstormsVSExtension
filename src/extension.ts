@@ -4,7 +4,7 @@ import CommandNodeProvider                                        from "./comman
 import Logger                                                     from "./log";
 import { lineHighlighter }                                        from "./lineHighlighter";
 //import * as path from 'path';
-//const { fork } = require('child_process');
+const { spawn } = require('child_process');
 import { accessCommands, hubCommands, navCommands, textCommands, voicetotextCommands } from "./commands";
 //import { runClient } from "./client";
 
@@ -16,30 +16,41 @@ export const logger   = new Logger(outputChannel);
 let parser: pl.Parser = new pl.Parser();
 
 export function activate(context: vscode.ExtensionContext) {
-    /*activate voice command server
-    //create a new child process to activate python voice server
-    //fork is used so that the main thread does not have to wait for child process to complete.*/
-    //const child = fork('activateServer.ts');
-    //console.log('Foked to start server with pid.',child.pid);
+  const defaults = {
+    cwd: "/Users/jigme/Desktop/unt/Fall2022/Mind-Reader",
+    env: process.env,
+    stdio: [
+      0, // Use parent's stdin for child.
+      'pipe', // Pipe child's stdout to parent.
+      'pipe', // Direct child's stderr to a file.
+    ],
+  };
+  //start voice server
+  const server = spawn('sh',['test.sh'],defaults);
+  console.log(server);
+  server.stderr.on('data',(err:any)=>{
+    console.log('error: ',err.toString());
+  });
+  server.stdout.on('data',(data:any)=>{
+    console.log(data.toString());
+    // if (data.toString() === ' [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n'){
+    //   var readline = require('readline');
 
-    /*Issue:
-    The creation of child is successful. The child.connected is 'true' indicating parent and child
-    processes are ready to communicate, but when using child.send(msg), the child does not receive the message*/
+    //   var rl = readline.createInterface({
+    //       input: process.stdin,
+    //       output: process.stdout
+    //       });
 
-    //if( child.connected === true){
-      //console.log('parent and child is connected.');
-      //send message to child
-      //child.send('start');
-   // }
-  //   child.stdout.on('data', function (data:string) {
-  //     console.log('stdout: ' + data);
+    //   rl.question(data, function(answer:any) {
+    //   console.log("you selected :", answer);
+    //   rl.close();
+    //               });
+    // }
+  });
+  // server.stdin.on('data',(err:any)=>{
+  //   console.log('stdin: ',err.toString());
   // });
 
-	  /*const serverModule = context.asAbsolutePath(
-		path.join('node_modules', 'server', 'server.js')
-	);*/
-
-  // Engage LineHighlighter
   lineHighlighter();
 
   //runClient(serverModule);

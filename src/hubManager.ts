@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import * as SerialPort from 'serialport';
+//import * as SerialPort from 'serialport';
+import { SerialPort } from 'serialport';
 import * as fs from 'fs';
 
 import { logger } from './extension';
@@ -133,8 +134,8 @@ export default class HubManager {
   public async init(): Promise<void> {
     try {
       this.port = new SerialPort(
-        this.portPath,
         {
+          path: this.portPath,
           autoOpen: true,
           baudRate: 112500,
         }

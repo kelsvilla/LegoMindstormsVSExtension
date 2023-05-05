@@ -39,6 +39,7 @@ def get_synomymns(syns,entities):
     #print(colorama.Fore.GREEN+' - Multi Entity. Syn :  ',' '.join(multi_token_syns))
     return ' '.join(multi_token_syns)
 
+#  Incase there are more than two root words for a token #
 def alternatives(syns,entities):
     #print(colorama.Fore.GREEN+ 'Generating synonyms for: ', entities)
     lemmatizer = WordNetLemmatizer()
@@ -54,14 +55,14 @@ def alternatives(syns,entities):
             for registerd_synonym in syn_row:
                 if lemmatizer.lemmatize(registerd_synonym)==lemmatizer.lemmatize(token):
                     root_found = True
-                    print('root found: ')
+                    #print('root found: ')
                     roots.append(lemmatizer.lemmatize(syn_row[0]))
         if root_found == False:
             roots.append('')
         token_syns.append((token,roots))
     #print(colorama.Fore.GREEN+' - Multi Entity. Syn :  ',' '.join(multi_token_syns))
     print(token_syns)
-    return token_syns
+    return token_syns #return the token and their roor words
     # return ' '.join(multi_token_syns)
 
 def entity_action_recognizer(sentence,prefixed):
@@ -177,8 +178,29 @@ def identify_command2(entities,actions,preposition):
         return 'NULL','NULL'
 
 def buildEntities(root_entities):
-    for root_entity in root_entities:
-        
+    print('--building entities')
+    combinations = []
+    print('Root Entities: ',root_entities)
+    #root entities eg: ( (font,['word','text]),(size,['scale','length']), where [word,text] are root words for 'font
+    if len(root_entities)>=2: #multi worded entity
+          prefix_ent,pre_root = root_entities[0]
+          post_ent,post_root = root_entities[1]
+          for i in range(0,len(pre_root)):
+              for j in range(0,len(post_root)):
+                  combinations.append(pre_root[i]+ ' ' +post_root[j])
+    #     print('Error in entity recognition.')
+    #     #only resolves Entities made up of two tokens
+    #     return 'NULL'
+    elif len(root_entities)==1:
+        prefix_ent,pre_root = root_entities[0]
+        for i in range(0,len(pre_root)):
+            combinations.append(pre_root[i])
+    # elif len(root_entities)==0:
+    #     combinations.append()
+    #print('combos: ',combinations)
+    return combinations
+    # for 
+
         
 
 
@@ -212,16 +234,43 @@ def syn_test(sentence):
     print(default_pos_tags)
     entities,actions,preposition = entity_action_recognizer(sentence,True)
     print("Entities: ",entities,' Actions:',actions, 'Preposition: ',preposition)
-    root_entities = []
     new_entities = []
     for entity in entities:
-        root_entities.append(alternatives(syns,[entity]))
-    print(len(root_entities))
-    buildEntities(root_entities)
+        new_entities.append(buildEntities(alternatives(syns,[entity])))
+    print('entities to try with : ',new_entities)
+    if preposition == '':
+        print('Single Entity Command')
+        
+        new_entitis = new_entities[0]
+        for new_entity in new_entitis:
+            print('Trying with : ',new_entity)
+            cmd,msg = identify_command2([new_entity],actions,preposition)
+            if cmd!='NULL':
+                print(msg)
+                break
+    else:
+        print('Multy Entity Command')
+        new_entitis = []
+        preceding_ents = new_entities[0]
+        trailing_ents = new_entities[1]
+        for i in range(0,len(preceding_ents)):
+            for j in range(0,len(trailing_ents)):
+                new_entitis.append([preceding_ents[i],trailing_ents[j]])
+        for new_ents in new_entitis:
+            print('Trying with :',new_ents)
+            cmd,msg = identify_command2(new_ents,actions,preposition)
+            if cmd != 'NULL':
+                print(msg)
+                break
+
+        
+        
 #test()
-cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']
-for cmd in cmds:
-    syn_test(cmd)
+# cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']
+# for cmd in cmds:
+#     syn_test(cmd)
+#     print('-------------------------------------------')
+#     print()
 
 
 

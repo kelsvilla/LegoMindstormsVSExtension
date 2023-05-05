@@ -1,5 +1,8 @@
+#!~/Desktop/unt/Fall2022/Mind-Reader/bin/python
 import subprocess, sys
 import os
+import time
+
 #Install necessary modules for speech recognition usage.
 #subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'SpeechRecognition', 'keyboard', 'PocketSphinx', 'pyaudio'])
 import speech_recognition as sr
@@ -10,7 +13,7 @@ import colorama
 
 
 
-from nlp import entity_action_recognizer,identify_command2,syns_load,get_synomymns
+from nlp import entity_action_recognizer,identify_command2,syns_load,alternatives,buildEntities
 
 
 
@@ -66,7 +69,6 @@ def tcp_connection():
     print('Voice Server Activated [pid] ',os.getpid())
     #Start server socket to communicate.
     serversocket = socket.socket()
-   
     serversocket.bind(('', TCP_PORT))
     serversocket.listen()
     #print('Server Socket Created and Listening: \n Server:',serversocket)
@@ -79,52 +81,67 @@ def tcp_connection():
     print()
     print('Please select the command input mode.\n')
     
-    mode = 1
-    mode = input('   [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n')
+    mode = 2
+    #mode = input('   [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n')
     
     while user_input!='Exit': # TO-DO: compare with messag from voice-to-text later.
         #send message to client
+        response = ''
         if int(mode) == 1:
             print('[Text Mode]')
             user_input = input('Enter your command: ')
         elif int(mode) == 2:
             user_input = voice_to_text()
         entities,actions,preposition = entity_action_recognizer('can you '+ user_input,True)
-        known_entities = []
+        print(entities,actions,preposition)
         new_entities = []
         for entity in entities:
-            known_entities.append((entity,get_synomymns(syns,[entity])))
-        for knw_ents in known_entities:
-            #print('Known Entities after searching for root words: ',knw_ents[1])
-            new_entities.append(knw_ents[1])
-        if len(new_entities) == len(entities):
-            command_to_run,msg = identify_command2(new_entities,actions,preposition)
-            response = command_to_run + ',' + msg
+            new_entities.append(buildEntities(alternatives(syns,[entity])))
+        if preposition == '':
+            new_entitis = new_entities[0]
+            for new_entity in new_entitis:
+                command_to_run,msg = identify_command2([new_entity],actions,preposition)
+                if command_to_run != 'NULL':
+                    response = command_to_run + ',' + msg
+                    break
             #print('********',msg)
         else:
-            command_to_run,msg = identify_command2(entities,actions,preposition)
-            response = command_to_run + ',' + msg
-        response = bytes(response.encode('utf-8'))
-        print('Action Completed: ',msg)
-        response_len = int(hex(len(response)),16)
-        print()
-        #a message should be sent following the websocket protocol.
+            new_entitis = []
+            preceding_ents = new_entities[0]
+            trailing_ents = new_entities[1]
+            for i in range(0,len(preceding_ents)):
+                for j in range(0,len(trailing_ents)):
+                    new_entitis.append([preceding_ents[i],trailing_ents[j]])
+            for new_ents in new_entitis:
+                command_to_run,msg = identify_command2(new_ents,actions,preposition)
+                if command_to_run != 'NULL':
+                    response = command_to_run + ',' + msg
+                    break
+        if response != '':
+            response = bytes(response.encode('utf-8'))
+            print('Action Completed: ',msg)
+            response_len = int(hex(len(response)),16)
+            print()
+            #a message should be sent following the websocket protocol.
 
-        # Create a websocket frame containing the message
-        frame = bytearray()
-        
-        # Append frame header, (use hexadecimal) 
-        frame.append(0x81)  # FIN + OpCode (1 byte)
-        frame.append(response_len)  # Payload length (msg_len byte), 
-        # Append payload
-        frame.extend(response)
-        
-        #send message to client
-        clientsocket.send(frame)
+            # Create a websocket frame containing the message
+            frame = bytearray()
+            
+            # Append frame header, (use hexadecimal) 
+            frame.append(0x81)  # FIN + OpCode (1 byte)
+            frame.append(response_len)  # Payload length (msg_len byte), 
+            # Append payload
+            frame.extend(response)
+            
+            #send message to client
+            clientsocket.send(frame)
         #break
-    #clientsocket.close()
+    clientsocket.close()
 
 if __name__ == '__main__':
-   tcp_connection()
+        tcp_connection()
+    
+       
+   
 
    
