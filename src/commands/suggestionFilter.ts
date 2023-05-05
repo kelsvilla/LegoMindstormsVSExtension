@@ -104,6 +104,26 @@ export async function suggestionFilter() {
     {
       selectQp.items = fields;
     }
+    else if(selectedKind==='Interfaces')
+    {
+      selectQp.items = interfaces;
+    }
+    else if(selectedKind==='Modules')
+    {
+      selectQp.items = modules;
+    }
+    else if(selectedKind==='Properties')
+    {
+      selectQp.items = property;
+    }
+    else if(selectedKind==='Constructor')
+    {
+      selectQp.items = constructor;
+    }
+    else if(selectedKind==='Attribute')
+    {
+      selectQp.items = methods;
+    }
 		selectQp.show();
 		selectQp.onDidAccept(()=>{
 		activeEditor.edit(editBuilder =>{
