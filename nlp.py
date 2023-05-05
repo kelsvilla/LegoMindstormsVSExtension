@@ -247,7 +247,7 @@ def syn_test(sentence):
             cmd,msg = identify_command2([new_entity],actions,preposition)
             if cmd!='NULL':
                 print(msg)
-                break
+               # break
     else:
         print('Multy Entity Command')
         new_entitis = []
