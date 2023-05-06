@@ -20,32 +20,12 @@ def syns_load():
     return syns
 
 
-def get_synomymns(syns,entities):
-    #print(colorama.Fore.GREEN+ 'Generating synonyms for: ', entities)
-    for word in entities:
-        tokens = nltk.word_tokenize(word)
-        #print(colorama.Fore.BLUE +' - Tokens : ',tokens)
-    multi_token_syns = []
-    
-    for token in tokens:
-        token_found = False #root word for a token found
-        for i in syns:
-            for j in i:
-                if(j==token) and len(tokens) == 1:
-                    #print(colorama.Fore.GREEN + ' - Single Entity. Syn :  ',i[0])
-                    return i[0]
-                elif j == token:
-                    multi_token_syns.append(i[0])
-    #print(colorama.Fore.GREEN+' - Multi Entity. Syn :  ',' '.join(multi_token_syns))
-    return ' '.join(multi_token_syns)
-
-#  Incase there are more than two root words for a token #
+"""checks if the provided command entities are listed as a synonym of the root words 
+    used in extension commands title"""
 def alternatives(syns,entities):
-    #print(colorama.Fore.GREEN+ 'Generating synonyms for: ', entities)
     lemmatizer = WordNetLemmatizer()
     for word in entities:
         tokens = nltk.word_tokenize(word)
-        #print(colorama.Fore.BLUE +' - Tokens : ',tokens)
         token_syns = []
     
     for token in tokens:
@@ -55,23 +35,18 @@ def alternatives(syns,entities):
             for registerd_synonym in syn_row:
                 if lemmatizer.lemmatize(registerd_synonym)==lemmatizer.lemmatize(token):
                     root_found = True
-                    #print('root found: ')
                     roots.append(lemmatizer.lemmatize(syn_row[0]))
         if root_found == False:
             roots.append('')
         token_syns.append((token,roots))
-    #print(colorama.Fore.GREEN+' - Multi Entity. Syn :  ',' '.join(multi_token_syns))
-    print(token_syns)
     return token_syns #return the token and their roor words
-    # return ' '.join(multi_token_syns)
 
 def entity_action_recognizer(sentence,prefixed):
-    
+    #python_specific_entities = ['for loop','while loop','for number loop','nested for loop','if else ladder','if ladder','nested for number loop','try ladder']
+
     sentence = sentence.lower()
     tokens = nltk.word_tokenize(sentence)
-    action = '' # only one verb per command ? change if accepting multiple commands
     default_pos_tags = nltk.pos_tag(tokens)
-    
     lemmatizer = WordNetLemmatizer()
 
     grammar_np = r"""
@@ -96,9 +71,7 @@ def entity_action_recognizer(sentence,prefixed):
     entities = []
     for subtree in chunk_result.subtrees(filter=lambda t: t.label() == 'Entity'):
         entity = []
-        #print(colorama.Fore.BLUE+'entities: ')
         for item in subtree:
-            #print(item)
             entity.append(lemmatizer.lemmatize(item[0]))
         entities.append(' '.join(entity))
     actions = []
@@ -106,15 +79,9 @@ def entity_action_recognizer(sentence,prefixed):
         for item in subtree:
             actions.append(item[0])
     preposition = ''
-    #print('Multi entity chunk result',chunk_result.subtrees(filter=lambda t: t.label() == 'MultiEntity'))
-    #print(colorama.Fore.CYAN+'Checking if multiple entity commands')
     for subtree in chunk_result.subtrees(filter=lambda t: t.label() == 'MultiEntity'):
         if len(subtree)!=0:
-            #print(colorama.Fore.CYAN+' - subtree length: ',len(subtree))
-            #print(colorama.Fore.CYAN+' - preposition: ',subtree[1][0])
             preposition = subtree[1][0]
-            # for item in subtree:
-            #     print(colorama.Fore.CYAN+'Multi Entities :',item[0])
     return entities,actions, preposition
 
 def identify_command2(entities,actions,preposition):
@@ -149,7 +116,7 @@ def identify_command2(entities,actions,preposition):
         #print(colorama.Fore.GREEN +'Similar: ',similar)
         if len(similar) == 1:
             return package['contributes']['commands'][similar[0]]['command'],stemmer.stem(''.join(actions))+'ing ' + ' '.join(entities)
-        print('command not recognized.')
+        #print('command not recognized.')
         return 'NULL','NULL'
     else:
         #print(colorama.Fore.CYAN +'Multi Entity Command. Preposition: ',preposition)
@@ -174,13 +141,13 @@ def identify_command2(entities,actions,preposition):
         #print(colorama.Fore.GREEN +'Similar: ',similar)
         if len(similar) == 1:
             return package['contributes']['commands'][similar[0]]['command'],stemmer.stem(''.join(actions)) + 'ing ' + ' '.join(entities)
-        print('command not recognized.')
+        #print('command not recognized.')
         return 'NULL','NULL'
 
 def buildEntities(root_entities):
-    print('--building entities')
+    #print('--building entities')
     combinations = []
-    print('Root Entities: ',root_entities)
+    #print('Root Entities: ',root_entities)
     #root entities eg: ( (font,['word','text]),(size,['scale','length']), where [word,text] are root words for 'font
     if len(root_entities)>=2: #multi worded entity
           prefix_ent,pre_root = root_entities[0]
@@ -188,9 +155,6 @@ def buildEntities(root_entities):
           for i in range(0,len(pre_root)):
               for j in range(0,len(post_root)):
                   combinations.append(pre_root[i]+ ' ' +post_root[j])
-    #     print('Error in entity recognition.')
-    #     #only resolves Entities made up of two tokens
-    #     return 'NULL'
     elif len(root_entities)==1:
         prefix_ent,pre_root = root_entities[0]
         for i in range(0,len(pre_root)):
@@ -199,7 +163,6 @@ def buildEntities(root_entities):
     #     combinations.append()
     #print('combos: ',combinations)
     return combinations
-    # for 
 
         
 

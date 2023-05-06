@@ -3,8 +3,9 @@ import * as pl                                                    from "./pylex"
 import CommandNodeProvider                                        from "./commandNodeProvider";
 import Logger                                                     from "./log";
 import { lineHighlighter }                                        from "./lineHighlighter";
-//import * as path from 'path';
-const { spawn } = require('child_process');
+import { installer }                                              from "./pythonManager";
+import path  = require('path');
+
 import { accessCommands, hubCommands, navCommands, textCommands, voicetotextCommands } from "./commands";
 //import { runClient } from "./client";
 
@@ -14,43 +15,11 @@ const outputChannel   = vscode.window.createOutputChannel(product + " Output");
 export const logger   = new Logger(outputChannel);
 
 let parser: pl.Parser = new pl.Parser();
-
+export const rootDir = path.dirname(__filename);
 export function activate(context: vscode.ExtensionContext) {
-  const defaults = {
-    cwd: "/Users/jigme/Desktop/unt/Fall2022/Mind-Reader",
-    env: process.env,
-    stdio: [
-      0, // Use parent's stdin for child.
-      'pipe', // Pipe child's stdout to parent.
-      'pipe', // Direct child's stderr to a file.
-    ],
-  };
-  //start voice server
-  const server = spawn('sh',['test.sh'],defaults);
-  console.log(server);
-  server.stderr.on('data',(err:any)=>{
-    console.log('error: ',err.toString());
-  });
-  server.stdout.on('data',(data:any)=>{
-    console.log(data.toString());
-    // if (data.toString() === ' [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n'){
-    //   var readline = require('readline');
-
-    //   var rl = readline.createInterface({
-    //       input: process.stdin,
-    //       output: process.stdout
-    //       });
-
-    //   rl.question(data, function(answer:any) {
-    //   console.log("you selected :", answer);
-    //   rl.close();
-    //               });
-    // }
-  });
-  // server.stdin.on('data',(err:any)=>{
-  //   console.log('stdin: ',err.toString());
-  // });
-
+  //python packages installer
+  installer();
+//line highlighter
   lineHighlighter();
 
   //runClient(serverModule);
