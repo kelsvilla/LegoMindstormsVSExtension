@@ -178,6 +178,35 @@ function getIndent(): void {
 }
 
 /* Function
+ * Used to return the number of indents on a line
+ */
+export function returnIndent(): Number {
+    const editor: TextEditor | undefined = window.activeTextEditor;
+
+    if (editor) {
+        const line   : TextLine = fetchLine(editor);
+
+        if (line.isEmptyOrWhitespace) {
+            return 0;
+        }
+        else {
+            // Grab tab format from open document
+            const tabFmt: pl.TabInfo = {
+                size: typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4,
+                hard: !editor.options.insertSpaces
+            };
+            const i: number = pl.Lexer.getIndent(line.text, tabFmt);
+
+            return i;
+        }
+    }
+    else {
+        return -1;
+    }
+
+}
+
+/* Function
  * Returns the number of leading spaces on the line the cursor is on
  */
 function getLeadingSpaces(): void {
