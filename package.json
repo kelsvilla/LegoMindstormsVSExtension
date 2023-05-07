@@ -25,7 +25,7 @@
     "Haris Javed <harisjaved@my.unt.edu>",
     "Saad Javed <saadjaved@my.unt.edu>"
   ],
-  "version": "2.0.1",
+  "version": "3.0.0",
   "engines": {
     "vscode": "^1.66.0"
   },
