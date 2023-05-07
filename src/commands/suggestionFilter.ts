@@ -23,11 +23,12 @@ export async function suggestionFilter() {
 		return;
 	}
 	//gather suggestions from Language Server
-	const completion = await vscode.commands.executeCommand<vscode.CompletionList[]>(
-		'vscode.executeCompletionItemProvider',
-		activeEditor.document.uri,
-		activeEditor.selection.active,
-	);
+	const completion = await vscode.commands.executeCommand(
+	'vscode.executeCompletionItemProvider',
+	activeEditor.document.uri,
+	activeEditor.selection.active,
+) as vscode.CompletionList<vscode.CompletionItem>[];
+
   //get the current line where cursor is pointed
   var lineAt = activeEditor.selection.active;
 
@@ -46,37 +47,31 @@ export async function suggestionFilter() {
 
   //item.kind is a inbuilt property defined by the langugage server
   //fill the categories based on its kind
-	for(var item of completion.items){
-     if(item.kind===1){
-      methods.push(item);
+  for (var completionList of completion) {
+    for (var item of completionList.items) {
+      var quickPickItem: vscode.QuickPickItem = { label: item.label.toString() };
+      if (item.kind === vscode.CompletionItemKind.Method) {
+        methods.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Function) {
+        functions.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Constructor) {
+        constructor.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Field) {
+        fields.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Variable) {
+        variables.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Class) {
+        classes.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Interface) {
+        interfaces.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Module) {
+        modules.push(quickPickItem);
+      } else if (item.kind === vscode.CompletionItemKind.Property) {
+        property.push(quickPickItem);
+      }
     }
-		else if(item.kind ===2){
-			functions.push(item);
-		}
+  }
 
-    else if(item.kind===3){
-      constructor.push(item);
-    }
-    else if(item.kind===4){
-      fields.push(item);
-    }
-    else if(item.kind===5){
-      variables.push(item);
-    }
-    else if(item.kind===6){
-      classes.push(item);
-    }
-    else if(item.kind===7){
-      interfaces.push(item);
-    }
-    else if(item.kind===8){
-      modules.push(item);
-    }
-    else if(item.kind===9){
-      property.push(item);
-    }
-
-	}
 	/*test for the above bug
 	console.log("List of functions: ");
 	for(var i of functions)
