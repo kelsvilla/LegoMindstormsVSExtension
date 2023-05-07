@@ -73,6 +73,7 @@ export const navCommands: CommandEntry[] = [
     name: 'mind-reader.navigateForward',
     callback: () => vscode.commands.executeCommand('workbench.action.navigateForward'),
   },
+
 ];
 
 // COMMAND CALLBACK IMPLEMENTATIONS

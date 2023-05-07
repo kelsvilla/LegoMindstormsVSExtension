@@ -43,14 +43,14 @@ export const hubCommands: CommandEntry[] = [
 
 // Current connected hub
 let hub: HubManager | null = null;
-/*
-let ev3: EV3Manager | null = null;
+
+/*let ev3: EV3Manager | null = null;
 
 async function ev3test(): Promise<void> {
   ev3 = await EV3Manager.activate();
   ev3.test();
-}
-*/
+}*/
+
 async function connectHub(): Promise<void> {
   if (hub && hub.isOpen()) {
     vscode.window.showWarningMessage('LEGO Hub is already connected, reconnecting...');

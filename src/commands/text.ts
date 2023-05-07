@@ -148,7 +148,7 @@ export function getLineNumber(): void {
 /* Function
  * Used to get the number of indents on a line
  */
-function getIndent(): void {
+ function getIndent(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {

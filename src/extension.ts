@@ -46,6 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
   });
 
+
   let accessProvider = new CommandNodeProvider(
     [accessCommands, textCommands].flat(1)
   );

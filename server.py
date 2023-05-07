@@ -3,7 +3,7 @@
 import subprocess, sys
 #Install necessary modules for speech recognition usage.
 
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'SpeechRecognition', 'keyboard', 'PocketSphinx', 'pyaudio'])
+#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'SpeechRecognition', 'keyboard', 'PocketSphinx', 'pyaudio'])
 
 import speech_recognition as sr
 import socket

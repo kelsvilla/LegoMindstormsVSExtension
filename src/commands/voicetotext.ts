@@ -54,7 +54,7 @@ function insertIfLadder(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -90,7 +90,7 @@ function insertIfElseLadder(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -122,7 +122,7 @@ function insertForLoop(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -168,7 +168,7 @@ async function insertForNumberLoop(): Promise<void> {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -199,7 +199,7 @@ function insertNestedForLoop(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -264,7 +264,7 @@ async function insertNestedForNumberLoop(): Promise<void> {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -299,7 +299,7 @@ function insertTryLadder(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -366,7 +366,7 @@ function insertWhileLoop(): void {
             // Handle current indentation
             let indentlevel = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add
@@ -393,9 +393,9 @@ function insertDoWhileLoop(): void {
     // If editor is defined
     if (editor) {
             // Handle current indentation
-            let indentlevel = returnIndent();
+            let indentlevel:Number = returnIndent();
             let indenthandler = '';
-            for(let i = 0; i < indentlevel; i++){
+            for(let i = 0; i < Number(indentlevel); i++){
                 indenthandler = indenthandler + '\t';
             }
             // Set text to add

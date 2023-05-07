@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { CommandEntry } from './commandEntry';
 import { startStreaming } from '../client01';
+import { suggestionFilter } from './suggestionFilter';
 
 
 
@@ -8,13 +9,13 @@ import { startStreaming } from '../client01';
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
+
   {
     name: 'mind-reader.selectTheme',
 
     // callbacks can be inlined...
     callback: () => vscode.commands.executeCommand('workbench.action.selectTheme'),
   },
-
   {
     name: 'mind-reader.increaseFontScale',
     callback: increaseFontScale, // ...or factored out into separate functions below
@@ -47,7 +48,11 @@ export const accessCommands: CommandEntry[] = [
   {
     name:'voice-command.startStreaming',
     callback: startStreaming,
-  }
+  },
+ {
+  name:'mind-reader.suggestionFilter',
+  callback:suggestionFilter,
+ }
 
 ];
 
@@ -74,5 +79,7 @@ function decreaseEditorScale(): void {
 function resetEditorScale(): void {
   vscode.commands.executeCommand('workbench.action.zoomReset');
 }
+
+
 
 
