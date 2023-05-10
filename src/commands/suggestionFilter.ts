@@ -42,8 +42,6 @@ export async function suggestionFilter() {
   var interfaces:vscode.QuickPickItem[] = [];
   var modules:vscode.QuickPickItem[] = [];
   var property:vscode.QuickPickItem[] = [];
-	/* although the text editor marks the following code as error,
-	no issues are detected while running the program and generates expected results */
 
   //item.kind is a inbuilt property defined by the langugage server
   //fill the categories based on its kind
