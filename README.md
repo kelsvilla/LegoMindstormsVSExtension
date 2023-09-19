@@ -158,3 +158,10 @@ API page if you need more help.
 - Clay Lewis: [\<claylewis2@my.unt.edu\>](mailto:ClayLewis2@my.unt.edu)
 - Haris Javed: [\<harisjaved@my.unt.edu\>](mailto:harisjaved@my.unt.edu)
 - Saad Javed: [\<saadjaved@my.unt.edu\>](mailto:saadjaved@my.unt.edu)
+
+### Spam Artists
+#### Fall 2023 Semester
+- Kevin Gautier: [/<kevingautier@my.unt.edu\>](mailto:kevingautier@my.unt.edu)
+- Alex Tomjack: [<Alextomjack@my.unt.edu\>](mailto:alextomjack@my.unt.edu)
+- Kelsee Villareal: [<KelseeVillareal@my.unt.edu\>](mailto:kelseevillareal@my.unt.edu)
+- Bryan Tang: [<BryanTang@my.unt.edu\>](mailto:bryantang@my.unt.edu)
