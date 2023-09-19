@@ -161,7 +161,7 @@ API page if you need more help.
 
 ### Spam Artists
 #### Fall 2023 Semester
-- Kevin Gautier: [/<kevingautier@my.unt.edu\>](mailto:kevingautier@my.unt.edu)
-- Alex Tomjack: [<Alextomjack@my.unt.edu\>](mailto:alextomjack@my.unt.edu)
-- Kelsee Villareal: [<KelseeVillareal@my.unt.edu\>](mailto:kelseevillareal@my.unt.edu)
-- Bryan Tang: [<BryanTang@my.unt.edu\>](mailto:bryantang@my.unt.edu)
+- Kevin Gautier: [\<kevingautier@my.unt.edu\>](mailto:kevingautier@my.unt.edu)
+- Alex Tomjack: [\<Alextomjack@my.unt.edu\>](mailto:alextomjack@my.unt.edu)
+- Kelsee Villareal: [\<KelseeVillareal@my.unt.edu\>](mailto:kelseevillareal@my.unt.edu)
+- Bryan Tang: [\<BryanTang@my.unt.edu\>](mailto:bryantang@my.unt.edu)
