@@ -119,32 +119,42 @@ After adding the code block, the `settings.json` file should look similar to thi
 
 # For Developers
 ## Developer Dependencies
-
 ### Development environment setup guide
-
 ### Windows 10 or 11
-* Download [install-windows.ps1](setup-development/windows/install-windows.ps1)
-* Run `./install-windows.ps1` in PowerShell as a normal user, and accept any UAC prompts that pop up. The installation should take around 8 minutes. If an installer doesn't pop up, don't be alarmed.
-
+~* Download [install-windows.ps1](setup-development/windows/install-windows.ps1)~
+1. On Visual Studio Code, navigate to `<root>/setup-development/windows/install-windows.ps1`
+2. Press the play button on the top right corner
+    - Accept any UAC prompts that pop up. The installation should take around 8 minutes. If an installer doesn't pop up, don't be alarmed.
+3. Navigate to the root directory
+    - You can also achieve that by doing one of the following:
+        - Press **Control-Shift-`**
+        - Select on the menu bar, Terminal > New Terminal
+4. Run `npm i`
+5. Run `npm run compile`
+6. Run `npm run watch`
+7. Run the extension by pressing the F5 key 
+    - You can also select the "Run and Debug" tab, then select "Run Extension" and press the green play button
 
 ### macOS
 1. On Visual Studio Code, right click on the `<root>/setup-development/linux` directory and select "Open in Integrated Terminal"
     - You can also open the terminal and navigate here as well.
 2. Run `./install-linux.sh`
-3. Navigate to `<root>/setup-development`
+3. Navigate to the root directory
+    - You can also achieve that by doing one of the following:
+        - Press **Control-Shift-`**
+        - Select on the menu bar, Terminal > New Terminal
 4. Run `npm i`
 5. Run `npm run compile`
 6. Run `npm run watch`
-7. On Visual Studio Code, select the "Run and Debug" tab
-8. Select "Run Extension" and press the green play button
-
+7. Run the extension by pressing the F5 key 
+    - You can also select the "Run and Debug" tab, then select "Run Extension" and press the green play button
 
 For other platforms, or to install the extension manually, check out our [Developer Install Guide](../../wiki/Developer-Install-Guide). This is also where you should search if you encounter errors.
 
-
-
 See the Visual Studio Code [getting started](https://code.visualstudio.com/api/get-started/your-first-extension)
 API page if you need more help.
+
+
 
 # Contact Information
 
