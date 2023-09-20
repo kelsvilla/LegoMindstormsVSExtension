@@ -121,7 +121,6 @@ After adding the code block, the `settings.json` file should look similar to thi
 ## Developer Dependencies
 ### Development environment setup guide
 ### Windows 10 or 11
-~* Download [install-windows.ps1](setup-development/windows/install-windows.ps1)~
 1. On Visual Studio Code, navigate to `<root>/setup-development/windows/install-windows.ps1`
 2. Press the play button on the top right corner
     - Accept any UAC prompts that pop up. The installation should take around 8 minutes. If an installer doesn't pop up, don't be alarmed.
