@@ -1,3 +1,3 @@
-python -m venv %~dp0venv
-call %~dp0venv\Scripts\activate.bat
+python -m venv %~dp0..\venv
+call %~dp0..\venv\Scripts\activate.bat
 pip install -r %~dp0requirements.txt
