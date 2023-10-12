@@ -1,13 +1,12 @@
 import * as WebSocket from 'ws';
 import * as vscode from 'vscode';
+import * as path from 'path';
 const { spawn } = require('child_process');
 import { rootDir } from "./extension";
-import * as path from 'path';
 
  function activateVoiceServer(){
     //activate server
-    //TODO: Fix filepath of interpretor to find correct venv folder on all platforms.
-    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join('\\voice-server-setup','venv','Scripts','python')) //rootDir.replace('/out','/voice-server-setup/venv/bin/python');
+    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join('\\voice-server-setup','venv','Scripts','python'))
     const defaults = {
       cwd: rootDir.replace(`${path.sep}out`,''),
       //env: process.env,
