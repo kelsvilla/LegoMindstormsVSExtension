@@ -1,13 +1,14 @@
 import * as WebSocket from 'ws';
 import * as vscode from 'vscode';
 import * as path from 'path';
+var os = require('os');
 const { spawn } = require('child_process');
 import { rootDir } from "./extension";
 import * as path from 'path';
 
  function activateVoiceServer(){
     //activate server
-    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join(`${path.sep}voice-server-setup`,'venv','Scripts','python'))
+    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join(`${path.sep}voice-server-setup`,'venv',`${os.type()==='Darwin' ? 'bin' : 'Scripts' }`,'python'))
     const defaults = {
       cwd: rootDir.replace(`${path.sep}out`,''),
       //env: process.env,
