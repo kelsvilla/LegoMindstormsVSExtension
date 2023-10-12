@@ -172,8 +172,3 @@ if __name__ == '__main__':
         # w = os.fdopen(w, 'w')
         # w.write('Voice Server activating')
         tcp_connection()
-    
-       
-   
-
-   

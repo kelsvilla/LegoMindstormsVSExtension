@@ -7,8 +7,7 @@ import * as path from 'path';
 
  function activateVoiceServer(){
     //activate server
-    
-    const interpretor = path.join(path.normalize(rootDir).replace(`${path.sep}out`, ''), 'voice-server-setup', 'venv', 'bin', 'python');
+    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join(`${path.sep}voice-server-setup`,'venv','Scripts','python'))
     const defaults = {
       cwd: rootDir.replace(`${path.sep}out`,''),
       //env: process.env,
