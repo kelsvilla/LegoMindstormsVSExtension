@@ -8,10 +8,15 @@ import * as path from 'path';
 
  function activateVoiceServer(){
     //activate server
-    const interpretor = path.normalize(rootDir).replace(`${path.sep}out`, path.join(`${path.sep}voice-server-setup`,'venv',`${os.type()==='Darwin' ? 'bin' : 'Scripts' }`,'python'))
+    //Gets expected path of virtual python interpretor, which is $ROOTDIR/voice-server-setup/venv/{bin | Scripts}/python
+    const normalizedProjectRoot = path.normalize(rootDir).replace(`${path.sep}out`,'');
+    const interpretor = path.join(normalizedProjectRoot, `voice-server-setup`,'venv',`${os.type()==='Darwin' ? 'bin' : 'Scripts' }`,'python');
     const defaults = {
-      cwd: rootDir.replace(`${path.sep}out`,''),
-      //env: process.env,
+      cwd: normalizedProjectRoot,
+      env: {
+        ...process.env,
+        NLTK_DATA: path.join(normalizedProjectRoot, 'dependencies', 'nltk_data'),
+    },
       stdio: [
         0, // Use parent's stdin for child.
         'pipe', // Pipe child's stdout to parent.
