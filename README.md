@@ -38,16 +38,17 @@ Python programming with LEGO Mindstorms. Our goal is to:
 - Voice functions through the use of an exterior python server.
 
 - Relevant autocomplete voiceovers on demand.
-# First Time Setting Up the Line Highlighter Feature
+# Configure Line Highlighter
+The Line Highlighter feature is customizable. Changes to the highlighter's appearance can be done through your `settings.json` or through the settings window.
 Before running Mind Reader for the first time it is recommended to add the following code block to your `settings.json` file
 
-### Opening Settings.json
+### Configure through settings.json
 1. Launch VS Code
 2. Open the `Command Palette` by pressing **Ctrl + Shift + P** (Windows) / **Cmd + Shift + P** (Mac)
 3. The Command Palette should appear at the top of your screen ready for you to type
 4. Type `settings` and highlight the option that appears saying `Preferences: Open Settings (JSON)` then select it
 5. Your `settings.json` window should appear, scroll to the bottom and make sure the last item has a `,`  before the closing curly bracket `}`
-6. Paste the following code block after the last comma `,`, but before the closing curly bracket `}`:
+6. Paste the following code block (or the portion you want to change) after the last comma `,`, but before the closing curly bracket `}`:
 ```
     "mind-reader.lineHighlighter.isEnabled"          : true,
     "mind-reader.lineHighlighter.multiLineIsEnabled" : false,
@@ -78,9 +79,6 @@ Before running Mind Reader for the first time it is recommended to add the follo
     "mind-reader.lineHighlighter.textDecoration"     : "none",
     "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
 ```
-The values are set to the default values and can be changed here manually, or through the settings window (File -> Preferences -> Settings -> Mind Reader -> Line Highlighter).
-Changes made directly in the settings.json will take effect automatically; however, if you change them in the settings window then after you input your new values VS Code must be closed and reopened for the changes to take effect.
-
 After adding the code block, the `settings.json` file should look similar to this:
 
 <p align="center">
@@ -88,6 +86,16 @@ After adding the code block, the `settings.json` file should look similar to thi
 </p>
 
 7. Save and close `settings.json`
+    - The values are set to the default values and can be changed here manually. Changes made directly in the settings.json will take effect automatically.
+
+### Configure through Settings Window
+1. Open the settings window 
+    - Windows: File -> Preferences -> Settings -> Mind Reader -> Line Highlighter
+    - Mac: Command + ,
+2. Navigate to Extensions -> Mind Reader
+3. Make any changes you need
+4. Close the settings window
+    - You may need to restart VS Code to apply the changes
 
 ### Line Highlighter Settings Table
 | **Item**               | **Description**                                              | **Accepted Value**                                                           | **Default Values** |
@@ -149,8 +157,6 @@ Instead of cloning this repo, you could also
 - Download the [install-windows.ps1](setup-development/windows/install-windows.ps1) file (Windows) and run `./install-windows.ps1` in PowerShell as a normal user, and accept any UAC prompts that pop up.
     - The installation should take around 8 minutes. If an installer doesn't pop up, don't be alarmed.
 - Download the [install-linux.sh](setup-development/windows/install-linux.sh) file (Mac) and run `./install-linux.sh` in the terminal.
-
-**NOTE:** This method is best used if you have **not** cloned the repo yet. The files will clone the repo for you and store it in `C:\Users\<Username>\git`
 
 For other platforms, or to install the extension manually, check out our [Developer Install Guide](../../wiki/Developer-Install-Guide). This is also where you should search if you encounter errors.
 
