@@ -90,9 +90,9 @@ After adding the code block, the `settings.json` file should look similar to thi
 
 ### Configure through Settings Window
 1. Open the settings window 
-    - Windows: File -> Preferences -> Settings -> Mind Reader -> Line Highlighter
-    - Mac: Command + ,
-2. Navigate to Extensions -> Mind Reader
+    - Windows: Ctrl + , or File -> Preferences -> Settings
+    - Mac: Command + , or Code -> Settings -> Settings
+2. Navigate to Extensions -> Mind Reader -> Line Highlighter
 3. Make any changes you need
 4. Close the settings window
     - You may need to restart VS Code to apply the changes
