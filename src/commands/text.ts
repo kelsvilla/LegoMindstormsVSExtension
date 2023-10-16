@@ -2,6 +2,7 @@
 import pl     = require("../pylex");
 import { CommandEntry }                                                 from './commandEntry';
 import { Position, Selection, TextEditor, TextLine, window, workspace } from "vscode";
+import * as say from 'say';
 
 export const textCommands: CommandEntry[] = [
     {
@@ -53,6 +54,7 @@ export const textCommands: CommandEntry[] = [
  **
  **    TO-USE: set calculateLeadingSpaces to false
  */
+
 function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
     let numSpaces: number = 0;
 
@@ -118,9 +120,14 @@ function getNumberOfSelectedLines(): void {
     if (editor) {
         const numberOfSelectedLines: number = fetchNumberOfSelectedLines(editor);
 
-        (numberOfSelectedLines !== 1)
-            ? window.showInformationMessage(`${numberOfSelectedLines.toString()} Lines Selected`)
-            : window.showInformationMessage(`${numberOfSelectedLines.toString()} Line Selected`);
+        const message = (numberOfSelectedLines !== 1)
+            ? `${numberOfSelectedLines.toString()} Lines Selected`
+            : `${numberOfSelectedLines.toString()} Line Selected`;
+
+        // Show the message to the user
+        window.showInformationMessage(message);
+
+        say.speak(message);
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -166,9 +173,12 @@ export function getLineNumber(): void {
             };
             const i: number = pl.Lexer.getIndent(line.text, tabFmt);
 
-            (i !== 1)
-                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indents`)
-                : window.showInformationMessage(`Line ${lineNum.toString()}: ${i.toString()} indent`);
+            const message = (i !== 1)
+                ? `Line ${lineNum.toString()}: ${i.toString()} indents`
+                : `Line ${lineNum.toString()}: ${i.toString()} indent`;
+
+            window.showInformationMessage(message);
+            say.speak(message);
         }
     }
     else {
@@ -223,9 +233,12 @@ function getLeadingSpaces(): void {
             const numSpaces = fetchNumberOfLeadingSpaces(editor);
 
             /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
-            (numSpaces !== 1)
-                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`)
-                : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space`);
+            const message = (numSpaces !== 1)
+                ? `Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`
+                : `Line ${lineNum.toString()}: ${numSpaces.toString()} space`;
+
+            window.showInformationMessage(message);
+            say.speak(message);
         }
     }
     else {
@@ -257,10 +270,11 @@ function selectLeadingWhitespace(): void {
 
 
             /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
-            (numSpaces !== 1)
-                ? window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} spaces selected`)
-                : window.showInformationMessage(`Line ${lineNum.toString()}: ${numSpaces.toString()} space selected`);
-
+            const message = (numSpaces !== 1)
+                ? `Line ${lineNum.toString()}: ${numSpaces.toString()} spaces selected`
+                : `Line ${lineNum.toString()}: ${numSpaces.toString()} space selected`;
+            window.showInformationMessage(message);
+            say.speak(message);
             // Move the cursor to the new selection
             window.showTextDocument(editor.document);
         }
