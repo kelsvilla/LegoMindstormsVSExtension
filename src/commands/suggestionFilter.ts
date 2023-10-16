@@ -27,7 +27,7 @@ export async function suggestionFilter() {
 	'vscode.executeCompletionItemProvider',
 	activeEditor.document.uri,
 	activeEditor.selection.active,
-) as vscode.CompletionList<vscode.CompletionItem>[];
+) as vscode.CompletionList; //<vscode.CompletionItem>[] // Since array was not iterable, removed the array to work directly with object
 
   //get the current line where cursor is pointed
   var lineAt = activeEditor.selection.active;
@@ -45,28 +45,36 @@ export async function suggestionFilter() {
 
   //item.kind is a inbuilt property defined by the langugage server
   //fill the categories based on its kind
-  for (var completionList of completion) {
-    for (var item of completionList.items) {
-      var quickPickItem: vscode.QuickPickItem = { label: item.label.toString() };
-      if (item.kind === vscode.CompletionItemKind.Method) {
+  for (var item of completion.items) {
+    var quickPickItem: vscode.QuickPickItem = {label:item.label.toString() };
+    switch (item.kind) {
+     case vscode.CompletionItemKind.Method:
         methods.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Function) {
+        break;
+     case  vscode.CompletionItemKind.Function:
         functions.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Constructor) {
+        break;
+     case vscode.CompletionItemKind.Constructor:
         constructor.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Field) {
+        break;
+     case vscode.CompletionItemKind.Field:
         fields.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Variable) {
+        break;
+     case vscode.CompletionItemKind.Variable:
         variables.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Class) {
+        break;
+     case vscode.CompletionItemKind.Class:
         classes.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Interface) {
+        break;
+     case vscode.CompletionItemKind.Interface:
         interfaces.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Module) {
+        break;
+     case vscode.CompletionItemKind.Module:
         modules.push(quickPickItem);
-      } else if (item.kind === vscode.CompletionItemKind.Property) {
+        break;
+     case vscode.CompletionItemKind.Property:
         property.push(quickPickItem);
-      }
+        break;
     }
   }
 
@@ -133,15 +141,14 @@ export async function suggestionFilter() {
 		selectQp.show();
 		selectQp.onDidAccept(()=>{
 		activeEditor.edit(editBuilder =>{
-    const replacePosition = getReplaceIndex(activeEditor.document.lineAt(lineAt).text);
-    var startPosition = new vscode.Position(lineAt.line,replacePosition);
-    var endPosition = new vscode.Position(lineAt.line,activeEditor.document.lineAt(lineAt).text.length);
-    var range = new vscode.Range(startPosition,endPosition);
-    //delete first
-    editBuilder.delete(range);
-    //then replace
-		editBuilder.replace(startPosition,selectQp.selectedItems[0].label);
-		}).then(success=>{
+      const replacePosition = getReplaceIndex(activeEditor.document.lineAt(lineAt).text);
+      var startPosition = new vscode.Position(lineAt.line,replacePosition);
+      var endPosition = new vscode.Position(lineAt.line,activeEditor.document.lineAt(lineAt).text.length);
+      var range = new vscode.Range(startPosition,endPosition);
+      //delete first
+      editBuilder.delete(range);
+      //then replace
+		  editBuilder.replace(startPosition,selectQp.selectedItems[0].label);}).then(success=>{
       if(success){
         selectQp.dispose();
         /*the editor selects the entire texts that has been completed which causes the complete text to be replaced
