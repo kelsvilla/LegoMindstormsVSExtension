@@ -4,7 +4,6 @@ import * as path from 'path';
 var os = require('os');
 const { spawn } = require('child_process');
 import { rootDir } from "./extension";
-import * as path from 'path';
 
  function activateVoiceServer(){
     //activate server
