@@ -1,13 +1,21 @@
 import * as WebSocket from 'ws';
 import * as vscode from 'vscode';
+import * as path from 'path';
+var os = require('os');
 const { spawn } = require('child_process');
 import { rootDir } from "./extension";
+
  function activateVoiceServer(){
     //activate server
-    const interpretor = rootDir.replace('/out','/voice-server-setup/venv/bin/python');
+    //Gets expected path of virtual python interpretor, which is $ROOTDIR/voice-server-setup/venv/{bin | Scripts}/python
+    const normalizedProjectRoot = path.normalize(rootDir).replace(`${path.sep}out`,'');
+    const interpretor = path.join(normalizedProjectRoot, `voice-server-setup`,'venv',`${os.type()==='Darwin' ? 'bin' : 'Scripts' }`,'python');
     const defaults = {
-      cwd: rootDir.replace('/out',''),
-      //env: process.env,
+      cwd: normalizedProjectRoot,
+      env: {
+        ...process.env,
+        NLTK_DATA: path.join(normalizedProjectRoot, 'dependencies', 'nltk_data'),
+    },
       stdio: [
         0, // Use parent's stdin for child.
         'pipe', // Pipe child's stdout to parent.
