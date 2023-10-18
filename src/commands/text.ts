@@ -59,6 +59,11 @@ export const textCommands: CommandEntry[] = [
  **    TO-USE: set calculateLeadingSpaces to false
  */
 
+ function outputMessage(message: string) {
+    window.showInformationMessage(message);
+    say.speak(message);
+}
+
 function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
     let numSpaces: number = 0;
 
@@ -129,9 +134,7 @@ function getNumberOfSelectedLines(): void {
             : `${numberOfSelectedLines.toString()} Line Selected`;
 
         // Show the message to the user
-        window.showInformationMessage(message);
-
-        say.speak(message);
+        outputMessage(message);
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -148,9 +151,8 @@ export function getLineNumber(): void {
     if (editor) {
         const lineNum: number = fetchLineNumber(editor);
 
-        window.showInformationMessage(`Line ${lineNum.toString()}`);
-
-        say.speak(`Line ${lineNum.toString()}`);
+        const message = `Line ${lineNum.toString()}`;
+        outputMessage(message);
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -183,8 +185,7 @@ function getIndent(): void {
                 ? `Line ${lineNum.toString()}: ${i.toString()} indents`
                 : `Line ${lineNum.toString()}: ${i.toString()} indent`;
 
-            window.showInformationMessage(message);
-            say.speak(message);
+            outputMessage(message);
         }
     }
     else {
@@ -243,8 +244,7 @@ function getLeadingSpaces(): void {
                 ? `Line ${lineNum.toString()}: ${numSpaces.toString()} spaces`
                 : `Line ${lineNum.toString()}: ${numSpaces.toString()} space`;
 
-            window.showInformationMessage(message);
-            say.speak(message);
+            outputMessage(message);
         }
     }
     else {
@@ -279,8 +279,7 @@ function selectLeadingWhitespace(): void {
             const message = (numSpaces !== 1)
                 ? `Line ${lineNum.toString()}: ${numSpaces.toString()} spaces selected`
                 : `Line ${lineNum.toString()}: ${numSpaces.toString()} space selected`;
-            window.showInformationMessage(message);
-            say.speak(message);
+            outputMessage(message);
             // Move the cursor to the new selection
             window.showTextDocument(editor.document);
         }
