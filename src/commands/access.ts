@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { CommandEntry } from './commandEntry';
 import { startStreaming } from '../client01';
-import { suggestionFilter } from './suggestionFilter';
 
 
 
@@ -49,11 +48,6 @@ export const accessCommands: CommandEntry[] = [
     name:'voice-command.startStreaming',
     callback: startStreaming,
   },
- {
-  name:'mind-reader.suggestionFilter',
-  callback:suggestionFilter,
- }
-
 ];
 
 function increaseFontScale(): void {
