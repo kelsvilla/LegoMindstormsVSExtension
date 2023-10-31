@@ -25,10 +25,13 @@ def syns_load():
 def alternatives(syns,entities):
     lemmatizer = WordNetLemmatizer()
     for word in entities:
+        #print(f"word: {word}")
         tokens = nltk.word_tokenize(word)
         token_syns = []
     
+    #print(tokens)
     for token in tokens:
+        #print("in tokens loop")
         root_found = False #root word for a token found
         roots= []
         for syn_row in syns:
@@ -39,6 +42,7 @@ def alternatives(syns,entities):
         if root_found == False:
             roots.append('')
         token_syns.append((token,roots))
+
     return token_syns #return the token and their roor words
 
 def entity_action_recognizer(sentence,prefixed):
@@ -46,20 +50,34 @@ def entity_action_recognizer(sentence,prefixed):
 
     sentence = sentence.lower()
     tokens = nltk.word_tokenize(sentence)
+    
     default_pos_tags = nltk.pos_tag(tokens)
+
+    keywords = {
+        "KP": ["for", "loop", "while", "number", "nested", "if", "else", "ladder", "try"],
+    }
+
+    for i, text_tag_tuple in enumerate(default_pos_tags):
+        for tag in keywords.keys():
+            for word in keywords[tag]:
+                if text_tag_tuple[0] == word:
+                    default_pos_tags[i] = (word, tag)
+
+    #print(f"tags: {default_pos_tags}", flush=True)
     lemmatizer = WordNetLemmatizer()
 
     grammar_np = r"""
-                    Entity: {<VBG><NN>}
-                    Entity: {<VBG><NNS>}
-                    Entity: {<VBN><NN>}
-                    Entity: {<VBN><NNS>}
-                    Entity: {<VBD><NN>}
-                    Entity: {<VBG><NNS>}
-                    Entity: {<JJ><NN+>}
-                    Entity: {<NN><NN|NNS>*}
-                    Entity: {<NNS>}
-                    Entity: {<NN>}
+                    Entity: {<KP><KP>+}
+                    Entity: {<VBG><NN|KP>}
+                    Entity: {<VBG><NNS|KP>}
+                    Entity: {<VBN><NN|KP>}
+                    Entity: {<VBN><NNS|KP>}
+                    Entity: {<VBD><NN|KP>}
+                    Entity: {<VBG><NNS|KP>}
+                    Entity: {<JJ><NN+|KP>}
+                    Entity: {<NN><NN|NNS|KP>*}
+                    Entity: {<NNS|KP>}
+                    Entity: {<NN|KP>}
                     
                     
                     MultiEntity: {<Entity><IN><Entity>}
@@ -68,6 +86,7 @@ def entity_action_recognizer(sentence,prefixed):
                 """
     chunk_parser = nltk.RegexpParser(grammar_np)
     chunk_result = chunk_parser.parse(default_pos_tags)
+    #print(f"Chunk Result for {sentence}: \n{chunk_result}\n",flush=True)
     entities = []
     for subtree in chunk_result.subtrees(filter=lambda t: t.label() == 'Entity'):
         entity = []
@@ -86,7 +105,7 @@ def entity_action_recognizer(sentence,prefixed):
 
 def identify_command2(entities,actions,preposition):
     # print(colorama.Fore.CYAN+'*** Searching for command to run.')
-    # print(colorama.Fore.BLUE +'Entities received [cmd_entities]: ',entities)
+    #print(colorama.Fore.BLUE +'Entities received [cmd_entities]: ',entities)
     # print(colorama.Fore.BLUE +'Actions received [cmd_actions]: ',actions)
     
     stemmer = PorterStemmer()
@@ -98,16 +117,16 @@ def identify_command2(entities,actions,preposition):
     command_index = 0
     if preposition == '':
         #print(colorama.Fore.CYAN +'Single Entity Command')
-        for i in package['contributes']['commands']:
-            ext_entities,ext_actions,ext_prepositional = entity_action_recognizer('can you ' + i['title'],True)
+        for i, command in enumerate(package['contributes']['commands']):
+            ext_entities,ext_actions,ext_prepositional = entity_action_recognizer('can you ' + command['title'],True)
+            #print(f"{command['title']}\nEntities: {ext_entities}\nActions:{ext_actions}\nPrepositions:{ext_prepositional}", flush=True)
             if(len(ext_entities)!=0 and len(ext_actions)!=0):
                 if ext_prepositional == '' and entities[0]==ext_entities[0]:
-                    #print(colorama.Fore.GREEN +' - Entity Matched with command [ ',i['title'],' ] at index ',command_index)
-                    entity_match.add(command_index)
+                    #print(colorama.Fore.GREEN +' - Entity Matched with command [ ',command['title'],' ] at index ',i)
+                    entity_match.add(i)
                 if actions == ext_actions:
-                    #print(colorama.Fore.GREEN +' - Action matched with command [ ',i['title'],' ] at index ',command_index)
-                    action_match.add(command_index)
-            command_index += 1
+                    #print(colorama.Fore.GREEN +' - Action matched with command [ ',command['title'],' ] at index ',i)
+                    action_match.add(i)
         packageFile.close()
         #print(colorama.Fore.GREEN +'Entities Matched Command Indexs: ',entity_match)
         #print(colorama.Fore.GREEN +'Action Matched Command Indexs: ',action_match)
@@ -226,7 +245,8 @@ def syn_test(sentence):
                 print(msg)
                 break
 
-        
+def tag_keyphrase(tokens):
+    pass
         
 #test()
 # cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']

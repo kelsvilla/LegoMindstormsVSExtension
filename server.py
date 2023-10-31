@@ -100,18 +100,22 @@ def tcp_connection():
                 break
         
         entities,actions,preposition = entity_action_recognizer('can you '+ user_input,True)
-
+        #print(f"Entities: {entities}\nActions:{actions}\nPrepositions:{preposition}", flush=True)
         if len(entities) == 0 or len(actions) == 0:
             print('Unable to recognize entity or action. Command will not be executed. Try using other variations',flush=True)
         else:
             #print(entities,actions,preposition)
             new_entities = [] 
             for entity in entities:
+                #print(f"entity:{entity}\n")
                 #create entities by using root words.
                 new_entities.append(buildEntities(alternatives(syns,[entity])))
+            #print(new_entities)
+            new_entities = [entities] if new_entities[0][0] == ' ' else new_entities
             if preposition == '':
                 new_entitis = new_entities[0]
                 for new_entity in new_entitis:
+                    #print(f"new_entity: {new_entity}\n")
                     command_to_run,msg = identify_command2([new_entity],actions,preposition)
                     if command_to_run != 'NULL':
                         response = command_to_run + ',' + msg
