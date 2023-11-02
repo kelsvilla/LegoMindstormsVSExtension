@@ -145,6 +145,8 @@ export function getLineNumber(): void {
         const lineNum: number = fetchLineNumber(editor);
 
         window.showInformationMessage(`Line ${lineNum.toString()}`);
+
+        say.speak(`Line ${lineNum.toString()}`);
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -310,6 +312,7 @@ function runLineContext(): void {
         const contentString: string = createContextString(context, line);
 
         window.showInformationMessage(contentString);
+        say.speak(contentString);
     }
     else {
         window.showErrorMessage('No document currently active');
@@ -425,6 +428,7 @@ function runCursorContext(): void {
             }
             // output cursor context string
             window.showInformationMessage(contextString);
+            say.speak(contextString);
             return;
         }
     }
