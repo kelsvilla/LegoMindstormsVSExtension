@@ -15,6 +15,9 @@ import { rootDir } from "./extension";
       env: {
         ...process.env,
         NLTK_DATA: path.join(normalizedProjectRoot, 'dependencies', 'nltk_data'),
+        // PYTHONPATH: `\$\{PYTHONPATH\}: ${normalizedProjectRoot}${path.sep}dependencies${path.sep}portaudio${path.sep}19.7.0${path.sep}lib`
+        // PYTHONPATH: path.join(normalizedProjectRoot, 'dependencies', 'portaudio')
+
     },
       stdio: [
         0, // Use parent's stdin for child.

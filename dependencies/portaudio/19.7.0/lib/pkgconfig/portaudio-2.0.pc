@@ -1,6 +1,6 @@
-prefix=/opt/homebrew/Cellar/portaudio/19.7.0
+prefix=/Users/kaiyan/dev/LegoMindstormsVSExtension/dependencies/portaudio/19.7.0
 exec_prefix=${prefix}
-libdir=/opt/homebrew/Cellar/portaudio/19.7.0/lib
+libdir=/Users/kaiyan/dev/LegoMindstormsVSExtension/dependencies/portaudio/19.7.0/lib
 includedir=${prefix}/include
 
 Name: PortAudio
