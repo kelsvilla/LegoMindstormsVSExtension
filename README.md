@@ -123,7 +123,14 @@ After adding the code block, the `settings.json` file should look similar to thi
 | **textDecoration**     | Decoration of the font contained within the highlight | See: https://www.w3schools.com/cssref/pr_text_text-decoration.asp            | "none"             |
 | **textColor**          | Color of the font contained within the highlight      | HEX(A), RGB(A), HSL(A), Predefined Color String, or "none"                   | "#FFFFFF"          |
 
+# Speech Recognition
+If you are running Mind Reader on MacOS, you may need to install a package called portaudio. This package allows microphone input for PyAudio, a package for audio I/O. You will need to 
+install homebrew to get portaudio installed. Here are the steps:
+1. Close Visual Studio Code
+2. Go to [Homebrew](https://brew.sh/) and follow the steps to install Homebrew
+3. On a terminal, run `brew install portaudio`
 
+The Speech Recognition feature should be able to run now. If you are still getting errors, you may need to reinstall the extension.
 
 # For Developers
 ## Developer Dependencies
