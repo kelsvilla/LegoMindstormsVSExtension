@@ -1,7 +1,7 @@
 "use strict";
 import pl     = require("../pylex");
 import { CommandEntry }                                                 from './commandEntry';
-import { Position, Selection, TextEditor, TextLine, window, workspace } from "vscode";
+import { Position, Selection, TextEditor, TextLine, languages, window, workspace } from "vscode";
 import * as say from 'say';
 
 export const textCommands: CommandEntry[] = [
@@ -32,6 +32,10 @@ export const textCommands: CommandEntry[] = [
     {
         name: 'mind-reader.getWordsUnderCursor',
         callback: runCursorContext
+    },
+    {
+        name: 'mind-reader.goToSyntaxError',
+        callback: goToSyntaxErrors
     }
 ];
 
@@ -432,4 +436,19 @@ function runCursorContext(): void {
             return;
         }
     }
+}
+
+function goToSyntaxErrors(): void {
+    let problems = getProblems();
+
+    console.log(problems);
+}
+
+function getProblems(){
+    let problems = [];
+    problems = languages.getDiagnostics().map((res) => ({
+        'problem': res[1][0].message,
+        'uri': res[0].toString(),
+    }));
+    return problems;
 }
