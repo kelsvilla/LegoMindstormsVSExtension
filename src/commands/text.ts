@@ -1,7 +1,7 @@
 "use strict";
 import pl     = require("../pylex");
 import { CommandEntry }                                                 from './commandEntry';
-import { Position, Selection, TextEditor, TextLine, languages, window, workspace } from "vscode";
+import { Diagnostic, Position, Selection, TextEditor, TextLine, Uri, languages, window, workspace } from "vscode";
 import * as say from 'say';
 
 export const textCommands: CommandEntry[] = [
@@ -434,38 +434,36 @@ function runCursorContext(): void {
     }
 }
 
-var prevProblems: object[] = [];
-var currentProblems: object[] = [];
-var cycleIndex: number = 0;
 function goToSyntaxErrors(): void {
-	// saves previous problems and clears current problems
-	prevProblems.splice(0, prevProblems.length, currentProblems);
-	currentProblems = [];
+	if(!window || !window.activeTextEditor) return;
 
-	// refresh current problems
-	currentProblems = languages
-		.getDiagnostics()
-		.filter((res) => res[1][0].severity === 0)
-		.map((res) => ({
-			problem: res[1][0].message,
-			uri: res[0].toString(),
-		}));
+    //Get file path of current file and grab its errors
+    const currentFileURI:Uri = window.activeTextEditor.document.uri;
+    const currentProblems: Diagnostic[] = languages.getDiagnostics(currentFileURI);
 
-	// Checks if current and previous problems are the same
-	let compareArrays = (arr1: object[], arr2: object[]) => {
-		return arr1.toString() === arr2.toString();
-	};
+    if(currentProblems.length == 0) return;
+    
+    const cursorPosition:Position = window.activeTextEditor.selection.active
 
-	// if same read next problem, else read first problem
-	if (compareArrays(prevProblems, currentProblems)) {
-		console.log('same');
-        cycleIndex++;
-        if(cycleIndex === currentProblems.length) {
-            cycleIndex = 0;
-        }
-	} else {
-		console.log('different');
-        cycleIndex = 0;
-	}
-    console.log(cycleIndex);
+    //Filter out non-errors. Map strips away all properties but the start position
+	const problemLocations:Position[] = currentProblems.filter((diag) => diag.severity == 0)
+    .map(({range}) => range.start);
+
+    //Filter out all errors before the cursor.
+    const nextProblemLocations = problemLocations.filter((position) => {
+        if(position.line > cursorPosition.line) return true;
+        if(position.line == cursorPosition.line && position.character > cursorPosition.character) return true;
+        else return false;
+    })
+    nextProblemLocations.sort((pos1, pos2)=>{
+        return pos1.line - pos2.line || pos1.character - pos2.character;
+    })
+
+    //If there are any errors after the cursor, select the next one. Else, cycle to first error.
+    if(nextProblemLocations.length > 0) {
+        window.activeTextEditor.selection = new Selection(nextProblemLocations[0], nextProblemLocations[0])
+    }
+    else {
+        window.activeTextEditor.selection = new Selection(problemLocations[0], problemLocations[0])
+    }
 }
