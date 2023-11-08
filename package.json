@@ -345,6 +345,11 @@
         "command": "mind-reader.callvoice",
         "key": "Ctrl+Shift+/ M",
         "mac": "Cmd+Shift+[Slash] M"
+      },
+      {
+        "command": "mind-reader.goToSyntaxErrors",
+        "key": "Ctrl+Shift+[Space]",
+        "mac": "Cmd+Shift+[Space]"
       }
     ],
     "menus": {
