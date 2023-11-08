@@ -1,8 +1,8 @@
 "use strict";
-import pl     = require("../pylex");
-import { CommandEntry }                                                 from './commandEntry';
-import { Position, Selection, TextEditor, TextLine, languages, window, workspace } from "vscode";
+import pl = require("../pylex");
 import * as say from 'say';
+import { Position, Selection, TextEditor, TextLine, Uri, languages, window, workspace } from "vscode";
+import { CommandEntry } from './commandEntry';
 
 export const textCommands: CommandEntry[] = [
     {
@@ -70,7 +70,7 @@ function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
          * default: false
          */
         const calculateLeadingSpaces: boolean = false;          // change boolean value to change method
-        const line   : TextLine = fetchLine(editor);
+        const line: TextLine = fetchLine(editor);
 
         /* If true, calculate by arithmetic otherwise get index */
         numSpaces = (calculateLeadingSpaces)
@@ -161,12 +161,12 @@ export function getLineNumber(): void {
 /* Function
  * Used to get the number of indents on a line
  */
- function getIndent(): void {
+function getIndent(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
         const lineNum: number = (fetchLineNumber(editor));
-        const line   : TextLine = fetchLine(editor);
+        const line: TextLine = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
             window.showInformationMessage(`Line ${lineNum.toString()} is Empty`);
@@ -174,7 +174,7 @@ export function getLineNumber(): void {
         else {
             // Grab tab format from open document
             const tabFmt: pl.TabInfo = {
-                size: typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4,
+                size: typeof editor.options.tabSize === 'number' ? editor.options.tabSize : 4,
                 hard: !editor.options.insertSpaces
             };
             const i: number = pl.Lexer.getIndent(line.text, tabFmt);
@@ -200,7 +200,7 @@ export function returnIndent(): Number {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
-        const line   : TextLine = fetchLine(editor);
+        const line: TextLine = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
             return 0;
@@ -208,7 +208,7 @@ export function returnIndent(): Number {
         else {
             // Grab tab format from open document
             const tabFmt: pl.TabInfo = {
-                size: typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4,
+                size: typeof editor.options.tabSize === 'number' ? editor.options.tabSize : 4,
                 hard: !editor.options.insertSpaces
             };
             const i: number = pl.Lexer.getIndent(line.text, tabFmt);
@@ -229,8 +229,8 @@ function getLeadingSpaces(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
-        const lineNum : number = fetchLineNumber(editor);
-        const line    : TextLine | undefined = fetchLine(editor);
+        const lineNum: number = fetchLineNumber(editor);
+        const line: TextLine | undefined = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
             window.showInformationMessage(`Line ${lineNum.toString()} is empty`);
@@ -258,21 +258,21 @@ function getLeadingSpaces(): void {
  * This feature was a request from Senior Design Day Spring 2022
  */
 function selectLeadingWhitespace(): void {
-    const editor : TextEditor | undefined = window.activeTextEditor;
+    const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (editor) {
         const numSpaces = fetchNumberOfLeadingSpaces(editor); // This will be used for the output message
-        const lineNum : number = (fetchLineNumber(editor));   // Get the displayed line number
+        const lineNum: number = (fetchLineNumber(editor));   // Get the displayed line number
 
         /* If numSpaces isn't greater than 1, then there is no leading whitespace to select */
         if (numSpaces >= 1) {
-            const line    : TextLine = fetchLine(editor);
+            const line: TextLine = fetchLine(editor);
             const startPos: number = line.range.start.character;            // Start at the starting character position
-            const endPos  : number = line.firstNonWhitespaceCharacterIndex; // End at the first non whitespace character index
+            const endPos: number = line.firstNonWhitespaceCharacterIndex; // End at the first non whitespace character index
 
             /* Apply our selection */
             /* We need to subtract 1 from lineNum because we added 1 during the fetchLineNumber above and we want the 0-index for position, so remove it */
-            editor.selection       = new Selection(new Position((lineNum - 1), startPos), new Position((lineNum - 1), endPos));
+            editor.selection = new Selection(new Position((lineNum - 1), startPos), new Position((lineNum - 1), endPos));
 
 
             /* Ternary operator to change the tense of 'space' to 'spaces' for the output if numSpaces is 0 or greater than 1 */
@@ -287,7 +287,7 @@ function selectLeadingWhitespace(): void {
         else {
             window.showErrorMessage(`Line ${lineNum.toString()}: No leading spaces to select!`); // No whitespace to select
         }
-        }
+    }
     else {
         window.showErrorMessage('No document currently active'); // No active document
     }
@@ -299,13 +299,13 @@ function runLineContext(): void {
 
     if (editor) {
         // current text and line number
-        const editorText: string    = editor.document.getText();
-        const line      : number    = editor.selection.active.line;
+        const editorText: string = editor.document.getText();
+        const line: number = editor.selection.active.line;
         // get tab info settings
-        const size      : number    = typeof editor.options.tabSize === 'number'? editor.options.tabSize: 4;
-        const hard      : boolean   = !editor.options.insertSpaces;
+        const size: number = typeof editor.options.tabSize === 'number' ? editor.options.tabSize : 4;
+        const hard: boolean = !editor.options.insertSpaces;
         // initialize parser
-        const parser    : pl.Parser = new pl.Parser(editorText, {
+        const parser: pl.Parser = new pl.Parser(editorText, {
             size,
             hard
         });
@@ -332,8 +332,8 @@ function createContextString(context: pl.LexNode[], line: number): string {
     // Print the current line
     if (context[0].token && context[0].token.attr) {
         let tokenTypeString: string = `${context[0].token.type.toString()}`;
-        contextString += `: ${tokenTypeString !== pl.PylexSymbol.STATEMENT?tokenTypeString:""
-        } ${context[0].token.attr.toString()}`;
+        contextString += `: ${tokenTypeString !== pl.PylexSymbol.STATEMENT ? tokenTypeString : ""
+            } ${context[0].token.attr.toString()}`;
     }
 
     for (let i: number = 1; i < context.length; i++) {
@@ -374,15 +374,15 @@ function runCursorContext(): void {
         return;
     }
 
-    const cursorPos  : Position = editor.selection.active;
-    const text       : string   = editor.document.lineAt(cursorPos).text;
-    const windowSize : any      = workspace.getConfiguration('mind-reader').get('reader.contextWindow');
-    let   trimmedText: string   = text.trimStart(); // trim leading whitespace
-    const leadingWS  : number   = text.length - trimmedText.length; // # of characters of leading whitespace
-    let   pos        : number   = leadingWS;
-    const maxPos     : number   = text.length;
+    const cursorPos: Position = editor.selection.active;
+    const text: string = editor.document.lineAt(cursorPos).text;
+    const windowSize: any = workspace.getConfiguration('mind-reader').get('reader.contextWindow');
+    let trimmedText: string = text.trimStart(); // trim leading whitespace
+    const leadingWS: number = text.length - trimmedText.length; // # of characters of leading whitespace
+    let pos: number = leadingWS;
+    const maxPos: number = text.length;
     // clamp cursor start/end to new range
-    let   col        : number = cursorPos.character; // effective column of the cursor position
+    let col: number = cursorPos.character; // effective column of the cursor position
 
     trimmedText = trimmedText.trimEnd(); // trim trailing whitespace
 
@@ -417,7 +417,7 @@ function runCursorContext(): void {
 
     // find word the user is in
     let contextStart: number = -1;
-    let contextEnd  : number = -1;
+    let contextEnd: number = -1;
 
     for (let i: number = 0; i < spaceWords.length; i++) {
         if (col >= spaceWords[i].start && col <= spaceWords[i].end) {
@@ -438,38 +438,43 @@ function runCursorContext(): void {
     }
 }
 
-var prevProblems: object[] = [];
-var currentProblems: object[] = [];
-var cycleIndex: number = 0;
 function goToSyntaxErrors(): void {
-	// saves previous problems and clears current problems
-	prevProblems.splice(0, prevProblems.length, currentProblems);
-	currentProblems = [];
+    // Checks if there is an editor open
+    if (!window || !window.activeTextEditor) { return; }
 
-	// refresh current problems
-	currentProblems = languages
-		.getDiagnostics()
-		.filter((res) => res[1][0].severity === 0)
-		.map((res) => ({
-			problem: res[1][0].message,
-			uri: res[0].toString(),
-		}));
+    // get file path
+    const currentFileURI: Uri = window.activeTextEditor.document.uri;
 
-	// Checks if current and previous problems are the same
-	let compareArrays = (arr1: object[], arr2: object[]) => {
-		return arr1.toString() === arr2.toString();
-	};
+    // gets all current errors
+    // filters to only errors
+    // creates array of objects
+    const currentProblems = languages
+        .getDiagnostics(currentFileURI)
+        .filter((diagnostic) => diagnostic.severity === 0)
+        .map((res) => ({
+            'problem': res.message,
+            'position': res.range.start
+        }));
 
-	// if same read next problem, else read first problem
-	if (compareArrays(prevProblems, currentProblems)) {
-		console.log('same');
-        cycleIndex++;
-        if(cycleIndex === currentProblems.length) {
-            cycleIndex = 0;
-        }
-	} else {
-		console.log('different');
-        cycleIndex = 0;
-	}
-    console.log(cycleIndex);
+    // if no error, do nothing
+    if (currentProblems.length === 0) { return; }
+
+    // get cursor positon
+    const cursorPosition: Position = window.activeTextEditor.selection.active;
+
+    // gets problems that exist after the cursor
+    let nextProblems = currentProblems.filter((problem) => {
+        if (problem.position.line > cursorPosition.line) { return true; }
+        if (problem.position.line === cursorPosition.line && problem.position.character > cursorPosition.character) { return true; }
+        else { return false; }
+    });
+
+    // if there are errors after cursor, go to it, else go to the first problem in currentProblems
+    // TODO: read problems out loud
+    if (nextProblems.length > 0) {
+        window.activeTextEditor.selection = new Selection(nextProblems[0].position, nextProblems[0].position);
+    }
+    else {
+        window.activeTextEditor.selection = new Selection(currentProblems[0].position, currentProblems[0].position);
+    }
 }
