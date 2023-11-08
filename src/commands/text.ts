@@ -34,7 +34,7 @@ export const textCommands: CommandEntry[] = [
         callback: runCursorContext
     },
     {
-        name: 'mind-reader.goToSyntaxError',
+        name: 'mind-reader.goToSyntaxErrors',
         callback: goToSyntaxErrors
     }
 ];
@@ -434,17 +434,38 @@ function runCursorContext(): void {
     }
 }
 
+var prevProblems: object[] = [];
+var currentProblems: object[] = [];
+var cycleIndex: number = 0;
 function goToSyntaxErrors(): void {
-    let problems = getProblems();
+	// saves previous problems and clears current problems
+	prevProblems.splice(0, prevProblems.length, currentProblems);
+	currentProblems = [];
 
-    console.log(problems);
-}
+	// refresh current problems
+	currentProblems = languages
+		.getDiagnostics()
+		.filter((res) => res[1][0].severity === 0)
+		.map((res) => ({
+			problem: res[1][0].message,
+			uri: res[0].toString(),
+		}));
 
-function getProblems(){
-    let problems = [];
-    problems = languages.getDiagnostics().map((res) => ({
-        'problem': res[1][0].message,
-        'uri': res[0].toString(),
-    }));
-    return problems;
+	// Checks if current and previous problems are the same
+	let compareArrays = (arr1: object[], arr2: object[]) => {
+		return arr1.toString() === arr2.toString();
+	};
+
+	// if same read next problem, else read first problem
+	if (compareArrays(prevProblems, currentProblems)) {
+		console.log('same');
+        cycleIndex++;
+        if(cycleIndex === currentProblems.length) {
+            cycleIndex = 0;
+        }
+	} else {
+		console.log('different');
+        cycleIndex = 0;
+	}
+    console.log(cycleIndex);
 }
