@@ -466,11 +466,12 @@ function goToSyntaxErrors(): void {
     });
 
     // if there are errors after cursor, go to it, else go to the first problem in currentProblems
-    // TODO: read problems out loud
     if (nextProblems.length > 0) {
         window.activeTextEditor.selection = new Selection(nextProblems[0].position, nextProblems[0].position);
+        say.speak(nextProblems[0].problem);
     }
     else {
         window.activeTextEditor.selection = new Selection(currentProblems[0].position, currentProblems[0].position);
+        say.speak(currentProblems[0].problem);
     }
 }
