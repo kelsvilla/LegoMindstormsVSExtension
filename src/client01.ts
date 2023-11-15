@@ -16,7 +16,7 @@ import { rootDir } from "./extension";
         NLTK_DATA: path.join(normalizedProjectRoot, 'dependencies', 'nltk_data'),
     },
       stdio: [
-        0, // Use parent's stdin for child.
+        'pipe', // Use parent's stdin for child.
         'pipe', // Pipe child's stdout to parent.
         'pipe', // pipe child's stderr to a parent.
       ],

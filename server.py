@@ -73,7 +73,7 @@ def tcp_connection():
     print("OK",flush=True)
     time.sleep(10)
     clientsocket, clientaddr = serversocket.accept()
-    print('Sever connection to Mind-Reader successful',flush=True)
+    print('Server connection to Mind-Reader successful',flush=True)
     handle_syn_ack(clientsocket) #initial handshake
     #Connect to VSCode client code.
     syns = syns_load()
