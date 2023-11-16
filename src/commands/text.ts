@@ -4,6 +4,8 @@ import * as say from 'say';
 import { Position, Selection, TextEditor, TextLine, Uri, languages, window, workspace } from "vscode";
 import { CommandEntry } from './commandEntry';
 
+
+
 export const textCommands: CommandEntry[] = [
     {
         name: 'mind-reader.getLineNumber',

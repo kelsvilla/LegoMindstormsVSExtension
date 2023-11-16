@@ -6,7 +6,7 @@ import { lineHighlighter }                                        from "./lineHi
 import { installer }                                              from "./pythonManager";
 import path  = require('path');
 
-import { accessCommands, hubCommands, navCommands, textCommands, voicetotextCommands } from "./commands";
+import { accessCommands, hubCommands, navCommands, textCommands, voicetotextCommands, midicommands } from "./commands";
 //import { runClient } from "./client";
 
 // Output Logger
@@ -31,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
     hubCommands,
     navCommands,
     textCommands,
+    midicommands
   ].flat(1);
 
   voicetotextCommands.forEach((command) => {
