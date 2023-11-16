@@ -434,6 +434,11 @@
           "command": "mind-reader.openWebview",
           "group": "z_disabled@99",
           "when": "false"
+        },
+        {
+          "command": "mind-reader.playMidi",
+          "group": "sound_cues@0",
+          "when": "activeEditor"
         }
       ]
     },

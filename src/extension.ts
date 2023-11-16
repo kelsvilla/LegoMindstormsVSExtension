@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
   let accessProvider = new CommandNodeProvider(
-    [accessCommands, textCommands].flat(1)
+    [accessCommands, textCommands, midicommands].flat(1)
   );
   vscode.window.registerTreeDataProvider("accessActions", accessProvider);
 
