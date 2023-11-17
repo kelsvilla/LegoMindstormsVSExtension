@@ -273,8 +273,8 @@
         "category": "Voice Commands"
       },
       {
-        "command": "mind-reader.playMidi",
-        "title": "Play Midi",
+        "command": "mind-reader.soundCuesSwitch",
+        "title": "Sound Cues Switch",
         "category": "Mind Reader"
       }
     ],
@@ -436,7 +436,7 @@
           "when": "false"
         },
         {
-          "command": "mind-reader.playMidi",
+          "command": "mind-reader.soundCuesSwitch",
           "group": "sound_cues@0",
           "when": "activeEditor"
         }

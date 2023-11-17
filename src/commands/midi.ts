@@ -5,34 +5,42 @@ import * as jzz from 'jzz';
 
 export const midicommands: CommandEntry [] = [
 {
-    name: 'mind-reader.playMidi',
-    callback: playMidi,    },
+    name: 'mind-reader.soundCuesSwitch',
+    callback: soundCuesSwitch,    },
 ];
 
-function playMidi(){
+
+
+let shouldPlayMIDINote = false;
+
+function soundCuesSwitch(){
+
+    shouldPlayMIDINote = !shouldPlayMIDINote;
+}
+
+vscode.window.onDidChangeTextEditorSelection(playMidi);
+
+function playMidi(_event: vscode.TextEditorSelectionChangeEvent){
     var output = jzz().openMidiOut();
     //output.send(0x90, 'C#5', 127).wait(500).send(0x90, 'f#5', 127);
 
     const editor = vscode.window.activeTextEditor;
-    if(editor){
+    if(editor && shouldPlayMIDINote){
         const currentPosition = editor.selection.active;
         const currentLine = editor.document.lineAt(currentPosition.line).text;
 
-        if(isNestedForLoop(currentLine, currentPosition.line)){
-            output.send(0x90, 'd#4', 127);
-        }
-        else if (isRegularForLoop(currentLine)){
-        output.send(0x90, 'c#4', 127);
-        }
+        var chordType : string = lineContext(currentLine, currentPosition.line);
+        output.note(0, chordType, 127, 550);
     }
 
 }
 
 // Function checking for nested for loop
-function isNestedForLoop(currentLine: string, currentLineNumber: number): boolean {
-    const indentation = currentLine.match(/^\s*/)?.[0] || '';
-    const forIndex = currentLine.indexOf('for');
+function lineContext(currentLine: string, currentLineNumber: number): string {
     const editor = vscode.window.activeTextEditor;
+    const indentation = currentLine.match(/^\s*/)?.[0] || '';
+// Checking for case
+    const forIndex = currentLine.indexOf('for');
     if (forIndex !== -1) {
       // Check if the 'for' keyword is indented more than the previous line
         const lines = editor?.document.getText().split('\n') || [];;
@@ -43,18 +51,29 @@ function isNestedForLoop(currentLine: string, currentLineNumber: number): boolea
             if(prevForIndex !== -1){
                 const previousIndentation = previousLine.match(/^\s*/)?.[0] || '';
                 if (indentation.length > previousIndentation.length) {
-                    return true;
+                    return 'd4'; //Returning nested for loop note
                 }
             }
-      }
+        }
+        return 'c4'; // Returning regular for loop note
+    }
+    const ifIndex = currentLine.indexOf('if');
+    if(ifIndex !== -1){
+        // Check if the 'for' keyword is indented more than the previous line
+        const lines = editor?.document.getText().split('\n') || [];;
+
+        if (currentLineNumber > 0) {
+            const previousLine = lines[currentLineNumber - 1];
+            const prevForIndex = previousLine.indexOf('if');
+            if(prevForIndex !== -1){
+                const previousIndentation = previousLine.match(/^\s*/)?.[0] || '';
+                if (indentation.length > previousIndentation.length) {
+                    return 'f4'; //Returning nested for loop note
+                }
+            }
+        }
+        return 'e4'; // Returning regular for loop note
     }
 
-    return false;
+    return 'g4';
   }
-
-// Function testing for regular for loop
-function isRegularForLoop(line: string): boolean {
-
-    return line.includes('for');
-
-}
