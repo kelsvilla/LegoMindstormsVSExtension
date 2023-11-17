@@ -6,3 +6,6 @@ node_modules
 *.vsix
 venv
 documentation/~*
+.vscode
+.vs
+__pycache__
