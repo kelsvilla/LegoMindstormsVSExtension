@@ -1,14 +1,15 @@
 {
   "name": "mind-reader",
   "displayName": "Mind Reader",
-  "homepage": "https://github.com/jcode999/Mind_Reader/wiki",
+  "homepage": "https://github.com/kelsvilla/LegoMindstormsVSExtension/wiki",
+  "l10n": "./l10n",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kelsvilla/LegoMindstormsVSExtension"
   },
   "publisher": "SpamArtists",
   "bugs": {
-    "url": "https://github.com/jcode999/Mind_Reader/issues"
+    "url": "https://github.com/kelsvilla/LegoMindstormsVSExtension/issues"
   },
   "contributors": [
     "Jake Grossman <JacobGrossman2@my.unt.edu>",
@@ -654,21 +655,49 @@
     },
     "walkthroughs": [
       {
-        "id": "mind reader",
-        "title": "Get Started with Mind Reader",
-        "description": "A walkthrough for you to get started",
+        "id": "mindReader",
+        "title": "%walkthrough.header.title%",
+        "description": "%walkthrough.header.description%",
         "steps": [
           {
-            "id": "runcommand",
-            "title": "Run Command",
-            "description": "This step will run a command and check off once it has been run.\n[Run Command](command:getting-started-sample.runCommand)",
+            "id": "walkthrough.createPythonFile",
+            "title": "%walkthrough.step.createPythonFile.title%",
+            "description": "%walkthrough.step.createPythonFile.description%",
+            "media": { "markdown": "media/markdown.md" },
+            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+          },
+          {
+            "id": "walkthrough.speechToCode",
+            "title": "%walkthrough.step.speechToCode.title%",
+            "description": "%walkthrough.step.speechToCode.description%",
+            "media": { "markdown": "media/markdown.md" },
+            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+          },
+          {
+            "id": "walkthrough.lineHighlighter",
+            "title": "%walkthrough.step.lineHighlighter.title%",
+            "description": "%walkthrough.step.lineHighlighter.description%",
             "media": { "image": "media/image.png", "altText": "Empty image" },
             "completionEvents": ["onCommand:getting-started-sample.runCommand"]
           },
           {
-            "id": "changesetting",
-            "title": "Change Setting",
-            "description": "This step will change a setting and check off when the setting has changed\n[Change Setting](command:getting-started-sample.changeSetting)",
+            "id": "walkthrough.viewCommands",
+            "title": "%walkthrough.step.viewCommands.title%",
+            "description": "%walkthrough.step.viewCommands.description%",
+            "media": { "image": "media/image.png", "altText": "Empty image" },
+            "completionEvents": ["onCommand:getting-started-sample.runCommand"]
+          },
+          {
+            "id": "walkthrough.hub",
+            "title": "%walkthrough.step.hub.title%",
+            "description": "%walkthrough.step.hub.description%",
+            "media": { "markdown": "media/markdown.md" },
+            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+          },
+          {
+            "id": "walkthrough.exploreFeatures",
+            "title": "%walkthrough.step.exploreFeatures.title%",
+            "description": "%walkthrough.step.exploreFeatures.description%",
             "media": { "markdown": "media/markdown.md" },
             "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
           }
@@ -713,7 +742,7 @@
     "vscode-languageclient": "^5.1.0-next.9",
     "ws": "^6.2.2"
   },
-  "description": "<!-- header with logo --> <p align=\"center\"> <img alt=\"Mind Reader Logo\" src=\"media/logo.png\"></img> </p>",
+  "description": "An extension with additional features for Lego Mindstorm development.",
   "keywords": [],
   "author": "",
   "license": "ISC"
