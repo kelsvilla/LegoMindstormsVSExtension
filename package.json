@@ -663,15 +663,14 @@
             "id": "walkthrough.createPythonFile",
             "title": "%walkthrough.step.createPythonFile.title%",
             "description": "%walkthrough.step.createPythonFile.description%",
-            "media": { "markdown": "media/markdown.md" },
-            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+            "media": { "image": "media/walkthrough/createFile.png", "altText": "New File" }
           },
           {
             "id": "walkthrough.speechToCode",
             "title": "%walkthrough.step.speechToCode.title%",
             "description": "%walkthrough.step.speechToCode.description%",
-            "media": { "markdown": "media/markdown.md" },
-            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+            "media": { "image": "media/walkthrough/voiceCommand.gif", "altText": "Speech to Code" },
+            "completionEvents": ["onCommand:voice-command.startStreaming"]
           },
           {
             "id": "walkthrough.lineHighlighter",
@@ -684,8 +683,8 @@
             "id": "walkthrough.viewCommands",
             "title": "%walkthrough.step.viewCommands.title%",
             "description": "%walkthrough.step.viewCommands.description%",
-            "media": { "image": "media/image.png", "altText": "Empty image" },
-            "completionEvents": ["onCommand:getting-started-sample.runCommand"]
+            "media": { "image": "media/walkthrough/viewCommands.png", "altText": "View Commands" },
+            "completionEvents": ["onView:Mind Reader Actions"]
           },
           {
             "id": "walkthrough.hub",
