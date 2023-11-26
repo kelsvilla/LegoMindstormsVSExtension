@@ -353,7 +353,10 @@ function createContextString(context: pl.LexNode[], line: number): string {
         contextString += `: ${tokenTypeString !== pl.PylexSymbol.STATEMENT ? tokenTypeString : ""
             } ${context[0].token.attr.toString()}`;
     }
-
+    else if(context[0].token?.type === pl.PylexSymbol.ELSE || context[0].token?.type === pl.PylexSymbol.TRY || context[0].token?.type === pl.PylexSymbol.EXCEPT){
+        let tokenTypeString: string = `${context[0].token.type.toString()}`;
+        contextString += ': ' + tokenTypeString;
+    }
     for (let i: number = 1; i < context.length; i++) {
         const node: pl.LexNode = context[i];
         const inside: string = "inside";

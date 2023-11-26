@@ -11,7 +11,12 @@ type Rule = {
  * The first item is a recognition pattern, used to recognize the token
  * the second item is the token type
  */
-const rules: Rule[] = [{
+const rules: Rule[] = [
+    {
+        pattern: /^\s*async def\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)\(/,
+        type: Symbol.ASYNCFUNCTION
+    },
+    {
         pattern: /^\s*def\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)\(/,
         type: Symbol.FUNCTION
     },
