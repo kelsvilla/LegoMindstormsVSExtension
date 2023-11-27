@@ -663,32 +663,49 @@
             "id": "walkthrough.createPythonFile",
             "title": "%walkthrough.step.createPythonFile.title%",
             "description": "%walkthrough.step.createPythonFile.description%",
-            "media": { "image": "media/walkthrough/createFile.png", "altText": "New File" }
+            "media": {
+              "image": "media/walkthrough/createFile.png",
+              "altText": "New File"
+            }
           },
           {
             "id": "walkthrough.speechToCode",
             "title": "%walkthrough.step.speechToCode.title%",
             "description": "%walkthrough.step.speechToCode.description%",
-            "media": { "image": "media/walkthrough/voiceCommand.gif", "altText": "Speech to Code" },
-            "completionEvents": ["onCommand:voice-command.startStreaming"]
+            "media": {
+              "image": "media/walkthrough/voiceCommand.gif",
+              "altText": "Speech to Code"
+            },
+            "completionEvents": [
+              "onCommand:voice-command.startStreaming"
+            ]
           },
           {
             "id": "walkthrough.lineHighlighter",
             "title": "%walkthrough.step.lineHighlighter.title%",
             "description": "%walkthrough.step.lineHighlighter.description%",
-            "media": { "image": "media/walkthrough/lineHighlighter.gif", "altText": "Line Highlighter" }
+            "media": {
+              "image": "media/walkthrough/lineHighlighter.gif",
+              "altText": "Line Highlighter"
+            }
           },
           {
             "id": "walkthrough.viewCommands",
             "title": "%walkthrough.step.viewCommands.title%",
             "description": "%walkthrough.step.viewCommands.description%",
-            "media": { "image": "media/walkthrough/viewCommands.png", "altText": "View Commands" }
+            "media": {
+              "image": "media/walkthrough/viewCommands.png",
+              "altText": "View Commands"
+            }
           },
           {
             "id": "walkthrough.exploreFeatures",
             "title": "%walkthrough.step.exploreFeatures.title%",
             "description": "%walkthrough.step.exploreFeatures.description%",
-            "media": { "image": "media/logo.png", "altText": "Logo" }
+            "media": {
+              "image": "media/logo.png",
+              "altText": "Logo"
+            }
           }
         ]
       }
