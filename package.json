@@ -676,29 +676,19 @@
             "id": "walkthrough.lineHighlighter",
             "title": "%walkthrough.step.lineHighlighter.title%",
             "description": "%walkthrough.step.lineHighlighter.description%",
-            "media": { "image": "media/image.png", "altText": "Empty image" },
-            "completionEvents": ["onCommand:getting-started-sample.runCommand"]
+            "media": { "image": "media/walkthrough/lineHighlighter.gif", "altText": "Line Highlighter" }
           },
           {
             "id": "walkthrough.viewCommands",
             "title": "%walkthrough.step.viewCommands.title%",
             "description": "%walkthrough.step.viewCommands.description%",
-            "media": { "image": "media/walkthrough/viewCommands.png", "altText": "View Commands" },
-            "completionEvents": ["onView:Mind Reader Actions"]
-          },
-          {
-            "id": "walkthrough.hub",
-            "title": "%walkthrough.step.hub.title%",
-            "description": "%walkthrough.step.hub.description%",
-            "media": { "markdown": "media/markdown.md" },
-            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+            "media": { "image": "media/walkthrough/viewCommands.png", "altText": "View Commands" }
           },
           {
             "id": "walkthrough.exploreFeatures",
             "title": "%walkthrough.step.exploreFeatures.title%",
             "description": "%walkthrough.step.exploreFeatures.description%",
-            "media": { "markdown": "media/markdown.md" },
-            "completionEvents": ["onSettingChanged:getting-started-sample.sampleSetting"]
+            "media": { "image": "media/logo.png", "altText": "Logo" }
           }
         ]
       }
@@ -741,6 +731,7 @@
     "vscode-languageclient": "^5.1.0-next.9",
     "ws": "^6.2.2"
   },
+  "icon": "media/logo.png",
   "description": "An extension with additional features for Lego Mindstorm development.",
   "keywords": [],
   "author": "",
