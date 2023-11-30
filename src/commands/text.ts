@@ -19,7 +19,7 @@ export const textCommands: CommandEntry[] = [
     },
     {
         name: 'mind-reader.selectLeadingWhitespace',
-        callback: selectLeadingWhitespace
+        callback: selectLeadingWhitespace,
     },
     {
         name: 'mind-reader.getNumberOfSelectedLines',
@@ -31,7 +31,11 @@ export const textCommands: CommandEntry[] = [
     },
     {
         name: 'mind-reader.getWordsUnderCursor',
-        callback: runCursorContext
+        callback: runCursorContext,
+    },
+    {
+        name: 'mind-reader.toggleTextToSpeech',
+        callback: toggleTTS,
     },
     {
         name: 'mind-reader.goToSyntaxErrors',
@@ -58,10 +62,17 @@ export const textCommands: CommandEntry[] = [
  **
  **    TO-USE: set calculateLeadingSpaces to false
  */
+ let shouldSpeak = false;
 
  function outputMessage(message: string) {
     window.showInformationMessage(message);
-    say.speak(message);
+    if(shouldSpeak === true){
+        say.speak(message);
+    }
+}
+
+function toggleTTS() {
+    shouldSpeak = !shouldSpeak;
 }
 
 function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
