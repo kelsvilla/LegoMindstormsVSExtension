@@ -1,24 +1,30 @@
-import * as path from 'path';
+import * as path from "path";
 
-import { runTests } from '@vscode/test-electron';
+import { runTests } from "@vscode/test-electron";
 
 async function main() {
-  try {
-    // The folder containing package.json
-    // Passed to `--extensionDevelopmentPath`
-    const extensionDevelopmentPath: string = path.resolve(__dirname, '../../');
+    try {
+        // The folder containing package.json
+        // Passed to `--extensionDevelopmentPath`
+        const extensionDevelopmentPath: string = path.resolve(
+            __dirname,
+            "../../",
+        );
 
-    // The path to the test runner script
-    // Passed to `--extensionTestsPath`
-    const extensionTestsPath: string = path.resolve(__dirname, './suites/index');
+        // The path to the test runner script
+        // Passed to `--extensionTestsPath`
+        const extensionTestsPath: string = path.resolve(
+            __dirname,
+            "./suites/index",
+        );
 
-    // Download VS Code, unzip it and run the integration test
-    await runTests({ extensionDevelopmentPath, extensionTestsPath });
-  } catch (err) {
-    console.error(err);
-    console.error('Failed to run tests');
-    process.exit(1);
-  }
+        // Download VS Code, unzip it and run the integration test
+        await runTests({ extensionDevelopmentPath, extensionTestsPath });
+    } catch (err) {
+        console.error(err);
+        console.error("Failed to run tests");
+        process.exit(1);
+    }
 }
 
 main();

@@ -45,18 +45,27 @@
 * TODO: FEATURE: Add hotkey to toggle linehighlighter on/off
 * TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
-'use strict';
-import { Position, window, workspace, TextEditorDecorationType, TextEditor, WorkspaceConfiguration, Range } from 'vscode';
+"use strict";
+import {
+    Position,
+    window,
+    workspace,
+    TextEditorDecorationType,
+    TextEditor,
+    WorkspaceConfiguration,
+    Range,
+} from "vscode";
 
 export { lineHighlighter };
 
 let highlightStyle: TextEditorDecorationType;
 
 function lineHighlighter(): void {
-    let highlightStyle    : TextEditorDecorationType = getHighlighterStyle();
-    let activeTextEditor  : TextEditor | undefined   = window.activeTextEditor;
-    let isEnabled         : boolean    | undefined   = getHighlighterStatus();
-    let multiLineIsEnabled: boolean    | undefined   = getMultiLineHighlighterStatus();
+    let highlightStyle: TextEditorDecorationType = getHighlighterStyle();
+    let activeTextEditor: TextEditor | undefined = window.activeTextEditor;
+    let isEnabled: boolean | undefined = getHighlighterStatus();
+    let multiLineIsEnabled: boolean | undefined =
+        getMultiLineHighlighterStatus();
 
     /**
      *  Trigger the line highlight when the extension loads so current line gets highlighted
@@ -115,11 +124,11 @@ function lineHighlighter(): void {
             return;
         }
 
-        highlightStyle.dispose();                              // Dump existing styling
-        isEnabled          = getHighlighterStatus();           // check if line highlighter is enable/disabled
-        multiLineIsEnabled = getMultiLineHighlighterStatus();  // Check if multiline highlighting is enabled/disabled
-        highlightStyle     = getHighlighterStyle();            // get new line highlighter styling
-        triggerHighlight();                                    // trigger highlight with new styling
+        highlightStyle.dispose(); // Dump existing styling
+        isEnabled = getHighlighterStatus(); // check if line highlighter is enable/disabled
+        multiLineIsEnabled = getMultiLineHighlighterStatus(); // Check if multiline highlighting is enabled/disabled
+        highlightStyle = getHighlighterStyle(); // get new line highlighter styling
+        triggerHighlight(); // trigger highlight with new styling
     });
 
     /**
@@ -133,7 +142,7 @@ function lineHighlighter(): void {
         /**
          * Sets the activeTextEditor to the current active window
          */
-        activeTextEditor  = window.activeTextEditor;
+        activeTextEditor = window.activeTextEditor;
         if (activeTextEditor !== undefined) {
             /**
              * If the line highlighter function is enabled
@@ -141,24 +150,46 @@ function lineHighlighter(): void {
              *      otherwise (highlighter is disabled) dump our highlighting style
              */
             switch (isEnabled) {
-                case true: /* isEnabled is true */
+                case true /* isEnabled is true */:
                     switch (multiLineIsEnabled) {
-                        case true: /* isEnabled is true and multiLineIsEnabled is true */
-                            activeTextEditor.setDecorations(highlightStyle, activeTextEditor.selections);
+                        case true /* isEnabled is true and multiLineIsEnabled is true */:
+                            activeTextEditor.setDecorations(
+                                highlightStyle,
+                                activeTextEditor.selections,
+                            );
                             break;
-                        case false: /* isEnabled is true and multiLineIsEnabled is false */
+                        case false /* isEnabled is true and multiLineIsEnabled is false */:
                             switch (activeTextEditor.selection.isSingleLine) {
-                                case true: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting a single line */
+                                case true /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting a single line */:
                                     let currentPosition = [];
-                                    for (let i = 0; i < activeTextEditor.selections.length; i++) {
-                                        currentPosition[i] = { range: new Range(activeTextEditor.selections[i].anchor, activeTextEditor.selections[i].anchor) };
+                                    for (
+                                        let i = 0;
+                                        i < activeTextEditor.selections.length;
+                                        i++
+                                    ) {
+                                        currentPosition[i] = {
+                                            range: new Range(
+                                                activeTextEditor.selections[
+                                                    i
+                                                ].anchor,
+                                                activeTextEditor.selections[
+                                                    i
+                                                ].anchor,
+                                            ),
+                                        };
                                     }
 
-                                    activeTextEditor.setDecorations(highlightStyle, currentPosition);
+                                    activeTextEditor.setDecorations(
+                                        highlightStyle,
+                                        currentPosition,
+                                    );
                                     break;
-                                case false: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting multiple lines */
+                                case false /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting multiple lines */:
                                     // Dispose of our highlighting style so multiple lines aren't all highlighted when clicking and dragging to highlight
-                                    activeTextEditor.setDecorations(highlightStyle, []); // This will dispose of a single editor instead of all editors
+                                    activeTextEditor.setDecorations(
+                                        highlightStyle,
+                                        [],
+                                    ); // This will dispose of a single editor instead of all editors
                                     break;
                                 default: /* isEnabled is true and multiLineIsEnabled is false and VSCode is reporting something else - break out of 3rd switch */
                                     break;
@@ -168,7 +199,7 @@ function lineHighlighter(): void {
                             break;
                     }
                     break;
-                case false: /* isEnabled is false */
+                case false /* isEnabled is false */:
                     highlightStyle.dispose();
                     break;
                 default: /* break out of initial switch if 'true or false' is not found */
@@ -176,7 +207,10 @@ function lineHighlighter(): void {
             }
 
             // Keep track of position
-            new Position(activeTextEditor.selection.start.line, activeTextEditor.selection.start.character);
+            new Position(
+                activeTextEditor.selection.start.line,
+                activeTextEditor.selection.start.character,
+            );
         }
     }
 
@@ -210,48 +244,66 @@ function lineHighlighter(): void {
      */
     function getHighlighterStyle(): TextEditorDecorationType {
         // Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
-        const userConfig: WorkspaceConfiguration = workspace.getConfiguration('mind-reader.lineHighlighter');
+        const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
+            "mind-reader.lineHighlighter",
+        );
 
-        const borderWidthTop    : string = userConfig.get('borderWidthTop')    || "1px";
-        const borderWidthRight  : string = userConfig.get('borderWidthRight')  || "16px";
-        const borderWidthBottom : string = userConfig.get('borderWidthBottom') || "1px";
-        const borderWidthLeft   : string = userConfig.get('borderWidthLeft')   || "1px";
+        const borderWidthTop: string =
+            userConfig.get("borderWidthTop") || "1px";
+        const borderWidthRight: string =
+            userConfig.get("borderWidthRight") || "16px";
+        const borderWidthBottom: string =
+            userConfig.get("borderWidthBottom") || "1px";
+        const borderWidthLeft: string =
+            userConfig.get("borderWidthLeft") || "1px";
 
-        const borderStyleTop    : string = userConfig.get('borderStyleTop')    || "solid";
-        const borderStyleRight  : string = userConfig.get('borderStyleRight')  || "solid";
-        const borderStyleBottom : string = userConfig.get('borderStyleBottom') || "solid";
-        const borderStyleLeft   : string = userConfig.get('borderStyleLeft')   || "solid";
+        const borderStyleTop: string =
+            userConfig.get("borderStyleTop") || "solid";
+        const borderStyleRight: string =
+            userConfig.get("borderStyleRight") || "solid";
+        const borderStyleBottom: string =
+            userConfig.get("borderStyleBottom") || "solid";
+        const borderStyleLeft: string =
+            userConfig.get("borderStyleLeft") || "solid";
 
-        const borderColorTop    : string = userConfig.get('borderColorTop')    || "#FFFFFF";
-        const borderColorRight  : string = userConfig.get('borderColorRight')  || "#FFFFFF";
-        const borderColorBottom : string = userConfig.get('borderColorBottom') || "#FFFFFF";
-        const borderColorLeft   : string = userConfig.get('borderColorLeft')   || "#FFFFFF";
+        const borderColorTop: string =
+            userConfig.get("borderColorTop") || "#FFFFFF";
+        const borderColorRight: string =
+            userConfig.get("borderColorRight") || "#FFFFFF";
+        const borderColorBottom: string =
+            userConfig.get("borderColorBottom") || "#FFFFFF";
+        const borderColorLeft: string =
+            userConfig.get("borderColorLeft") || "#FFFFFF";
 
-        const backgroundColor   : string = userConfig.get('backgroundColor')   || "#232C5C";
+        const backgroundColor: string =
+            userConfig.get("backgroundColor") || "#232C5C";
 
-        const fontStyle         : string = userConfig.get('fontStyle')         || "normal";
-        const fontWeight        : string = userConfig.get('fontWeight')        || "bolder";
-        const outlineColor      : string = userConfig.get('outlineColor')      || "#4866FE";
-        const outlineStyle      : string = userConfig.get('outlineStyle')      || "solid";
-        const outlineWidth      : string = userConfig.get('outlineWidth')      || "1px";
-        const textDecoration    : string = userConfig.get('textDecoration')    || "none";
-        const textColor         : string = userConfig.get('textColor')         || "#FFFFFF";
+        const fontStyle: string = userConfig.get("fontStyle") || "normal";
+        const fontWeight: string = userConfig.get("fontWeight") || "bolder";
+        const outlineColor: string =
+            userConfig.get("outlineColor") || "#4866FE";
+        const outlineStyle: string = userConfig.get("outlineStyle") || "solid";
+        const outlineWidth: string = userConfig.get("outlineWidth") || "1px";
+        const textDecoration: string =
+            userConfig.get("textDecoration") || "none";
+        const textColor: string = userConfig.get("textColor") || "#FFFFFF";
 
         // Combine all our styling into a single variable to return
-        const highlighterStyle  : TextEditorDecorationType  = window.createTextEditorDecorationType({
-            isWholeLine         : true,
-            backgroundColor     : `${backgroundColor}`,
-            fontStyle           : `${fontStyle}`,
-            fontWeight          : `${fontWeight}`,
-            textDecoration      : `${textDecoration}`,
-            color               : `${textColor}`,
-            borderColor         : `${borderColorTop} ${borderColorRight} ${borderColorBottom} ${borderColorLeft}`,
-            borderWidth         : `${borderWidthTop} ${borderWidthRight} ${borderWidthBottom} ${borderWidthLeft}`,
-            borderStyle         : `${borderStyleTop} ${borderStyleRight} ${borderStyleBottom} ${borderStyleLeft}`,
-            outlineColor        : `${outlineColor}`,
-            outlineWidth        : `${outlineWidth}`,
-            outlineStyle        : `${outlineStyle}`,
-        });
+        const highlighterStyle: TextEditorDecorationType =
+            window.createTextEditorDecorationType({
+                isWholeLine: true,
+                backgroundColor: `${backgroundColor}`,
+                fontStyle: `${fontStyle}`,
+                fontWeight: `${fontWeight}`,
+                textDecoration: `${textDecoration}`,
+                color: `${textColor}`,
+                borderColor: `${borderColorTop} ${borderColorRight} ${borderColorBottom} ${borderColorLeft}`,
+                borderWidth: `${borderWidthTop} ${borderWidthRight} ${borderWidthBottom} ${borderWidthLeft}`,
+                borderStyle: `${borderStyleTop} ${borderStyleRight} ${borderStyleBottom} ${borderStyleLeft}`,
+                outlineColor: `${outlineColor}`,
+                outlineWidth: `${outlineWidth}`,
+                outlineStyle: `${outlineStyle}`,
+            });
 
         // Return our variable
         return highlighterStyle;
@@ -276,9 +328,13 @@ function lineHighlighter(): void {
          * otherwise, 'isEnabled' is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration('mind-reader.lineHighlighter').get('isEnabled') === undefined)
+        workspace
+            .getConfiguration("mind-reader.lineHighlighter")
+            .get("isEnabled") === undefined
             ? (enabledStatus = true)
-            : (enabledStatus = workspace.getConfiguration('mind-reader.lineHighlighter').get('isEnabled'));
+            : (enabledStatus = workspace
+                  .getConfiguration("mind-reader.lineHighlighter")
+                  .get("isEnabled"));
 
         // return the enabledStatus
         return enabledStatus;
@@ -294,9 +350,13 @@ function lineHighlighter(): void {
          * otherwise, 'isEnabled' is listed in the settings
          *      - so we just pull its value
          */
-        (workspace.getConfiguration('mind-reader.lineHighlighter').get('multiLineIsEnabled') === undefined)
+        workspace
+            .getConfiguration("mind-reader.lineHighlighter")
+            .get("multiLineIsEnabled") === undefined
             ? (multiLineIsEnabled = true)
-            : (multiLineIsEnabled = workspace.getConfiguration('mind-reader.lineHighlighter').get('multiLineIsEnabled'));
+            : (multiLineIsEnabled = workspace
+                  .getConfiguration("mind-reader.lineHighlighter")
+                  .get("multiLineIsEnabled"));
 
         // return the enabledStatus
         return multiLineIsEnabled;
@@ -305,8 +365,8 @@ function lineHighlighter(): void {
 
 // Clean-up after ourself
 export function deactivate() {
-	// when the plugin is terminated remove all highlighting
-	if (highlightStyle !== undefined) {
-		highlightStyle.dispose();
-	}
+    // when the plugin is terminated remove all highlighting
+    if (highlightStyle !== undefined) {
+        highlightStyle.dispose();
+    }
 }

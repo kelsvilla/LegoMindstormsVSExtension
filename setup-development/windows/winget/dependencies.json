@@ -1,29 +1,29 @@
 {
-   "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-   "CreationDate": "2022-04-23T21:13:03.702-00:00",
-   "Sources": [
-      {
-         "Packages": [
-            {
-               "PackageIdentifier": "Python.Python.3"
-            },
-            {
-               "PackageIdentifier": "Git.Git"
-            },
-            {
-               "PackageIdentifier": "OpenJS.NodeJS.LTS"
-            },
-            {
-               "PackageIdentifier": "Microsoft.VisualStudioCode"
+    "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+    "CreationDate": "2022-04-23T21:13:03.702-00:00",
+    "Sources": [
+        {
+            "Packages": [
+                {
+                    "PackageIdentifier": "Python.Python.3"
+                },
+                {
+                    "PackageIdentifier": "Git.Git"
+                },
+                {
+                    "PackageIdentifier": "OpenJS.NodeJS.LTS"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.VisualStudioCode"
+                }
+            ],
+            "SourceDetails": {
+                "Argument": "https://winget.azureedge.net/cache",
+                "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+                "Name": "winget",
+                "Type": "Microsoft.PreIndexed.Package"
             }
-         ],
-         "SourceDetails": {
-            "Argument": "https://winget.azureedge.net/cache",
-            "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
-            "Name": "winget",
-            "Type": "Microsoft.PreIndexed.Package"
-         }
-      }
-   ],
-   "WinGetVersion": "1.2.10271"
+        }
+    ],
+    "WinGetVersion": "1.2.10271"
 }
