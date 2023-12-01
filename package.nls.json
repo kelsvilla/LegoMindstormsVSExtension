@@ -1,0 +1,14 @@
+{
+    "walkthrough.header.title": "Get Started with Mind Reader",
+    "walkthrough.header.description": "A walkthrough for you to get started",
+    "walkthrough.step.createPythonFile.title": "Create a Python File",
+    "walkthrough.step.createPythonFile.description": "[Open](command:toSide:workbench.action.files.openFile) or [create](command:toSide:workbench.action.files.newUntitledFile) a Python file - make sure it's saved as \".py\"",
+    "walkthrough.step.lineHighlighter.title": "Track where you are",
+    "walkthrough.step.lineHighlighter.description": "Keep track of where you are by looking for the highlighted line.\n**Tip**: You can customize the line highlighter's appearance and behavior in the settings.\n📕 Check out our [Line Highlighter](https://github.com/kelsvilla/LegoMindstormsVSExtension/wiki/Line-Highlighter) page to learn more.",
+    "walkthrough.step.viewCommands.title": "View all your commands",
+    "walkthrough.step.viewCommands.description": "Click on the \"Mind Reader Actions\" tab to view all commands",
+    "walkthrough.step.speechToCode.title": "Write Code with Speech",
+    "walkthrough.step.speechToCode.description": "Press ``CTRL + V`` or click on ``Voice-command.start Stream`` in Mind Reader Actions to start adding code by speech.\nTry saying \"Insert If Ladder\" when its listening. Say \"Exit\" for it to stop listening.\n📕 Check out our [Voice Command](https://github.com/kelsvilla/LegoMindstormsVSExtension/wiki/Voice-Command) page to learn more.",
+    "walkthrough.step.exploreFeatures.title": "Explore other features",
+    "walkthrough.step.exploreFeatures.description": "📕 Check out our [wiki](https://github.com/Kaiyan-Da-Man/Developer-Portfolio/wiki) to learn more about this extension."
+}

@@ -1,14 +1,15 @@
 {
   "name": "mind-reader",
   "displayName": "Mind Reader",
-  "homepage": "https://github.com/jcode999/Mind_Reader/wiki",
+  "homepage": "https://github.com/kelsvilla/LegoMindstormsVSExtension/wiki",
+  "l10n": "./l10n",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kelsvilla/LegoMindstormsVSExtension"
   },
   "publisher": "SpamArtists",
   "bugs": {
-    "url": "https://github.com/jcode999/Mind_Reader/issues"
+    "url": "https://github.com/kelsvilla/LegoMindstormsVSExtension/issues"
   },
   "contributors": [
     "Jake Grossman <JacobGrossman2@my.unt.edu>",
@@ -683,7 +684,64 @@
           "icon": "media/dep.svg"
         }
       ]
-    }
+    },
+    "walkthroughs": [
+      {
+        "id": "mindReader",
+        "title": "%walkthrough.header.title%",
+        "description": "%walkthrough.header.description%",
+        "steps": [
+          {
+            "id": "walkthrough.createPythonFile",
+            "title": "%walkthrough.step.createPythonFile.title%",
+            "description": "%walkthrough.step.createPythonFile.description%",
+            "media": {
+              "image": "media/walkthrough/createFile.png",
+              "altText": "New File"
+            }
+          },
+          {
+            "id": "walkthrough.speechToCode",
+            "title": "%walkthrough.step.speechToCode.title%",
+            "description": "%walkthrough.step.speechToCode.description%",
+            "media": {
+              "image": "media/walkthrough/voiceCommand.gif",
+              "altText": "Speech to Code"
+            },
+            "completionEvents": [
+              "onCommand:voice-command.startStreaming"
+            ]
+          },
+          {
+            "id": "walkthrough.lineHighlighter",
+            "title": "%walkthrough.step.lineHighlighter.title%",
+            "description": "%walkthrough.step.lineHighlighter.description%",
+            "media": {
+              "image": "media/walkthrough/lineHighlighter.gif",
+              "altText": "Line Highlighter"
+            }
+          },
+          {
+            "id": "walkthrough.viewCommands",
+            "title": "%walkthrough.step.viewCommands.title%",
+            "description": "%walkthrough.step.viewCommands.description%",
+            "media": {
+              "image": "media/walkthrough/viewCommands.png",
+              "altText": "View Commands"
+            }
+          },
+          {
+            "id": "walkthrough.exploreFeatures",
+            "title": "%walkthrough.step.exploreFeatures.title%",
+            "description": "%walkthrough.step.exploreFeatures.description%",
+            "media": {
+              "image": "media/logo.png",
+              "altText": "Logo"
+            }
+          }
+        ]
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -730,7 +788,8 @@
     "web-audio-api": "^0.2.2",
     "ws": "^6.2.2"
   },
-  "description": "<!-- header with logo --> <p align=\"center\"> <img alt=\"Mind Reader Logo\" src=\"media/logo.png\"></img> </p>",
+  "icon": "media/logo.png",
+  "description": "An extension with additional features for Lego Mindstorm development.",
   "keywords": [],
   "author": "",
   "license": "ISC"
