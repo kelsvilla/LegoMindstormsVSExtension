@@ -5,6 +5,7 @@
  * LineToken Symbol Types
  */
 export enum Symbol {
+    ASYNCFUNCTION = "async function",
     FUNCTION = "function",
     CLASS = "class",
     IF = "if",
