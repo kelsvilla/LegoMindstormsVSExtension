@@ -271,6 +271,16 @@
         "command": "mind-reader.callvoice",
         "title": "Start voice listener",
         "category": "Voice Commands"
+      },      
+      {
+        "command": "mind-reader.moveCursorBeginning",
+        "title": "Move cursor to beginning of file",
+        "category": "Mind Reader"
+      },
+      {
+        "command": "mind-reader.moveCursorEnd",
+        "title": "Move cursor to end of file",
+        "category": "Mind Reader"
       },
       {
         "command": "mind-reader.soundCuesSwitch",
@@ -355,7 +365,19 @@
         "command": "mind-reader.goToSyntaxErrors",
         "key": "Ctrl+Shift+[Space]",
         "mac": "Cmd+Shift+[Space]"
-      }
+      },
+      {
+        "command": "mind-reader.moveCursorBeginning",
+        "key": "Ctrl+Shift+/ R",
+        "mac": "Ctrl+Shift+[Slash] R",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "mind-reader.moveCursorEnd",
+        "key": "Ctrl+Shift+/ B",
+        "mac": "Ctrl+Shift+[Slash] B",
+        "when": "editorTextFocus"
+        }
     ],
     "menus": {
       "editor/context": [

@@ -42,6 +42,14 @@ export const textCommands: CommandEntry[] = [
     {
         name: 'mind-reader.goToSyntaxErrors',
         callback: goToSyntaxErrors
+    },
+    {
+        name: 'mind-reader.moveCursorBeginning',
+        callback: moveCursorBeginning
+    },
+    {
+        name: 'mind-reader.moveCursorEnd',
+        callback: moveCursorEnd
     }
 ];
 
@@ -499,4 +507,49 @@ function goToSyntaxErrors(): void {
         window.activeTextEditor.selection = new Selection(currentProblems[0].position, currentProblems[0].position);
         say.speak(currentProblems[0].problem);
     }
+}
+
+// Helper functions to move Cursor to beginning or end
+function moveCursorBeginning(): void{
+
+    const editor = window.activeTextEditor;
+
+    //Throw error if no editor open
+    if (!editor) {
+        window.showErrorMessage('MoveCursorBeginning: No Active Editor');
+        return;
+    }
+
+    let newPosition: Position;
+
+    newPosition = new Position(0,0); // Assign  newPosition to beginning
+
+    const newSelection = new Selection(newPosition, newPosition);
+    editor.selection = newSelection; // Apply change to editor
+
+    editor.revealRange(editor.selection, 1); // Make sure cursor is within range
+    window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
+}
+
+function moveCursorEnd(): void{
+
+    const editor = window.activeTextEditor;
+
+    //Throw error if no editor open
+    if (!editor) {
+        window.showErrorMessage('MoveCursorBeginning: No Active Editor');
+        return;
+    }
+
+    let newPosition : Position;
+
+    const lastLine = editor.document.lineCount - 1; // Get last line
+    const lastCharacter = editor.document.lineAt(lastLine).text.length; // Get last character in last line
+    newPosition = new Position(lastLine, lastCharacter); // Assign new position to end
+
+    const newSelection = new Selection(newPosition, newPosition);
+    editor.selection = newSelection; // Apply change to editor
+
+    editor.revealRange(editor.selection, 1); // Make sure cursor is within range
+    window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
 }
