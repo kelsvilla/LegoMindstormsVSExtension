@@ -15,6 +15,12 @@ let shouldPlayMIDINote = false;
 
 function toggleSoundCues(){
     shouldPlayMIDINote = !shouldPlayMIDINote;
+    if(shouldPlayMIDINote){
+        window.showInformationMessage("Sound Cues Activated");
+    }
+    else{
+        window.showInformationMessage("Sound Cues Deactivated");
+    }
 }
 
 window.onDidChangeTextEditorSelection(playerContext);
