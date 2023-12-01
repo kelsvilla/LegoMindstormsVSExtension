@@ -1,9 +1,9 @@
-import { LineToken }                 from '.';
-import { Symbol, EOFTOKEN, TabInfo } from './token';
+import { LineToken } from ".";
+import { Symbol, EOFTOKEN, TabInfo } from "./token";
 
 type Rule = {
-    pattern: RegExp,
-    type   : Symbol,
+    pattern: RegExp;
+    type: Symbol;
 };
 
 /**
@@ -14,91 +14,94 @@ type Rule = {
 const rules: Rule[] = [
     {
         pattern: /^\s*async def\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)\(/,
-        type: Symbol.ASYNCFUNCTION
+        type: Symbol.ASYNCFUNCTION,
     },
     {
         pattern: /^\s*def\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)\(/,
-        type: Symbol.FUNCTION
+        type: Symbol.FUNCTION,
     },
     {
         pattern: /^\s*class\s+(?<attr>[a-zA-Z_][a-zA-Z0-9_]*)/,
-        type: Symbol.CLASS
+        type: Symbol.CLASS,
     },
     {
         pattern: /^\s*if\s+(?<attr>[^:]+):\s*/,
-        type: Symbol.IF
+        type: Symbol.IF,
     },
     {
         pattern: /^\s*elif\s+(?<attr>[^:]+):\s*$/,
-        type: Symbol.ELIF
+        type: Symbol.ELIF,
     },
     {
         pattern: /^\s*else\s*:/,
-        type: Symbol.ELSE
+        type: Symbol.ELSE,
     },
     {
         pattern: /^\s*for\s+(?<attr>[^:]+):\s*$/,
-        type: Symbol.FOR
+        type: Symbol.FOR,
     },
     {
         pattern: /^\s*while\s+(?<attr>[^:]+):\s*$/,
-        type: Symbol.WHILE
+        type: Symbol.WHILE,
     },
     {
         pattern: /^\s*try\s*:/,
-        type: Symbol.TRY
+        type: Symbol.TRY,
     },
     {
         pattern: /^\s*except(\s*(?<attr>[^:]+))?:\s*$/,
-        type: Symbol.EXCEPT
+        type: Symbol.EXCEPT,
     },
     {
         pattern: /^\s*finally\s*:\s*$/,
-        type: Symbol.FINALLY
+        type: Symbol.FINALLY,
     },
     {
         pattern: /^\s*with\s+(?<attr>[^:]+):\s*$/,
-        type: Symbol.WITH
+        type: Symbol.WITH,
     },
     {
         pattern: /^\s*#+\s*(?<attr>.*)\s*$/,
-        type: Symbol.COMMENT
+        type: Symbol.COMMENT,
     },
     {
         pattern: /^\s*$/,
-        type: Symbol.EMPTY
+        type: Symbol.EMPTY,
     },
     {
         pattern: /^\s*(?<attr>[^#]+)+\s*$/,
-        type: Symbol.STATEMENT
-    }
+        type: Symbol.STATEMENT,
+    },
 ];
 
 /**
  * Line-By-Line Lexer
  */
 export default class Lexer {
-    private textLines : string[] = []; // array of text lines
-    private pos       : number = 0;
+    private textLines: string[] = []; // array of text lines
+    private pos: number = 0;
     private _currToken: LineToken = EOFTOKEN;
 
     /**
      * @param `text` The text to lex.
      * @param `tabFmt` A tab information descriptor
      */
-    constructor(text ? : string, private tabFmt ? : TabInfo) {
+    constructor(
+        text?: string,
+        private tabFmt?: TabInfo,
+    ) {
         // default is 4 wide expanded tabs
         this.tabFmt = {
             ...{
                 size: 4,
-                hard: false
+                hard: false,
             },
-            ...tabFmt
+            ...tabFmt,
         };
 
         if (text) {
             // normalize line feeds
-            text = text.replace('\r\n', '\n');
+            text = text.replace("\r\n", "\n");
         }
         this.restart(text);
     }
@@ -108,11 +111,11 @@ export default class Lexer {
      *
      * @param `text` The new text to lex.
      */
-    restart(text ? : string): void {
-        this.pos           = 0;
-        this._currToken    = EOFTOKEN; // if no input, already on EOFTOKEN
+    restart(text?: string): void {
+        this.pos = 0;
+        this._currToken = EOFTOKEN; // if no input, already on EOFTOKEN
         if (text) {
-            this.textLines = text.split('\n');
+            this.textLines = text.split("\n");
             this.next(); // advance to the first token
         }
     }
@@ -131,14 +134,14 @@ export default class Lexer {
      */
     next(): LineToken {
         if (this._currToken === EOFTOKEN && this.pos > this.textLines.length) {
-            throw new Error('Cannot advance past end');
+            throw new Error("Cannot advance past end");
         }
 
         // Until a LineToken is found, or EOF
         while (this.pos < this.textLines.length) {
-            const line  : string = this.textLines[this.pos];
+            const line: string = this.textLines[this.pos];
             const indent: number = Lexer.getIndent(line, this.tabFmt!);
-            let token   : LineToken;
+            let token: LineToken;
 
             for (var r of rules) {
                 // Does line match pattern?
@@ -146,7 +149,12 @@ export default class Lexer {
                 if (match) {
                     // Yes...
                     if (match.groups) {
-                        token = new LineToken(r.type, this.pos, indent, match.groups["attr"]);
+                        token = new LineToken(
+                            r.type,
+                            this.pos,
+                            indent,
+                            match.groups["attr"],
+                        );
                     } else {
                         token = new LineToken(r.type, this.pos, indent);
                     }
@@ -181,11 +189,11 @@ export default class Lexer {
     retract(n: number = 1): LineToken {
         if (this.pos - 1 - n < 0) {
             // -1 because this.pos is currently on the next token
-            throw new RangeError('Cannot retract past start');
+            throw new RangeError("Cannot retract past start");
         }
 
         if (n <= 0) {
-            throw new RangeError('Retract distance must be positive');
+            throw new RangeError("Retract distance must be positive");
         }
 
         if (this.pos - n === 0) {
@@ -223,8 +231,7 @@ export default class Lexer {
         if (tabFmt.hard) {
             // used tabs
             indent = leadingSpace;
-        }
-        else {
+        } else {
             // used spaces
             //? indent = Math.round(leadingSpace / tabFmt.size! * 10) / 10; // fractional indentation support?
             indent = Math.ceil(leadingSpace / tabFmt.size!);
@@ -241,7 +248,8 @@ export default class Lexer {
      * @return The number of leading spaces of `text`.
      */
     static getLeadingSpacesByArithmetic(line: any): number {
-        const leadingSpaces: number = line.text.length - line.text.trimStart().length;
+        const leadingSpaces: number =
+            line.text.length - line.text.trimStart().length;
 
         return leadingSpaces;
     }

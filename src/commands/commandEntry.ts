@@ -4,7 +4,6 @@
  * @prop {callback} callback // Callback to register when `command` is invoked
  */
 export type CommandEntry = {
-  name: string,
-  callback: () => void
+    name: string;
+    callback: () => void;
 };
-

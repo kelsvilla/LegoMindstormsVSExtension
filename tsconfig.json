@@ -1,27 +1,16 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es6",
-		"outDir": "out",
-		"lib": [
-			"es6",
-			"dom"
-		],
-		"sourceMap": true,
-		"rootDir": "src",
-		"strictPropertyInitialization": false,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,  /* enable all strict type-checking options */
-		"resolveJsonModule":true, /* enable json imports. The package.json file is used to import the registered commands */
-	},
-	"exclude": [
-		"node_modules",
-		".vscode-test",
-		"out"
-	],
-	
-	
-
-
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "outDir": "out",
+        "lib": ["es6", "dom"],
+        "sourceMap": true,
+        "rootDir": "src",
+        "strictPropertyInitialization": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true /* enable all strict type-checking options */,
+        "resolveJsonModule": true /* enable json imports. The package.json file is used to import the registered commands */
+    },
+    "exclude": ["node_modules", ".vscode-test", "out"]
 }
