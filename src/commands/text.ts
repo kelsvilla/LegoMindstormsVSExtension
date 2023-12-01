@@ -73,6 +73,12 @@ export const textCommands: CommandEntry[] = [
 
 function toggleTTS() {
     shouldSpeak = !shouldSpeak;
+    if(shouldSpeak){
+        window.showInformationMessage("Text to Speech Activated");
+    }
+    else{
+        window.showInformationMessage("Text to Speech Deactivated");
+    }
 }
 
 function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
