@@ -31,7 +31,7 @@
         "Kelsee Villareal <KelseeVillareal@my.unt.edu>",
         "Bryan Tang <BryanTang@my.unt.edu>"
     ],
-    "version": "3.1.0",
+    "version": "3.2.0",
     "engines": {
         "vscode": "^1.66.0"
     },
