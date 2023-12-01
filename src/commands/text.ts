@@ -491,10 +491,10 @@ function runCursorContext(): void {
 }
 
 function goToSyntaxErrors(): void {
-	// Checks if there is an editor open
-	if (!window || !window.activeTextEditor) {
-		return;
-	}
+    say.stop();
+
+    // Checks if there is an editor open
+    if (!window || !window.activeTextEditor) { return; }
 
 	// get file path
 	const currentFileURI: Uri = window.activeTextEditor.document.uri;
