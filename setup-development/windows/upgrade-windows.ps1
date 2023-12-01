@@ -213,7 +213,7 @@ else {
 vsce package
 
 #Install extension
-code --install-extension mind-reader-2.0.1.vsix
+code --install-extension mind-reader-3.1.0.vsix
 
 # Return from whence we came
 Set-Location $prev_directory
