@@ -44,12 +44,13 @@ function runClient()
         //const cmd = vscode.commands.executeCommand(message.toString());
         if (message.toString()!=='Shutting down voice commands.')
         {
-        const cmdMsg = message.toString().split(',');
-        vscode.commands.executeCommand(cmdMsg[0]).then(
+        if(message.toString().split(',').length !== 2) return;
+        const [cmdName, logMsg] = message.toString().split(',');
+        vscode.commands.executeCommand(cmdName).then(
             () => {
-                console.log('command to run success:',cmdMsg[0]);
+                console.log('command to run success:',cmdName);
                 setTimeout(() => {
-                    vscode.window.showInformationMessage(cmdMsg[1]).then(
+                    vscode.window.showInformationMessage(logMsg).then(
                         (success) => {
                             console.log(success);
                         }, (reject) => {
