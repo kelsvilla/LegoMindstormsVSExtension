@@ -39,48 +39,48 @@ function activateVoiceServer() {
 	vscode.window.showInformationMessage("Server Started");
 	return server;
 }
-function runClient() {
-	let socket: WebSocket | null = null;
-	const socketPort = 12152;
-	socket = new WebSocket(`ws://localhost:${socketPort}`);
-	console.log("[client] socket created .. ");
-	//console.log('[client]: socket status',socket.readyState);
-	socket.addEventListener("open", (event) => {
-		console.log("[client] is ready to communicate..", event.target.OPEN);
-		//socket?.send('Hello I am Client');
-	});
-	//socket.send('Hello');
-	socket.on("message", (message) => {
-		console.log("message recived", message);
-		//const cmd = vscode.commands.executeCommand(message.toString());
-		if (message.toString() !== "Shutting down voice commands.") {
-			const cmdMsg = message.toString().split(",");
-			vscode.commands.executeCommand(cmdMsg[0]).then(
-				() => {
-					console.log("command to run success:", cmdMsg[0]);
-					setTimeout(() => {
-						vscode.window.showInformationMessage(cmdMsg[1]).then(
-							(success) => {
-								console.log(success);
-							},
-							(reject) => {
-								console.log(reject);
-							},
-						);
-					}, 5);
-				},
-				(reject) => {
-					vscode.window.showInformationMessage(
-						"Action Cannot be Completed!",
-					);
-					console.log(reject);
-				},
-			);
-		} else {
-			vscode.window.showInformationMessage("Exiting Voice Commands.");
-		}
-	});
-	//console.log('[client]: socket status', socket.readyState);
+function runClient()
+{
+    let socket: WebSocket | null = null;
+    const socketPort = 12152;
+    socket = new WebSocket(`ws://localhost:${socketPort}`);
+    console.log('[client] socket created .. ');
+    //console.log('[client]: socket status',socket.readyState);
+    socket.addEventListener('open', (event) => {
+        console.log('[client] is ready to communicate..', event.target.OPEN);
+        //socket?.send('Hello I am Client');
+    });
+    //socket.send('Hello');
+    socket.on('message', (message) => {
+        console.log('message recived', message);
+        //const cmd = vscode.commands.executeCommand(message.toString());
+        if (message.toString()!=='Shutting down voice commands.')
+        {
+        if(message.toString().split(',').length !== 2) return;
+        const [cmdName, logMsg] = message.toString().split(',');
+        vscode.commands.executeCommand(cmdName).then(
+            () => {
+                console.log('command to run success:',cmdName);
+                setTimeout(() => {
+                    vscode.window.showInformationMessage(logMsg).then(
+                        (success) => {
+                            console.log(success);
+                        }, (reject) => {
+                            console.log(reject);
+                        }
+                    );
+                }, 5);
+
+            }, (reject) => {
+                vscode.window.showInformationMessage("Action Cannot be Completed!");
+                console.log(reject);
+            });
+        }
+        else{
+            vscode.window.showInformationMessage("Exiting Voice Commands.");
+        }
+    });
+    //console.log('[client]: socket status', socket.readyState);
 }
 
 export function startStreaming() {
