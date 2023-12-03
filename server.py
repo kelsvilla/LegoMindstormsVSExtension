@@ -26,15 +26,16 @@ def voice_to_text():
         r.adjust_for_ambient_noise(source)
         while(True):
             print('Please give your command. Listening...',flush=True)
-            audio = r.listen(source,timeout=7,phrase_time_limit=5)
 
             try:
+                audio = r.listen(source,timeout=7,phrase_time_limit=5)
                 cmd =  r.recognize_google(audio)
                 print('Did you say : ' + cmd,flush=True)
                 return str(cmd)
             
-            except (Exception,sr.exceptions.WaitTimeoutError) as e:
-                time.sleep(5) 
+            except (Exception, sr.exceptions.WaitTimeoutError) as e:
+                if type(e) != sr.exceptions.WaitTimeoutError and type(e) != sr.exceptions.UnknownValueError:
+                    print("There was an issue with the microphone input.", flush=True)
 
     
 
@@ -71,7 +72,6 @@ def tcp_connection():
         #os.system('')
     serversocket.listen()
     print("OK",flush=True)
-    time.sleep(10)
     clientsocket, clientaddr = serversocket.accept()
     print('Server connection to Mind-Reader successful',flush=True)
     handle_syn_ack(clientsocket) #initial handshake
@@ -133,11 +133,11 @@ def tcp_connection():
                     if command_to_run != 'NULL':
                         response = command_to_run + ',' + msg
                         break
+            
+            #Valid command was received, send response to client
             if response != '':
                 response = bytes(response.encode('utf-8'))
-                #print('Action Completed: ',msg)
                 response_len = int(hex(len(response)),16)
-                #print()
                 #a message should be sent following the websocket protocol.
 
                 # Create a websocket frame containing the message
@@ -151,11 +151,10 @@ def tcp_connection():
                 
                 #send message to client
                 clientsocket.send(frame)
-            #break
+
+
     response = bytes(response.encode('utf-8'))
-    #print('Action Completed: ',msg)
     response_len = int(hex(len(response)),16)
-    #print()
     #a message should be sent following the websocket protocol.
 
     # Create a websocket frame containing the message
