@@ -29,7 +29,6 @@ class NaturalLanguageProcessor:
                 "prepositions": prepositions
             })
 
-
     def identify_command2(self, entities, actions, preposition):
         # print(colorama.Fore.CYAN+'*** Searching for command to run.')
         #print(colorama.Fore.BLUE +'Entities received [cmd_entities]: ',entities)
