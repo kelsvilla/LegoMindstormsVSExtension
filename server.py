@@ -80,7 +80,7 @@ def tcp_connection():
     nlp = NaturalLanguageProcessor()
     user_input = ''
     
-    mode = 2 #Relic of 
+    mode = 2 #Relic of older code where text mode was used to debug.
     while user_input!='exit':
         #Initialize message sent to client
         response = ''
@@ -94,11 +94,17 @@ def tcp_connection():
                 response = 'Shutting down voice commands.'
                 break
         
-        entities,actions,preposition = nlp.entity_action_recognizer('can you '+ user_input)
+        entities,actions,preposition = nlp.entity_action_recognizer(user_input)
         #print(f"Entities: {entities}\nActions:{actions}\nPrepositions:{preposition}", flush=True)
         if len(entities) == 0 or len(actions) == 0:
             print('Unable to recognize entity or action. Command will not be executed. Try using other variations',flush=True)
         else:
+            #Look for an early out, avoiding any NLP if user input exactly matches command
+            for command in nlp.commands:
+                if command["voiceEntry"].lower() == user_input.lower():
+                    response = command['command'] + ",_"
+                    break
+
             #print(entities,actions,preposition)
             new_entities = [] 
             for entity in entities:

@@ -10,10 +10,25 @@ class NaturalLanguageProcessor:
     def __init__(self):
         self.parse_package()
         self.load_syns()
+        self.parse_commands()
 
     def parse_package(self):
         with open('package.json') as packageFile:
             self.commands = json.load(packageFile)['contributes']['commands']
+
+    def parse_commands(self):
+        if not self.commands:
+            raise ValueError("Commands is empty.")
+
+        self.parsed_commands = []
+        for command in self.commands:
+            entities, actions, prepositions = self.entity_action_recognizer(command['title'])
+            self.parsed_commands.append({
+                "entities": entities,
+                "actions": actions,
+                "prepositions": prepositions
+            })
+
 
     def identify_command2(self, entities, actions, preposition):
         # print(colorama.Fore.CYAN+'*** Searching for command to run.')
@@ -25,14 +40,13 @@ class NaturalLanguageProcessor:
         command_index = 0
         if preposition == '':
             #print(colorama.Fore.CYAN +'Single Entity Command')
-            for i, command in enumerate(self.commands):
-                ext_entities,ext_actions,ext_prepositional = self.entity_action_recognizer('can you ' + command['title'])
+            for i, command in enumerate(self.parsed_commands):
                 #print(f"{command['title']}\nEntities: {ext_entities}\nActions:{ext_actions}\nPrepositions:{ext_prepositional}", flush=True)
-                if(len(ext_entities)!=0 and len(ext_actions)!=0):
-                    if ext_prepositional == '' and entities[0]==ext_entities[0]:
+                if(len(command["entities"])!=0 and len(command["actions"])!=0):
+                    if command["prepositions"] == '' and entities[0]==command["entities"][0]:
                         #print(colorama.Fore.GREEN +' - Entity Matched with command [ ',command['title'],' ] at index ',i)
                         entity_match.add(i)
-                    if actions == ext_actions:
+                    if actions == command["actions"]:
                         #print(colorama.Fore.GREEN +' - Action matched with command [ ',command['title'],' ] at index ',i)
                         action_match.add(i)
             #print(colorama.Fore.GREEN +'Entities Matched Command Indexs: ',entity_match)
@@ -47,7 +61,7 @@ class NaturalLanguageProcessor:
         else:
             #print(colorama.Fore.CYAN +'Multi Entity Command. Preposition: ',preposition)
             for i in self.commands:
-                ext_entities,ext_actions,ext_prepositional = self.entity_action_recognizer('can you ' + i['title'])
+                ext_entities,ext_actions,ext_prepositional = self.entity_action_recognizer(i['title'])
                 if(len(ext_entities)!=0 and len(ext_actions)!=0):
                     if ext_prepositional!='':
                             #print('entities[0]: ',entities[0],ext_entities[0])
@@ -73,14 +87,13 @@ class NaturalLanguageProcessor:
         used in extension commands title"""
     def alternatives(self, entities):
         lemmatizer = WordNetLemmatizer()
+        token_syns = []
+        #This for loop is currently pointless, as entities is always a 1-length list
         for word in entities:
             #print(f"word: {word}")
             tokens = nltk.word_tokenize(word)
-            token_syns = []
         
-        #print(tokens)
         for token in tokens:
-            #print("in tokens loop")
             root_found = False #root word for a token found
             roots= []
             for syn_row in self.syns:
@@ -91,7 +104,7 @@ class NaturalLanguageProcessor:
             if root_found == False:
                 roots.append('')
             token_syns.append((token,roots))
-
+        print(token_syns)
         return token_syns #return the token and their roor words
 
     def load_syns(self):
@@ -104,7 +117,7 @@ class NaturalLanguageProcessor:
 
     def entity_action_recognizer(self, sentence):
         #python_specific_entities = ['for loop','while loop','for number loop','nested for loop','if else ladder','if ladder','nested for number loop','try ladder']
-        sentence = sentence.lower()
+        sentence = "can you " + sentence.lower() #"Can you" is presumably prepended to lead the tagger towards more correctly tagging verbs
         tokens = nltk.word_tokenize(sentence)
         default_pos_tags = nltk.pos_tag(tokens)
 
@@ -180,67 +193,67 @@ class NaturalLanguageProcessor:
         return combinations
 
 
-def test():
-    # f = open('pos.txt','w')
-    syns = syns_load()
-    packageFile = open('package.json')
-    package = json.load(packageFile)
+# def test():
+#     # f = open('pos.txt','w')
+#     syns = syns_load()
+#     packageFile = open('package.json')
+#     package = json.load(packageFile)
 
-    for i in package['contributes']['commands']:
-        cmd = 'can you '+i['title']
-        print('command: ',cmd)
-        entities,actions,preposition = entity_action_recognizer(cmd,True)
-        print("Entities: ",entities,' Actions:',actions, 'Preposition: ',preposition)
-        known_entities = []
-        new_entities = []
-        for entity in entities:
-            known_entities.append((entity,alternatives(syns,[entity])))
-        for knw_ents in known_entities:
-            #print('Known Entities after searching for root words: ',knw_ents[1])
-            new_entities.append(knw_ents[1])
-        #if root word for all the words describing an entity of are found
-        # print(identify_command2(new_entities,actions,preposition))
-def syn_test(sentence):
-    from nltk.corpus import wordnet
-    syns = syns_load()
-    sentence = sentence.lower()
-    tokens = nltk.word_tokenize(sentence)
-    action = '' # only one verb per command ? change if accepting multiple commands
-    default_pos_tags = nltk.pos_tag(tokens)
-    print(default_pos_tags)
-    entities,actions,preposition = entity_action_recognizer(sentence,True)
-    print("Entities: ",entities,' Actions:',actions, 'Preposition: ',preposition)
-    new_entities = []
-    for entity in entities:
-        new_entities.append(buildEntities(alternatives(syns,[entity])))
-    print('entities to try with : ',new_entities)
-    if preposition == '':
-        print('Single Entity Command')
+#     for i in package['contributes']['commands']:
+#         cmd = 'can you '+i['title']
+#         print('command: ',cmd)
+#         entities,actions,preposition = entity_action_recognizer(cmd,True)
+#         print("Entities: ",entities,' Actions:',actions, 'Preposition: ',preposition)
+#         known_entities = []
+#         new_entities = []
+#         for entity in entities:
+#             known_entities.append((entity,alternatives(syns,[entity])))
+#         for knw_ents in known_entities:
+#             #print('Known Entities after searching for root words: ',knw_ents[1])
+#             new_entities.append(knw_ents[1])
+#         #if root word for all the words describing an entity of are found
+#         # print(identify_command2(new_entities,actions,preposition))
+# def syn_test(sentence):
+#     from nltk.corpus import wordnet
+#     syns = syns_load()
+#     sentence = sentence.lower()
+#     tokens = nltk.word_tokenize(sentence)
+#     action = '' # only one verb per command ? change if accepting multiple commands
+#     default_pos_tags = nltk.pos_tag(tokens)
+#     print(default_pos_tags)
+#     entities,actions,preposition = entity_action_recognizer(sentence,True)
+#     print("Entities: ",entities,' Actions:',actions, 'Preposition: ',preposition)
+#     new_entities = []
+#     for entity in entities:
+#         new_entities.append(buildEntities(alternatives(syns,[entity])))
+#     print('entities to try with : ',new_entities)
+#     if preposition == '':
+#         print('Single Entity Command')
         
-        new_entitis = new_entities[0]
-        for new_entity in new_entitis:
-            print('Trying with : ',new_entity)
-            cmd,msg = identify_command2([new_entity],actions,preposition)
-            if cmd!='NULL':
-                print(msg)
-               # break
-    else:
-        print('Multy Entity Command')
-        new_entitis = []
-        preceding_ents = new_entities[0]
-        trailing_ents = new_entities[1]
-        for i in range(0,len(preceding_ents)):
-            for j in range(0,len(trailing_ents)):
-                new_entitis.append([preceding_ents[i],trailing_ents[j]])
-        for new_ents in new_entitis:
-            print('Trying with :',new_ents)
-            cmd,msg = identify_command2(new_ents,actions,preposition)
-            if cmd != 'NULL':
-                print(msg)
-                break
+#         new_entitis = new_entities[0]
+#         for new_entity in new_entitis:
+#             print('Trying with : ',new_entity)
+#             cmd,msg = identify_command2([new_entity],actions,preposition)
+#             if cmd!='NULL':
+#                 print(msg)
+#                # break
+#     else:
+#         print('Multy Entity Command')
+#         new_entitis = []
+#         preceding_ents = new_entities[0]
+#         trailing_ents = new_entities[1]
+#         for i in range(0,len(preceding_ents)):
+#             for j in range(0,len(trailing_ents)):
+#                 new_entitis.append([preceding_ents[i],trailing_ents[j]])
+#         for new_ents in new_entitis:
+#             print('Trying with :',new_ents)
+#             cmd,msg = identify_command2(new_ents,actions,preposition)
+#             if cmd != 'NULL':
+#                 print(msg)
+#                 break
 
-def tag_keyphrase(tokens):
-    pass
+# def tag_keyphrase(tokens):
+#     pass
         
 #test()
 # cmds = ['can you increase the texts size','can you get the texts under the cursor','can you insert a for loop']
@@ -248,18 +261,3 @@ def tag_keyphrase(tokens):
 #     syn_test(cmd)
 #     print('-------------------------------------------')
 #     print()
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
