@@ -1,0 +1,14 @@
+*This is to clarify what scenarios output which sounds when sound cues are activated*
+
+Ab  - If statement
+A   - Elif statement
+A#  - Else statement
+B   - for loop
+C   - Asynchronous function
+C#  - Regular function
+D   - Class
+Eb  - Try
+E   - Exception
+F   - Comment
+Gb  - Empty line  
+G   - Generic code (no symbol registered)

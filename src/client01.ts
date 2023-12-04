@@ -1,8 +1,8 @@
-import * as WebSocket from 'ws';
-import * as vscode from 'vscode';
-import * as path from 'path';
-var os = require('os');
-const { spawn } = require('child_process');
+import * as WebSocket from "ws";
+import * as vscode from "vscode";
+import * as path from "path";
+var os = require("os");
+const { spawn } = require("child_process");
 import { rootDir } from "./extension";
 
 function activateVoiceServer(){
@@ -67,7 +67,6 @@ function runClient()
         }
     });
 }
-
 
 export function startStreaming() {
     /* activate the voice server */
