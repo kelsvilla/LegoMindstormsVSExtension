@@ -15,7 +15,7 @@ import os, time
 
 
 
-from nlp import entity_action_recognizer,identify_command2,syns_load,alternatives,buildEntities
+from nlp import NaturalLanguageProcessor
 
 
 
@@ -69,25 +69,20 @@ def tcp_connection():
         
     except OSError as ose:
         print('address already in use. Kill previous attached server. Terminating for now',flush=True) #address already in use
-        #os.system('')
+
     serversocket.listen()
     print("OK",flush=True)
     clientsocket, clientaddr = serversocket.accept()
     print('Server connection to Mind-Reader successful',flush=True)
     handle_syn_ack(clientsocket) #initial handshake
     #Connect to VSCode client code.
-    syns = syns_load()
+    #Initialize NLP class to hold costly state between commands
+    nlp = NaturalLanguageProcessor()
     user_input = ''
-    #print()
-    #print('Please select the command input mode.\n')
     
-    
-    mode = 2
-    #mode = input('   [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n')
-    
-    while user_input!='exit': # TO-DO: compare with messag from voice-to-text later.
-        #send message to client
-       
+    mode = 2 #Relic of 
+    while user_input!='exit':
+        #Initialize message sent to client
         response = ''
 
         if int(mode) == 1:
@@ -99,7 +94,7 @@ def tcp_connection():
                 response = 'Shutting down voice commands.'
                 break
         
-        entities,actions,preposition = entity_action_recognizer('can you '+ user_input,True)
+        entities,actions,preposition = nlp.entity_action_recognizer('can you '+ user_input)
         #print(f"Entities: {entities}\nActions:{actions}\nPrepositions:{preposition}", flush=True)
         if len(entities) == 0 or len(actions) == 0:
             print('Unable to recognize entity or action. Command will not be executed. Try using other variations',flush=True)
@@ -109,14 +104,14 @@ def tcp_connection():
             for entity in entities:
                 #print(f"entity:{entity}\n")
                 #create entities by using root words.
-                new_entities.append(buildEntities(alternatives(syns,[entity])))
+                new_entities.append(nlp.buildEntities(nlp.alternatives([entity])))
             #print(new_entities)
             new_entities = [entities] if new_entities[0][0] == ' ' else new_entities
             if preposition == '':
                 new_entitis = new_entities[0]
                 for new_entity in new_entitis:
                     #print(f"new_entity: {new_entity}\n")
-                    command_to_run,msg = identify_command2([new_entity],actions,preposition)
+                    command_to_run,msg = nlp.identify_command2([new_entity],actions,preposition)
                     if command_to_run != 'NULL':
                         response = command_to_run + ',' + msg
                         break
@@ -129,7 +124,7 @@ def tcp_connection():
                     for j in range(0,len(trailing_ents)):
                         new_entitis.append([preceding_ents[i],trailing_ents[j]])
                 for new_ents in new_entitis:
-                    command_to_run,msg = identify_command2(new_ents,actions,preposition)
+                    command_to_run,msg = nlp.identify_command2(new_ents,actions,preposition)
                     if command_to_run != 'NULL':
                         response = command_to_run + ',' + msg
                         break
