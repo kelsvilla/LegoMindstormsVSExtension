@@ -45,233 +45,285 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "voice-command.startStreaming",
+				"command": "mind-reader.startStreaming",
 				"title": "Start Voice Commands",
-				"category": "Voice Commands"
+				"category": "Voice Commands",
+        "voiceEntry": "Start Streaming"
 			},
 			{
 				"command": "mind-reader.voiceToText",
 				"title": "Start voice to text",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Voice To Text"
 			},
 			{
 				"command": "mind-reader.voiceCommandCaller",
 				"title": "Voice Command Caller",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Voice Command Caller"
 			},
 			{
 				"command": "mind-reader.increaseFontScale",
 				"title": "Increase Font Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Increase Font Scale"
 			},
 			{
 				"command": "mind-reader.decreaseFontScale",
 				"title": "Decrease Font Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Decrease Font Scale"
 			},
 			{
 				"command": "mind-reader.resetFontScale",
 				"title": "Reset Font Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Reset Font Scale"
 			},
 			{
 				"command": "mind-reader.increaseEditorScale",
 				"title": "Increase Editor Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Increase Editor Scale"
 			},
 			{
 				"command": "mind-reader.decreaseEditorScale",
 				"title": "Decrease Editor Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Decrease Editor Scale"
 			},
 			{
 				"command": "mind-reader.resetEditorScale",
 				"title": "Reset Editor Scale",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Reset Editor Scale"
 			},
 			{
 				"command": "mind-reader.selectTheme",
 				"title": "Select theme",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Select Theme"
 			},
 			{
 				"command": "mind-reader.openWebview",
-				"title": "Open webview"
+				"title": "Open webview",
+        "voiceEntry": "Open Webview"
 			},
 			{
 				"command": "mind-reader.openKeybinds",
 				"title": "Edit keybinds",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Open Keybinds"
 			},
 			{
 				"command": "mind-reader.getLineScope",
 				"title": "Get the scope of the current line",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Line Scope"
 			},
 			{
 				"command": "mind-reader.getWordsUnderCursor",
 				"title": "Get Words under the cursor",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Words Under Cursor"
 			},
 			{
 				"command": "mind-reader.getLineNumber",
 				"title": "Get the current line number",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Line Number"
 			},
 			{
 				"command": "mind-reader.getIndent",
 				"title": "Get The Number Of Line Indentations",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Indent"
 			},
 			{
 				"command": "mind-reader.getLeadingSpaces",
 				"title": "Get The Number Of Leading Spaces",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Leading Spaces"
 			},
 			{
 				"command": "mind-reader.selectLeadingWhitespace",
 				"title": "Select The Leading Whitespace",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Select Leading Whitespace"
 			},
 			{
 				"command": "mind-reader.getNumberOfSelectedLines",
 				"title": "Get The Number Of Selected Lines",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Number Of Selected Lines"
 			},
 			{
 				"command": "mind-reader.getQuickInputBack",
 				"title": "Go Back in Quick Input",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Get Quick Input Back"
 			},
 			{
-				"command": "mind-reader.gotoLine",
+				"command": "mind-reader.goToLine",
 				"title": "Go to line number",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Go To Line"
 			},
 			{
-				"command": "mind-reader.gotoSymbol",
+				"command": "mind-reader.goToSymbol",
 				"title": "Go to Symbol",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Go To Symbol"
 			},
 			{
 				"command": "mind-reader.navigateBack",
 				"title": "Navigate Backward",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Navigate Back"
 			},
 			{
 				"command": "mind-reader.navigateForward",
 				"title": "Navigate Forward",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Navigate Forward"
 			},
 			{
 				"command": "mind-reader.nextInFiles",
 				"title": "Go to Next Problem in Files (Error, Warning, Info)",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Next In Files"
 			},
 			{
 				"command": "mind-reader.prevInFiles",
 				"title": "Go to Previous Problem in Files (Error, Warning, Info)",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Prev In Files"
 			},
 			{
 				"command": "mind-reader.quickOpen",
 				"title": "Go to a file in work space",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Quick Open"
 			},
 			{
 				"command": "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
 				"title": "View: Quick Open Recently Used Editor in Group",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Quick Open Previous Recently Used Editor In Group"
 			},
 			{
 				"command": "mind-reader.showAllSymbols",
 				"title": "Go to a symbol in Workspace",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Show All Symbols"
 			},
 			{
 				"command": "mind-reader.showProblems",
 				"title": "Show Problems",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Show Problems"
 			},
 			{
 				"command": "mind-reader.showCommands",
 				"title": "Show All Commands",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Show Commands"
 			},
 			{
 				"command": "mind-reader.insertIfLadder",
 				"title": "Insert If Ladder",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert If Ladder"
 			},
 			{
 				"command": "mind-reader.insertIfElseLadder",
 				"title": "Insert If Else Ladder",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert If Else Ladder"
 			},
 			{
 				"command": "mind-reader.insertForLoop",
 				"title": "Insert a For Loop",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert For Loop"
 			},
 			{
 				"command": "mind-reader.insertForNumberLoop",
 				"title": "Insert a For Number Loop",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert For Number Loop"
 			},
 			{
 				"command": "mind-reader.insertNestedForLoop",
 				"title": "Insert a Nested For Loop",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert Nested For Loop"
 			},
 			{
 				"command": "mind-reader.insertNestedForNumberLoop",
 				"title": "Insert a Nested For Number Loop",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert Nested For Number Loop"
 			},
 			{
 				"command": "mind-reader.insertTryLadder",
 				"title": "Insert a Try Ladder",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert Try Ladder"
 			},
 			{
 				"command": "mind-reader.insertMindstormImport",
 				"title": "Insert Mindstorm Imports",
-				"category": "Mind Reader"
+				"category": "Mind Reader",
+        "voiceEntry": "Insert Mindstorm Import"
 			},
 			{
 				"command": "mind-reader.connectHub",
 				"title": "Connect to the LEGO SPIKE PRIME Hub",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Connect Hub"
 			},
 			{
 				"command": "mind-reader.disconnectHub",
 				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Disconnect Hub"
 			},
 			{
 				"command": "mind-reader.runProgram",
 				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Run Program"
 			},
 			{
 				"command": "mind-reader.stopExecution",
 				"title": "Stop Running Program on the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Stop Execution"
 			},
 			{
 				"command": "mind-reader.deleteProgram",
 				"title": "Delete a Program from the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Delete Program"
 			},
 			{
 				"command": "mind-reader.uploadCurrentFile",
 				"title": "Upload The Current File to the LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
+				"category": "SPIKE Prime",
+        "voiceEntry": "Upload Current File"
 			},
 			{
 				"command": "mind-reader.callvoice",
 				"title": "Start voice listener",
-				"category": "Voice Commands"
+				"category": "Voice Commands",
+        "voiceEntry": "Callvoice"
+      },
+      {
+        "command": "mind-reader.goToSyntaxErrors",
+        "title": "Go to Syntax Errors",
+        "category": "Mind Reader",
+        "voiceEntry": "Go To Syntax Errors"
 			},
 			{
 				"command": "mind-reader.moveCursorBeginning",
