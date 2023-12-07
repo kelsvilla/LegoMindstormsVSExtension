@@ -6,7 +6,6 @@ import {
 	Selection,
 	TextEditor,
 	TextLine,
-	Uri,
 	languages,
 	window,
 	workspace,
@@ -120,8 +119,8 @@ function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
 
 /** Helper Function
 * * This function returns the number of selected lines in the active text editor window
-    @param editor
-    @returns numberOfSelectedLines
+	@param editor
+	@returns numberOfSelectedLines
 */
 function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
 	let numberOfSelectedLines: number = 0;
@@ -495,19 +494,29 @@ function goToSyntaxErrors(): void {
 		return;
 	}
 
-	// get file path
-	const currentFileURI: Uri = window.activeTextEditor.document.uri;
-
 	// gets all current errors
 	// filters to only errors
 	// creates array of objects
-	const currentProblems = languages
-		.getDiagnostics(currentFileURI)
-		.filter((diagnostic) => diagnostic.severity === 0)
-		.map((res) => ({
-			problem: res.message,
-			position: res.range.start,
-		}));
+	let diagnostics = languages.getDiagnostics();
+	let currentProblems = [];
+
+	/*
+	{
+		filePath: string
+		problems: { message: string, position: Position }[]
+	}
+	*/
+	for (let i = 0; i < diagnostics.length; i++) {
+		currentProblems.push({
+			filePath: diagnostics[i][0].path,
+			problems: diagnostics[i][1]
+				.filter((diagnostics) => diagnostics.severity === 0)
+				.map((res) => ({
+					message: res.message,
+					position: res.range.start,
+				})),
+		});
+	}
 
 	// if no error, do nothing
 	if (currentProblems.length === 0) {
@@ -517,8 +526,19 @@ function goToSyntaxErrors(): void {
 	// get cursor positon
 	const cursorPosition: Position = window.activeTextEditor.selection.active;
 
-	// gets problems that exist after the cursor
-	let nextProblems = currentProblems.filter((problem) => {
+	// get file path
+	const currentFilePath: string = window.activeTextEditor.document.uri.path;
+
+	// get the next problem file's object and index
+	let nextProblemsFileObj = currentProblems.find(
+		(e) => e.filePath === currentFilePath,
+	);
+	let nextProblemsFileIndex = currentProblems.findIndex(
+		(e) => e.filePath === currentFilePath,
+	);
+
+	// gets the next problem in the problems array
+	let nextProblems = nextProblemsFileObj!.problems.filter((problem) => {
 		if (problem.position.line > cursorPosition.line) {
 			return true;
 		}
@@ -532,19 +552,25 @@ function goToSyntaxErrors(): void {
 		}
 	});
 
-	// if there are errors after cursor, go to it, else go to the first problem in currentProblems
+	// if error after cursor, go to it
+	// else if no error after cursor, go to first problem of next file
+	// else go to first problem of first file
 	if (nextProblems.length > 0) {
 		window.activeTextEditor.selection = new Selection(
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
-		say.speak(nextProblems[0].problem);
+	} else if (nextProblems.length === 0) {
+		nextProblemsFileObj = currentProblems[nextProblemsFileIndex + 1];
+		window.activeTextEditor.selection = new Selection(
+			nextProblemsFileObj.problems[0].position,
+			nextProblemsFileObj.problems[0].position,
+		);
 	} else {
 		window.activeTextEditor.selection = new Selection(
-			currentProblems[0].position,
-			currentProblems[0].position,
+			currentProblems[0].problems[0].position,
+			currentProblems[0].problems[0].position,
 		);
-		say.speak(currentProblems[0].problem);
 	}
 }
 
