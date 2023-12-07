@@ -41,7 +41,7 @@ export const accessCommands: CommandEntry[] = [
 		callback: resetEditorScale,
 	},
 	{
-		name: "voice-command.startStreaming",
+		name: "mind-reader.startStreaming",
 		callback: startStreaming,
 	},
 ];
