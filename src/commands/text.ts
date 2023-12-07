@@ -491,6 +491,8 @@ function runCursorContext(): void {
 }
 
 function goToSyntaxErrors(): void {
+	say.stop();
+
 	// Checks if there is an editor open
 	if (!window || !window.activeTextEditor) {
 		return;
