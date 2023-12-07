@@ -103,7 +103,6 @@ class NaturalLanguageProcessor:
             if root_found == False:
                 roots.append('')
             token_syns.append((token,roots))
-        print(token_syns)
         return token_syns #return the token and their roor words
 
     def load_syns(self):

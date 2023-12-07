@@ -95,45 +95,40 @@ def tcp_connection():
                 break
         
         entities,actions,preposition = nlp.entity_action_recognizer(user_input)
-        #print(f"Entities: {entities}\nActions:{actions}\nPrepositions:{preposition}", flush=True)
         if len(entities) == 0 or len(actions) == 0:
             print('Unable to recognize entity or action. Command will not be executed. Try using other variations',flush=True)
         else:
             #Look for an early out, avoiding any NLP if user input exactly matches command
             for command in nlp.commands:
-                if command["voiceEntry"].lower() == user_input.lower():
+                if command["voiceEntry"].replace(' ', '').lower() == user_input.replace(' ', '').lower():
                     response = command['command'] + ",_"
                     break
-
-            #print(entities,actions,preposition)
-            new_entities = [] 
-            for entity in entities:
-                #print(f"entity:{entity}\n")
-                #create entities by using root words.
-                new_entities.append(nlp.buildEntities(nlp.alternatives([entity])))
-            #print(new_entities)
-            new_entities = [entities] if new_entities[0][0] == ' ' else new_entities
-            if preposition == '':
-                new_entitis = new_entities[0]
-                for new_entity in new_entitis:
-                    #print(f"new_entity: {new_entity}\n")
-                    command_to_run,msg = nlp.identify_command2([new_entity],actions,preposition)
-                    if command_to_run != 'NULL':
-                        response = command_to_run + ',' + msg
-                        break
-                #print('********',msg)
-            else:
-                new_entitis = []
-                preceding_ents = new_entities[0]
-                trailing_ents = new_entities[1]
-                for i in range(0,len(preceding_ents)):
-                    for j in range(0,len(trailing_ents)):
-                        new_entitis.append([preceding_ents[i],trailing_ents[j]])
-                for new_ents in new_entitis:
-                    command_to_run,msg = nlp.identify_command2(new_ents,actions,preposition)
-                    if command_to_run != 'NULL':
-                        response = command_to_run + ',' + msg
-                        break
+            #If match wasn't found, keep processing
+            if response == "":
+                new_entities = [] 
+                for entity in entities:
+                    #create entities by using root words.
+                    new_entities.append(nlp.buildEntities(nlp.alternatives([entity])))
+                new_entities = [entities] if new_entities[0][0] == ' ' else new_entities
+                if preposition == '':
+                    new_entitis = new_entities[0]
+                    for new_entity in new_entitis:
+                        command_to_run,msg = nlp.identify_command2([new_entity],actions,preposition)
+                        if command_to_run != 'NULL':
+                            response = command_to_run + ',' + msg
+                            break
+                else:
+                    new_entitis = []
+                    preceding_ents = new_entities[0]
+                    trailing_ents = new_entities[1]
+                    for i in range(0,len(preceding_ents)):
+                        for j in range(0,len(trailing_ents)):
+                            new_entitis.append([preceding_ents[i],trailing_ents[j]])
+                    for new_ents in new_entitis:
+                        command_to_run,msg = nlp.identify_command2(new_ents,actions,preposition)
+                        if command_to_run != 'NULL':
+                            response = command_to_run + ',' + msg
+                            break
             
             #Valid command was received, send response to client
             if response != '':
