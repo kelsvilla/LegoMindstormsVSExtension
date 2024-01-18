@@ -355,8 +355,7 @@ function runLineContext(): void {
 		// build text
 		const contentString: string = createContextString(context, line);
 
-		window.showInformationMessage(contentString);
-		say.speak(contentString);
+		outputMessage(contentString);
 	} else {
 		window.showErrorMessage("No document currently active");
 	}
