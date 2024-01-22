@@ -37,7 +37,7 @@ const rules: Rule[] = [
 		type: Symbol.ELSE,
 	},
 	{
-		pattern: /^\s*for\s+(?<attr>[^:]+):\s*$/,
+		pattern: /^\s*for\s+(?<attr>[^:]+):\s*(#.*)?$/,
 		type: Symbol.FOR,
 	},
 	{
@@ -69,7 +69,7 @@ const rules: Rule[] = [
 		type: Symbol.EMPTY,
 	},
 	{
-		pattern: /^\s*(?<attr>[^#]+)+\s*$/,
+		pattern: /^\s*(?<attr>[^#]+)(\s*#.*)?$/,
 		type: Symbol.STATEMENT,
 	},
 ];
