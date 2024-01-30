@@ -332,10 +332,9 @@
 				"voiceEntry": "Move Cursor End"
 			},
 			{
-				"command": "mind-reader.soundCuesSwitch",
-				"title": "Sound Cues Switch",
-				"category": "Mind Reader",
-				"voiceEntry": "Sound Cues Switch"
+				"command": "mind-reader.toggleSoundCues",
+				"title": "Toggle Sound Cues",
+				"category": "Mind Reader"
 			}
 		],
 		"keybindings": [
@@ -508,7 +507,7 @@
 					"when": "false"
 				},
 				{
-					"command": "mind-reader.soundCuesSwitch",
+					"command": "mind-reader.toggleSoundCues",
 					"group": "sound_cues@0",
 					"when": "activeEditor"
 				}
