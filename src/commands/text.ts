@@ -498,17 +498,18 @@ function goToSyntaxErrors(): void {
 	// filters to only errors
 	// creates array of objects
 	let diagnostics = languages.getDiagnostics();
-	let currentProblems = [];
+	let globalProblems = [];
 
 	/*
 	{
-		filePath: string
+		uri: Uri
 		problems: { message: string, position: Position }[]
 	}
 	*/
 	for (let i = 0; i < diagnostics.length; i++) {
-		currentProblems.push({
-			filePath: diagnostics[i][0].path,
+		globalProblems.push({
+			uri: diagnostics[i][0],
+			// filePath: diagnostics[i][0].path,
 			problems: diagnostics[i][1]
 				.filter((diagnostics) => diagnostics.severity === 0)
 				.map((res) => ({
@@ -519,7 +520,7 @@ function goToSyntaxErrors(): void {
 	}
 
 	// if no error, do nothing
-	if (currentProblems.length === 0) {
+	if (globalProblems.length === 0) {
 		return;
 	}
 
@@ -530,11 +531,11 @@ function goToSyntaxErrors(): void {
 	const currentFilePath: string = window.activeTextEditor.document.uri.path;
 
 	// get the next problem file's object and index
-	let nextProblemsFileObj = currentProblems.find(
-		(e) => e.filePath === currentFilePath,
+	let nextProblemsFileObj = globalProblems.find(
+		(e) => e.uri.path === currentFilePath,
 	);
-	let nextProblemsFileIndex = currentProblems.findIndex(
-		(e) => e.filePath === currentFilePath,
+	let nextProblemsFileIndex = globalProblems.findIndex(
+		(e) => e.uri.path === currentFilePath,
 	);
 
 	// gets the next problem in the problems array
@@ -552,25 +553,36 @@ function goToSyntaxErrors(): void {
 		}
 	});
 
-	// if error after cursor, go to it
-	// else if no error after cursor, go to first problem of next file
-	// else go to first problem of first file
+	console.log(globalProblems);
+	console.log(nextProblems.length);
+
+	// if statement for moving cursor position or changing activeTextEditor
 	if (nextProblems.length > 0) {
+		// next problem within same file
+		console.log("same file");
 		window.activeTextEditor.selection = new Selection(
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
 	} else if (nextProblems.length === 0) {
-		nextProblemsFileObj = currentProblems[nextProblemsFileIndex + 1];
-		window.activeTextEditor.selection = new Selection(
-			nextProblemsFileObj.problems[0].position,
-			nextProblemsFileObj.problems[0].position,
-		);
-	} else {
-		window.activeTextEditor.selection = new Selection(
-			currentProblems[0].problems[0].position,
-			currentProblems[0].problems[0].position,
-		);
+		// next problem not in same file
+		if (
+			globalProblems.findIndex(
+				(obj) => obj.uri === window.activeTextEditor!.document.uri,
+			) !==
+			globalProblems.length - 1
+		) {
+			// next problem in next file
+			console.log("next file");
+			nextProblemsFileObj = globalProblems[nextProblemsFileIndex + 1];
+			window.showTextDocument(nextProblemsFileObj.uri);
+			moveCursorBeginning();
+		} else {
+			// last problem, go to first problem of first file
+			console.log("first file");
+			window.showTextDocument(globalProblems[0].uri);
+			moveCursorBeginning();
+		}
 	}
 }
 
