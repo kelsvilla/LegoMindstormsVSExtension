@@ -1,49 +1,55 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
-import { after } from "mocha";
+import { before, after } from "mocha";
 
-import { fetchLineNumber } from "../../../commands/text";
+import { fetchLineNumber, returnIndent } from "../../../commands/text";
 
 import * as fs from 'fs';
 import { join } from 'path';
 
 function syncWriteFile(filename: string, data: any) {
-  /**
-   * flags:
-   *  - w = Open file for reading and writing. File is created if not exists
-   *  - a+ = Open file for reading and appending. The file is created if not exists
-   */
   fs.writeFileSync(filename, data, {
-    flag: 'a+',
+      flag: 'a+',
   });
-
 }
 
-const mainFile = vscode.Uri.file(join(__dirname, "testing.py"));
-mainFile.scheme === 'file';
-mainFile.path === join(__dirname, "testing.py");
-mainFile.fragment === '';
+function initFile(): string {
+  const fileName = join(__dirname, "testing.py");
+  if (fs.existsSync(fileName)) {
+    fs.unlinkSync(fileName);
+  }
+  return fileName;
+}
 
 suite("Text Command Test Suite", () => {
-    after(() => {
-		vscode.window.showInformationMessage("All tests passed!");
-	});
-    test("Get line number", () => {
-        var fileName = join(__dirname, "testing.py");
-        if(fs.existsSync(fileName)) {
-            fs.unlinkSync(fileName);
-        }
-        for(let i = 1; i < 10; i++) {
-            syncWriteFile(fileName, `${i}\n`);
-        }
-        syncWriteFile(fileName, "10");
-        const contents = fs.readFileSync(join(__dirname, "testing.py"), 'utf-8');
-        vscode.window.showTextDocument(mainFile);
-        console.log(fetchLineNumber(vscode.window.activeTextEditor));
-        console.log(contents);
-	});
+  let editor: vscode.TextEditor;
 
+  before(async () => {
+    var fileName = initFile();
+    const document = await vscode.workspace.openTextDocument(fileName);
+    editor = await vscode.window.showTextDocument(document);
+  });
 
+  after(() => {
+      vscode.window.showInformationMessage("All tests passed!");
+  });
 
-
+  test("Get line number", () => {
+      for(let i = 0; i <= 10; i++){
+        syncWriteFile("testing.py", '\n');
+        editor.selection = new vscode.Selection(i, 0, i, 0);
+        let lineNumber = fetchLineNumber(vscode.window.activeTextEditor) - 1;
+        assert.equal(lineNumber, i);
+      }
+  });
+  test("Get indent", () => {
+    initFile();
+    for(let i = 0; i < 10; i++){
+      fs.appendFileSync("testing.py", '\t.');
+      editor.selection = new vscode.Selection(0, 0, 0, 0);
+      let indentNum = returnIndent();
+      console.log(indentNum);
+      assert.equal(i, indentNum);
+    }
+  });
 });
