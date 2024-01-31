@@ -136,7 +136,7 @@ function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
  *  @param editor
  *  @returns editor!.selection.active.line + 1
  */
-function fetchLineNumber(editor: TextEditor | undefined): number {
+export function fetchLineNumber(editor: TextEditor | undefined): number {
 	return editor!.selection.active.line + 1; // line numbers start at 1, not 0, so we add 1 to the result
 }
 
