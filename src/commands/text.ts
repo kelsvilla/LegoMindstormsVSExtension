@@ -82,18 +82,14 @@ let shouldSpeak = false;
 
 function outputMessage(message: string) {
 	window.showInformationMessage(message);
-	if (shouldSpeak === true) {
-		say.speak(message);
-	}
+	shouldSpeak === true ? say.speak(message) : undefined;
 }
 
 function toggleTTS() {
 	shouldSpeak = !shouldSpeak;
-	if (shouldSpeak) {
-		window.showInformationMessage("Text to Speech Activated");
-	} else {
-		window.showInformationMessage("Text to Speech Deactivated");
-	}
+	shouldSpeak
+	? window.showInformationMessage("Text to Speech Activated")
+	: window.showInformationMessage("Text to Speech Deactivated");
 }
 
 function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
@@ -481,8 +477,7 @@ function runCursorContext(): void {
 				contextString += spaceWords[i].word + " ";
 			}
 			// output cursor context string
-			window.showInformationMessage(contextString);
-			say.speak(contextString);
+			outputMessage(contextString);
 			return;
 		}
 	}
