@@ -202,6 +202,7 @@ export function getIndent(): number {
 			window.showInformationMessage(
 				`Line ${lineNum.toString()} is Empty`,
 			);
+
 		} else {
 			// Grab tab format from open document
 			const tabFmt: pl.TabInfo = {
