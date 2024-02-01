@@ -191,7 +191,7 @@ export function getLineNumber(): void {
 /* Function
  * Used to get the number of indents on a line
  */
-function getIndent(): void {
+export function getIndent(): number {
 	const editor: TextEditor | undefined = window.activeTextEditor;
 
 	if (editor) {
@@ -219,10 +219,13 @@ function getIndent(): void {
 					: `Line ${lineNum.toString()}: ${i.toString()} indent`;
 
 			outputMessage(message);
+			return i;
 		}
 	} else {
 		window.showErrorMessage("No document currently active");
+		return 0;
 	}
+	return 0;
 }
 
 /* Function

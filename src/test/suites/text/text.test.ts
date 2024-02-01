@@ -2,7 +2,7 @@ import * as assert from "assert";
 import * as vscode from "vscode";
 import { before, after } from "mocha";
 
-import { fetchLineNumber, returnIndent } from "../../../commands/text";
+import { fetchLineNumber, getIndent } from "../../../commands/text";
 
 import * as fs from 'fs';
 import { join } from 'path';
@@ -26,6 +26,7 @@ suite("Text Command Test Suite", () => {
 
   before(async () => {
     var fileName = initFile();
+    syncWriteFile(fileName, '');
     const document = await vscode.workspace.openTextDocument(fileName);
     editor = await vscode.window.showTextDocument(document);
   });
@@ -43,11 +44,15 @@ suite("Text Command Test Suite", () => {
       }
   });
   test("Get indent", () => {
-    initFile();
-    for(let i = 0; i < 10; i++){
-      fs.appendFileSync("testing.py", '\t.');
-      editor.selection = new vscode.Selection(0, 0, 0, 0);
-      let indentNum = returnIndent();
+    for(let i = 1; i <= 10; i++){
+      fs.unlinkSync("testing.py");
+      for(let j = 0; j < i; j++){
+        syncWriteFile("testing.py", " ");
+      }
+      syncWriteFile("testing.py", "flavor");
+      editor.selection = new vscode.Selection(0, 1, 0, 1);
+      console.log(vscode.window.activeTextEditor?.document.getText());
+      let indentNum = getIndent();
       console.log(indentNum);
       assert.equal(i, indentNum);
     }
