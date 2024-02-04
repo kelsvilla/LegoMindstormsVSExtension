@@ -92,7 +92,7 @@ function toggleTTS() {
 	: window.showInformationMessage("Text to Speech Deactivated");
 }
 
-function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
+export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
 	let numSpaces: number = 0;
 
 	if (editor) {
@@ -118,7 +118,7 @@ function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
 	@param editor
 	@returns numberOfSelectedLines
 */
-function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
+export function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
 	let numberOfSelectedLines: number = 0;
 
 	if (editor) {
@@ -145,7 +145,7 @@ export function fetchLineNumber(editor: TextEditor | undefined): number {
  *  @param editor
  *  @returns editor.document.lineAt(fetchLineNumber(editor) - 1)
  */
-function fetchLine(editor: TextEditor | undefined): TextLine {
+export function fetchLine(editor: TextEditor | undefined): TextLine {
 	return editor!.document.lineAt(fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
 }
 
@@ -585,7 +585,7 @@ async function goToSyntaxErrors(): Promise<void> {
 }
 
 // Helper functions to move Cursor to beginning or end
-function moveCursorBeginning(): void {
+export function moveCursorBeginning(): void {
 	const editor = window.activeTextEditor;
 
 	//Throw error if no editor open
@@ -605,7 +605,7 @@ function moveCursorBeginning(): void {
 	window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
 }
 
-function moveCursorEnd(): void {
+export function moveCursorEnd(): void {
 	const editor = window.activeTextEditor;
 
 	//Throw error if no editor open
