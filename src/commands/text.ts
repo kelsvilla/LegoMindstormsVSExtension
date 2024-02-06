@@ -539,6 +539,12 @@ async function goToSyntaxErrors(): Promise<void> {
 		(e) => e.uri.path === currentFilePath,
 	);
 
+	// select first error file if cursor is on file without errors
+	if (nextProblemFileObj === undefined) {
+		nextProblemFileIndex = 0;
+		nextProblemFileObj = globalProblems[0];
+	}
+
 	// gets the next problem in the problems array
 	nextProblems = nextProblemFileObj!.problems.filter((problem) => {
 		if (problem.position.line > cursorPosition.line) {
