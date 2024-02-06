@@ -488,18 +488,21 @@ function runCursorContext(): void {
 	}
 }
 
-function goToSyntaxErrors(): void {
+async function goToSyntaxErrors(): Promise<void> {
 	// Checks if there is an editor open
 	if (!window || !window.activeTextEditor) {
 		return;
 	}
 
-	// gets all current errors
-	// filters to only errors
-	// creates array of objects
-	let diagnostics = languages.getDiagnostics();
+	let diagnostics = languages.getDiagnostics(); // gets all current errors
 	let globalProblems = [];
+	const cursorPosition: Position = window.activeTextEditor.selection.active;
+	const currentFilePath: string = window.activeTextEditor.document.uri.path;
+	let nextProblemFileObj;
+	let nextProblemFileIndex;
+	let nextProblems;
 
+	// creates array of objects
 	/*
 	{
 		uri: Uri
@@ -509,9 +512,8 @@ function goToSyntaxErrors(): void {
 	for (let i = 0; i < diagnostics.length; i++) {
 		globalProblems.push({
 			uri: diagnostics[i][0],
-			// filePath: diagnostics[i][0].path,
 			problems: diagnostics[i][1]
-				.filter((diagnostics) => diagnostics.severity === 0)
+				.filter((diagnostics) => diagnostics.severity === 0) // keep errors
 				.map((res) => ({
 					message: res.message,
 					position: res.range.start,
@@ -519,27 +521,26 @@ function goToSyntaxErrors(): void {
 		});
 	}
 
-	// if no error, do nothing
+	// removes any stored files with no problems
+	globalProblems = globalProblems.filter(
+		(diagnostics) => diagnostics.problems.length > 0,
+	);
+
+	// checks if there are any problems
 	if (globalProblems.length === 0) {
 		return;
 	}
 
-	// get cursor positon
-	const cursorPosition: Position = window.activeTextEditor.selection.active;
-
-	// get file path
-	const currentFilePath: string = window.activeTextEditor.document.uri.path;
-
 	// get the next problem file's object and index
-	let nextProblemsFileObj = globalProblems.find(
+	nextProblemFileObj = globalProblems.find(
 		(e) => e.uri.path === currentFilePath,
 	);
-	let nextProblemsFileIndex = globalProblems.findIndex(
+	nextProblemFileIndex = globalProblems.findIndex(
 		(e) => e.uri.path === currentFilePath,
 	);
 
 	// gets the next problem in the problems array
-	let nextProblems = nextProblemsFileObj!.problems.filter((problem) => {
+	nextProblems = nextProblemFileObj!.problems.filter((problem) => {
 		if (problem.position.line > cursorPosition.line) {
 			return true;
 		}
@@ -553,9 +554,6 @@ function goToSyntaxErrors(): void {
 		}
 	});
 
-	console.log(globalProblems);
-	console.log(nextProblems.length);
-
 	// if statement for moving cursor position or changing activeTextEditor
 	if (nextProblems.length > 0) {
 		// next problem within same file
@@ -566,21 +564,16 @@ function goToSyntaxErrors(): void {
 		);
 	} else if (nextProblems.length === 0) {
 		// next problem not in same file
-		if (
-			globalProblems.findIndex(
-				(obj) => obj.uri === window.activeTextEditor!.document.uri,
-			) !==
-			globalProblems.length - 1
-		) {
+		if (nextProblemFileIndex < globalProblems.length - 1) {
 			// next problem in next file
 			console.log("next file");
-			nextProblemsFileObj = globalProblems[nextProblemsFileIndex + 1];
-			window.showTextDocument(nextProblemsFileObj.uri);
+			nextProblemFileObj = globalProblems[nextProblemFileIndex + 1];
+			await window.showTextDocument(nextProblemFileObj.uri);
 			moveCursorBeginning();
 		} else {
 			// last problem, go to first problem of first file
 			console.log("first file");
-			window.showTextDocument(globalProblems[0].uri);
+			await window.showTextDocument(globalProblems[0].uri);
 			moveCursorBeginning();
 		}
 	}
