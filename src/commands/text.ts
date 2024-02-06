@@ -543,6 +543,9 @@ async function goToSyntaxErrors(): Promise<void> {
 	if (nextProblemFileObj === undefined) {
 		nextProblemFileIndex = 0;
 		nextProblemFileObj = globalProblems[0];
+		await window.showTextDocument(nextProblemFileObj.uri);
+		moveCursorBeginning();
+		return;
 	}
 
 	// gets the next problem in the problems array
@@ -563,7 +566,6 @@ async function goToSyntaxErrors(): Promise<void> {
 	// if statement for moving cursor position or changing activeTextEditor
 	if (nextProblems.length > 0) {
 		// next problem within same file
-		console.log("same file");
 		window.activeTextEditor.selection = new Selection(
 			nextProblems[0].position,
 			nextProblems[0].position,
@@ -572,13 +574,11 @@ async function goToSyntaxErrors(): Promise<void> {
 		// next problem not in same file
 		if (nextProblemFileIndex < globalProblems.length - 1) {
 			// next problem in next file
-			console.log("next file");
 			nextProblemFileObj = globalProblems[nextProblemFileIndex + 1];
 			await window.showTextDocument(nextProblemFileObj.uri);
 			moveCursorBeginning();
 		} else {
 			// last problem, go to first problem of first file
-			console.log("first file");
 			await window.showTextDocument(globalProblems[0].uri);
 			moveCursorBeginning();
 		}
