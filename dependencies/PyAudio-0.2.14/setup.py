@@ -73,11 +73,11 @@ def setup_extension():
         defines += [('MACOS', '1')]
 
         include_dirs += [
-            '/Users/kaiyan/dev/LegoMindstormsVSExtension/dependencies/portaudio/include'
+            '/usr/local/include', '/usr/include', '/opt/homebrew/include'
         ]
         external_libraries_path += [
             path
-            for path in ('/Users/kaiyan/dev/LegoMindstormsVSExtension/dependencies/portaudio/lib')
+            for path in ('/usr/local/lib', '/usr/lib', '/opt/homebrew/lib')
             if os.path.exists(path)
         ]
 
