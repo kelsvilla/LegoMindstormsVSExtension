@@ -5,7 +5,6 @@ MANIFEST.in
 Makefile
 README.md
 pyproject.toml
-setup.cfg
 setup.py
 examples/play_wave.py
 examples/play_wave_callback.py
@@ -35,7 +34,6 @@ src/pyaudio/mac_core_stream_info.h
 src/pyaudio/main.c
 src/pyaudio/misc.c
 src/pyaudio/misc.h
-src/pyaudio/pa_mac_core.h
 src/pyaudio/stream.c
 src/pyaudio/stream.h
 src/pyaudio/stream_io.c
