@@ -1,0 +1,4 @@
+setuptools==69.0.3;
+nltk==3.8.1; 
+SpeechRecognition==3.10.1; 
+../dependencies/PyAudio-0.2.14

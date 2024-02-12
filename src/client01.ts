@@ -22,10 +22,10 @@ function activateVoiceServer() {
 		cwd: normalizedProjectRoot,
 		env: {
 			...process.env,
-			NLTK_DATA: path.join(
+			SPACY_DATA: path.join(
 				normalizedProjectRoot,
 				"dependencies",
-				"nltk_data",
+				"spacy_data",
 			),
 		},
 		stdio: [
