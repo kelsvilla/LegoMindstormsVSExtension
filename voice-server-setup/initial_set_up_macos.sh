@@ -18,5 +18,5 @@ cd $ROOTDIR/dependencies/portaudio
 cd $ROOTDIR/dependencies/portaudio/lib/.libs
 find . -maxdepth 1 -exec mv {} .. \;
 
-CFLAGS='-I${ROOTDIR}/dependencies/portaudio/include -L${ROOTDIR}/dependencies/portaudio/lib'
+export CFLAGS="-I${ROOTDIR}/dependencies/portaudio/include -L${ROOTDIR}/dependencies/portaudio/lib"
 pip install ${ROOTDIR}/dependencies/PyAudio-0.2.14
