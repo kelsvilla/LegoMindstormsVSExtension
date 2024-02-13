@@ -75,10 +75,14 @@ def tcp_connection():
                 send_response(clientsocket, response)
                 clientsocket.close()
                 break
+            elif user_input == "undo":
+                response = "undo,"
+                send_response(clientsocket, response)
+                continue
             
         matches: list[Command] = nlp.get_similar_commands(user_input)
         if matches[0]["similarity"] > 0.7:
-            response = f"{matches[0]['command']},_"
+            response = f"{matches[0]['command']},"
         else:
             response = (
                 f",No commands matched \"{user_input}\". Did you mean:\t"
