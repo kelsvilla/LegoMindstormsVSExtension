@@ -50,32 +50,30 @@ function runClient() {
 		console.log("[client] is ready to communicate..", event.target.OPEN);
 	});
 
-	socket.on("message", (message) => {
-		console.log("message recived", message);
+	socket.on("message", async (message) => {
+		//console.log("message recived", message.toString());
 		if (message.toString() !== "Shutting down voice commands.") {
 			if (message.toString().split(",").length !== 2) return; //Ensures both vars below will be defined with some value
 			const [cmdName, logMsg] = message.toString().split(",");
-			vscode.commands.executeCommand(cmdName).then(
-				() => {
-					console.log("command to run success:", cmdName);
-					setTimeout(() => {
-						vscode.window.showInformationMessage(logMsg).then(
-							(success) => {
-								console.log(success);
-							},
-							(reject) => {
-								console.log(reject);
-							},
-						);
-					}, 5);
-				},
-				(reject) => {
-					vscode.window.showInformationMessage(
-						"Action Cannot be Completed!",
-					);
-					console.log(reject);
-				},
-			);
+			//console.log(`cmd: ${cmdName}\nlog:${logMsg}`);
+			try {
+				if (cmdName !== "") {
+					console.log("1");
+					await vscode.commands.executeCommand(cmdName);
+					vscode.window.showInformationMessage(logMsg);
+				} else {
+					console.log("2");
+					for (const log of logMsg.split("\n")) {
+						console.log(log);
+						await vscode.window.showInformationMessage(log);
+					}
+				}
+			} catch (e) {
+				vscode.window.showInformationMessage(
+					"Action Cannot be Completed!",
+				);
+				console.log(e);
+			}
 		} else {
 			vscode.window.showInformationMessage("Exiting Voice Commands.");
 		}

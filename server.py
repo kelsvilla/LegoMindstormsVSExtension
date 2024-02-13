@@ -72,46 +72,44 @@ def tcp_connection():
             user_input = voice_to_text()
             if user_input == 'exit':
                 response = 'Shutting down voice commands.'
+                send_response(clientsocket, response)
+                clientsocket.close()
                 break
-        
+            
         matches: list[Command] = nlp.get_similar_commands(user_input)
         if matches[0]["similarity"] > 0.7:
             response = f"{matches[0]['command']},_"
+        else:
+            response = (
+                f",No commands matched \"{user_input}\". Did you mean:\t"
+                f"{matches[0]["title"]} - {matches[0]["similarity"]*100:.2f}% match\n"
+                        )
+
 
         #Valid command was received, send response to client
         if response != '':
-            response = bytes(response.encode('utf-8'))
-            response_len = int(hex(len(response)),16)
-            #a message should be sent following the websocket protocol.
-            # Create a websocket frame containing the message
-            frame = bytearray()
-            
-            # Append frame header, (use hexadecimal) 
-            frame.append(0x81)  # FIN + OpCode (1 byte)
-            frame.append(response_len)  # Payload length (msg_len byte), 
-            # Append payload
-            frame.extend(response)
-            
-            #send message to client
-            clientsocket.send(frame)
+            send_response(clientsocket, response)
 
-
-    response = bytes(response.encode('utf-8'))
+def send_response(client: socket, input: str):
+    response = bytes(input.encode('utf-8'))
     response_len = int(hex(len(response)),16)
     #a message should be sent following the websocket protocol.
-
     # Create a websocket frame containing the message
     frame = bytearray()
-    
+            
     # Append frame header, (use hexadecimal) 
-    frame.append(0x81)  # FIN + OpCode (1 byte)
-    frame.append(response_len)  # Payload length (msg_len byte), 
+    frame.append(0x81) # FIN + OpCode (1 byte)
+
+    if response_len > 125:
+        frame.append(0x7E) #Set second byte to 126, causing following 2 bytes to indicate payload length
+        frame.extend(response_len.to_bytes(2, 'big'))
+    else:
+        frame.append(response_len)
+
     # Append payload
     frame.extend(response)
-    
     #send message to client
-    clientsocket.send(frame)
-    clientsocket.close()
+    client.send(frame)
 
 if __name__ == '__main__':
         tcp_connection()

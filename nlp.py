@@ -9,6 +9,7 @@ import numpy
 
 class Command(TypedDict):
     command: str
+    title: str
     similarity: float
 
 class NaturalLanguageProcessor:
@@ -73,6 +74,6 @@ class NaturalLanguageProcessor:
         top_choices: list[Command] = []
         for i, command in enumerate(self.parsed_commands):
             similarity = command.similarity(input)
-            top_choices.append({"command": self.commands[i]['command'], "similarity": similarity})
+            top_choices.append({"command": self.commands[i]['command'], "title": self.commands[i]['title'], "similarity": similarity})
         top_choices.sort(key= lambda e: e["similarity"], reverse=True)
         return top_choices if len(top_choices) < 5 else top_choices[:5]
