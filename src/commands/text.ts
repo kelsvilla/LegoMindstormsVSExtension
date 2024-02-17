@@ -570,6 +570,7 @@ async function goToSyntaxErrors(): Promise<void> {
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
+		window.showInformationMessage(nextProblems[0].message);
 	} else if (nextProblems.length === 0) {
 		// next problem not in same file
 		if (nextProblemFileIndex < globalProblems.length - 1) {
