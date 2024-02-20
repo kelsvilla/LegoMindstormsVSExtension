@@ -1,23 +1,9 @@
-
-
-import subprocess, sys
-#Install necessary modules for speech recognition usage.
-
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'SpeechRecognition', 'keyboard', 'PocketSphinx', 'pyaudio'])
-
 import speech_recognition as sr
 import socket
 import hashlib
 import base64
-# import colorama
-
-import os, time
-
-
-
-from nlp import entity_action_recognizer,identify_command2,syns_load,alternatives,buildEntities
-
-
+import os
+from nlp import NaturalLanguageProcessor, Command
 
 def voice_to_text():
     r = sr.Recognizer()
@@ -26,22 +12,20 @@ def voice_to_text():
         r.adjust_for_ambient_noise(source)
         while(True):
             print('Please give your command. Listening...',flush=True)
-            audio = r.listen(source,timeout=7,phrase_time_limit=5)
 
             try:
+                audio = r.listen(source,timeout=7,phrase_time_limit=5)
                 cmd =  r.recognize_google(audio)
                 print('Did you say : ' + cmd,flush=True)
                 return str(cmd)
             
-            except (Exception,sr.exceptions.WaitTimeoutError) as e:
-                time.sleep(5) 
-
-    
+            except (Exception, sr.exceptions.WaitTimeoutError) as e:
+                if type(e) != sr.exceptions.WaitTimeoutError and type(e) != sr.exceptions.UnknownValueError:
+                    print("There was an issue with the microphone input.", flush=True)
 
 def handle_syn_ack(clientsocket):
     #syn msg is received from the client upon successful connection
     syn_request = clientsocket.recv(2000)
-    #print('syn_request ',syn_request)
     request = syn_request.decode('utf-8')
     #collect key to generate accept key
     keys_pos = request.find('Sec-WebSocket-Key')
@@ -53,9 +37,6 @@ def handle_syn_ack(clientsocket):
 
     #send ack message to client
     clientsocket.sendall(b'HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: '+accept+b'\r\n\r\n')
-    #print('Handshake Complete with client ',clientsocket.getsockname())
-
-
 
 #Port to connect to VSCode using.
 def tcp_connection():
@@ -68,26 +49,20 @@ def tcp_connection():
         
     except OSError as ose:
         print('address already in use. Kill previous attached server. Terminating for now',flush=True) #address already in use
-        #os.system('')
+
     serversocket.listen()
     print("OK",flush=True)
-    time.sleep(10)
     clientsocket, clientaddr = serversocket.accept()
     print('Server connection to Mind-Reader successful',flush=True)
     handle_syn_ack(clientsocket) #initial handshake
     #Connect to VSCode client code.
-    syns = syns_load()
+    #Initialize NLP class to hold costly state between commands
+    nlp = NaturalLanguageProcessor(langLocation=os.path.join(os.getenv('SPACY_DATA'), "en_core_web_md", "en_core_web_md-3.7.1"))
     user_input = ''
-    #print()
-    #print('Please select the command input mode.\n')
     
-    
-    mode = 2
-    #mode = input('   [1] -> [text]\n   [2] -> [voice]\n   [Exit] -> [exit]\n')
-    
-    while user_input!='exit': # TO-DO: compare with messag from voice-to-text later.
-        #send message to client
-       
+    mode = 2 #Relic of older code where text mode was used to debug.
+    while user_input!='exit':
+        #Initialize message sent to client
         response = ''
 
         if int(mode) == 1:
@@ -97,82 +72,48 @@ def tcp_connection():
             user_input = voice_to_text()
             if user_input == 'exit':
                 response = 'Shutting down voice commands.'
+                send_response(clientsocket, response)
+                clientsocket.close()
                 break
-        
-        entities,actions,preposition = entity_action_recognizer('can you '+ user_input,True)
-        #print(f"Entities: {entities}\nActions:{actions}\nPrepositions:{preposition}", flush=True)
-        if len(entities) == 0 or len(actions) == 0:
-            print('Unable to recognize entity or action. Command will not be executed. Try using other variations',flush=True)
+            elif user_input == "undo":
+                response = "undo,"
+                send_response(clientsocket, response)
+                continue
+            
+        matches: list[Command] = nlp.get_similar_commands(user_input)
+        if matches[0]["similarity"] > 0.7:
+            response = f"{matches[0]['command']},"
         else:
-            #print(entities,actions,preposition)
-            new_entities = [] 
-            for entity in entities:
-                #print(f"entity:{entity}\n")
-                #create entities by using root words.
-                new_entities.append(buildEntities(alternatives(syns,[entity])))
-            #print(new_entities)
-            new_entities = [entities] if new_entities[0][0] == ' ' else new_entities
-            if preposition == '':
-                new_entitis = new_entities[0]
-                for new_entity in new_entitis:
-                    #print(f"new_entity: {new_entity}\n")
-                    command_to_run,msg = identify_command2([new_entity],actions,preposition)
-                    if command_to_run != 'NULL':
-                        response = command_to_run + ',' + msg
-                        break
-                #print('********',msg)
-            else:
-                new_entitis = []
-                preceding_ents = new_entities[0]
-                trailing_ents = new_entities[1]
-                for i in range(0,len(preceding_ents)):
-                    for j in range(0,len(trailing_ents)):
-                        new_entitis.append([preceding_ents[i],trailing_ents[j]])
-                for new_ents in new_entitis:
-                    command_to_run,msg = identify_command2(new_ents,actions,preposition)
-                    if command_to_run != 'NULL':
-                        response = command_to_run + ',' + msg
-                        break
-            if response != '':
-                response = bytes(response.encode('utf-8'))
-                #print('Action Completed: ',msg)
-                response_len = int(hex(len(response)),16)
-                #print()
-                #a message should be sent following the websocket protocol.
+            response = (
+                f",No commands matched \"{user_input}\". Did you mean:\t"
+                f"{matches[0]['title']} - {matches[0]['similarity']*100:.2f}% match\n"
+                        )
 
-                # Create a websocket frame containing the message
-                frame = bytearray()
-                
-                # Append frame header, (use hexadecimal) 
-                frame.append(0x81)  # FIN + OpCode (1 byte)
-                frame.append(response_len)  # Payload length (msg_len byte), 
-                # Append payload
-                frame.extend(response)
-                
-                #send message to client
-                clientsocket.send(frame)
-            #break
-    response = bytes(response.encode('utf-8'))
-    #print('Action Completed: ',msg)
+
+        #Valid command was received, send response to client
+        if response != '':
+            send_response(clientsocket, response)
+
+def send_response(client: socket, input: str):
+    response = bytes(input.encode('utf-8'))
     response_len = int(hex(len(response)),16)
-    #print()
     #a message should be sent following the websocket protocol.
-
     # Create a websocket frame containing the message
     frame = bytearray()
-    
+            
     # Append frame header, (use hexadecimal) 
-    frame.append(0x81)  # FIN + OpCode (1 byte)
-    frame.append(response_len)  # Payload length (msg_len byte), 
+    frame.append(0x81) # FIN + OpCode (1 byte)
+
+    if response_len > 125:
+        frame.append(0x7E) #Set second byte to 126, causing following 2 bytes to indicate payload length
+        frame.extend(response_len.to_bytes(2, 'big'))
+    else:
+        frame.append(response_len)
+
     # Append payload
     frame.extend(response)
-    
     #send message to client
-    clientsocket.send(frame)
-    clientsocket.close()
+    client.send(frame)
 
 if __name__ == '__main__':
-        # r, w = os.pipe()
-        # w = os.fdopen(w, 'w')
-        # w.write('Voice Server activating')
         tcp_connection()

@@ -36,14 +36,14 @@ export const accessCommands: CommandEntry[] = [
 		callback: decreaseEditorScale,
 	},
 
-	{
-		name: "mind-reader.resetEditorScale",
-		callback: resetEditorScale,
-	},
-	{
-		name: "voice-command.startStreaming",
-		callback: startStreaming,
-	},
+  {
+    name: 'mind-reader.resetEditorScale',
+    callback: resetEditorScale,
+  },
+  {
+    name:'mind-reader.startStreaming',
+    callback: startStreaming,
+  },
 ];
 
 function increaseFontScale(): void {

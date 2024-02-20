@@ -11,4 +11,12 @@ cd $ABSPATH
 python3 -m venv venv
 source venv/bin/activate
 which python
-LDFLAGS="-L/opt/homebrew/Cellar/portaudio/19.7.0/lib" CFLAGS="-I/opt/homebrew/Cellar/portaudio/19.7.0/include" pip install -r requirements.txt
+pip install -r requirementsmac.txt
+
+cd $ROOTDIR/dependencies/portaudio
+./configure --disable-mac-universal && make
+cd $ROOTDIR/dependencies/portaudio/lib/.libs
+find . -maxdepth 1 -exec mv {} .. \;
+
+export CFLAGS="-I${ROOTDIR}/dependencies/portaudio/include -L${ROOTDIR}/dependencies/portaudio/lib"
+pip install ${ROOTDIR}/dependencies/PyAudio-0.2.14
