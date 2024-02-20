@@ -86,7 +86,7 @@ def tcp_connection():
         else:
             response = (
                 f",No commands matched \"{user_input}\". Did you mean:\t"
-                f"{matches[0]["title"]} - {matches[0]["similarity"]*100:.2f}% match\n"
+                f"{matches[0]['title']} - {matches[0]['similarity']*100:.2f}% match\n"
                         )
 
 
