@@ -345,8 +345,9 @@
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
 			{
-				"command": "mind-reader.voiceToText",
-				"key": "ctrl+v"
+				"command": "mind-reader.startStreaming",
+				"key": "ctrl+Shift+/ V",
+				"mac": "Cmd+Shift+[Slash] V"
 			},
 			{
 				"command": "mind-reader.decreaseFontScale",
@@ -406,25 +407,20 @@
 				"mac": "Cmd+Shift+[Slash] W"
 			},
 			{
-				"command": "mind-reader.callvoice",
-				"key": "Ctrl+Shift+/ M",
-				"mac": "Cmd+Shift+[Slash] M"
-			},
-			{
 				"command": "mind-reader.goToSyntaxErrors",
 				"key": "Ctrl+Shift+[Space]",
 				"mac": "Cmd+Shift+[Space]"
 			},
 			{
 				"command": "mind-reader.moveCursorBeginning",
-				"key": "Ctrl+Shift+/ R",
-				"mac": "Ctrl+Shift+[Slash] R",
+				"key": "Ctrl+Shift+/ B",
+				"mac": "Ctrl+Shift+[Slash] B",
 				"when": "editorTextFocus"
 			},
 			{
 				"command": "mind-reader.moveCursorEnd",
-				"key": "Ctrl+Shift+/ B",
-				"mac": "Ctrl+Shift+[Slash] B",
+				"key": "Ctrl+Shift+/ E",
+				"mac": "Ctrl+Shift+[Slash] E",
 				"when": "editorTextFocus"
 			}
 		],
