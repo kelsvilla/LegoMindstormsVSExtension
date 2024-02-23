@@ -9,6 +9,7 @@ import {
 	languages,
 	window,
 	workspace,
+    Range
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
 
@@ -569,6 +570,7 @@ async function goToSyntaxErrors(): Promise<void> {
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
+        window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
 		window.showInformationMessage(nextProblems[0].message);
 		outputMessage(nextProblems[0].message);
 	} else if (nextProblems.length === 0) {
