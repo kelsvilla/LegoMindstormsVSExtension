@@ -74,7 +74,7 @@ class SayPlatformWin32 extends SayPlatformBase {
     }
     this.child.stdin.pause();
     childProcess.exec(`taskkill /pid ${pid} /T /F`);
-    this.childIDs.filter((id) => id !== pid);
+    this.childIDs = this.childIDs.filter((id) => id !== pid);
   }
 
   convertSpeed (speed) {
