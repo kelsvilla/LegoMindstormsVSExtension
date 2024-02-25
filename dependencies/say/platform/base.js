@@ -4,6 +4,7 @@ const once = require('one-time');
 class SayPlatformBase {
   constructor () {
     this.child = null;
+    this.childIDs = [];
     this.baseSpeed = 0;
   }
 
@@ -30,7 +31,15 @@ class SayPlatformBase {
 
     let { command, args, pipedData, options } = this.buildSpeakCommand({ text, voice, speed });
 
-    this.child = childProcess.spawn(command, args, options);
+    const child = childProcess.spawn(command, args, options);
+    if(!child.pid) {
+      return setImmediate(() => {callback(new Error("say.speak(): error spawning child process"));});
+    }
+    this.child = child; //this.child should eventually be removed in favor of childList. Maintaining for the sake of compatibility
+    for(const id of this.childIDs) { //Clear out existing audios and append the new one
+      this.runStopCommand(id);
+    }
+    this.childIDs.push(child.pid);
 
     this.child.stdin.setEncoding('ascii');
     this.child.stderr.setEncoding('ascii');
@@ -49,6 +58,7 @@ class SayPlatformBase {
         return callback(new Error(`say.speak(): could not talk, had an error [code: ${code}] [signal: ${signal}]`));
       }
 
+      this.childIDs = this.childIDs.filter(id => id !== child.pid);
       this.child = null;
 
       callback(null);
