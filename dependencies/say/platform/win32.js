@@ -67,14 +67,10 @@ class SayPlatformWin32 extends SayPlatformBase {
     return { command: COMMAND, args, pipedData, options };
   }
 
-  runStopCommand (pid) {
-    pid = pid ? pid : this.child.pid;
-    if(!pid) {
-      return;
-    }
-    this.child.stdin.pause();
-    childProcess.exec(`taskkill /pid ${pid} /T /F`);
-    this.childIDs = this.childIDs.filter((id) => id !== pid);
+  runStopCommand (child) {
+    child.stdin.pause();
+    childProcess.exec(`taskkill /pid ${child.pid} /T /F`);
+    this.children = this.children.filter(e => e.pid !== child.pid);
   }
 
   convertSpeed (speed) {
