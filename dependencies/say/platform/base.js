@@ -4,7 +4,7 @@ const once = require('one-time');
 class SayPlatformBase {
   constructor () {
     this.child = null;
-    this.childIDs = [];
+    this.children = [];
     this.baseSpeed = 0;
   }
 
@@ -35,31 +35,30 @@ class SayPlatformBase {
     if(!child.pid) {
       return setImmediate(() => {callback(new Error("say.speak(): error spawning child process"));});
     }
-    this.child = child; //this.child should eventually be removed in favor of childList. Maintaining for the sake of compatibility
-    for(const id of this.childIDs) { //Clear out existing audios and append the new one
-      this.runStopCommand(id);
-    }
-    this.childIDs.push(child.pid);
 
-    this.child.stdin.setEncoding('ascii');
-    this.child.stderr.setEncoding('ascii');
+    for(const child of this.children) { //Clear out existing audios and append the new one
+      this.runStopCommand(child);
+    }
+    this.children.push(child);
+
+    child.stdin.setEncoding('ascii');
+    child.stderr.setEncoding('ascii');
 
     if (pipedData) {
-      this.child.stdin.end(pipedData);
+      child.stdin.end(pipedData);
     }
 
-    this.child.stderr.once('data', (data) => {
+    child.stderr.once('data', (data) => {
       // we can't stop execution from this function
       callback(new Error(data));
     });
 
-    this.child.addListener('exit', (code, signal) => {
+    child.addListener('exit', (code, signal) => {
       if (code === null || signal !== null) {
         return callback(new Error(`say.speak(): could not talk, had an error [code: ${code}] [signal: ${signal}]`));
       }
 
-      this.childIDs = this.childIDs.filter(id => id !== child.pid);
-      this.child = null;
+      this.children = this.children.filter(e => e.pid !== child.pid);
 
       callback(null);
     });
@@ -101,26 +100,30 @@ class SayPlatformBase {
       });
     }
 
-    this.child = childProcess.spawn(command, args, options);
+    const child = childProcess.spawn(command, args, options);
 
-    this.child.stdin.setEncoding('ascii');
-    this.child.stderr.setEncoding('ascii');
+    if(!child.pid) {
+      return setImmediate(() => {callback(new Error("say.speak(): error spawning child process"));});
+    }
+    this.children.push(child);
+    child.stdin.setEncoding('ascii');
+    child.stderr.setEncoding('ascii');
 
     if (pipedData) {
-      this.child.stdin.end(pipedData);
+      child.stdin.end(pipedData);
     }
 
-    this.child.stderr.once('data', (data) => {
+    child.stderr.once('data', (data) => {
       // we can't stop execution from this function
       callback(new Error(data));
     });
 
-    this.child.addListener('exit', (code, signal) => {
+    child.addListener('exit', (code, signal) => {
       if (code === null || signal !== null) {
         return callback(new Error(`say.export(): could not talk, had an error [code: ${code}] [signal: ${signal}]`));
       }
 
-      this.child = null;
+      this.children = this.children.filter(e => e.pid !== child.pid);
 
       callback(null);
     });
@@ -145,7 +148,7 @@ class SayPlatformBase {
         callback(new Error('say.stop(): no speech to kill'));
       });
     }
-
+    
     this.runStopCommand();
 
     this.child = null;
@@ -169,20 +172,24 @@ class SayPlatformBase {
 
     let { command, args } = this.getVoices();
     var voices = [];
-    this.child = childProcess.spawn(command, args);
+    const child = childProcess.spawn(command, args);
+    if(!child.pid) {
+      return setImmediate(() => {callback(new Error("say.speak(): error spawning child process"));});
+    }
+    this.children.push(child);
 
-    this.child.stdin.setEncoding('ascii');
-    this.child.stderr.setEncoding('ascii');
+    child.stdin.setEncoding('ascii');
+    child.stderr.setEncoding('ascii');
 
-    this.child.stderr.once('data', (data) => {
+    child.stderr.once('data', (data) => {
       // we can't stop execution from this function
       callback(new Error(data));
     });
-    this.child.stdout.on('data', function (data) {
+    child.stdout.on('data', function (data) {
       voices += data;
     });
 
-    this.child.addListener('exit', (code, signal) => {
+    child.addListener('exit', (code, signal) => {
       if (code === null || signal !== null) {
         return callback(new Error(`say.getInstalledVoices(): could not get installed voices, had an error [code: ${code}] [signal: ${signal}]`));
       }
@@ -190,12 +197,12 @@ class SayPlatformBase {
         voices = voices.split('\r\n');
         voices = (voices[voices.length - 1] === '') ? voices.slice(0, voices.length - 1) : voices;
       }
-      this.child = null;
+      this.children = this.children.filter(e => e.pid !== child.pid);
 
       callback(null, voices);
     });
 
-    this.child.stdin.end();
+    child.stdin.end();
   }
 }
 

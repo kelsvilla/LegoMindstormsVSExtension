@@ -50,9 +50,10 @@ class SayPlatformDarwin extends SayPlatformBase {
     return { command: COMMAND, args, pipedData, options };
   }
 
-  runStopCommand () {
-    this.child.stdin.pause();
-    this.child.kill();
+  runStopCommand (child) {
+    child.stdin.pause();
+    child.kill();
+    this.children = this.children.filter(e => e.pid !== child.pid);
   }
 
   getVoices () {
