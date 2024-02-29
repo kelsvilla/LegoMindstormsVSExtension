@@ -6,6 +6,8 @@ import { lineHighlighter } from "./lineHighlighter";
 import { installer } from "./pythonManager";
 import path = require("path");
 
+import * as ev3 from "./ev3/src/extension";
+
 import {
 	accessCommands,
 	hubCommands,
@@ -66,6 +68,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let hubProvider = new CommandNodeProvider(hubCommands);
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);
+
+	ev3.activate(context);
 
 	vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
