@@ -11,6 +11,7 @@ import {
 	workspace,
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
+import { exec } from "child_process";
 
 export const textCommands: CommandEntry[] = [
 	{
@@ -80,9 +81,26 @@ export const textCommands: CommandEntry[] = [
  */
 let shouldSpeak = false;
 
+const script_path = "./install_festival";
+checkFestival();
+
 function outputMessage(message: string) {
 	window.showInformationMessage(message);
 	shouldSpeak === true ? say.speak(message) : undefined;
+}
+
+function checkFestival() {
+	if (process.platform === 'linux') {
+		exec(`bash ${script_path}`, (error, stdout, stderr) => {
+			if(error) {
+				console.error(`Error executing script: ${error.message}`)
+				return;
+			}
+
+			console.log(`Script output: \n${stdout}`);
+			console.error(`Script errors:\n${stderr}`);		
+		}); 
+	}
 }
 
 function toggleTTS() {
