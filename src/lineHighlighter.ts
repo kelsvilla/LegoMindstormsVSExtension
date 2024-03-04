@@ -46,6 +46,7 @@
 * TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
 "use strict";
+import { CommandEntry } from "./commands/commandEntry";
 import {
 	Position,
 	window,
@@ -55,6 +56,26 @@ import {
 	WorkspaceConfiguration,
 	Range,
 } from "vscode";
+
+export const lineHighlighterCommands: CommandEntry[] = [
+	{
+		name: "mind-reader.toggleLineHighlight",
+		callback: toggleLineHighlight,
+	}
+];
+
+let highlightOn: boolean=true; // Assume Linehighlight is on
+
+/* Toggle line highlight function*/
+function toggleLineHighlight() {
+	highlightOn=!highlightOn;
+	if (highlightOn) {
+		window.showInformationMessage("Line Highlighter Activated");
+	} else {
+		window.showInformationMessage("Line Highlighter Deactivated");
+	}
+}
+
 
 export { lineHighlighter };
 

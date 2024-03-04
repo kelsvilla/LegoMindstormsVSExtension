@@ -345,7 +345,7 @@
 				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
-			{
+			{ 
 				"command": "mind-reader.startStreaming",
 				"key": "ctrl+Shift+/ V",
 				"mac": "Cmd+Shift+[Slash] V"
@@ -423,6 +423,16 @@
 				"key": "Ctrl+Shift+/ E",
 				"mac": "Ctrl+Shift+[Slash] E",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.toggleSoundCues",
+				"key": "Ctrl+Shift+/ T",
+				"mac": "Ctrl+Shift+[Slash] T"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"key": "Ctrl+Shift+/ H",
+				"mac": "Ctrl+Shift+[Slash] H"
 			}
 		],
 		"menus": {
