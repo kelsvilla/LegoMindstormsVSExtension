@@ -571,9 +571,12 @@ async function goToSyntaxErrors(): Promise<void> {
 		);
         window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
 
-		let fileName = window.activeTextEditor.document.uri.fsPath.match(/((?:[^\/\r\n]*){1})$/g);
-		let errorMessage = fileName!.toString().replace(',', '');
-		let message = errorMessage + ": " + nextProblems[0].message;
+        let path = window.activeTextEditor.document.uri.fsPath;
+        path = path.replace("\/", "\\");
+		let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
+		fileName = fileName!.replace(',', '');
+		let message = fileName + ": " + nextProblems[0].message;
+
 		outputMessage(message);
 	} else if (nextProblems.length === 0) {
 		// next problem not in same file
