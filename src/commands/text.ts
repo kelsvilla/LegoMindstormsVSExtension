@@ -477,7 +477,6 @@ function runCursorContext(): void {
 			contextEnd = Math.min(spaceWords.length, i + windowSize + 1); // clamp end index
 			// construct cursor context string
 			let contextString: string = "";
-
 			for (let i: number = contextStart; i < contextEnd; i++) {
 				contextString += spaceWords[i].word + " ";
 			}
@@ -571,8 +570,11 @@ async function goToSyntaxErrors(): Promise<void> {
 			nextProblems[0].position,
 		);
         window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
-		window.showInformationMessage(nextProblems[0].message);
-		outputMessage(nextProblems[0].message);
+
+		let fileName = window.activeTextEditor.document.uri.fsPath.match(/((?:[^\/\r\n]*){1})$/g);
+		let errorMessage = fileName!.toString().replace(',', '');
+		let message = errorMessage + ": " + nextProblems[0].message;
+		outputMessage(message);
 	} else if (nextProblems.length === 0) {
 		// next problem not in same file
 		if (nextProblemFileIndex < globalProblems.length - 1) {
