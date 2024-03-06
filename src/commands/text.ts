@@ -51,6 +51,10 @@ export const textCommands: CommandEntry[] = [
 		callback: goToSyntaxErrors,
 	},
 	{
+		name:"mind-reader.goToSyntaxWarnings",
+		callback: goToSyntaxWarnings,
+	},
+	{
 		name: "mind-reader.moveCursorBeginning",
 		callback: moveCursorBeginning,
 	},
@@ -584,6 +588,107 @@ async function goToSyntaxErrors(): Promise<void> {
 		} else {
 			// last problem, go to first problem of first file
 			await window.showTextDocument(globalProblems[0].uri);
+			moveCursorBeginning();
+		}
+	}
+}
+
+async function goToSyntaxWarnings(): Promise<void> {
+	// Checks if there is an editor open
+	if (!window || !window.activeTextEditor) {
+		return;
+	}
+
+	let diagnostics = languages.getDiagnostics(); // gets all current errors
+	let globalWarnings = [];
+	const cursorPosition: Position = window.activeTextEditor.selection.active;
+	const currentFilePath: string = window.activeTextEditor.document.uri.path;
+	let nextProblemFileObj;
+	let nextProblemFileIndex;
+	let nextWarnings;
+
+	// creates array of objects
+	/*
+	{
+		uri: Uri
+		problems: { message: string, position: Position }[]
+	}
+	*/
+	for (let i = 0; i < diagnostics.length; i++) {
+		globalWarnings.push({
+			uri: diagnostics[i][0],
+			problems: diagnostics[i][1]
+				.filter((diagnostics) => diagnostics.severity === 1) // keep warnings
+				.map((res) => ({
+					message: res.message,
+					position: res.range.start,
+				})),
+		});
+	}
+
+	// removes any stored files with no problems
+	globalWarnings = globalWarnings.filter(
+		(diagnostics) => diagnostics.problems.length > 0,
+	);
+
+	// checks if there are any problems
+	if (globalWarnings.length === 0) {
+		outputMessage("No warnings detected.")
+		return;
+	}
+
+	// get the next problem file's object and index
+	nextProblemFileObj = globalWarnings.find(
+		(e) => e.uri.path === currentFilePath,
+	);
+	nextProblemFileIndex = globalWarnings.findIndex(
+		(e) => e.uri.path === currentFilePath,
+	);
+
+	// select first error file if cursor is on file without errors
+	if (nextProblemFileObj === undefined) {
+		nextProblemFileIndex = 0;
+		nextProblemFileObj = globalWarnings[0];
+		await window.showTextDocument(nextProblemFileObj.uri);
+		moveCursorBeginning();
+		return;
+	}
+
+	// gets the next problem in the problems array
+	nextWarnings = nextProblemFileObj!.problems.filter((problem) => {
+		if (problem.position.line > cursorPosition.line) {
+			return true;
+		}
+		if (
+			problem.position.line === cursorPosition.line &&
+			problem.position.character > cursorPosition.character
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+
+	// if statement for moving cursor position or changing activeTextEditor
+	if (nextWarnings.length > 0) {
+		// next problem within same file
+		window.activeTextEditor.selection = new Selection(
+			nextWarnings[0].position,
+			nextWarnings[0].position,
+		);
+        window.activeTextEditor.revealRange(new Range(nextWarnings[0].position, nextWarnings[0].position));
+		window.showInformationMessage(nextWarnings[0].message);
+		outputMessage(nextWarnings[0].message);
+	} else if (nextWarnings.length === 0) {
+		// next problem not in same file
+		if (nextProblemFileIndex < globalWarnings.length - 1) {
+			// next problem in next file
+			nextProblemFileObj = globalWarnings[nextProblemFileIndex + 1];
+			await window.showTextDocument(nextProblemFileObj.uri);
+			moveCursorBeginning();
+		} else {
+			// last problem, go to first problem of first file
+			await window.showTextDocument(globalWarnings[0].uri);
 			moveCursorBeginning();
 		}
 	}

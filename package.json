@@ -412,6 +412,11 @@
 				"mac": "Cmd+Shift+[Space]"
 			},
 			{
+				"command": "mind-reader.goToSyntaxWarnings",
+				"key": "Ctrl+Shift+Alt+[Space]",
+				"mac": "Cmd+Shift+Alt+[Space]"
+			},
+			{
 				"command": "mind-reader.moveCursorBeginning",
 				"key": "Ctrl+Shift+/ B",
 				"mac": "Ctrl+Shift+[Slash] B",
