@@ -822,7 +822,7 @@
 		"@types/node": "16.x",
 		"@types/play-sound": "^1.1.2",
 		"@types/serialport": "^8.0.2",
-		"@types/vscode": "^1.60.0",
+		"@types/vscode": "^1.86.0",
 		"@types/ws": "^6.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
