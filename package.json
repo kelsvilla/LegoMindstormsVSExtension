@@ -427,6 +427,11 @@
 				"key": "Ctrl+Shift+/ E",
 				"mac": "Ctrl+Shift+[Slash] E",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.toggleSoundCues",
+				"key": "Ctrl+Shift+/ + T",
+				"mac": "Cmd+Shift+[Slash] T"
 			}
 		],
 		"menus": {

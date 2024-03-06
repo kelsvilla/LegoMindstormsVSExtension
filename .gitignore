@@ -7,5 +7,6 @@ node_modules
 venv
 documentation/~*
 .vscode
+dependencies
 .vs
 __pycache__
