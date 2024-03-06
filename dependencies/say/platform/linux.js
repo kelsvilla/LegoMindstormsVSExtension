@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const SayPlatformBase = require('./base.js');
+const path = require('path');
 
 const BASE_SPEED = 100;
 const COMMAND = 'festival';
@@ -14,6 +15,12 @@ class SayPlatformLinux extends SayPlatformBase {
     let args = [];
     let pipedData = '';
     let options = {};
+    const dependenciesPath = path.normalize(__dirname).replace('/say/platform', '/festival')
+    options = {
+      env: {
+        PATH: process.env.PATH ? `${process.env.PATH}:${dependenciesPath}` : dependenciesPath
+      }
+    }
 
     args.push('--pipe');
 

@@ -822,7 +822,6 @@
 		"electron": "^24.2.0",
 		"electron-rebuild": "^3.2.9",
 		"jzz": "^1.7.4",
-		"midi": "^2.0.0",
 		"play-sound": "^1.1.6",
 		"say": "file:./dependencies/say",
 		"serialport": "^11.0.0",
