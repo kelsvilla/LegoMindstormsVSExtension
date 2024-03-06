@@ -528,6 +528,7 @@ async function goToSyntaxErrors(): Promise<void> {
 
 	// checks if there are any problems
 	if (globalProblems.length === 0) {
+		outputMessage("No errors detected.")
 		return;
 	}
 
@@ -587,6 +588,8 @@ async function goToSyntaxErrors(): Promise<void> {
 		}
 	}
 }
+
+
 
 // Helper functions to move Cursor to beginning or end
 export function moveCursorBeginning(): void {
