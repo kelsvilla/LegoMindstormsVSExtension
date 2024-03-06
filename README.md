@@ -48,6 +48,17 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 For MacOS users, you may need to install a package manager like [Homebrew](https://brew.sh/) to get portaudio.
 
+**For Linux users, you will need to have Festival installed in order to use Text-to-Speech**
+
+apt-get:
+>   sudo apt-get install festival festvox-kallpc16k
+
+yum:
+>   sudo yum install festival festvox-kallpc16k
+
+
+Festival's documentation can be found here: https://wiki.archlinux.org/title/Festival
+
 # Contact Information
 
 ### Single Semester Snobs
