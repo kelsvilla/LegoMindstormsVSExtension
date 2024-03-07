@@ -5,3 +5,4 @@ export { hubCommands } from "./hub";
 export { navCommands } from "./nav";
 export { voicetotextCommands } from "./voicetotext";
 export { midicommands } from "./midi";
+export { lineHighlightercommands} from "./lineHighlighter";
