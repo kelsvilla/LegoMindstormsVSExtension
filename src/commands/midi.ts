@@ -13,13 +13,14 @@ export const midicommands: CommandEntry[] = [
 
 let shouldPlayMIDINote = false;
 
-function toggleSoundCues() {
+export function toggleSoundCues(): boolean {
 	shouldPlayMIDINote = !shouldPlayMIDINote;
 	if (shouldPlayMIDINote) {
 		window.showInformationMessage("Sound Cues Activated");
 	} else {
 		window.showInformationMessage("Sound Cues Deactivated");
 	}
+	return shouldPlayMIDINote;
 }
 
 window.onDidChangeTextEditorSelection(playerContext);
@@ -112,7 +113,7 @@ function createContextString(context: pl.LexNode[]): string {
 }
 
 // Function checking for nested for loop
-function lineContext(contextString: string): string {
+export function lineContext(contextString: string): string {
 	const forIndex = contextString.indexOf("for");
 	const forCount = countOccurrences(contextString, "for");
 	const ifCount = countOccurrences(contextString, "if");
@@ -142,19 +143,19 @@ function lineContext(contextString: string): string {
 	} else if (elifIndex === 0) {
 		return "a" + noteNum;
 	} else if (asyncIndex === 0) {
-		let noteNum = asyncIndex + 4;
+		noteNum = asyncIndex + 4;
 		return "c" + noteNum;
 	} else if (funcIndex === 0) {
-		let noteNum = funcIndex + 4;
+		noteNum = funcIndex + 4;
 		return "c#" + noteNum;
 	} else if (commentIndex === 0) {
 		return "f" + noteNum;
 	} else if (tryIndex === 0) {
-		return "Eb" + noteNum;
+		return "eb" + noteNum;
 	} else if (exceptIndex === 0) {
-		return "E" + noteNum;
+		return "e" + noteNum;
 	} else if (contextString.indexOf("BLANK") !== -1) {
-		return "F#" + noteNum;
+		return "f#" + noteNum;
 	}
 	return "g" + noteNum;
 }

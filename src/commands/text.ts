@@ -9,6 +9,7 @@ import {
 	languages,
 	window,
 	workspace,
+    Range
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
 
@@ -82,21 +83,17 @@ let shouldSpeak = false;
 
 function outputMessage(message: string) {
 	window.showInformationMessage(message);
-	if (shouldSpeak === true) {
-		say.speak(message);
-	}
+	shouldSpeak === true ? say.speak(message) : undefined;
 }
 
 function toggleTTS() {
 	shouldSpeak = !shouldSpeak;
-	if (shouldSpeak) {
-		window.showInformationMessage("Text to Speech Activated");
-	} else {
-		window.showInformationMessage("Text to Speech Deactivated");
-	}
+	shouldSpeak
+	? window.showInformationMessage("Text to Speech Activated")
+	: window.showInformationMessage("Text to Speech Deactivated");
 }
 
-function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
+export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
 	let numSpaces: number = 0;
 
 	if (editor) {
@@ -122,7 +119,7 @@ function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
 	@param editor
 	@returns numberOfSelectedLines
 */
-function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
+export function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
 	let numberOfSelectedLines: number = 0;
 
 	if (editor) {
@@ -140,7 +137,7 @@ function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
  *  @param editor
  *  @returns editor!.selection.active.line + 1
  */
-function fetchLineNumber(editor: TextEditor | undefined): number {
+export function fetchLineNumber(editor: TextEditor | undefined): number {
 	return editor!.selection.active.line + 1; // line numbers start at 1, not 0, so we add 1 to the result
 }
 
@@ -149,7 +146,7 @@ function fetchLineNumber(editor: TextEditor | undefined): number {
  *  @param editor
  *  @returns editor.document.lineAt(fetchLineNumber(editor) - 1)
  */
-function fetchLine(editor: TextEditor | undefined): TextLine {
+export function fetchLine(editor: TextEditor | undefined): TextLine {
 	return editor!.document.lineAt(fetchLineNumber(editor) - 1); // We want the line index, so we remove the 1 we added to the result in fetchLineNumber
 }
 
@@ -195,7 +192,7 @@ export function getLineNumber(): void {
 /* Function
  * Used to get the number of indents on a line
  */
-function getIndent(): void {
+export function getIndent(): number {
 	const editor: TextEditor | undefined = window.activeTextEditor;
 
 	if (editor) {
@@ -206,6 +203,7 @@ function getIndent(): void {
 			window.showInformationMessage(
 				`Line ${lineNum.toString()} is Empty`,
 			);
+
 		} else {
 			// Grab tab format from open document
 			const tabFmt: pl.TabInfo = {
@@ -223,10 +221,13 @@ function getIndent(): void {
 					: `Line ${lineNum.toString()}: ${i.toString()} indent`;
 
 			outputMessage(message);
+			return i;
 		}
 	} else {
 		window.showErrorMessage("No document currently active");
+		return 0;
 	}
+	return 0;
 }
 
 /* Function
@@ -476,13 +477,11 @@ function runCursorContext(): void {
 			contextEnd = Math.min(spaceWords.length, i + windowSize + 1); // clamp end index
 			// construct cursor context string
 			let contextString: string = "";
-
 			for (let i: number = contextStart; i < contextEnd; i++) {
 				contextString += spaceWords[i].word + " ";
 			}
 			// output cursor context string
-			window.showInformationMessage(contextString);
-			say.speak(contextString);
+			outputMessage(contextString);
 			return;
 		}
 	}
@@ -570,7 +569,15 @@ async function goToSyntaxErrors(): Promise<void> {
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
-		window.showInformationMessage(nextProblems[0].message);
+        window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
+
+        let path = window.activeTextEditor.document.uri.fsPath;
+        path = path.replace("\/", "\\");
+		let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
+		fileName = fileName!.replace(',', '');
+		let message = fileName + ": " + nextProblems[0].message;
+
+		outputMessage(message);
 	} else if (nextProblems.length === 0) {
 		// next problem not in same file
 		if (nextProblemFileIndex < globalProblems.length - 1) {
@@ -587,7 +594,7 @@ async function goToSyntaxErrors(): Promise<void> {
 }
 
 // Helper functions to move Cursor to beginning or end
-function moveCursorBeginning(): void {
+export function moveCursorBeginning(): void {
 	const editor = window.activeTextEditor;
 
 	//Throw error if no editor open
@@ -607,7 +614,7 @@ function moveCursorBeginning(): void {
 	window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
 }
 
-function moveCursorEnd(): void {
+export function moveCursorEnd(): void {
 	const editor = window.activeTextEditor;
 
 	//Throw error if no editor open
