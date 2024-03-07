@@ -5,5 +5,6 @@
  */
 export type CommandEntry = {
 	name: string;
-	callback: () => void;
+	execute: () => void;
+	undo: () => void;
 };

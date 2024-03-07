@@ -47,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 		context.subscriptions.push(
 			vscode.commands.registerTextEditorCommand(
 				command.name,
-				command.callback,
+				command.execute,
 			),
 		);
 	});
@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Register Commands
 	allCommands.forEach((command) => {
 		context.subscriptions.push(
-			vscode.commands.registerCommand(command.name, command.callback),
+			vscode.commands.registerCommand(command.name, command.execute),
 		);
 	});
 

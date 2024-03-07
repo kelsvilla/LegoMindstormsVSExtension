@@ -6,7 +6,8 @@ import * as jzz from "jzz";
 export const midicommands: CommandEntry[] = [
 	{
 		name: "mind-reader.toggleSoundCues",
-		callback: toggleSoundCues,
+		execute: toggleSoundCues,
+		undo: () => {},
 	},
 ];
 

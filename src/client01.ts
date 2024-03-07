@@ -4,15 +4,24 @@ import * as path from "path";
 var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
-// import {
-// 	CommandEntry,
-// 	accessCommands,
-// 	hubCommands,
-// 	navCommands,
-// 	textCommands,
-// 	voicetotextCommands,
-// 	midicommands,
-// } from "./commands";
+import {
+	CommandEntry,
+	accessCommands,
+	hubCommands,
+	navCommands,
+	textCommands,
+	voicetotextCommands,
+	midicommands,
+} from "./commands";
+
+const allCommands = [
+	accessCommands,
+	hubCommands,
+	navCommands,
+	textCommands,
+	voicetotextCommands,
+	midicommands,
+].flat(1);
 
 function activateVoiceServer() {
 	//activate server
@@ -69,7 +78,8 @@ function runClient(commandHistory: string[]) {
 			try {
 				if (cmdName === "undo") {
 					if (commandHistory.length > 0) {
-						commandHistory.pop();
+						const commandName = commandHistory.pop();
+						allCommands.find((e) => e.name === commandName)?.undo();
 					}
 				} else if (cmdName !== "") {
 					await vscode.commands.executeCommand(cmdName);

@@ -6,44 +6,45 @@ import { startStreaming } from "../client01";
 export const accessCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.selectTheme",
-
-		// callbacks can be inlined...
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.selectTheme"),
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.increaseFontScale",
-		callback: increaseFontScale, // ...or factored out into separate functions below
+		execute: increaseFontScale,
+		undo: () => {},
 	},
-
 	{
 		name: "mind-reader.decreaseFontScale",
-		callback: decreaseFontScale,
+		execute: decreaseFontScale,
+		undo: () => {},
 	},
-
 	{
 		name: "mind-reader.resetFontScale",
-		callback: resetFontScale,
+		execute: resetFontScale,
+		undo: () => {},
 	},
-
 	{
 		name: "mind-reader.increaseEditorScale",
-		callback: increaseEditorScale,
+		execute: increaseEditorScale,
+		undo: () => {},
 	},
-
 	{
 		name: "mind-reader.decreaseEditorScale",
-		callback: decreaseEditorScale,
+		execute: decreaseEditorScale,
+		undo: () => {},
 	},
-
-  {
-    name: 'mind-reader.resetEditorScale',
-    callback: resetEditorScale,
-  },
-  {
-    name:'mind-reader.startStreaming',
-    callback: startStreaming,
-  },
+	{
+		name: "mind-reader.resetEditorScale",
+		execute: resetEditorScale,
+		undo: () => {},
+	},
+	{
+		name: "mind-reader.startStreaming",
+		execute: startStreaming,
+		undo: () => {},
+	},
 ];
 
 function increaseFontScale(): void {

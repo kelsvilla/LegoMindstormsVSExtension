@@ -8,32 +8,38 @@ import { CommandEntry } from "./commandEntry";
 export const hubCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.connectHub",
-		callback: connectHub,
+		execute: connectHub,
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.disconnectHub",
-		callback: disconnectHub,
+		execute: disconnectHub,
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.uploadCurrentFile",
-		callback: uploadCurrentFile,
+		execute: uploadCurrentFile,
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.runProgram",
-		callback: runProgram,
+		execute: runProgram,
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.stopExecution",
-		callback: stopExecution,
+		execute: stopExecution,
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.deleteProgram",
-		callback: deleteProgram,
+		execute: deleteProgram,
+		undo: () => {},
 	} /*,
   {
     name: 'mind-reader.ev3.test',

@@ -5,91 +5,105 @@ import { CommandEntry } from "./commandEntry";
 export const navCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.openWebview",
-		callback: openWebview,
+		execute: openWebview,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.openKeybinds",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand(
 				"workbench.action.openGlobalKeybindings",
 				"mind-reader",
 			),
+		undo: () => {},
 	},
 
 	//Navigation Keys......
 	// TODO: Why is this here? Extensions can rebind existing keybinds.
 	{
 		name: "mind-reader.showAllSymbols",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.showAllSymbols"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.gotoLine",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.gotoLine"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.quickOpen",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.quickOpen"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.gotoSymbol",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.gotoSymbol"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.showProblems",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.actions.view.problems"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.nextInFiles",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("editor.action.marker.nextInFiles"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.prevInFiles",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("editor.action.marker.prevInFiles"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.showCommands",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.showCommands"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.quickOpenPreviousRecentlyUsedEditorInGroup",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand(
 				"workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
 			),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.navigateBack",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.navigateBack"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.getQuickInputBack",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.quickInputBack"),
+		undo: () => {},
 	},
 
 	{
 		name: "mind-reader.navigateForward",
-		callback: () =>
+		execute: () =>
 			vscode.commands.executeCommand("workbench.action.navigateForward"),
+		undo: () => {},
 	},
 ];
 

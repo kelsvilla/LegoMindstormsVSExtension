@@ -9,54 +9,65 @@ import {
 	languages,
 	window,
 	workspace,
-    Range
+	Range,
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
 
 export const textCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.getLineNumber",
-		callback: getLineNumber,
+		execute: getLineNumber,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.getIndent",
-		callback: getIndent,
+		execute: getIndent,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.getLeadingSpaces",
-		callback: getLeadingSpaces,
+		execute: getLeadingSpaces,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.selectLeadingWhitespace",
-		callback: selectLeadingWhitespace,
+		execute: selectLeadingWhitespace,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.getNumberOfSelectedLines",
-		callback: getNumberOfSelectedLines,
+		execute: getNumberOfSelectedLines,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.getLineScope",
-		callback: runLineContext,
+		execute: runLineContext,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.getWordsUnderCursor",
-		callback: runCursorContext,
+		execute: runCursorContext,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.toggleTextToSpeech",
-		callback: toggleTTS,
+		execute: toggleTTS,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.goToSyntaxErrors",
-		callback: goToSyntaxErrors,
+		execute: goToSyntaxErrors,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.moveCursorBeginning",
-		callback: moveCursorBeginning,
+		execute: moveCursorBeginning,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.moveCursorEnd",
-		callback: moveCursorEnd,
+		execute: moveCursorEnd,
+		undo: () => {},
 	},
 ];
 
@@ -89,11 +100,13 @@ function outputMessage(message: string) {
 function toggleTTS() {
 	shouldSpeak = !shouldSpeak;
 	shouldSpeak
-	? window.showInformationMessage("Text to Speech Activated")
-	: window.showInformationMessage("Text to Speech Deactivated");
+		? window.showInformationMessage("Text to Speech Activated")
+		: window.showInformationMessage("Text to Speech Deactivated");
 }
 
-export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
+export function fetchNumberOfLeadingSpaces(
+	editor: TextEditor | undefined,
+): number {
 	let numSpaces: number = 0;
 
 	if (editor) {
@@ -119,7 +132,9 @@ export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): numb
 	@param editor
 	@returns numberOfSelectedLines
 */
-export function fetchNumberOfSelectedLines(editor: TextEditor | undefined): number {
+export function fetchNumberOfSelectedLines(
+	editor: TextEditor | undefined,
+): number {
 	let numberOfSelectedLines: number = 0;
 
 	if (editor) {
@@ -203,7 +218,6 @@ export function getIndent(): number {
 			window.showInformationMessage(
 				`Line ${lineNum.toString()} is Empty`,
 			);
-
 		} else {
 			// Grab tab format from open document
 			const tabFmt: pl.TabInfo = {
@@ -570,7 +584,9 @@ async function goToSyntaxErrors(): Promise<void> {
 			nextProblems[0].position,
 			nextProblems[0].position,
 		);
-        window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
+		window.activeTextEditor.revealRange(
+			new Range(nextProblems[0].position, nextProblems[0].position),
+		);
 		window.showInformationMessage(nextProblems[0].message);
 		outputMessage(nextProblems[0].message);
 	} else if (nextProblems.length === 0) {

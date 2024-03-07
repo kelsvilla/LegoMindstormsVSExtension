@@ -5,43 +5,53 @@ import { TextEditor, window, Position, InputBoxOptions } from "vscode";
 export const voicetotextCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.insertIfLadder",
-		callback: insertIfLadder,
+		execute: insertIfLadder,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertIfElseLadder",
-		callback: insertIfElseLadder,
+		execute: insertIfElseLadder,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertForLoop",
-		callback: insertForLoop,
+		execute: insertForLoop,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertForNumberLoop",
-		callback: insertForNumberLoop,
+		execute: insertForNumberLoop,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertNestedForLoop",
-		callback: insertNestedForLoop,
+		execute: insertNestedForLoop,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertNestedForNumberLoop",
-		callback: insertNestedForNumberLoop,
+		execute: insertNestedForNumberLoop,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertTryLadder",
-		callback: insertTryLadder,
+		execute: insertTryLadder,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertev3Import",
-		callback: insertev3Import,
+		execute: insertev3Import,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertWhileLoop",
-		callback: insertWhileLoop,
+		execute: insertWhileLoop,
+		undo: () => {},
 	},
 	{
 		name: "mind-reader.insertDoWhileLoop",
-		callback: insertDoWhileLoop,
+		execute: insertDoWhileLoop,
+		undo: () => {},
 	},
 ];
 
