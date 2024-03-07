@@ -1,6 +1,11 @@
 import * as vscode from "vscode";
 import { CommandEntry } from "./commandEntry";
-import { startStreaming } from "../client01";
+
+const resetFontScaleCommand = {
+	name: "mind-reader.resetFontScale",
+	execute: resetFontScale,
+	undo: () => {},
+};
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
@@ -13,18 +18,14 @@ export const accessCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.increaseFontScale",
 		execute: increaseFontScale,
-		undo: () => {},
+		undo: decreaseFontScale,
 	},
 	{
 		name: "mind-reader.decreaseFontScale",
 		execute: decreaseFontScale,
-		undo: () => {},
+		undo: increaseFontScale,
 	},
-	{
-		name: "mind-reader.resetFontScale",
-		execute: resetFontScale,
-		undo: () => {},
-	},
+	resetFontScaleCommand,
 	{
 		name: "mind-reader.increaseEditorScale",
 		execute: increaseEditorScale,
@@ -38,11 +39,6 @@ export const accessCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.resetEditorScale",
 		execute: resetEditorScale,
-		undo: () => {},
-	},
-	{
-		name: "mind-reader.startStreaming",
-		execute: startStreaming,
 		undo: () => {},
 	},
 ];

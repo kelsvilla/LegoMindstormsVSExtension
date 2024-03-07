@@ -6,5 +6,6 @@
 export type CommandEntry = {
 	name: string;
 	execute: () => void;
-	undo: () => void;
+	undo: ((context: CommandEntry) => void) | (() => void);
+	data?: Record<string, any>;
 };

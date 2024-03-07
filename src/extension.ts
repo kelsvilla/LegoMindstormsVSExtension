@@ -5,6 +5,7 @@ import Logger from "./log";
 import { lineHighlighter } from "./lineHighlighter";
 import { installer } from "./pythonManager";
 import path = require("path");
+import { serverCommand } from "./runClient";
 
 import {
 	accessCommands,
@@ -41,6 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 		navCommands,
 		textCommands,
 		midicommands,
+		serverCommand,
 	].flat(1);
 
 	voicetotextCommands.forEach((command) => {
@@ -60,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	let accessProvider = new CommandNodeProvider(
-		[accessCommands, textCommands, midicommands].flat(1),
+		[accessCommands, textCommands, midicommands, serverCommand].flat(1),
 	);
 	vscode.window.registerTreeDataProvider("accessActions", accessProvider);
 

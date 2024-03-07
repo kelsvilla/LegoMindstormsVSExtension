@@ -5,16 +5,24 @@ var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
 import {
-	CommandEntry,
 	accessCommands,
 	hubCommands,
 	navCommands,
 	textCommands,
 	voicetotextCommands,
 	midicommands,
+	CommandEntry,
 } from "./commands";
 
-const allCommands = [
+export const serverCommand = [
+	{
+		name: "mind-reader.startStreaming",
+		execute: startStreaming,
+		undo: () => {},
+	},
+];
+
+const allCommands: CommandEntry[] = [
 	accessCommands,
 	hubCommands,
 	navCommands,
@@ -22,6 +30,8 @@ const allCommands = [
 	voicetotextCommands,
 	midicommands,
 ].flat(1);
+
+console.log(allCommands);
 
 function activateVoiceServer() {
 	//activate server
@@ -79,7 +89,10 @@ function runClient(commandHistory: string[]) {
 				if (cmdName === "undo") {
 					if (commandHistory.length > 0) {
 						const commandName = commandHistory.pop();
-						allCommands.find((e) => e.name === commandName)?.undo();
+						const command = allCommands.find(
+							(e) => e.name === commandName,
+						);
+						command?.undo(command);
 					}
 				} else if (cmdName !== "") {
 					await vscode.commands.executeCommand(cmdName);
