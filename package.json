@@ -336,6 +336,12 @@
 				"title": "Sound Cues Switch",
 				"category": "Mind Reader",
 				"voiceEntry": "Sound Cues Switch"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"title": "Toggle line highlighter",
+				"category": "Mind Reader",
+				"voiceEntry": "Toggle Line Highlighter"
 			}
 		],
 		"keybindings": [

@@ -4,7 +4,7 @@ import CommandNodeProvider from "./commandNodeProvider";
 import Logger from "./log";
 import { installer } from "./pythonManager";
 import path = require("path");
-import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter"
+import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter";
 
 import {
 	accessCommands,
