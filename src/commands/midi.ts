@@ -10,7 +10,6 @@ export const midicommands: CommandEntry[] = [
 	},
 ];
 
-//TODO: Create hotkey for activating audio cues
 
 let shouldPlayMIDINote = false;
 
