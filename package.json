@@ -582,7 +582,7 @@
 				}
 			},
 			{
-				"title": "Line Highlighter [Must Close Settings And RESTART VSCode For The Line Highlighter To Function]",
+				"title": "Line Highlighter",
 				"order": 1,
 				"properties": {
 					"mind-reader.lineHighlighter.isEnabled": {
