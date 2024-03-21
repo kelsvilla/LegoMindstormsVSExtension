@@ -597,25 +597,22 @@ async function goToSyntaxErrors(): Promise<void> {
     }
 }
 
-function searchTab(path: string) {
+async function searchTab(path: string) {
     var allTabGroups: readonly TabGroup[] = window.tabGroups.all;
-    var activeTabGroupIndex: number = getActiveTabIndex(allTabGroups);
+    var activeTabGroupIndex: number = await getActiveTabIndex(allTabGroups);
     for (let i = 0; i < allTabGroups.length; i++) {
         for (let j = 0; j < allTabGroups[i].tabs.length; j++) {
-            let obj: unknown = allTabGroups[i].tabs[j].input;
-            if (typeof obj === 'object' && obj !== null && 'uri' in obj) {
-                if (typeof obj.uri === 'object' && obj.uri !== null && 'path' in obj.uri) {
-                    if (obj.uri.path === path) {
-                        return { tabFound: true, tabGroupIndex: i, activeTabGroupIndex: activeTabGroupIndex };
-                    }
-                }
+            let obj: any = allTabGroups[i].tabs[j].input as any;
+
+            if (obj.uri.path === path) {
+                return { tabFound: true, tabGroupIndex: i, activeTabGroupIndex: activeTabGroupIndex };
             }
         }
     }
     return { tabFound: false, tabGroupIndex: -1, activeTabGroupIndex: activeTabGroupIndex };
 }
 
-function getActiveTabIndex(allTabGroups: readonly TabGroup[]) {
+async function getActiveTabIndex(allTabGroups: readonly TabGroup[]) {
     for (let i = 0; i < allTabGroups.length; i++) {
         if (allTabGroups[i] === window.tabGroups.activeTabGroup) {
             return i;
@@ -625,7 +622,7 @@ function getActiveTabIndex(allTabGroups: readonly TabGroup[]) {
 }
 
 async function checkTabGroup(nextProblemFileObj: any) {
-    const { tabFound, tabGroupIndex, activeTabGroupIndex } = searchTab(nextProblemFileObj.uri.path);
+    const { tabFound, tabGroupIndex, activeTabGroupIndex } = await searchTab(nextProblemFileObj.uri.path);
     if (tabFound && tabGroupIndex !== activeTabGroupIndex) {   // next file is in another tabGroup
         if (activeTabGroupIndex < tabGroupIndex) {
             for (let i = activeTabGroupIndex; i < tabGroupIndex; i++) {
