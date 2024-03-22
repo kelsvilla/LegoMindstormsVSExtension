@@ -45,7 +45,7 @@ export const textCommands: CommandEntry[] = [
         callback: runCursorContext,
     },
     {
-        name: "mind-reader.toggleTextToSpeech",
+        name: "mind-reader.toggleTTS",
         callback: toggleTTS,
     },
     {

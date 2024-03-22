@@ -337,6 +337,11 @@
 				"category": "Mind Reader"
 			},
 			{
+				"command": "mind-reader.toggleTTS",
+				"title": "Toggle Text-to-Speech",
+				"category": "Mind Reader"
+			},
+			{
 				"command": "mind-reader.toggleLineHighlight",
 				"title": "Toggle line highlighter",
 				"category": "Mind Reader",

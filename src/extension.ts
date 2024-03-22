@@ -73,5 +73,13 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
 
+const checkerStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  );
+  checkerStatusBar.command = "mind-reader.toggleTTS";
+  checkerStatusBar.text = "$(megaphone) Toggle Text-to-Speech";
+  checkerStatusBar.show();
+
 export function deactivate() {}
 highlightDeactivate();
