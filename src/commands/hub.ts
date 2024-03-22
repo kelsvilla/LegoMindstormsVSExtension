@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import HubManager from "../hubManager";
+import { outputMessage, outputErrorMessage, outputWarningMessage } from "./text";
 //import EV3Manager from '../ev3Manager';
 
 import { CommandEntry } from "./commandEntry";
@@ -53,7 +54,7 @@ async function ev3test(): Promise<void> {
 
 async function connectHub(): Promise<void> {
 	if (hub && hub.isOpen()) {
-		vscode.window.showWarningMessage(
+		outputWarningMessage(
 			"LEGO Hub is already connected, reconnecting...",
 		);
 		disconnectHub();
@@ -63,7 +64,7 @@ async function connectHub(): Promise<void> {
 		const ports = await HubManager.queryPorts();
 
 		if (ports.length === 0) {
-			vscode.window.showErrorMessage(
+			outputErrorMessage(
 				"No ports found. Is the LEGO Hub connected?",
 			);
 			return;
@@ -88,31 +89,31 @@ async function connectHub(): Promise<void> {
 			portPath = picked.label;
 		}
 		hub = await HubManager.create(portPath);
-		vscode.window.showInformationMessage("LEGO Hub connected");
+		outputMessage("LEGO Hub connected");
 	} catch (err) {
-		vscode.window.showErrorMessage("Could not connect to LEGO Hub");
+		outputErrorMessage("Could not connect to LEGO Hub");
 	}
 }
 
 async function disconnectHub(): Promise<void> {
 	if (!hub || !hub.isOpen()) {
-		vscode.window.showErrorMessage("LEGO Hub is not connected");
+		outputErrorMessage("LEGO Hub is not connected");
 		return;
 	}
 
 	await hub.close();
 	hub = null;
-	vscode.window.showInformationMessage("LEGO Hub disconnected");
+	outputMessage("LEGO Hub disconnected");
 }
 
 async function uploadCurrentFile(): Promise<void> {
 	if (!hub || !hub.isOpen()) {
-		vscode.window.showErrorMessage("LEGO Hub is not connected!");
+		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
 
 	if (!vscode.window.activeTextEditor) {
-		vscode.window.showErrorMessage("No active text editor");
+		outputErrorMessage("No active text editor");
 		return;
 	}
 
@@ -133,13 +134,13 @@ async function uploadCurrentFile(): Promise<void> {
 		}
 
 		// TODO: progress bar?
-		vscode.window.showInformationMessage("Uploading current file");
+		outputMessage("Uploading current file");
 		await hub.uploadFile(
 			currentFilePath,
 			parseInt(slotID.label),
 			path.basename(currentFilePath),
 		);
-		vscode.window.showInformationMessage(
+		outputMessage(
 			path.basename(currentFilePath) +
 				" uploaded to slot " +
 				slotID.label,
@@ -150,7 +151,7 @@ async function uploadCurrentFile(): Promise<void> {
 // TODO: find empty slots
 async function runProgram(): Promise<void> {
 	if (!hub || !hub.isOpen()) {
-		vscode.window.showErrorMessage("LEGO Hub is not connected!");
+		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
 
@@ -167,24 +168,24 @@ async function runProgram(): Promise<void> {
 		return;
 	}
 
-	vscode.window.showInformationMessage("Running program " + slotID.label);
+	outputMessage("Running program " + slotID.label);
 	await hub.programExecute(parseInt(slotID.label));
 }
 
 async function stopExecution(): Promise<void> {
 	if (!hub || !hub.isOpen()) {
-		vscode.window.showErrorMessage("LEGO Hub is not connected!");
+		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
 
 	await hub.programTerminate();
-	vscode.window.showInformationMessage("Execution stopped");
+	outputMessage("Execution stopped");
 }
 
 // TODO: find slots from status
 async function deleteProgram(): Promise<void> {
 	if (!hub || !hub.isOpen()) {
-		vscode.window.showErrorMessage("LEGO Hub is not connected!");
+		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
 
@@ -202,5 +203,5 @@ async function deleteProgram(): Promise<void> {
 	}
 
 	await hub.deleteProgram(parseInt(slotID.label));
-	vscode.window.showInformationMessage("Deleted program " + slotID.label);
+	outputMessage("Deleted program " + slotID.label);
 }

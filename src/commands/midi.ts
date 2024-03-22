@@ -2,6 +2,7 @@ import { TextEditorSelectionChangeEvent, window, workspace } from "vscode";
 import pl = require("../pylex");
 import { CommandEntry } from "./commandEntry";
 import * as jzz from "jzz";
+import { outputMessage } from "./text";
 
 export const midicommands: CommandEntry[] = [
 	{
@@ -16,9 +17,9 @@ let shouldPlayMIDINote = false;
 export function toggleSoundCues(): boolean {
 	shouldPlayMIDINote = !shouldPlayMIDINote;
 	if (shouldPlayMIDINote) {
-		window.showInformationMessage("Sound Cues Activated");
+		outputMessage("Sound Cues Activated");
 	} else {
-		window.showInformationMessage("Sound Cues Deactivated");
+		outputMessage("Sound Cues Deactivated");
 	}
 	return shouldPlayMIDINote;
 }
@@ -28,7 +29,6 @@ window.onDidChangeTextEditorSelection(playerContext);
 function playMidi(contextString: string) {
 	var output = jzz().openMidiOut();
 	var chordType: string = lineContext(contextString);
-	//window.showInformationMessage(contextString);
 	output.note(0, chordType, 127, 550);
 }
 
