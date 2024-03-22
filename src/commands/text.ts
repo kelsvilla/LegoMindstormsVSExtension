@@ -499,10 +499,12 @@ async function goToSyntaxErrors(): Promise<void> {
     let globalProblems = [];
     const cursorPosition: Position = window.activeTextEditor.selection.active;
     const currentFilePath: string = window.activeTextEditor.document.uri.path;
+    const warningCheck: any = workspace.getConfiguration("mind-reader").get("includeWarnings");
     let nextProblemFileObj;
     let nextProblemFileIndex;
     let nextProblems;
 
+    console.log(warningCheck);
     // creates array of objects
     /*
     {
@@ -514,7 +516,7 @@ async function goToSyntaxErrors(): Promise<void> {
         globalProblems.push({
             uri: diagnostics[i][0],
             problems: diagnostics[i][1]
-                .filter((diagnostics) => diagnostics.severity === 0) // keep errors
+                .filter((diagnostics) => (warningCheck && diagnostics.severity === 1) || diagnostics.severity === 0) // keep errors
                 .map((res) => ({
                     message: res.message,
                     position: res.range.start,

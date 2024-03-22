@@ -702,6 +702,24 @@
 						"default": "#FFFFFF"
 					}
 				}
+			},
+			{
+				"title": "Go To Syntax Error",
+				"order": 2,
+				"properties": { 
+					"mind-reader.includeWarnings": {
+						"order": 0,
+						"type": "boolean",
+						"markdownDescription": "Include Syntax Warnings in Go To Syntax",
+						"default": true
+					},
+					"mind-reader.jumpPages": {
+						"order": 1,
+						"type": "boolean",
+						"markdownDescription": "Allow jumping to other open files in the workspace",
+						"dafault": true
+					}
+				}
 			}
 		],
 		"views": {
