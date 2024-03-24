@@ -11,7 +11,9 @@ import {
 	workspace,
     Range,
     commands,
-    TabGroup
+    TabGroup,
+    Uri,
+    TabInputText
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
 
@@ -544,9 +546,11 @@ async function goToSyntaxErrors(): Promise<void> {
     if (nextProblemFileObj === undefined) {
         nextProblemFileIndex = 0;
         nextProblemFileObj = globalProblems[0];
-        await checkTabGroup(nextProblemFileObj);
-        await window.showTextDocument(nextProblemFileObj.uri);
-        moveCursorBeginning();
+        const tabGroup = getTabGroupIndex(nextProblemFileObj);
+        await window.showTextDocument(nextProblemFileObj.uri, {
+            selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
+            viewColumn: tabGroup
+        });
         return;
     }
 
@@ -585,55 +589,41 @@ async function goToSyntaxErrors(): Promise<void> {
         if (nextProblemFileIndex < globalProblems.length - 1) {
             // next problem in next file
             nextProblemFileObj = globalProblems[nextProblemFileIndex + 1];
-            await checkTabGroup(nextProblemFileObj);
-            await window.showTextDocument(nextProblemFileObj.uri);
-            moveCursorBeginning();
+            const tabGroup = getTabGroupIndex(nextProblemFileObj);
+            await window.showTextDocument(nextProblemFileObj.uri, {
+                selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
+                viewColumn: tabGroup
+            });
         } else {
             // last problem, go to first problem of first file
-            await checkTabGroup(globalProblems[0]);
-            await window.showTextDocument(globalProblems[0].uri);
-            moveCursorBeginning();
+            const tabGroup = getTabGroupIndex(globalProblems[0]);
+            await window.showTextDocument(globalProblems[0].uri, {
+                selection: new Range(globalProblems[0].problems[0].position, globalProblems[0].problems[0].position),
+                viewColumn: tabGroup
+            });
         }
     }
 }
 
-async function searchTab(path: string) {
-    var allTabGroups: readonly TabGroup[] = window.tabGroups.all;
-    var activeTabGroupIndex: number = await getActiveTabIndex(allTabGroups);
-    for (let i = 0; i < allTabGroups.length; i++) {
-        for (let j = 0; j < allTabGroups[i].tabs.length; j++) {
-            let obj: any = allTabGroups[i].tabs[j].input as any;
-
-            if (obj.uri.path === path) {
-                return { tabFound: true, tabGroupIndex: i, activeTabGroupIndex: activeTabGroupIndex };
-            }
-        }
-    }
-    return { tabFound: false, tabGroupIndex: -1, activeTabGroupIndex: activeTabGroupIndex };
-}
-
-async function getActiveTabIndex(allTabGroups: readonly TabGroup[]) {
-    for (let i = 0; i < allTabGroups.length; i++) {
-        if (allTabGroups[i] === window.tabGroups.activeTabGroup) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-async function checkTabGroup(nextProblemFileObj: any) {
-    const { tabFound, tabGroupIndex, activeTabGroupIndex } = await searchTab(nextProblemFileObj.uri.path);
-    if (tabFound && tabGroupIndex !== activeTabGroupIndex) {   // next file is in another tabGroup
-        if (activeTabGroupIndex < tabGroupIndex) {
-            for (let i = activeTabGroupIndex; i < tabGroupIndex; i++) {
-                await commands.executeCommand("workbench.action.focusNextGroup");
-            }
-        } else if (activeTabGroupIndex > tabGroupIndex) {
-            for (let i = activeTabGroupIndex; i > tabGroupIndex; i--) {
-                await commands.executeCommand("workbench.action.focusPreviousGroup");
-            }
-        }
-    }
+function getTabGroupIndex(file: {
+	uri: Uri;
+	problems: {
+		message: string;
+		position: Position;
+	}[];
+}): number | undefined {
+	for (const tabGroup of window.tabGroups.all) {
+		for (const tab of tabGroup.tabs) {
+			if (
+				tab.input instanceof TabInputText &&
+				tab.input.uri.toString() === file.uri.toString()
+			) {
+				//File is already opened: return the viewColumn for use when opening file
+				return tab.group.viewColumn;
+			}
+		}
+	}
+    return undefined
 }
 
 // Helper functions to move Cursor to beginning or end
