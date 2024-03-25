@@ -4,7 +4,7 @@ import * as path from "path";
 var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
-import { outputMessage, outputErrorMessage, outputWarningMessage } from "./commands/text";
+import { outputMessage, outputErrorMessage } from "./commands/text";
 // import {
 // 	CommandEntry,
 // 	accessCommands,

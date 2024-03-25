@@ -48,7 +48,8 @@
 				"command": "mind-reader.startStreaming",
 				"title": "Start Voice Commands",
 				"category": "Voice Commands",
-				"voiceEntry": "Voice-command.start Streaming"
+				"voiceEntry": "Voice-command.start Streaming",
+				"icon": "$(mic)"
 			},
 			{
 				"command": "mind-reader.voiceToText",
@@ -452,6 +453,13 @@
 					"group": "mind-reader"
 				}
 			],
+			"editor/title": [
+				{
+					"command": "mind-reader.startStreaming",
+					"when": "activeEditor",
+					"group": "navigation"
+				}
+			],
 			"mind-reader.editor.context": [
 				{
 					"command": "mind-reader.openKeybinds",
@@ -732,6 +740,12 @@
 					"name": "Access Actions",
 					"icon": "media/dep.svg",
 					"contextualTitle": "Accessibility Menu Actions"
+				},
+				{
+					"id": "textActions",
+					"name": "Text Actions",
+					"icon": "${file}",
+					"contextualTitle": "Text Data Actions"
 				},
 				{
 					"id": "hubActions",

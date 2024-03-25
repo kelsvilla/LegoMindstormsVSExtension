@@ -12,6 +12,7 @@ import {
 	navCommands,
 	textCommands,
 	voicetotextCommands,
+	TTSCommand,
 	midicommands,
 	lineHighlightercommands
 } from "./commands";
@@ -40,6 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
 		hubCommands,
 		navCommands,
 		textCommands,
+		TTSCommand,
 		midicommands,
 		lineHighlightercommands
 	].flat(1);
@@ -61,9 +63,14 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	let accessProvider = new CommandNodeProvider(
-		[accessCommands, textCommands, midicommands].flat(1),
+		[accessCommands].flat(1),
 	);
 	vscode.window.registerTreeDataProvider("accessActions", accessProvider);
+
+	let textProvider = new CommandNodeProvider(
+		[textCommands].flat(1)
+	);
+	vscode.window.registerTreeDataProvider("textActions", textProvider);
 
 	let hubProvider = new CommandNodeProvider(hubCommands);
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);

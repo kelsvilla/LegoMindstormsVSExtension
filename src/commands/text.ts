@@ -11,7 +11,7 @@ import {
 	workspace,
     Range,
     commands,
-    TabGroup
+    TabGroup,
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
 
@@ -45,10 +45,6 @@ export const textCommands: CommandEntry[] = [
         callback: runCursorContext,
     },
     {
-        name: "mind-reader.toggleTTS",
-        callback: toggleTTS,
-    },
-    {
         name: "mind-reader.goToSyntaxErrors",
         callback: goToSyntaxErrors,
     },
@@ -60,6 +56,13 @@ export const textCommands: CommandEntry[] = [
         name: "mind-reader.moveCursorEnd",
         callback: moveCursorEnd,
     },
+];
+
+export const TTSCommand: CommandEntry[] = [
+    {
+        name: "mind-reader.toggleTTS",
+        callback: toggleTTS,
+    }
 ];
 
 /** Helper Function
