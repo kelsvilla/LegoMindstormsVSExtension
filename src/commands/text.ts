@@ -551,6 +551,10 @@ async function goToSyntaxErrors(): Promise<void> {
             selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
             viewColumn: tabGroup
         });
+
+        let message = generateErrorMessage(window.activeTextEditor, nextProblemFileObj.problems[0].message);
+        outputMessage(message);
+
         return;
     }
 
@@ -577,12 +581,7 @@ async function goToSyntaxErrors(): Promise<void> {
         );
         window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
 
-        let path = window.activeTextEditor.document.uri.fsPath;
-        path = path.replace("\/", "\\");
-        let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
-        fileName = fileName!.replace(',', '');
-        let message = fileName + ": " + nextProblems[0].message;
-
+        let message = generateErrorMessage(window.activeTextEditor, nextProblems[0].message);
         outputMessage(message);
     } else if (nextProblems.length === 0) {
         // next problem not in same file
@@ -594,6 +593,9 @@ async function goToSyntaxErrors(): Promise<void> {
                 selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
                 viewColumn: tabGroup
             });
+
+            let message = generateErrorMessage(window.activeTextEditor, nextProblemFileObj.problems[0].message);
+            outputMessage(message);
         } else {
             // last problem, go to first problem of first file
             const tabGroup = getTabGroupIndex(globalProblems[0]);
@@ -601,6 +603,9 @@ async function goToSyntaxErrors(): Promise<void> {
                 selection: new Range(globalProblems[0].problems[0].position, globalProblems[0].problems[0].position),
                 viewColumn: tabGroup
             });
+
+            let message = generateErrorMessage(window.activeTextEditor, globalProblems[0].problems[0].message);
+            outputMessage(message);
         }
     }
 }
@@ -667,4 +672,14 @@ export function moveCursorEnd(): void {
 
     editor.revealRange(editor.selection, 1); // Make sure cursor is within range
     window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
+}
+
+function generateErrorMessage(textEditor: TextEditor, nextProblemMessage: string): string {
+    let path = textEditor.document.uri.fsPath;
+    path = path.replace("\/", "\\");
+    let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
+    fileName = fileName!.replace(',', '');
+    let message = fileName + ": " + nextProblemMessage;
+
+    return message;
 }
