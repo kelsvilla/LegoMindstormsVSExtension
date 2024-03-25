@@ -10,8 +10,6 @@ import {
 	window,
 	workspace,
     Range,
-    commands,
-    TabGroup,
     Uri,
     TabInputText
 } from "vscode";
