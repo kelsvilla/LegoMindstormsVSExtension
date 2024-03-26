@@ -5,6 +5,7 @@ import Logger from "./log";
 import { installer } from "./pythonManager";
 import path = require("path");
 import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter";
+import { setShouldSpeak } from "./commands/text";
 
 import {
 	accessCommands,
@@ -15,6 +16,7 @@ import {
 	midicommands,
 	lineHighlightercommands
 } from "./commands";
+import { Configuration } from "./util";
 
 //import { runClient } from "./client";
 
@@ -28,6 +30,8 @@ export const logger = new Logger(outputChannel);
 let parser: pl.Parser = new pl.Parser();
 export const rootDir = path.dirname(__filename);
 export function activate(context: vscode.ExtensionContext) {
+	let config = new Configuration(context);
+
 	//python packages installer
 	installer();
 
@@ -69,6 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);
 
 	toggleLineHighlight();
+	setShouldSpeak();
 
 	vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
