@@ -498,7 +498,7 @@ async function goToSyntaxErrors(): Promise<void> {
     let diagnostics = languages.getDiagnostics(); // gets all current errors
     let globalProblems = [];
     const cursorPosition: Position = window.activeTextEditor.selection.active;
-    const currentFilePath: string = window.activeTextEditor.document.uri.path;
+    const currentFilePath: string = window.activeTextEditor.document.uri.toString();
     let nextProblemFileObj;
     let nextProblemFileIndex;
     let nextProblems;
@@ -534,10 +534,10 @@ async function goToSyntaxErrors(): Promise<void> {
 
     // get the next problem file's object and index
     nextProblemFileObj = globalProblems.find(
-        (e) => e.uri.path === currentFilePath,
+        (e) => e.uri.toString() === currentFilePath,
     );
     nextProblemFileIndex = globalProblems.findIndex(
-        (e) => e.uri.path === currentFilePath,
+        (e) => e.uri.toString() === currentFilePath,
     );
 
     // select first error file if cursor is on file without errors
