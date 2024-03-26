@@ -83,17 +83,19 @@ export const textCommands: CommandEntry[] = [
  **    TO-USE: set calculateLeadingSpaces to false
  */
 
+let shouldSpeak: boolean;
+export function setShouldSpeak() {
+    shouldSpeak = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
+}
+
 function outputMessage(message: string) {
     let readingSpeed: number = Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"];
-    let shouldSpeak: boolean = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
 
     window.showInformationMessage(message);
     shouldSpeak === true ? say.speak(message, undefined, readingSpeed) : undefined;
 }
 
 function toggleTTS() {
-    let shouldSpeak: boolean = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
-
     shouldSpeak = !shouldSpeak;
     shouldSpeak
         ? window.showInformationMessage("Text to Speech Activated")

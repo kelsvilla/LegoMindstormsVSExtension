@@ -5,6 +5,7 @@ import Logger from "./log";
 import { installer } from "./pythonManager";
 import path = require("path");
 import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter";
+import { setShouldSpeak } from "./commands/text";
 
 import {
 	accessCommands,
@@ -72,6 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);
 
 	toggleLineHighlight();
+	setShouldSpeak();
 
 	vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
