@@ -350,7 +350,7 @@
 				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
-			{ 
+			{
 				"command": "mind-reader.startStreaming",
 				"key": "ctrl+Shift+/ V",
 				"mac": "Cmd+Shift+[Slash] V"
@@ -847,7 +847,8 @@
 		"tone": "^14.7.77",
 		"vscode-languageclient": "^5.1.0-next.9",
 		"web-audio-api": "^0.2.2",
-		"ws": "^6.2.2"
+		"ws": "^6.2.2",
+		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
 	"description": "An extension with additional features for Lego Mindstorm development.",
