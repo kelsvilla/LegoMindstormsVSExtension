@@ -93,12 +93,12 @@ export function outputMessage(message: string) {
 
 export function outputWarningMessage(message: string) {
     window.showWarningMessage(message);
-    shouldSpeak === true? say.speak("Warning,", message) : undefined;
+    shouldSpeak === true? say.speak("Warning," + message) : undefined;
 }
 
 export function outputErrorMessage(message:string) {
     window.showErrorMessage(message);
-    shouldSpeak === true? say.speak("Error,", message) : undefined;
+    shouldSpeak === true? say.speak("Error," + message) : undefined;
 }
 
 function toggleTTS() {
