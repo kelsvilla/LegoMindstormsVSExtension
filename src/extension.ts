@@ -15,6 +15,7 @@ import {
 	midicommands,
 	lineHighlightercommands
 } from "./commands";
+import { Configuration } from "./util";
 
 //import { runClient } from "./client";
 
@@ -28,6 +29,8 @@ export const logger = new Logger(outputChannel);
 let parser: pl.Parser = new pl.Parser();
 export const rootDir = path.dirname(__filename);
 export function activate(context: vscode.ExtensionContext) {
+	let config = new Configuration(context);
+
 	//python packages installer
 	installer();
 

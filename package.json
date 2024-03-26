@@ -578,6 +578,18 @@
 						"order": 2,
 						"type": "string",
 						"markdownDescription": "The default port to try and establish a connection on."
+					},
+					"mind-reader.textToSpeech.readingSpeed": {
+						"order": 4,
+						"type": "number",
+						"description": "The speed that the Text to Speech function will read.",
+						"default": 1
+					},
+					"mind-reader.textToSpeech.isEnabled": {
+						"order": 5,
+						"type": "boolean",
+						"description": "Enable/Disable Text to Speech.",
+						"default": false
 					}
 				}
 			},

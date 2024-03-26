@@ -14,6 +14,7 @@ import {
     TabGroup
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
+import { Configuration } from "../util";
 
 export const textCommands: CommandEntry[] = [
     {
@@ -81,14 +82,18 @@ export const textCommands: CommandEntry[] = [
  **
  **    TO-USE: set calculateLeadingSpaces to false
  */
-let shouldSpeak = false;
 
 function outputMessage(message: string) {
+    let readingSpeed: number = Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"];
+    let shouldSpeak: boolean = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
+
     window.showInformationMessage(message);
-    shouldSpeak === true ? say.speak(message) : undefined;
+    shouldSpeak === true ? say.speak(message, undefined, readingSpeed) : undefined;
 }
 
 function toggleTTS() {
+    let shouldSpeak: boolean = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
+
     shouldSpeak = !shouldSpeak;
     shouldSpeak
         ? window.showInformationMessage("Text to Speech Activated")
