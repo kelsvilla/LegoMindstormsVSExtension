@@ -39,8 +39,6 @@ def upload_program(slot, size):
             input = ''
             for x in range(size):
                 input = sys.stdin.read(1)
-                print(input)
-                print(bytes(input, "utf-8"))
                 f.write(input)
         except Exception as e:
             print(e)

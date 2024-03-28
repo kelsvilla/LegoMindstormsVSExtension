@@ -310,6 +310,11 @@
 				"category": "SPIKE Prime"
 			},
 			{
+				"command": "mind-reader.ctrlA",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
+				"category": "SPIKE Prime"
+			},
+			{
 				"command": "mind-reader.runProgram",
 				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime",

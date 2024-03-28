@@ -219,8 +219,7 @@ export default class HubManager3 {
 		//const dirExists = 'def testfunction():\n\tprint("cool")\n\r\n';
 		await writeAndDrain(
 			this.port,
-			HubManager3.CONTROL_C +
-				HubManager3.CONTROL_A +
+			HubManager3.CONTROL_A +
 				HubManager3.CONTROL_E +
 				"A" +
 				HubManager3.CONTROL_A +
@@ -257,7 +256,7 @@ export default class HubManager3 {
 				"\x04",
 		);
 		await writeAndDrain(this.port, fileContents);
-		console.error(fileContents.length);
+		await writeAndDrain(this.port, HubManager3.CONTROL_B);
 		//await writeAndDrain(this.port, fileContents);
 
 		//for await (const data of dataStream) {

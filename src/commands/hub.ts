@@ -61,6 +61,12 @@ export const hubCommands: CommandEntry[] = [
 			hub?.port.write("\x05");
 		},
 	},
+	{
+		name: "mind-reader.ctrlA",
+		callback: () => {
+			hub?.port.write("\x01");
+		},
+	},
 	/*,
   {
     name: 'mind-reader.ev3.test',
