@@ -1,0 +1,50 @@
+import os
+import sys
+from uselect import poll
+
+def dir_exists(filename):
+    try:
+        return (os.stat(filename)[0] & 0x4000) != 0
+    except OSError:
+        return False
+        
+def file_exists(filename):
+    try:
+        return (os.stat(filename)[0] & 0x4000) == 0
+    except OSError:
+        return False
+
+def rm(d):  # Remove file or tree
+    try:
+        if os.stat(d)[0] & 0x4000:  # Dir
+            for f in os.ilistdir(d):
+                if f[0] not in ('.', '..'):
+                    rm("/".join((d, f[0])))  # File or Dir
+            os.rmdir(d)
+        else:  # File
+            os.remove(d)
+    except:
+        print("rm of '%s' failed" % d)
+
+def upload_program(slot, size):
+    if dir_exists("/flash/program"):
+        try:
+            os.mkdir("/flash/program/"+slot)
+        except OSError:
+            rm("/flash/program/"+slot)
+            os.mkdir("/flash/program/"+slot)
+
+    with open("/flash/program/"+slot+"/program.py", "w+") as f:
+        try:
+            input = ''
+            for x in range(size):
+                input = sys.stdin.read(1)
+                print(input)
+                print(bytes(input, "utf-8"))
+                f.write(input)
+        except Exception as e:
+            print(e)
+        print("Finished!")
+
+    with open("/flash/program/"+slot+"/program.py", "r", encoding="utf-8") as f:
+        print("File: "+f.read())

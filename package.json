@@ -290,6 +290,26 @@
 				"voiceEntry": "Disconnect Hub"
 			},
 			{
+				"command": "mind-reader.ctrlC",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.ctrlD",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.ctrlB",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
+				"category": "SPIKE Prime"
+			},
+			{
+				"command": "mind-reader.ctrlE",
+				"title": "Disconnect LEGO SPIKE PRIME HUB",
+				"category": "SPIKE Prime"
+			},
+			{
 				"command": "mind-reader.runProgram",
 				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime",
@@ -337,72 +357,72 @@
 				"category": "Mind Reader"
 			},
 			{
-                "command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
-                "title": "Open SSH Terminal"
-            },
-            {
-                "command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
-                "title": "Take Screenshot"
-            },
-            {
-                "command": "ev3devBrowser.deviceTreeItem.showSysinfo",
-                "title": "Get system info"
-            },
-            {
-                "command": "ev3devBrowser.deviceTreeItem.reconnect",
-                "title": "Reconnect"
-            },
-            {
-                "command": "ev3devBrowser.deviceTreeItem.connectNew",
-                "title": "Connect to a different device"
-            },
-            {
-                "command": "ev3devBrowser.deviceTreeItem.disconnect",
-                "title": "Disconnect"
-            },
-            {
-                "command": "ev3devBrowser.fileTreeItem.run",
-                "title": "Run"
-            },
-            {
-                "command": "ev3devBrowser.fileTreeItem.runInTerminal",
-                "title": "Run in interactive terminal"
-            },
-            {
-                "command": "ev3devBrowser.fileTreeItem.delete",
-                "title": "Delete"
-            },
-            {
-                "command": "ev3devBrowser.fileTreeItem.showInfo",
-                "title": "Show Info"
-            },
-            {
-                "command": "ev3devBrowser.fileTreeItem.upload",
-                "title": "Upload"
-            },
-            {
-                "command": "ev3devBrowser.action.pickDevice",
-                "title": "Connect to a device",
-                "category": "ev3dev"
-            },
-            {
-                "command": "ev3devBrowser.action.download",
-                "title": "Send workspace to device",
-                "icon": {
-                    "dark": "resources/icons/dark/download.svg",
-                    "light": "resources/icons/light/download.svg"
-                },
-                "category": "ev3dev"
-            },
-            {
-                "command": "ev3devBrowser.action.refresh",
-                "title": "Refresh",
-                "icon": {
-                    "dark": "resources/icons/dark/refresh.svg",
-                    "light": "resources/icons/light/refresh.svg"
-                },
-                "category": "ev3dev"
-            }
+				"command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
+				"title": "Open SSH Terminal"
+			},
+			{
+				"command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
+				"title": "Take Screenshot"
+			},
+			{
+				"command": "ev3devBrowser.deviceTreeItem.showSysinfo",
+				"title": "Get system info"
+			},
+			{
+				"command": "ev3devBrowser.deviceTreeItem.reconnect",
+				"title": "Reconnect"
+			},
+			{
+				"command": "ev3devBrowser.deviceTreeItem.connectNew",
+				"title": "Connect to a different device"
+			},
+			{
+				"command": "ev3devBrowser.deviceTreeItem.disconnect",
+				"title": "Disconnect"
+			},
+			{
+				"command": "ev3devBrowser.fileTreeItem.run",
+				"title": "Run"
+			},
+			{
+				"command": "ev3devBrowser.fileTreeItem.runInTerminal",
+				"title": "Run in interactive terminal"
+			},
+			{
+				"command": "ev3devBrowser.fileTreeItem.delete",
+				"title": "Delete"
+			},
+			{
+				"command": "ev3devBrowser.fileTreeItem.showInfo",
+				"title": "Show Info"
+			},
+			{
+				"command": "ev3devBrowser.fileTreeItem.upload",
+				"title": "Upload"
+			},
+			{
+				"command": "ev3devBrowser.action.pickDevice",
+				"title": "Connect to a device",
+				"category": "ev3dev"
+			},
+			{
+				"command": "ev3devBrowser.action.download",
+				"title": "Send workspace to device",
+				"icon": {
+					"dark": "resources/icons/dark/download.svg",
+					"light": "resources/icons/light/download.svg"
+				},
+				"category": "ev3dev"
+			},
+			{
+				"command": "ev3devBrowser.action.refresh",
+				"title": "Refresh",
+				"icon": {
+					"dark": "resources/icons/dark/refresh.svg",
+					"light": "resources/icons/light/refresh.svg"
+				},
+				"category": "ev3dev"
+			}
 		],
 		"keybindings": [
 			{
@@ -576,151 +596,151 @@
 				}
 			],
 			"commandPalette": [
-                {
-                    "command": "ev3devBrowser.action.pickDevice"
-                },
-                {
-                    "command": "ev3devBrowser.action.download",
-                    "when": "ev3devBrowser.context.connected"
-                },
-                {
-                    "command": "ev3devBrowser.action.refresh",
-                    "when": "ev3devBrowser.context.connected"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.showSysinfo",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.reconnect",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.connectNew",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.disconnect",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.run",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.runInTerminal",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.delete",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.showInfo",
-                    "when": "false"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.upload",
-                    "when": "false"
-                }
-            ],
-            "view/title": [
-                {
-                    "command": "ev3devBrowser.action.refresh",
-                    "group": "navigation",
-                    "when": "view == ev3devBrowser && ev3devBrowser.context.connected"
-                },
-                {
-                    "command": "ev3devBrowser.action.download",
-                    "group": "navigation",
-                    "when": "view == ev3devBrowser && ev3devBrowser.context.connected"
-                }
-            ],
-            "view/item/context": [
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.reconnect",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.disconnected",
-                    "group": "group@0"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.connectNew",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.disconnected",
-                    "group": "group@1"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.disconnect",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
-                    "group": "secondary@9"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
-                    "group": "primary@1"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
-                    "group": "primary@2"
-                },
-                {
-                    "command": "ev3devBrowser.deviceTreeItem.showSysinfo",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
-                    "group": "primary@3"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.run",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
-                    "group": "group@1"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.runInTerminal",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
-                    "group": "group@1"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.delete",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
-                    "group": "group@5"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.delete",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
-                    "group": "group@5"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.delete",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.folder",
-                    "group": "group@5"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.upload",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
-                    "group": "group@9"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.upload",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
-                    "group": "group@9"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.showInfo",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
-                    "group": "group@10"
-                },
-                {
-                    "command": "ev3devBrowser.fileTreeItem.showInfo",
-                    "when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
-                    "group": "group@10"
-                }
-            ]
+				{
+					"command": "ev3devBrowser.action.pickDevice"
+				},
+				{
+					"command": "ev3devBrowser.action.download",
+					"when": "ev3devBrowser.context.connected"
+				},
+				{
+					"command": "ev3devBrowser.action.refresh",
+					"when": "ev3devBrowser.context.connected"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.showSysinfo",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.reconnect",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.connectNew",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.disconnect",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.run",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.runInTerminal",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.delete",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.showInfo",
+					"when": "false"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.upload",
+					"when": "false"
+				}
+			],
+			"view/title": [
+				{
+					"command": "ev3devBrowser.action.refresh",
+					"group": "navigation",
+					"when": "view == ev3devBrowser && ev3devBrowser.context.connected"
+				},
+				{
+					"command": "ev3devBrowser.action.download",
+					"group": "navigation",
+					"when": "view == ev3devBrowser && ev3devBrowser.context.connected"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "ev3devBrowser.deviceTreeItem.reconnect",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.disconnected",
+					"group": "group@0"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.connectNew",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.disconnected",
+					"group": "group@1"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.disconnect",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
+					"group": "secondary@9"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.openSshTerminal",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
+					"group": "primary@1"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.captureScreenshot",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
+					"group": "primary@2"
+				},
+				{
+					"command": "ev3devBrowser.deviceTreeItem.showSysinfo",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.device.connected",
+					"group": "primary@3"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.run",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
+					"group": "group@1"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.runInTerminal",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
+					"group": "group@1"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.delete",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
+					"group": "group@5"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.delete",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
+					"group": "group@5"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.delete",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.folder",
+					"group": "group@5"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.upload",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
+					"group": "group@9"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.upload",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
+					"group": "group@9"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.showInfo",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file.executable",
+					"group": "group@10"
+				},
+				{
+					"command": "ev3devBrowser.fileTreeItem.showInfo",
+					"when": "view == ev3devBrowser && viewItem == ev3devBrowser.file",
+					"group": "group@10"
+				}
+			]
 		},
 		"submenus": [
 			{
@@ -1044,11 +1064,11 @@
 				}
 			],
 			"explorer": [
-                {
-                    "id": "ev3devBrowser",
-                    "name": "ev3dev device browser"
-                }
-            ]
+				{
+					"id": "ev3devBrowser",
+					"name": "ev3dev device browser"
+				}
+			]
 		},
 		"viewsContainers": {
 			"activitybar": [
@@ -1060,64 +1080,64 @@
 			]
 		},
 		"debuggers": [
-            {
-                "type": "ev3devBrowser",
-                "label": "ev3dev",
-                "program": "./out/debugServer.js",
-                "runtime": "node",
-                "languages": [
-                    "python"
-                ],
-                "configurationAttributes": {
-                    "launch": {
-                        "required": [
-                            "program"
-                        ],
-                        "properties": {
-                            "program": {
-                                "type": "string",
-                                "description": "Absolute path to an executable file on the remote device.",
-                                "default": "/home/robot/myproject/myprogram"
-                            },
-                            "interactiveTerminal": {
-                                "type": "boolean",
-                                "description": "When true, program will be run in a new interactive terminal, when false the output pane will be used instead.",
-                                "default": false
-                            }
-                        }
-                    }
-                },
-                "configurationSnippets": [
-                    {
-                        "label": "ev3dev: Download and Run",
-                        "description": "Configuration for downloading and running a program on an ev3dev device.",
-                        "body": {
-                            "name": "Download and Run",
-                            "type": "ev3devBrowser",
-                            "request": "launch",
-                            "program": "^\"/home/robot/\\${workspaceFolderBasename}/${1:myprogram}\"",
-                            "interactiveTerminal": false
-                        }
-                    }
-                ],
-                "initialConfigurations": [
-                    {
-                        "name": "Download and Run current file",
-                        "type": "ev3devBrowser",
-                        "request": "launch",
-                        "program": "/home/robot/${workspaceFolderBasename}/${relativeFile}",
-                        "interactiveTerminal": true
-                    },
-                    {
-                        "name": "Download and Run my-program",
-                        "type": "ev3devBrowser",
-                        "request": "launch",
-                        "program": "/home/robot/${workspaceFolderBasename}/my-program (replace 'my-program' with the actual path)",
-                        "interactiveTerminal": true
-                    }
-                ]
-            }
-        ],
+			{
+				"type": "ev3devBrowser",
+				"label": "ev3dev",
+				"program": "./out/debugServer.js",
+				"runtime": "node",
+				"languages": [
+					"python"
+				],
+				"configurationAttributes": {
+					"launch": {
+						"required": [
+							"program"
+						],
+						"properties": {
+							"program": {
+								"type": "string",
+								"description": "Absolute path to an executable file on the remote device.",
+								"default": "/home/robot/myproject/myprogram"
+							},
+							"interactiveTerminal": {
+								"type": "boolean",
+								"description": "When true, program will be run in a new interactive terminal, when false the output pane will be used instead.",
+								"default": false
+							}
+						}
+					}
+				},
+				"configurationSnippets": [
+					{
+						"label": "ev3dev: Download and Run",
+						"description": "Configuration for downloading and running a program on an ev3dev device.",
+						"body": {
+							"name": "Download and Run",
+							"type": "ev3devBrowser",
+							"request": "launch",
+							"program": "^\"/home/robot/\\${workspaceFolderBasename}/${1:myprogram}\"",
+							"interactiveTerminal": false
+						}
+					}
+				],
+				"initialConfigurations": [
+					{
+						"name": "Download and Run current file",
+						"type": "ev3devBrowser",
+						"request": "launch",
+						"program": "/home/robot/${workspaceFolderBasename}/${relativeFile}",
+						"interactiveTerminal": true
+					},
+					{
+						"name": "Download and Run my-program",
+						"type": "ev3devBrowser",
+						"request": "launch",
+						"program": "/home/robot/${workspaceFolderBasename}/my-program (replace 'my-program' with the actual path)",
+						"interactiveTerminal": true
+					}
+				]
+			}
+		],
 		"walkthroughs": [
 			{
 				"id": "mindReader",
@@ -1213,6 +1233,7 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
+		"@pybricks/mpy-cross-v6": "^2.0.0",
 		"bonjour": "^3.5.0",
 		"compare-versions": "^6.1.0",
 		"dbus-next": "^0.10.2",
@@ -1223,6 +1244,7 @@
 		"play-sound": "^1.1.6",
 		"say": "^0.16.0",
 		"serialport": "^11.0.0",
+		"serialport-synchronous": "^1.1.1",
 		"server": "^1",
 		"speech-synthesis": "^0.3.2",
 		"ssh2": "^1.15.0",
