@@ -8,6 +8,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import path = require("path");
 import { rootDir } from "./extension";
+import { spawnSync } from "child_process";
 const { spawn } = require("child_process");
 var os = require("os");
 
@@ -46,10 +47,10 @@ export default class HubManager3 {
 			value: "",
 		});
 
-		this.port.write(HubManager3.CONTROL_E);
+		//this.port.write(HubManager3.CONTROL_E);
 
 		while (response) {
-			this.port.write(`${response}\r\n`);
+			this.port.write(`${response}`);
 			response = await vscode.window.showInputBox({
 				placeHolder: "Search query",
 				prompt: "",
@@ -57,7 +58,7 @@ export default class HubManager3 {
 			});
 		}
 
-		this.port.write(HubManager3.CONTROL_D);
+		//this.port.write(HubManager3.CONTROL_D);
 	}
 
 	// /**
@@ -161,7 +162,7 @@ export default class HubManager3 {
 		this.port
 			.pipe(new InterByteTimeoutParser({ interval: 50 }))
 			.on("data", (data) => {
-				if (data instanceof Buffer) console.log(data.toString("hex"));
+				//if (data instanceof Buffer) console.log(data.toString("hex"));
 				if (data instanceof Buffer) console.log(data.toString("utf-8"));
 			});
 		this.port.on("error", (error) => {
@@ -200,72 +201,89 @@ export default class HubManager3 {
 		name?: string,
 		autoStart: boolean = false,
 	) {
-		const fileStats = fs.statSync(file);
 		name = name || file;
-		let dataStream = fs.createReadStream(file);
 		const filePath = vscode.window.activeTextEditor!.document.uri.fsPath;
-		const utilCode = fs
-			.readFileSync(
-				path.normalize(
-					path.join(__dirname, "..", "src", "testcode.mpy"),
-				),
-			)
-			.toString("utf-8");
+		const utilCodePath = path.normalize(
+			path.join(__dirname, "..", "hub_python", "utils.mpy"),
+		);
+		const utilCode = fs.readFileSync(utilCodePath);
 
-		const fileContents = fs.readFileSync(filePath);
+		const utilUploadUtility = fs.readFileSync(
+			path.normalize(
+				path.join(__dirname, "..", "hub_python", "utils.py"),
+			),
+		);
 
-		//console.log(dirExists.toString());
+		const normalizedProjectRoot = path
+			.normalize(rootDir)
+			.replace(`${path.sep}out`, "");
 
-		//const dirExists = 'def testfunction():\n\tprint("cool")\n\r\n';
+		const interpretor = path.join(
+			normalizedProjectRoot,
+			`voice-server-setup`,
+			"venv",
+			`${os.type() === "Darwin" ? "bin" : "Scripts"}`,
+			"python",
+		);
+
+		const outputDir = path.join(
+			normalizedProjectRoot,
+			"hub_python",
+			"temp",
+		);
+		const server = spawnSync(
+			interpretor,
+			[
+				"-m",
+				"mpy_cross",
+				"-o",
+				"program.mpy",
+				"-s",
+				path.basename(filePath),
+				filePath,
+			],
+			{ cwd: outputDir },
+		);
+
+		const userFilePath = path.join(outputDir, "program.mpy");
+		const userFileContents = fs.readFileSync(userFilePath);
+		const userFileStats = fs.statSync(userFilePath);
+
 		await writeAndDrain(
 			this.port,
 			HubManager3.CONTROL_A +
 				HubManager3.CONTROL_E +
 				"A" +
 				HubManager3.CONTROL_A +
-				utilCode +
+				utilUploadUtility +
 				"\x04",
-			// HubManager3.CONTROL_B +
-			// `upload_program("${slotid}", ${fileStats.size})\x04` +
-			// fileContents.toString("utf-8"),
-			// `upload_program("${slotid}", ${fileStats.size})\r\n`,
 		);
 
-		//const normalizedProjectRoot = path
-		//	.normalize(rootDir)
-		//	.replace(`${path.sep}out`, "");
-		//
-		//const interpretor = path.join(
-		//	normalizedProjectRoot,
-		//	`voice-server-setup`,
-		//	"venv",
-		//	`${os.type() === "Darwin" ? "bin" : "Scripts"}`,
-		//	"python",
-		//);
-		//
-		//const server = spawn(interpretor, ["compiler.py", filePath]);
-
+		await writeAndDrain(
+			this.port,
+			HubManager3.CONTROL_A + 
+			HubManager3.CONTROL_E +
+				"A" +
+				HubManager3.CONTROL_A +
+				`u_p(${fs.statSync(utilCodePath).size})` +
+				"\x04",
+		);
 		await new Promise((resolve) => setTimeout(resolve, 5000));
+		await writeAndDrain(this.port, utilCode, "binary");
+
 		await writeAndDrain(
 			this.port,
 			HubManager3.CONTROL_A +
 				HubManager3.CONTROL_E +
 				"A" +
 				HubManager3.CONTROL_A +
-				`upload_program("${slotid}", ${fileStats.size})` +
+				"import mrutils\n" +
+				`mrutils.upload_program("${slotid}", ${userFileStats.size})` +
 				"\x04",
 		);
-		await writeAndDrain(this.port, fileContents);
-		await writeAndDrain(this.port, HubManager3.CONTROL_B);
-		//await writeAndDrain(this.port, fileContents);
-
-		//for await (const data of dataStream) {
-		//	if (!this.port.write(data)) this.port.drain();
-		//}
-
-		//if (autoStart) {
-		//	return Promise.resolve(await this.programExecute(slotid));
-		//}
+		await new Promise((resolve) => setTimeout(resolve, 5000));
+		await writeAndDrain(this.port, userFileContents);
+		//await writeAndDrain(this.port, HubManager3.CONTROL_B);
 	}
 
 	// // ========================= Hub Methods =========================
