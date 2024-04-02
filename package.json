@@ -446,7 +446,8 @@
 			},
 			{
 				"command": "mind-reader.changeHighlightColor",
-				"key":"Ctrl+Shift+/ Z"
+				"key":"Ctrl+Shift+/ Z",
+				"mac": "Ctrl+Shift+[Slash] Z"
 			}
 		],
 		"menus": {
