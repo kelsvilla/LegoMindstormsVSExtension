@@ -31,9 +31,9 @@
 		"Kelsee Villareal <KelseeVillareal@my.unt.edu>",
 		"Bryan Tang <BryanTang@my.unt.edu>"
 	],
-	"version": "3.5.0",
+	"version": "3.6.0",
 	"engines": {
-		"vscode": "^1.66.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Other"
@@ -356,7 +356,7 @@
 				"key": "Ctrl+Shift+/ Ctrl+Shift+/",
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
-			{ 
+			{
 				"command": "mind-reader.startStreaming",
 				"key": "ctrl+Shift+/ V",
 				"mac": "Cmd+Shift+[Slash] V"
@@ -591,6 +591,18 @@
 						"order": 2,
 						"type": "string",
 						"markdownDescription": "The default port to try and establish a connection on."
+					},
+					"mind-reader.textToSpeech.readingSpeed": {
+						"order": 4,
+						"type": "number",
+						"description": "The speed that the Text to Speech function will read.",
+						"default": 1
+					},
+					"mind-reader.textToSpeech.isEnabled": {
+						"order": 5,
+						"type": "boolean",
+						"description": "Enable/Disable Text to Speech.",
+						"default": false
 					}
 				}
 			},
@@ -857,7 +869,6 @@
 		"electron": "^24.2.0",
 		"electron-rebuild": "^3.2.9",
 		"jzz": "^1.7.4",
-		"midi": "^2.0.0",
 		"play-sound": "^1.1.6",
 		"say": "file:./dependencies/say",
 		"serialport": "^11.0.0",
@@ -867,7 +878,8 @@
 		"tone": "^14.7.77",
 		"vscode-languageclient": "^5.1.0-next.9",
 		"web-audio-api": "^0.2.2",
-		"ws": "^6.2.2"
+		"ws": "^6.2.2",
+		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
 	"description": "An extension with additional features for Lego Mindstorm development.",
