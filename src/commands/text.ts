@@ -633,7 +633,7 @@ function getTabGroupIndex(file: {
 			}
 		}
 	}
-    return undefined
+    return undefined;
 }
 
 // Helper functions to move Cursor to beginning or end

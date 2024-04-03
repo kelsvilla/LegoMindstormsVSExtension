@@ -33,7 +33,7 @@
 	],
 	"version": "3.5.0",
 	"engines": {
-		"vscode": "^1.66.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Other"

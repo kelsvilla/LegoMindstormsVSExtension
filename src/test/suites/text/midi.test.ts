@@ -1,11 +1,10 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
 import { after } from "mocha";
-import { lineContext, toggleSoundCues } from '../../../commands/midi'
+import { lineContext, toggleSoundCues } from '../../../commands/midi';
 
 
 suite("Midi test suite", () => {
-  
     after(() => {
         vscode.window.showInformationMessage("All tests passed!");
     });
@@ -18,7 +17,7 @@ suite("Midi test suite", () => {
         assert.equal(false, isActivated);
     });
     test("Get for note", () => {
-        let currNote = lineContext("for")
+        let currNote = lineContext("for");
         assert.equal('b3', currNote);
         currNote = lineContext('for if');
         assert.equal('b4', currNote);
