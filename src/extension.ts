@@ -13,6 +13,7 @@ import {
 	navCommands,
 	textCommands,
 	voicetotextCommands,
+	TTSCommand,
 	midicommands,
 	lineHighlightercommands
 } from "./commands";
@@ -44,6 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 		hubCommands,
 		navCommands,
 		textCommands,
+		TTSCommand,
 		midicommands,
 		lineHighlightercommands
 	].flat(1);
@@ -65,9 +67,14 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	let accessProvider = new CommandNodeProvider(
-		[accessCommands, textCommands, midicommands].flat(1),
+		[accessCommands].flat(1),
 	);
 	vscode.window.registerTreeDataProvider("accessActions", accessProvider);
+
+	let textProvider = new CommandNodeProvider(
+		[textCommands].flat(1)
+	);
+	vscode.window.registerTreeDataProvider("textActions", textProvider);
 
 	let hubProvider = new CommandNodeProvider(hubCommands);
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);
@@ -77,6 +84,22 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.window.showInformationMessage("Mind Reader finished loading!");
 }
+
+const ttsStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  );
+  ttsStatusBar.command = "mind-reader.toggleTTS";
+  ttsStatusBar.text = "$(megaphone) Text-to-Speech";
+  ttsStatusBar.show();
+  
+  const soundStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  );
+  soundStatusBar.command = "mind-reader.toggleSoundCues";
+  soundStatusBar.text = "$(music) Sound Cues";
+  soundStatusBar.show();
 
 export function deactivate() {}
 highlightDeactivate();

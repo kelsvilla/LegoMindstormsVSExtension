@@ -46,10 +46,6 @@ export const textCommands: CommandEntry[] = [
         callback: runCursorContext,
     },
     {
-        name: "mind-reader.toggleTextToSpeech",
-        callback: toggleTTS,
-    },
-    {
         name: "mind-reader.goToSyntaxErrors",
         callback: goToSyntaxErrors,
     },
@@ -61,6 +57,13 @@ export const textCommands: CommandEntry[] = [
         name: "mind-reader.moveCursorEnd",
         callback: moveCursorEnd,
     },
+];
+
+export const TTSCommand: CommandEntry[] = [
+    {
+        name: "mind-reader.toggleTTS",
+        callback: toggleTTS,
+    }
 ];
 
 /** Helper Function
@@ -88,18 +91,28 @@ export function setShouldSpeak() {
     shouldSpeak = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
 }
 
-function outputMessage(message: string) {
+export function outputMessage(message: string) {
     let readingSpeed: number = Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"];
 
     window.showInformationMessage(message);
     shouldSpeak === true ? say.speak(message, undefined, readingSpeed) : undefined;
 }
 
+export function outputWarningMessage(message: string) {
+    window.showWarningMessage(message);
+    shouldSpeak === true? say.speak("Warning," + message) : undefined;
+}
+
+export function outputErrorMessage(message:string) {
+    window.showErrorMessage(message);
+    shouldSpeak === true? say.speak("Error," + message) : undefined;
+}
+
 function toggleTTS() {
     shouldSpeak = !shouldSpeak;
     shouldSpeak
-        ? window.showInformationMessage("Text to Speech Activated")
-        : window.showInformationMessage("Text to Speech Deactivated");
+        ? outputMessage("Text to Speech Activated")
+        : outputMessage("Text to Speech Deactivated");
 }
 
 export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
@@ -178,7 +191,7 @@ function getNumberOfSelectedLines(): void {
         // Show the message to the user
         outputMessage(message);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -194,7 +207,7 @@ export function getLineNumber(): void {
         const message = `Line ${lineNum.toString()}`;
         outputMessage(message);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -209,7 +222,7 @@ export function getIndent(): number {
         const line: TextLine = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
-            window.showInformationMessage(
+            outputMessage(
                 `Line ${lineNum.toString()} is Empty`,
             );
 
@@ -233,7 +246,7 @@ export function getIndent(): number {
             return i;
         }
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
         return 0;
     }
     return 0;
@@ -279,7 +292,7 @@ function getLeadingSpaces(): void {
         const line: TextLine | undefined = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
-            window.showInformationMessage(
+            outputMessage(
                 `Line ${lineNum.toString()} is empty`,
             );
         } else {
@@ -294,7 +307,7 @@ function getLeadingSpaces(): void {
             outputMessage(message);
         }
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -331,12 +344,12 @@ function selectLeadingWhitespace(): void {
             // Move the cursor to the new selection
             window.showTextDocument(editor.document);
         } else {
-            window.showErrorMessage(
+            outputErrorMessage(
                 `Line ${lineNum.toString()}: No leading spaces to select!`,
             ); // No whitespace to select
         }
     } else {
-        window.showErrorMessage("No document currently active"); // No active document
+        outputErrorMessage("No document currently active"); // No active document
     }
 }
 
@@ -366,7 +379,7 @@ function runLineContext(): void {
 
         outputMessage(contentString);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -429,7 +442,7 @@ function runCursorContext(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (!editor) {
-        window.showErrorMessage("RunCursorContext: No Active Editor");
+        outputErrorMessage("RunCursorContext: No Active Editor");
         return;
     }
 
@@ -506,6 +519,8 @@ async function goToSyntaxErrors(): Promise<void> {
     let globalProblems = [];
     const cursorPosition: Position = window.activeTextEditor.selection.active;
     const currentFilePath: string = window.activeTextEditor.document.uri.toString();
+    const warningCheck: any = workspace.getConfiguration("mind-reader").get("includeWarnings");
+
     let nextProblemFileObj;
     let nextProblemFileIndex;
     let nextProblems;
@@ -521,7 +536,7 @@ async function goToSyntaxErrors(): Promise<void> {
         globalProblems.push({
             uri: diagnostics[i][0],
             problems: diagnostics[i][1]
-                .filter((diagnostics) => diagnostics.severity === 0) // keep errors
+                .filter((diagnostics) => (warningCheck && diagnostics.severity === 1) || diagnostics.severity === 0) // keep errors
                 .map((res) => ({
                     message: res.message,
                     position: res.range.start,
@@ -642,7 +657,7 @@ export function moveCursorBeginning(): void {
 
     //Throw error if no editor open
     if (!editor) {
-        window.showErrorMessage("MoveCursorBeginning: No Active Editor");
+        outputErrorMessage("MoveCursorBeginning: No Active Editor");
         return;
     }
 
@@ -662,7 +677,7 @@ export function moveCursorEnd(): void {
 
     //Throw error if no editor open
     if (!editor) {
-        window.showErrorMessage("MoveCursorBeginning: No Active Editor");
+        outputErrorMessage("MoveCursorBeginning: No Active Editor");
         return;
     }
 

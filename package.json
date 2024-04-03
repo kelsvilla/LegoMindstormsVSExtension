@@ -48,7 +48,8 @@
 				"command": "mind-reader.startStreaming",
 				"title": "Start Voice Commands",
 				"category": "Voice Commands",
-				"voiceEntry": "Voice-command.start Streaming"
+				"voiceEntry": "Voice-command.start Streaming",
+				"icon": "$(mic)"
 			},
 			{
 				"command": "mind-reader.voiceToText",
@@ -337,6 +338,11 @@
 				"category": "Mind Reader"
 			},
 			{
+				"command": "mind-reader.toggleTTS",
+				"title": "Toggle Text-to-Speech",
+				"category": "Mind Reader"
+			},
+			{
 				"command": "mind-reader.toggleLineHighlight",
 				"title": "Toggle line highlighter",
 				"category": "Mind Reader",
@@ -445,6 +451,13 @@
 				{
 					"submenu": "mind-reader.editor.context",
 					"group": "mind-reader"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "mind-reader.startStreaming",
+					"when": "activeEditor",
+					"group": "navigation"
 				}
 			],
 			"mind-reader.editor.context": [
@@ -739,6 +752,12 @@
 					"name": "Access Actions",
 					"icon": "media/dep.svg",
 					"contextualTitle": "Accessibility Menu Actions"
+				},
+				{
+					"id": "textActions",
+					"name": "Text Actions",
+					"icon": "${file}",
+					"contextualTitle": "Text Data Actions"
 				},
 				{
 					"id": "hubActions",

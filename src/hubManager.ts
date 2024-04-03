@@ -4,6 +4,7 @@ import { SerialPort } from "serialport";
 import * as fs from "fs";
 
 import { logger } from "./extension";
+import { outputErrorMessage } from "./commands/text";
 
 /**
  * Communication with the Hub takes place using a modified version of the JSON RPC 1.0 protocol:
@@ -130,7 +131,7 @@ export default class HubManager {
 							logger.info(`Battery at ${params[0]}V`);
 							break;
 					}
-					vscode.window.showErrorMessage("Program Error.");
+					outputErrorMessage("Program Error.");
 					console.log(`Program error: ${msg}`);
 				}
 			} catch (err) {
