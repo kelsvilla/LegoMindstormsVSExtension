@@ -371,34 +371,46 @@ function getWebviewContent(){
 			<label for="body">Background Color</label>
 			<input type="color" id="body" name="body" />
 		</div>
+		<p class="space"> </p>
 		<div>
 			<label for="outline">Outline Color</label>
 			<input type="color" id="outline" name="outline" />
 		</div>
-		<button onclick="sendSelectedColors()">Update Highlight Colors</button>
 		<script>
 		const vscode = acquireVsCodeApi();
 
+		
 		window.addEventListener('message', event=> {
 			const colors=event.data;
 			const backgroundColor= colors.backgroundColor;
 			const outlineColor=colors.outlineColor;
 
-			document.getElementById('body').value=backgroundColor;
-			document.getElementById('outline').value=outlineColor;
+			const bodyInput=document.getElementById('body');
+			const outlineInput=document.getElementById('outline');
+
+			bodyInput.value=backgroundColor;
+			outlineInput.value=outlineColor;
+
+			bodyInput.addEventListener('input',()=>{
+				const bgColor=bodyInput.value;
+				const olColor=outlineInput.value;
+				sendSelectedColors(bgColor,olColor);
+			});
+
+			outlineInput.addEventListener('input', ()=>{
+				const bgColor=bodyInput.value;
+				const olColor=outlineInput.value;
+				sendSelectedColors(bgColor,olColor);
+			});
+
 		});
-		</script>
-		<script>
-		function sendSelectedColors(){
-			const backgroundColor=document.getElementById('body').value;
-			const outlineColor=document.getElementById('outline').value;
 
-			const message = {
+		function sendSelectedColors(bgColor, olColor){
+			const message={
 				type: 'selectedColors',
-				backgroundColor: backgroundColor,
-				outlineColor: outlineColor
+				backgroundColor: bgColor,
+				outlineColor: olColor
 			};
-
 			vscode.postMessage(message);
 		}
 		</script>
