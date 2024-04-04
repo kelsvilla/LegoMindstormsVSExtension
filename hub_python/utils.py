@@ -1,6 +1,6 @@
 import os,sys,micropython
-def d_e(filename):
-	try:return os.stat(filename)[0]&16384!=0
+def d_e(f):
+	try:return os.stat(f)[0]&16384!=0
 	except OSError:return False
 def rm(d):
 	try:

@@ -9,3 +9,4 @@ documentation/~*
 .vscode
 .vs
 __pycache__
+hub_python/temp/*
