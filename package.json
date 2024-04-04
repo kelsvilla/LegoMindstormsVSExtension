@@ -31,9 +31,9 @@
 		"Kelsee Villareal <KelseeVillareal@my.unt.edu>",
 		"Bryan Tang <BryanTang@my.unt.edu>"
 	],
-	"version": "3.4.0",
+	"version": "3.6.0",
 	"engines": {
-		"vscode": "^1.66.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Other"
@@ -48,7 +48,8 @@
 				"command": "mind-reader.startStreaming",
 				"title": "Start Voice Commands",
 				"category": "Voice Commands",
-				"voiceEntry": "Voice-command.start Streaming"
+				"voiceEntry": "Voice-command.start Streaming",
+				"icon": "$(mic)"
 			},
 			{
 				"command": "mind-reader.voiceToText",
@@ -427,6 +428,17 @@
 					"light": "resources/icons/light/refresh.svg"
 				},
 				"category": "ev3dev"
+      },
+      {
+				"command": "mind-reader.toggleTTS",
+				"title": "Toggle Text-to-Speech",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"title": "Toggle line highlighter",
+				"category": "Mind Reader",
+				"voiceEntry": "Toggle Line Highlighter"
 			}
 		],
 		"keybindings": [
@@ -514,6 +526,16 @@
 				"key": "Ctrl+Shift+/ E",
 				"mac": "Ctrl+Shift+[Slash] E",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.toggleSoundCues",
+				"key": "Ctrl+Shift+/ T",
+				"mac": "Ctrl+Shift+[Slash] T"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"key": "Ctrl+Shift+/ H",
+				"mac": "Ctrl+Shift+[Slash] H"
 			}
 		],
 		"menus": {
@@ -521,6 +543,13 @@
 				{
 					"submenu": "mind-reader.editor.context",
 					"group": "mind-reader"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "mind-reader.startStreaming",
+					"when": "activeEditor",
+					"group": "navigation"
 				}
 			],
 			"mind-reader.editor.context": [
@@ -800,11 +829,23 @@
 						"order": 2,
 						"type": "string",
 						"markdownDescription": "The default port to try and establish a connection on."
+					},
+					"mind-reader.textToSpeech.readingSpeed": {
+						"order": 4,
+						"type": "number",
+						"description": "The speed that the Text to Speech function will read.",
+						"default": 1
+					},
+					"mind-reader.textToSpeech.isEnabled": {
+						"order": 5,
+						"type": "boolean",
+						"description": "Enable/Disable Text to Speech.",
+						"default": false
 					}
 				}
 			},
 			{
-				"title": "Line Highlighter [Must Close Settings And RESTART VSCode For The Line Highlighter To Function]",
+				"title": "Line Highlighter",
 				"order": 1,
 				"properties": {
 					"mind-reader.lineHighlighter.isEnabled": {
@@ -1062,6 +1103,12 @@
 					"contextualTitle": "Accessibility Menu Actions"
 				},
 				{
+					"id": "textActions",
+					"name": "Text Actions",
+					"icon": "${file}",
+					"contextualTitle": "Text Data Actions"
+				},
+				{
 					"id": "hubActions",
 					"name": "Hub Actions",
 					"icon": "media/dep.svg",
@@ -1224,7 +1271,7 @@
 		"@types/ssh2": "^1.11.19",
 		"@types/ssh2-streams": "^0.1.12",
 		"@types/temp": "^0.9.4",
-		"@types/vscode": "^1.60.0",
+		"@types/vscode": "^1.86.0",
 		"@types/ws": "^6.0.0",
 		"@types/zen-observable": "^0.8.7",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
@@ -1245,9 +1292,8 @@
 		"electron": "^24.2.0",
 		"electron-rebuild": "^3.2.9",
 		"jzz": "^1.7.4",
-		"midi": "^2.0.0",
 		"play-sound": "^1.1.6",
-		"say": "^0.16.0",
+		"say": "file:./dependencies/say",
 		"serialport": "^11.0.0",
 		"serialport-synchronous": "^1.1.1",
 		"server": "^1",
@@ -1262,6 +1308,7 @@
 		"web-audio-api": "^0.2.2",
 		"ws": "^6.2.2",
 		"zen-observable": "^0.10.0"
+		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
 	"description": "An extension with additional features for Lego Mindstorm development.",

@@ -39,6 +39,15 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 -   Relevant autocomplete voiceovers on demand.
 
+# Installation
+1. Open the extensions sidebar on Visual Studio Code
+2. Search for Mind Reader
+3. Click Install
+4. Reload your editor if needed
+5. Enjoy
+
+For MacOS users, you may need to install a package manager like [Homebrew](https://brew.sh/) to get portaudio.
+
 # Contact Information
 
 ### Single Semester Snobs

@@ -1,5 +1,5 @@
 import { CommandEntry } from "./commandEntry";
-import { returnIndent } from "./text";
+import { outputMessage, outputErrorMessage, returnIndent } from "./text";
 import { TextEditor, window, Position, InputBoxOptions } from "vscode";
 
 export const voicetotextCommands: CommandEntry[] = [
@@ -84,13 +84,13 @@ function insertIfLadder(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created if ladder using val 1, 2, and 3.",
 		);
 	}
 	// Editor is not defined
 	else {
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -125,12 +125,12 @@ function insertIfElseLadder(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created if else ladder with options for value 1 of either 0 or 1.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -157,12 +157,12 @@ function insertForLoop(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created for loop through all members of list called for list.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -214,10 +214,10 @@ async function insertForNumberLoop(): Promise<void> {
 			editBuilder.insert(editor.selection.active, text);
 		});
 		let output = "Created for loop from 0 to " + end + ".";
-		window.showInformationMessage(output);
+		outputMessage(output);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -248,12 +248,12 @@ function insertNestedForLoop(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created nested for loop through all members of for list and for list 2.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -337,10 +337,10 @@ async function insertNestedForNumberLoop(): Promise<void> {
 			", inside from 0 to " +
 			end2 +
 			".";
-		window.showInformationMessage(output);
+		outputMessage(output);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -383,12 +383,12 @@ function insertTryLadder(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Inserted a try and except ladder for handling exceptions.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -416,12 +416,12 @@ function insertev3Import(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(new Position(0, 0), text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Inserted standard ev3 imports and basics for use with robot systems.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -450,12 +450,12 @@ function insertWhileLoop(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created while loop that will run until variable while done is false.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }
 
@@ -488,11 +488,11 @@ function insertDoWhileLoop(): void {
 		editor.edit((editBuilder) => {
 			editBuilder.insert(editor.selection.active, text);
 		});
-		window.showInformationMessage(
+		outputMessage(
 			"Created do while loop that will run until variable breakervar is true.",
 		);
 	} else {
 		// Editor is not defined
-		window.showErrorMessage("No document currently active");
+		outputErrorMessage("No document currently active");
 	}
 }

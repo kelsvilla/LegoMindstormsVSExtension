@@ -1,89 +1,89 @@
-const childProcess = require('child_process')
+const childProcess = require('child_process');
 
-const SayPlatformBase = require('./base.js')
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const SayPlatformBase = require('./base.js');
 
-const BASE_SPEED = 0 // Unsupported
-const COMMAND = 'powershell'
+const BASE_SPEED = 0; // Unsupported
+const COMMAND = 'powershell';
 
 class SayPlatformWin32 extends SayPlatformBase {
   constructor () {
-    super()
-    this.baseSpeed = BASE_SPEED
+    super();
+    this.baseSpeed = BASE_SPEED;
   }
 
   buildSpeakCommand ({ text, voice, speed }) {
-    let args = []
-    let pipedData = ''
-    let options = {}
+    let args = [];
+    let pipedData = '';
+    let options = {};
 
-    let psCommand = `Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;`
+    let psCommand = `Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;`;
 
     if (voice) {
-      psCommand += `$speak.SelectVoice('${voice}');`
+      psCommand += `$speak.SelectVoice('${voice}');`;
     }
 
     if (speed) {
-      let adjustedSpeed = this.convertSpeed(speed || 1)
-      psCommand += `$speak.Rate = ${adjustedSpeed};`
+      let adjustedSpeed = this.convertSpeed(speed || 1);
+      psCommand += `$speak.Rate = ${adjustedSpeed};`;
     }
 
-    psCommand += `$speak.Speak([Console]::In.ReadToEnd())`
+    psCommand += `$speak.Speak([Console]::In.ReadToEnd())`;
 
-    pipedData += text
-    args.push(psCommand)
-    options.shell = true
+    pipedData += text;
+    args.push(psCommand);
+    options.shell = true;
 
-    return { command: COMMAND, args, pipedData, options }
+    return { command: COMMAND, args, pipedData, options };
   }
 
   buildExportCommand ({ text, voice, speed, filename }) {
-    let args = []
-    let pipedData = ''
-    let options = {}
+    let args = [];
+    let pipedData = '';
+    let options = {};
 
-    let psCommand = `Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;`
+    let psCommand = `Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;`;
 
     if (voice) {
-      psCommand += `$speak.SelectVoice('${voice}');`
+      psCommand += `$speak.SelectVoice('${voice}');`;
     }
 
     if (speed) {
-      let adjustedSpeed = this.convertSpeed(speed || 1)
-      psCommand += `$speak.Rate = ${adjustedSpeed};`
+      let adjustedSpeed = this.convertSpeed(speed || 1);
+      psCommand += `$speak.Rate = ${adjustedSpeed};`;
     }
 
-    if (!filename) throw new Error('Filename must be provided in export();')
+    if (!filename) {throw new Error('Filename must be provided in export();');}
     else {
-      psCommand += `$speak.SetOutputToWaveFile('${filename}');`
+      psCommand += `$speak.SetOutputToWaveFile('${filename}');`;
     }
 
-    psCommand += `$speak.Speak([Console]::In.ReadToEnd());$speak.Dispose()`
+    psCommand += `$speak.Speak([Console]::In.ReadToEnd());$speak.Dispose()`;
 
-    pipedData += text
-    args.push(psCommand)
-    options.shell = true
+    pipedData += text;
+    args.push(psCommand);
+    options.shell = true;
 
-    return { command: COMMAND, args, pipedData, options }
+    return { command: COMMAND, args, pipedData, options };
   }
 
-  runStopCommand (pid) {
-    this.child.stdin.pause()
-    childProcess.exec(`taskkill /pid ${pid ? pid : this.child.pid} /T /F`)
-    this.children = this.children.filter((e)=>{e.pid !== pid ? pid : this.child.pid})
-    console.log(`cancelling ${pid ? pid : this.child.pid}`)
+  runStopCommand (child) {
+    child.stdin.pause();
+    childProcess.exec(`taskkill /pid ${child.pid} /T /F`);
+    this.children = this.children.filter(e => e.pid !== child.pid);
   }
 
   convertSpeed (speed) {
     // Overriden to map playback speed (as a ratio) to Window's values (-10 to 10, zero meaning x1.0)
-    return Math.max(-10, Math.min(Math.round((9.0686 * Math.log(speed)) - 0.1806), 10))
+    return Math.max(-10, Math.min(Math.round((9.0686 * Math.log(speed)) - 0.1806), 10));
   }
 
   getVoices () {
-    let args = []
-    let psCommand = 'Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;$speak.GetInstalledVoices() | % {$_.VoiceInfo.Name}'
-    args.push(psCommand)
-    return { command: COMMAND, args }
+    let args = [];
+    let psCommand = 'Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;$speak.GetInstalledVoices() | % {$_.VoiceInfo.Name}';
+    args.push(psCommand);
+    return { command: COMMAND, args };
   }
 }
 
-module.exports = SayPlatformWin32
+module.exports = SayPlatformWin32;
