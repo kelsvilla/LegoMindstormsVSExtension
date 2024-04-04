@@ -57,7 +57,6 @@ After adding the code block, the `settings.json` file should look similar to thi
 2. Navigate to Extensions -> Mind Reader -> Line Highlighter
 3. Make any changes you need
 4. Close the settings window
-    - You may need to restart VS Code to apply the changes
 
 ## Line Highlighter Settings Table
 

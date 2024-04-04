@@ -347,6 +347,11 @@
 				"title": "Toggle line highlighter",
 				"category": "Mind Reader",
 				"voiceEntry": "Toggle Line Highlighter"
+			},
+			{
+				"command": "mind-reader.changeHighlightColor",
+				"title": "Change Highlight Color",
+				"category": "Mind Reader"
 			}
 		],
 		"keybindings": [
@@ -444,6 +449,11 @@
 				"command": "mind-reader.toggleLineHighlight",
 				"key": "Ctrl+Shift+/ H",
 				"mac": "Ctrl+Shift+[Slash] H"
+			},
+			{
+				"command": "mind-reader.changeHighlightColor",
+				"key": "Ctrl+Shift+/ Z",
+				"mac": "Ctrl+Shift+[Slash] Z"
 			}
 		],
 		"menus": {
