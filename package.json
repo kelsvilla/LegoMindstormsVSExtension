@@ -1307,7 +1307,7 @@
 		"vscode-languageclient": "^5.1.0-next.9",
 		"web-audio-api": "^0.2.2",
 		"ws": "^6.2.2",
-		"zen-observable": "^0.10.0"
+		"zen-observable": "^0.10.0",
 		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
