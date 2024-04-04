@@ -50,6 +50,7 @@ import {
 	Range,
 } from "vscode";
 import * as vscode from 'vscode';
+import { outputMessage } from "./text";
 
 let highlightStyle: TextEditorDecorationType;
 
@@ -305,14 +306,14 @@ export function toggleLineHighlight() {
 	/* If highlight is currently on*/
 	if(highlightStatus===true && highlightStyle){
 		highlightStyle.dispose(); // Dispose of highlight
-		window.showInformationMessage("Line Highlighter Off"); // State it is off
+		outputMessage("Line Highlighter Off"); // State it is off
 		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", false, true); // Set lineHighlighter status to false
 	}
 	/* If highlight is currently off */
 	else{
 		highlightStyle=getHighlighterStyle(); // Set style to current style declaration
 		triggerHighlight(); // Call trigger highlight function
-		window.showInformationMessage("Line Highlighter On"); // State highlight is on
+		outputMessage("Line Highlighter On"); // State highlight is on
 		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", true, true); // Set linehighlight status to true
 	}
 }

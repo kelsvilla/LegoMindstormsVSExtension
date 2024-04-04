@@ -10,10 +10,11 @@ import {
 	window,
 	workspace,
     Range,
-    commands,
-    TabGroup
+    Uri,
+    TabInputText
 } from "vscode";
 import { CommandEntry } from "./commandEntry";
+import { Configuration } from "../util";
 
 export const textCommands: CommandEntry[] = [
     {
@@ -45,10 +46,6 @@ export const textCommands: CommandEntry[] = [
         callback: runCursorContext,
     },
     {
-        name: "mind-reader.toggleTextToSpeech",
-        callback: toggleTTS,
-    },
-    {
         name: "mind-reader.goToSyntaxErrors",
         callback: goToSyntaxErrors,
     },
@@ -60,6 +57,13 @@ export const textCommands: CommandEntry[] = [
         name: "mind-reader.moveCursorEnd",
         callback: moveCursorEnd,
     },
+];
+
+export const TTSCommand: CommandEntry[] = [
+    {
+        name: "mind-reader.toggleTTS",
+        callback: toggleTTS,
+    }
 ];
 
 /** Helper Function
@@ -81,18 +85,34 @@ export const textCommands: CommandEntry[] = [
  **
  **    TO-USE: set calculateLeadingSpaces to false
  */
-let shouldSpeak = false;
 
-function outputMessage(message: string) {
+let shouldSpeak: boolean;
+export function setShouldSpeak() {
+    shouldSpeak = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
+}
+
+export function outputMessage(message: string) {
+    let readingSpeed: number = Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"];
+
     window.showInformationMessage(message);
-    shouldSpeak === true ? say.speak(message) : undefined;
+    shouldSpeak === true ? say.speak(message, undefined, readingSpeed) : undefined;
+}
+
+export function outputWarningMessage(message: string) {
+    window.showWarningMessage(message);
+    shouldSpeak === true? say.speak("Warning," + message) : undefined;
+}
+
+export function outputErrorMessage(message:string) {
+    window.showErrorMessage(message);
+    shouldSpeak === true? say.speak("Error," + message) : undefined;
 }
 
 function toggleTTS() {
     shouldSpeak = !shouldSpeak;
     shouldSpeak
-        ? window.showInformationMessage("Text to Speech Activated")
-        : window.showInformationMessage("Text to Speech Deactivated");
+        ? outputMessage("Text to Speech Activated")
+        : outputMessage("Text to Speech Deactivated");
 }
 
 export function fetchNumberOfLeadingSpaces(editor: TextEditor | undefined): number {
@@ -171,7 +191,7 @@ function getNumberOfSelectedLines(): void {
         // Show the message to the user
         outputMessage(message);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -187,7 +207,7 @@ export function getLineNumber(): void {
         const message = `Line ${lineNum.toString()}`;
         outputMessage(message);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -202,7 +222,7 @@ export function getIndent(): number {
         const line: TextLine = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
-            window.showInformationMessage(
+            outputMessage(
                 `Line ${lineNum.toString()} is Empty`,
             );
 
@@ -226,7 +246,7 @@ export function getIndent(): number {
             return i;
         }
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
         return 0;
     }
     return 0;
@@ -272,7 +292,7 @@ function getLeadingSpaces(): void {
         const line: TextLine | undefined = fetchLine(editor);
 
         if (line.isEmptyOrWhitespace) {
-            window.showInformationMessage(
+            outputMessage(
                 `Line ${lineNum.toString()} is empty`,
             );
         } else {
@@ -287,7 +307,7 @@ function getLeadingSpaces(): void {
             outputMessage(message);
         }
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -324,12 +344,12 @@ function selectLeadingWhitespace(): void {
             // Move the cursor to the new selection
             window.showTextDocument(editor.document);
         } else {
-            window.showErrorMessage(
+            outputErrorMessage(
                 `Line ${lineNum.toString()}: No leading spaces to select!`,
             ); // No whitespace to select
         }
     } else {
-        window.showErrorMessage("No document currently active"); // No active document
+        outputErrorMessage("No document currently active"); // No active document
     }
 }
 
@@ -359,7 +379,7 @@ function runLineContext(): void {
 
         outputMessage(contentString);
     } else {
-        window.showErrorMessage("No document currently active");
+        outputErrorMessage("No document currently active");
     }
 }
 
@@ -422,7 +442,7 @@ function runCursorContext(): void {
     const editor: TextEditor | undefined = window.activeTextEditor;
 
     if (!editor) {
-        window.showErrorMessage("RunCursorContext: No Active Editor");
+        outputErrorMessage("RunCursorContext: No Active Editor");
         return;
     }
 
@@ -498,7 +518,9 @@ async function goToSyntaxErrors(): Promise<void> {
     let diagnostics = languages.getDiagnostics(); // gets all current errors
     let globalProblems = [];
     const cursorPosition: Position = window.activeTextEditor.selection.active;
-    const currentFilePath: string = window.activeTextEditor.document.uri.path;
+    const currentFilePath: string = window.activeTextEditor.document.uri.toString();
+    const warningCheck: any = workspace.getConfiguration("mind-reader").get("includeWarnings");
+
     let nextProblemFileObj;
     let nextProblemFileIndex;
     let nextProblems;
@@ -514,7 +536,7 @@ async function goToSyntaxErrors(): Promise<void> {
         globalProblems.push({
             uri: diagnostics[i][0],
             problems: diagnostics[i][1]
-                .filter((diagnostics) => diagnostics.severity === 0) // keep errors
+                .filter((diagnostics) => (warningCheck && diagnostics.severity === 1) || diagnostics.severity === 0) // keep errors
                 .map((res) => ({
                     message: res.message,
                     position: res.range.start,
@@ -534,19 +556,25 @@ async function goToSyntaxErrors(): Promise<void> {
 
     // get the next problem file's object and index
     nextProblemFileObj = globalProblems.find(
-        (e) => e.uri.path === currentFilePath,
+        (e) => e.uri.toString() === currentFilePath,
     );
     nextProblemFileIndex = globalProblems.findIndex(
-        (e) => e.uri.path === currentFilePath,
+        (e) => e.uri.toString() === currentFilePath,
     );
 
     // select first error file if cursor is on file without errors
     if (nextProblemFileObj === undefined) {
         nextProblemFileIndex = 0;
         nextProblemFileObj = globalProblems[0];
-        await checkTabGroup(nextProblemFileObj);
-        await window.showTextDocument(nextProblemFileObj.uri);
-        moveCursorBeginning();
+        const tabGroup = getTabGroupIndex(nextProblemFileObj);
+        await window.showTextDocument(nextProblemFileObj.uri, {
+            selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
+            viewColumn: tabGroup
+        });
+
+        let message = generateErrorMessage(window.activeTextEditor, nextProblemFileObj.problems[0].message);
+        outputMessage(message);
+
         return;
     }
 
@@ -573,70 +601,54 @@ async function goToSyntaxErrors(): Promise<void> {
         );
         window.activeTextEditor.revealRange(new Range(nextProblems[0].position, nextProblems[0].position));
 
-        let path = window.activeTextEditor.document.uri.fsPath;
-        path = path.replace("\/", "\\");
-        let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
-        fileName = fileName!.replace(',', '');
-        let message = fileName + ": " + nextProblems[0].message;
-
+        let message = generateErrorMessage(window.activeTextEditor, nextProblems[0].message);
         outputMessage(message);
     } else if (nextProblems.length === 0) {
         // next problem not in same file
         if (nextProblemFileIndex < globalProblems.length - 1) {
             // next problem in next file
             nextProblemFileObj = globalProblems[nextProblemFileIndex + 1];
-            await checkTabGroup(nextProblemFileObj);
-            await window.showTextDocument(nextProblemFileObj.uri);
-            moveCursorBeginning();
+            const tabGroup = getTabGroupIndex(nextProblemFileObj);
+            await window.showTextDocument(nextProblemFileObj.uri, {
+                selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
+                viewColumn: tabGroup
+            });
+
+            let message = generateErrorMessage(window.activeTextEditor, nextProblemFileObj.problems[0].message);
+            outputMessage(message);
         } else {
             // last problem, go to first problem of first file
-            await checkTabGroup(globalProblems[0]);
-            await window.showTextDocument(globalProblems[0].uri);
-            moveCursorBeginning();
+            const tabGroup = getTabGroupIndex(globalProblems[0]);
+            await window.showTextDocument(globalProblems[0].uri, {
+                selection: new Range(globalProblems[0].problems[0].position, globalProblems[0].problems[0].position),
+                viewColumn: tabGroup
+            });
+
+            let message = generateErrorMessage(window.activeTextEditor, globalProblems[0].problems[0].message);
+            outputMessage(message);
         }
     }
 }
 
-function searchTab(path: string) {
-    var allTabGroups: readonly TabGroup[] = window.tabGroups.all;
-    var activeTabGroupIndex: number = getActiveTabIndex(allTabGroups);
-    for (let i = 0; i < allTabGroups.length; i++) {
-        for (let j = 0; j < allTabGroups[i].tabs.length; j++) {
-            let obj: unknown = allTabGroups[i].tabs[j].input;
-            if (typeof obj === 'object' && obj !== null && 'uri' in obj) {
-                if (typeof obj.uri === 'object' && obj.uri !== null && 'path' in obj.uri) {
-                    if (obj.uri.path === path) {
-                        return { tabFound: true, tabGroupIndex: i, activeTabGroupIndex: activeTabGroupIndex };
-                    }
-                }
-            }
-        }
-    }
-    return { tabFound: false, tabGroupIndex: -1, activeTabGroupIndex: activeTabGroupIndex };
-}
-
-function getActiveTabIndex(allTabGroups: readonly TabGroup[]) {
-    for (let i = 0; i < allTabGroups.length; i++) {
-        if (allTabGroups[i] === window.tabGroups.activeTabGroup) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-async function checkTabGroup(nextProblemFileObj: any) {
-    const { tabFound, tabGroupIndex, activeTabGroupIndex } = searchTab(nextProblemFileObj.uri.path);
-    if (tabFound && tabGroupIndex !== activeTabGroupIndex) {   // next file is in another tabGroup
-        if (activeTabGroupIndex < tabGroupIndex) {
-            for (let i = activeTabGroupIndex; i < tabGroupIndex; i++) {
-                await commands.executeCommand("workbench.action.focusNextGroup");
-            }
-        } else if (activeTabGroupIndex > tabGroupIndex) {
-            for (let i = activeTabGroupIndex; i > tabGroupIndex; i--) {
-                await commands.executeCommand("workbench.action.focusPreviousGroup");
-            }
-        }
-    }
+function getTabGroupIndex(file: {
+	uri: Uri;
+	problems: {
+		message: string;
+		position: Position;
+	}[];
+}): number | undefined {
+	for (const tabGroup of window.tabGroups.all) {
+		for (const tab of tabGroup.tabs) {
+			if (
+				tab.input instanceof TabInputText &&
+				tab.input.uri.toString() === file.uri.toString()
+			) {
+				//File is already opened: return the viewColumn for use when opening file
+				return tab.group.viewColumn;
+			}
+		}
+	}
+    return undefined;
 }
 
 // Helper functions to move Cursor to beginning or end
@@ -645,7 +657,7 @@ export function moveCursorBeginning(): void {
 
     //Throw error if no editor open
     if (!editor) {
-        window.showErrorMessage("MoveCursorBeginning: No Active Editor");
+        outputErrorMessage("MoveCursorBeginning: No Active Editor");
         return;
     }
 
@@ -665,7 +677,7 @@ export function moveCursorEnd(): void {
 
     //Throw error if no editor open
     if (!editor) {
-        window.showErrorMessage("MoveCursorBeginning: No Active Editor");
+        outputErrorMessage("MoveCursorBeginning: No Active Editor");
         return;
     }
 
@@ -680,4 +692,14 @@ export function moveCursorEnd(): void {
 
     editor.revealRange(editor.selection, 1); // Make sure cursor is within range
     window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
+}
+
+function generateErrorMessage(textEditor: TextEditor, nextProblemMessage: string): string {
+    let path = textEditor.document.uri.fsPath;
+    path = path.replace("\/", "\\");
+    let fileName = path.match(/((?:[^\\|\/]*){1})$/g)?.toString();
+    fileName = fileName!.replace(',', '');
+    let message = fileName + ": " + nextProblemMessage;
+
+    return message;
 }

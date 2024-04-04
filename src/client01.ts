@@ -4,6 +4,7 @@ import * as path from "path";
 var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
+import { outputMessage, outputErrorMessage } from "./commands/text";
 // import {
 // 	CommandEntry,
 // 	accessCommands,
@@ -46,7 +47,7 @@ function activateVoiceServer() {
 	};
 	//start voice server
 	const server = spawn(interpretor, ["server.py"], defaults);
-	vscode.window.showInformationMessage("Server Started");
+	outputMessage("Server Started");
 	return server;
 }
 
@@ -74,21 +75,21 @@ function runClient(commandHistory: string[]) {
 				} else if (cmdName !== "") {
 					await vscode.commands.executeCommand(cmdName);
 					commandHistory.push(cmdName);
-					vscode.window.showInformationMessage(logMsg);
+					outputMessage(logMsg);
 				} else {
 					for (const log of logMsg.split("\n")) {
 						console.log(log);
-						await vscode.window.showInformationMessage(log);
+						await outputMessage(log);
 					}
 				}
 			} catch (e) {
-				vscode.window.showInformationMessage(
+				outputMessage(
 					"Action Cannot be Completed!",
 				);
 				console.log(e);
 			}
 		} else {
-			vscode.window.showInformationMessage("Exiting Voice Commands.");
+			outputMessage("Exiting Voice Commands.");
 		}
 	});
 }
@@ -102,7 +103,7 @@ export function startStreaming() {
 	//stderr -> vscode error
 	server.stderr.on("data", (err: any) => {
 		console.log("error: ", err.toString());
-		vscode.window.showErrorMessage(err.toString());
+		outputErrorMessage(err.toString());
 	});
 	//child stdout -> vscode info
 	server.stdout.on("data", (data: any) => {
@@ -118,6 +119,6 @@ export function startStreaming() {
 			console.log("server not ready yet");
 			console.log(serverMsg);
 		}
-		vscode.window.showInformationMessage(data.toString());
+		outputMessage(data.toString());
 	});
 }
