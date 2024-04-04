@@ -350,7 +350,7 @@
 			},
 			{
 				"command": "mind-reader.changeHighlightColor",
-				"title":"Change Highlight Color",
+				"title": "Change Highlight Color",
 				"category": "Mind Reader"
 			}
 		],
@@ -452,7 +452,7 @@
 			},
 			{
 				"command": "mind-reader.changeHighlightColor",
-				"key":"Ctrl+Shift+/ Z",
+				"key": "Ctrl+Shift+/ Z",
 				"mac": "Ctrl+Shift+[Slash] Z"
 			}
 		],
@@ -853,8 +853,7 @@
 		"test": "node ./out/test/runTest.js",
 		"electron_rebuild": "electron-rebuild -f -w 22.4.8",
 		"startVoiceServer": "source venv/bin/activate && python3 server.py",
-		"format": "prettier . --write",
-		"postinstall": "node ./node_modules/vscode/bin/install"
+		"format": "prettier . --write"
 	},
 	"devDependencies": {
 		"@electron/rebuild": "^3.2.13",
@@ -890,7 +889,6 @@
 		"vscode-languageclient": "^5.1.0-next.9",
 		"web-audio-api": "^0.2.2",
 		"ws": "^6.2.2",
-		"vscode":"*",
 		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
