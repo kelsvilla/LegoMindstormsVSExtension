@@ -41,6 +41,8 @@
 * TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
 "use strict";
+import * as fs from "fs";
+import * as path from "path";
 import { CommandEntry } from "./commandEntry";
 import {
 	window,
@@ -324,25 +326,45 @@ export function changeHighlightColor(){
 	const columnToShowIn=vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
 	if (!currentPanel){
-		currentPanel=vscode.window.createWebviewPanel(
-			'changeHighlightColor',
-			'Highlight Color Picker',
+		currentPanel = vscode.window.createWebviewPanel(
+			"changeHighlightColor",
+			"Highlight Color Picker",
 			vscode.ViewColumn.One,
 			{
 				enableScripts: true,
 				retainContextWhenHidden: true,
-			}
-			);
+			},
+		);
 
-			const backgroundColor=vscode.workspace.getConfiguration('mind-reader.lineHighlighter').get<string>("backgroundColor");
-			const outlineColor=vscode.workspace.getConfiguration('mind-reader.lineHighlighter').get<string>("outlineColor");
+		const webviewUri = vscode.Uri.file(
+			path.join(
+				path.normalize(__dirname).replace(`${path.sep}out${path.sep}commands`, ""), //Project root
+				"webviews",
+				"ChangeHighlightColor",
+			),
+		);
+		const stylesPath = vscode.Uri.joinPath(webviewUri, "index.css")
+		const scriptsPath = vscode.Uri.joinPath(webviewUri, "index.js")
+		const viewPath = vscode.Uri.joinPath(webviewUri, "index.html")
 
-			currentPanel.webview.postMessage({backgroundColor, outlineColor});
-			currentPanel.webview.html=getWebviewContent();
+		currentPanel.webview.html = getWebviewContent({
+			stylesPath: currentPanel.webview.asWebviewUri(stylesPath),
+			scriptsPath: currentPanel.webview.asWebviewUri(scriptsPath),
+			viewPath: viewPath.fsPath,
+		});
 
-			currentPanel.onDidDispose(()=> {
-				currentPanel=undefined;
-			});	}
+		const backgroundColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("backgroundColor");
+		const outlineColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("outlineColor");
+		currentPanel.webview.postMessage({ backgroundColor, outlineColor });
+
+		currentPanel.onDidDispose(() => {
+			currentPanel = undefined;
+		});
+	}
 	else{
 		currentPanel.reveal(columnToShowIn);
 	}
@@ -358,65 +380,15 @@ export function changeHighlightColor(){
 	});
 }
 
-function getWebviewContent(){
-	return `<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Hightlight Color Picker</title>
-	</head>
-	<body>
-		<h1>Choose colors for highlight tool:</h1>
-		<div>
-			<label for="body">Background Color</label>
-			<input type="color" id="body" name="body" />
-		</div>
-		<p class="space"> </p>
-		<div>
-			<label for="outline">Outline Color</label>
-			<input type="color" id="outline" name="outline" />
-		</div>
-		<script>
-		const vscode = acquireVsCodeApi();
+type ChangeHighlightWebviewProps = {
+	stylesPath: vscode.Uri;
+	scriptsPath: vscode.Uri;
+	viewPath: string;
+};
 
-		
-		window.addEventListener('message', event=> {
-			const colors=event.data;
-			const backgroundColor= colors.backgroundColor;
-			const outlineColor=colors.outlineColor;
-
-			const bodyInput=document.getElementById('body');
-			const outlineInput=document.getElementById('outline');
-
-			bodyInput.value=backgroundColor;
-			outlineInput.value=outlineColor;
-
-			bodyInput.addEventListener('input',()=>{
-				const bgColor=bodyInput.value;
-				const olColor=outlineInput.value;
-				sendSelectedColors(bgColor,olColor);
-			});
-
-			outlineInput.addEventListener('input', ()=>{
-				const bgColor=bodyInput.value;
-				const olColor=outlineInput.value;
-				sendSelectedColors(bgColor,olColor);
-			});
-
-		});
-
-		function sendSelectedColors(bgColor, olColor){
-			const message={
-				type: 'selectedColors',
-				backgroundColor: bgColor,
-				outlineColor: olColor
-			};
-			vscode.postMessage(message);
-		}
-		</script>
-	</body>
-	</html>`;
+function getWebviewContent({stylesPath, scriptsPath, viewPath}: ChangeHighlightWebviewProps){
+    const html = fs.readFileSync(viewPath).toString();
+    return eval(`\`${html}\``);
 }
 
 // Clean-up after ourselves
