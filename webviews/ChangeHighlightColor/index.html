@@ -9,14 +9,20 @@
 	</head>
 	<body>
 		<h1>Choose colors for highlight tool:</h1>
-		<div>
-			<label for="body">Background Color</label>
-			<input type="color" id="body" name="body" />
-		</div>
-		<p class="space"></p>
-		<div>
-			<label for="outline">Outline Color</label>
-			<input type="color" id="outline" name="outline" />
+		<div class="row">
+			<div class="column">
+				<div class="picker-container">
+					<label for="body">Background Color</label>
+					<input class="colorPicker" type="color" id="body" name="body" />
+				</div>
+				<div class="picker-container">
+					<label for="outline">Outline Color</label>
+					<input class="colorPicker" type="color" id="outline" name="outline" />
+				</div>
+			</div>
+			<div class="column">
+				<p class="live-preview">Lorem ipsum dolor sit amet</p>
+			</div>
 		</div>
 	</body>
 </html>

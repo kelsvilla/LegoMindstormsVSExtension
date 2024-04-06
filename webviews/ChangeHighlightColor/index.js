@@ -11,11 +11,14 @@ window.addEventListener("message", (event) => {
 	bodyInput.value = backgroundColor;
 	outlineInput.value = outlineColor;
 
+	updateLivePreview(backgroundColor, outlineColor);
+
 	bodyInput.addEventListener(
 		"input",
 		debounce(() => {
 			const bgColor = bodyInput.value;
 			const olColor = outlineInput.value;
+			updateLivePreview(bgColor, olColor);
 			sendSelectedColors(bgColor, olColor);
 		}, 50),
 	);
@@ -25,6 +28,7 @@ window.addEventListener("message", (event) => {
 		debounce(() => {
 			const bgColor = bodyInput.value;
 			const olColor = outlineInput.value;
+			updateLivePreview(bgColor, olColor);
 			sendSelectedColors(bgColor, olColor);
 		}, 50),
 	);
@@ -53,4 +57,9 @@ function debounce(func, wait, immediate) {
 		timeout = setTimeout(later, wait);
 		if (callNow) func.apply(context, args);
 	};
+}
+
+function updateLivePreview(bgColor, olColor) {
+	document.querySelector(".live-preview").style.backgroundColor = bgColor;
+	document.querySelector(".live-preview").style.outlineColor = olColor;
 }
