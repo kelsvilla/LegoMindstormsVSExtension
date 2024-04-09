@@ -608,10 +608,10 @@
 						"description": "The speed that the Text to Speech function will read.",
 						"default": 1
 					},
-					"mind-reader.textToSpeech.isEnabled": {
+					"mind-reader.textToSpeech.isEnabledOnStartup": {
 						"order": 5,
 						"type": "boolean",
-						"description": "Enable/Disable Text to Speech.",
+						"description": "Enable/Disable Text to Speech on startup.",
 						"default": false
 					}
 				}
