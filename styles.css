@@ -1,0 +1,11 @@
+.lego-yellow {
+    background: #FFD700;
+}
+
+.lego-red {
+    background: #DA291C;
+}
+
+.nav-button:hover {
+    text-decoration: underline;
+}
