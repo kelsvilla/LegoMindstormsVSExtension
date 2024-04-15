@@ -92,7 +92,7 @@ const ttsStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
   ttsStatusBar.command = "mind-reader.toggleTTS";
   ttsStatusBar.text = "$(megaphone) Text-to-Speech";
   ttsStatusBar.show();
-  
+
   const soundStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
     1000
