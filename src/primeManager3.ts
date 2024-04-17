@@ -239,7 +239,7 @@ export default class HubManager3 {
 				"-o",
 				"program.mpy",
 				"-s",
-				path.basename(filePath),
+				`'Project ${slotid[1]}'`,
 				"-march=armv7emsp",
 				"-X",
 				"emit=bytecode",
@@ -252,41 +252,50 @@ export default class HubManager3 {
 		const userFileContents = fs.readFileSync(userFilePath);
 		const userFileStats = fs.statSync(userFilePath);
 
-		await writeAndDrain(
-			this.port,
-			HubManager3.CONTROL_A +
-				HubManager3.CONTROL_E +
-				"A" +
-				HubManager3.CONTROL_A +
-				utilUploadUtility +
-				"\x04",
-		);
+		await writeAndDrain(this.port, HubManager3.CONTROL_C);
 
-		await writeAndDrain(
-			this.port,
-			HubManager3.CONTROL_A + 
-			HubManager3.CONTROL_E +
-				"A" +
-				HubManager3.CONTROL_A +
-				`u_p(${fs.statSync(utilCodePath).size})` +
-				"\x04",
-		);
+		await this.OpenRawPasteMode();
+		await writeAndDrain(this.port, utilUploadUtility);
+		await this.EndRawInput();
+
+		await this.OpenRawPasteMode();
+		await writeAndDrain(this.port, `u_p(${fs.statSync(utilCodePath).size})`);
+		await this.EndRawInput();
+
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		await writeAndDrain(this.port, utilCode, "binary");
 
-		await writeAndDrain(
-			this.port,
-			HubManager3.CONTROL_A +
-				HubManager3.CONTROL_E +
-				"A" +
-				HubManager3.CONTROL_A +
-				"import mrutils\n" +
-				`mrutils.upload_program("${slotid}", ${userFileStats.size})` +
-				"\x04",
-		);
+		await this.OpenRawPasteMode();
+		await writeAndDrain(this.port, "import mrutils\n" + `mrutils.upload_program("${slotid}", ${userFileStats.size})`);
+		await this.EndRawInput();
+
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		await writeAndDrain(this.port, userFileContents);
-		//await writeAndDrain(this.port, HubManager3.CONTROL_B);
+
+		//Soft reboot to return to default UI
+		await writeAndDrain(this.port, HubManager3.CONTROL_B);
+		await writeAndDrain(this.port, HubManager3.CONTROL_D);
+	}
+
+	public async programExecute() {
+		await writeAndDrain(this.port, HubManager3.CONTROL_C);
+
+		const filePath = vscode.window.activeTextEditor!.document.uri.fsPath;
+		const userFileContents = fs.readFileSync(filePath);
+
+		await this.OpenRawPasteMode();
+		await writeAndDrain(this.port, userFileContents);
+		await this.EndRawInput();
+	}
+
+	public async programTerminate() {
+		await writeAndDrain(this.port, HubManager3.CONTROL_C);
+		await writeAndDrain(this.port, HubManager3.CONTROL_D);
+	}
+
+	public async deleteProgram(slotid: number) {
+		const correctedslotID = "0" + slotid;
+		vscode.window.showErrorMessage("Not Yet Implemented")
 	}
 
 	// // ========================= Hub Methods =========================
@@ -490,6 +499,23 @@ export default class HubManager3 {
 		}
 
 		return result;
+	}
+
+	private async OpenRawPasteMode() {
+		await writeAndDrain(
+			this.port,
+			HubManager3.CONTROL_A + 
+			HubManager3.CONTROL_E +
+			"A" +
+			HubManager3.CONTROL_A
+		);
+	}
+
+	private async EndRawInput() {
+		await writeAndDrain(
+			this.port,
+			'\x04'
+		);
 	}
 }
 
