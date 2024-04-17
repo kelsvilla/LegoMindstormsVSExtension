@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
-    <div class="flex justify-center lego-yellow font-medium w-full sticky top-0">
+    <div class="flex justify-center lego-yellow font-medium w-full sticky top-0 h-14">
         <a href="/index.html" class="nav-button">
             <div class="p-4">Home</div>
         </a>
@@ -21,35 +23,169 @@
     </div>
 
     <div class="container mx-auto">
-        <div class="flex justify-center">
-            <h1 class="text-3xl p-4">Documentation</h1>
-        </div>
-        
-        <div class="flex gap-x-52">
-            <div>
-                <div class="grid sticky top-0">
-                    <div class="text-lg pb-4 font-semibold">Table of Contents</div>
-                    <div>Getting Started with Mind Reader</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
+        <div class="h-full">
+            <div class="flex justify-center">
+                <h1 class="text-4xl p-4">Documentation</h1>
             </div>
-            <div class="grid auto-rows-max">
-                <div>
-                    <div class="text-3xl py-4">Getting Started with Mind Reader</div>
-                    <ul class="list-decimal list-inside pb-2">
-                        <li>Open the extensions sidebar on Visual Studio Code</li>
-                        <li>Search for Mind Reader</li>
-                        <li>Click Install</li>
-                        <li>Reload your editor if needed</li>
-                    </ul>
-                    <div>*For MacOS users, you may need to install a package manager like <a href="https://brew.sh/">Homebrew</a> to get portaudio.</div>
+
+            <div class="grid lg:flex gap-x-44">
+                <!-- TOC -->
+                <div class="hidden lg:block w-2/5">
+                    <div class="grid sticky top-20">
+                        <div class="text-lg py-4 font-semibold">Table of Contents</div>
+                        <div class="pb-4">
+                            <div class="text-md font-semibold">Users</div>
+                            <div><a href="#GettingStarted">Getting Started with Mind Reader</a></div>
+                        </div>
+                        <div>
+                            <div class="text-md font-semibold">Development</div>
+                            <div><a href="#development-environment-setup-guide">Development Environment Setup Guide</a>
+                            </div>
+                            <div><a href="#running-the-extension">Running the Extension</a></div>
+                            <div><a href="#alternative">Alternative Setup Method</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid auto-rows-max">
+                    <!-- User -->
+                    <!-- Getting Started -->
+                    <div id="GettingStarted" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Getting Started with Mind Reader</h2>
+                        <ol class="list-decimal list-inside pb-2">
+                            <li>Open the extensions sidebar on Visual Studio Code</li>
+                            <li>Search for Mind Reader</li>
+                            <li>Click Install</li>
+                            <li>Reload your editor if needed</li>
+                        </ol>
+                        <h3 class="text-lg font-semibold">MacOS</h3>
+                        <p class="pb-2">If you are running Mind Reader on MacOS, you may need to install a package
+                            called
+                            portaudio. This
+                            package allows microphone input for PyAudio, a package for audio I/O. You will need to
+                            install homebrew to get portaudio installed. Here are the steps:</p>
+                        <ol class="list-decimal list-inside pb-2">
+                            <li>Close Visual Studio Code</li>
+                            <li>Go to <a href="https://brew.sh/">Homebrew</a> and follow the steps to install Homebrew
+                            </li>
+                            <li>On a terminal, run <code>brew install portaudio</code></li>
+                        </ol>
+                        <p>The Speech Recognition feature should be able to run now. If you are still getting errors,
+                            you
+                            may need to reinstall the extension.</p>
+                    </div>
+
+                    <!-- Development -->
+                    <!-- Setup -->
+                    <div id="development-environment-setup-guide" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Development environment setup
+                            guide</h2>
+
+                        <div class="py-2">
+                            <h3 id="windows-10-or-11" class="text-lg font-semibold">Windows 10 or 11</h3>
+                            <ol class="list-inside list-decimal">
+                                <li>Clone this repo</li>
+                                <li>Open a terminal to the root directory
+                                    <ul class="list-inside list-disc ml-4">
+                                        <li>You can achieve that by doing one of the following:
+                                            <ul class="list-inside list-disc ml-8">
+                                                <li>Press <strong>Control-Shift-`</strong> in VS Code</li>
+                                                <li>Select on the menu bar, Terminal &gt; New Terminal in VS Code</li>
+                                                <li>Typing &quot;cmd&quot; in the address bar of the directory in File
+                                                    Explorer
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>Run <code>npm i</code></li>
+                            </ol>
+                        </div>
+
+                        <div class="py-2">
+                            <h3 id="macos" class="text-lg font-semibold">MacOS</h3>
+                            <ol class="list-inside list-decimal">
+                                <li>Clone this repo</li>
+                                <li>Open a terminal to the root directory
+                                    <ul class="list-inside list-disc ml-4">
+                                        <li>You can achieve that by doing one of the following:
+                                            <ul class="list-inside list-disc ml-8">
+                                                <li>Press <strong>Control-Shift-`</strong></li>
+                                                <li>Select on the menu bar, Terminal &gt; New Terminal</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>Run <code>npm i</code></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Running the Extension -->
+                    <div id="running-the-extension" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Running the Extension</h2>
+                        <ol class="list-inside list-decimal">
+                            <li>Have a terminal open and make sure that it is in the root directory</li>
+                            <li>Run <code>npm run compile</code>. This will compile the TypeScript files.</li>
+                            <li>Run <code>npm run watch</code>. This will reload the extension if you make any changes
+                                to
+                                the files.</li>
+                            <li>Run the extension by pressing the F5 key
+                                <ul class="list-inside list-disc ml-4">
+                                    <li>You can also select the &quot;Run and Debug&quot; tab, then select &quot;Run
+                                        Extension&quot; and press the green play button</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Alternative Setup Method -->
+                    <div id="alternative" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Alternative Setup Method</h2>
+                        <p>Instead of cloning this repo, you could also</p>
+                        <ul class="list-inside list-disc">
+                            <li>Download the <a href="/setup-development/windows/install-windows.ps1"
+                                    class="text-blue-500">install-windows.ps1</a>
+                                file (Windows) and run <code>./install-windows.ps1</code> in PowerShell as a normal
+                                user,
+                                and accept any UAC prompts that pop-up.
+                                <ul class="list-decimal list-disc ml-8">
+                                    <li>The installation should take around 8 minutes. If an installer doesn&#39;t pop
+                                        up,
+                                        don&#39;t be alarmed.</li>
+                                </ul>
+                            </li>
+                            <li>Download the <a href="/setup-development/linux/install-linux.sh"
+                                    class="text-blue-500">install-linux.sh</a>
+                                file
+                                (Mac) and run <code>./install-linux.sh</code> in the terminal.</li>
+                        </ul>
+                        <p>See the Visual Studio Code <a
+                                href="https://code.visualstudio.com/api/get-started/your-first-extension"
+                                class="text-blue-500">getting
+                                started</a>
+                            API page if you need more help.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <footer>
+        <div class="pt-11 pb-4 text-center">
+            <div class="flex flex-wrap w-full justify-center gap-2">
+                <a href="https://github.com/kelsvilla/LegoMindstormsVSExtension" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        >
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
+            <div>&copy; <script>document.write( new Date().getFullYear() );</script> The Spam Artists. All rights reserved.</div>
+        </div>
+        
+    </footer>
 </body>
+
 </html>
