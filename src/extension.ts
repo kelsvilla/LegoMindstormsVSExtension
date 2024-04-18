@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider("accessActions", accessProvider);
 
 	let textProvider = new CommandNodeProvider(
-		[textCommands].flat(1)
+		[textCommands, lineHighlightercommands].flat(1)
 	);
 	vscode.window.registerTreeDataProvider("textActions", textProvider);
 
@@ -92,7 +92,7 @@ const ttsStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
   ttsStatusBar.command = "mind-reader.toggleTTS";
   ttsStatusBar.text = "$(megaphone) Text-to-Speech";
   ttsStatusBar.show();
-  
+
   const soundStatusBar: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
     1000

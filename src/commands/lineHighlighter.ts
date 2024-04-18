@@ -37,8 +37,6 @@
 * "mind-reader.lineHighlighter.textDecoration"     : "none",
 * "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
 *
-* TODO: FEATURE: Add ability for user to change options through a command pallette configurator
-* TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
 "use strict";
 import * as fs from "fs";
@@ -181,7 +179,7 @@ function triggerHighlight(): void {
  *
  * @returns highlighterStyle
  */
-function getHighlighterStyle(): TextEditorDecorationType {
+function getHighlighterStyle(): TextEditorDecorationType{
 	// Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
 	const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
 		"mind-reader.lineHighlighter",
@@ -223,9 +221,8 @@ function getHighlighterStyle(): TextEditorDecorationType {
 		userConfig.get("outlineColor") || "#4866FE";
 	const outlineStyle: string = userConfig.get("outlineStyle") || "solid";
 	const outlineWidth: string = userConfig.get("outlineWidth") || "1px";
-	const textDecoration: string =
-		userConfig.get("textDecoration") || "none";
 	const textColor: string = userConfig.get("textColor") || "#FFFFFF";
+	const textDecoration: string = userConfig.get("textDecoration") || "none";
 
 	// Combine all our styling into a single variable to return
 	const highlighterStyle: TextEditorDecorationType =
@@ -234,7 +231,6 @@ function getHighlighterStyle(): TextEditorDecorationType {
 			backgroundColor: `${backgroundColor}`,
 			fontStyle: `${fontStyle}`,
 			fontWeight: `${fontWeight}`,
-			textDecoration: `${textDecoration}`,
 			color: `${textColor}`,
 			borderColor: `${borderColorTop} ${borderColorRight} ${borderColorBottom} ${borderColorLeft}`,
 			borderWidth: `${borderWidthTop} ${borderWidthRight} ${borderWidthBottom} ${borderWidthLeft}`,
@@ -242,6 +238,7 @@ function getHighlighterStyle(): TextEditorDecorationType {
 			outlineColor: `${outlineColor}`,
 			outlineWidth: `${outlineWidth}`,
 			outlineStyle: `${outlineStyle}`,
+			textDecoration: `${textDecoration}`
 		});
 
 	// Return our variable
@@ -301,6 +298,8 @@ function getMultiLineHighlighterStatus(): boolean | undefined {
 		return multiLineIsEnabled;
 }
 
+let firstActivation=true;
+
 /* Toggle line highlight function*/
 export function toggleLineHighlight() {
 	let highlightStatus=getHighlighterStatus(); // Set highlightStatus to true or false
@@ -315,7 +314,10 @@ export function toggleLineHighlight() {
 	else{
 		highlightStyle=getHighlighterStyle(); // Set style to current style declaration
 		triggerHighlight(); // Call trigger highlight function
+		if(!firstActivation){
 		outputMessage("Line Highlighter On"); // State highlight is on
+		}
+		firstActivation=false;
 		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", true, true); // Set linehighlight status to true
 	}
 }
