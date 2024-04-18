@@ -13,5 +13,6 @@
     "files.associations": {
         "portaudio.h": "c",
         "stdio.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "C:/Users/kelsv/LegoMindstormsVSExtension/dependencies/portaudio"
 }

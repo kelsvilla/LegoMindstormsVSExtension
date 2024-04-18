@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider("accessActions", accessProvider);
 
 	let textProvider = new CommandNodeProvider(
-		[textCommands].flat(1)
+		[textCommands, lineHighlightercommands].flat(1)
 	);
 	vscode.window.registerTreeDataProvider("textActions", textProvider);
 
