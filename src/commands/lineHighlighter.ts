@@ -186,6 +186,12 @@ function triggerHighlight(): void {
 function getHighlighterStyle(
 	onlyStyleSelections?: boolean,
 ): TextEditorDecorationType {
+	if (onlyStyleSelections) {
+		return window.createTextEditorDecorationType({
+			backgroundColor: "#0000FF40",
+		});
+	}
+
 	// Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
 	const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
 		"mind-reader.lineHighlighter",
