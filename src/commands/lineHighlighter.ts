@@ -149,7 +149,7 @@ function triggerHighlight(): void {
 
 	if (highlightStyle) {
 		activeTextEditor.setDecorations(highlightStyle, decorations);
-		if (selectionStyle) selectionStyle.dispose();
+		if (selectionStyle) {selectionStyle.dispose();};
 		selectionStyle = getHighlighterStyle(true);
 		activeTextEditor.setDecorations(selectionStyle, decorations);
 	}
@@ -378,7 +378,13 @@ export function changeHighlightColor() {
 		const outlineColor = vscode.workspace
 			.getConfiguration("mind-reader.lineHighlighter")
 			.get<string>("outlineColor");
-		currentPanel.webview.postMessage({ backgroundColor, outlineColor });
+		const secondaryHighlightColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter.selectionStyle")
+			.get<string>("backgroundColor");
+		const textColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("textColor");
+		currentPanel.webview.postMessage({ backgroundColor, outlineColor, secondaryHighlightColor, textColor });
 
 		currentPanel.onDidDispose(() => {
 			currentPanel = undefined;
@@ -391,6 +397,8 @@ export function changeHighlightColor() {
 		if (message.type === "selectedColors") {
 			const bgColor = message.backgroundColor;
 			const olColor = message.outlineColor;
+			const tColor = message.textColor;
+			const sbColor = message.secondaryHighlightColor;
 
 			workspace
 				.getConfiguration("mind-reader.lineHighlighter")
@@ -398,6 +406,12 @@ export function changeHighlightColor() {
 			workspace
 				.getConfiguration("mind-reader.lineHighlighter")
 				.update("outlineColor", olColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("textColor", tColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter.selectionStyle")
+				.update("backgroundColor", sbColor, true);
 		}
 	});
 }
