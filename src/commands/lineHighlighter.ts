@@ -141,7 +141,7 @@ function triggerHighlight(): void {
 			if (isSingleLine) {
 				// If selection is single line, map selection
 				decorations = selections.map((selection) => ({
-					range: new Range(selection.anchor, selection.anchor),
+					range: new Range(selection.start, selection.end),
 				}));
 			}
 		}
