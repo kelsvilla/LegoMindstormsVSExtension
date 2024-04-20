@@ -87,5 +87,4 @@ function updateLivePreview(bgColor, olColor, tColor, sbColor) {
 	document.querySelector(".live-preview").style.backgroundColor = bgColor;
 	document.querySelector(".live-preview").style.outlineColor = olColor;
 	document.querySelector(".live-preview").style.color = tColor;
-	document.querySelector(".live-preview").style
 }
