@@ -751,6 +751,12 @@
 						"type": "string",
 						"markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
 						"default": "#FFFFFF"
+					},
+					"mind-reader.lineHighlighter.selectionColor": {
+						"order": 25,
+						"type": "string",
+						"markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+						"default": "#FFFFFF"
 					}
 				}
 			}

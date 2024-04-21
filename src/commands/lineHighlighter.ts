@@ -186,16 +186,16 @@ function triggerHighlight(): void {
 function getHighlighterStyle(
 	onlyStyleSelections?: boolean,
 ): TextEditorDecorationType {
-	if (onlyStyleSelections) {
-		return window.createTextEditorDecorationType({
-			backgroundColor: "#0000FF40",
-		});
-	}
-
 	// Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
 	const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
 		"mind-reader.lineHighlighter",
 	);
+
+	if (onlyStyleSelections) {
+		return window.createTextEditorDecorationType({
+			backgroundColor: userConfig.get("selectionColor") || "#0000FF40",
+		});
+	}
 
 	const borderWidthTop: string = userConfig.get("borderWidthTop") || "1px";
 	const borderWidthRight: string =
@@ -380,7 +380,7 @@ export function changeHighlightColor() {
 			.get<string>("outlineColor");
 		const secondaryHighlightColor = vscode.workspace
 			.getConfiguration("mind-reader.lineHighlighter")
-			.get<string>("backgroundColor");
+			.get<string>("selectionColor");
 		const textColor = vscode.workspace
 			.getConfiguration("mind-reader.lineHighlighter")
 			.get<string>("textColor");
@@ -398,8 +398,7 @@ export function changeHighlightColor() {
 			const bgColor = message.backgroundColor;
 			const olColor = message.outlineColor;
 			const tColor = message.textColor;
-			let sbcolor = message.secondaryHighlightColor
-
+			const sbColor = message.secondaryHighlightColor
 			workspace
 				.getConfiguration("mind-reader.lineHighlighter")
 				.update("backgroundColor", bgColor, true);
@@ -415,11 +414,9 @@ export function changeHighlightColor() {
 			workspace
 				.getConfiguration("mind-reader.lineHighlighter")
 				.update("borderColorRight", olColor, true);
-
-			if (selectionStyle){
-				workspace.getConfiguration("mindreader-Highlighter")
-					.update("backgroundColor", bgColor, true);
-			}
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("selectionColor", sbColor, true);
 		}
 	});
 }
