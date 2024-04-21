@@ -88,7 +88,7 @@ export const TTSCommand: CommandEntry[] = [
 
 let shouldSpeak: boolean;
 export function setShouldSpeak() {
-    shouldSpeak = Configuration.GetInstance().get()["textToSpeech"]["isEnabled"];
+    shouldSpeak = Configuration.GetInstance().get()["textToSpeech"]["isEnabledOnStartup"];
 }
 
 export function outputMessage(message: string) {

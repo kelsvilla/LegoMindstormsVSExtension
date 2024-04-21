@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { CommandEntry } from "./commandEntry";
 import { startStreaming } from "../client01";
-import { outputMessage } from "./text"
+import { outputMessage } from "./text";
 
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
