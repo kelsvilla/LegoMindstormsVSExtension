@@ -6,4 +6,6 @@
 export type CommandEntry = {
 	name: string;
 	callback: () => void;
+	undo?: () => void;
+	data?: Record<string, any>;
 };

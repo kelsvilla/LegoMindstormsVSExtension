@@ -3,53 +3,50 @@ import { CommandEntry } from "./commandEntry";
 import { toggleStreaming } from "../client01";
 import { outputMessage } from "./text";
 
+let baseZoomLevel =
+	vscode.workspace.getConfiguration("window").get<number>("zoomLevel") || 0;
+let fontZoomLevel = 0;
+let fontZoomBeforeReset = 0;
+
 // Accessibility Commands
 export const accessCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.selectTheme",
-
-		// callbacks can be inlined...
 		callback: () =>
 			vscode.commands.executeCommand("workbench.action.selectTheme"),
 	},
 	{
 		name: "mind-reader.increaseFontScale",
-		callback: increaseFontScale, // ...or factored out into separate functions below
+		callback: increaseFontScale,
+		undo: decreaseFontScale,
 	},
-
 	{
 		name: "mind-reader.decreaseFontScale",
 		callback: decreaseFontScale,
+		undo: increaseFontScale,
 	},
-
 	{
 		name: "mind-reader.resetFontScale",
 		callback: resetFontScale,
+		undo: undoResetFontScale,
 	},
-
 	{
 		name: "mind-reader.increaseEditorScale",
 		callback: increaseEditorScale,
 	},
-
 	{
 		name: "mind-reader.decreaseEditorScale",
 		callback: decreaseEditorScale,
 	},
-
-  {
-    name: 'mind-reader.resetEditorScale',
-    callback: resetEditorScale,
-  },
-  {
-    name:'mind-reader.toggleStreaming',
-    callback: toggleStreaming,
-  },
+	{
+		name: "mind-reader.resetEditorScale",
+		callback: resetEditorScale,
+	},
+	{
+		name: "mind-reader.toggleStreaming",
+		callback: toggleStreaming,
+	},
 ];
-
-let baseZoomLevel = vscode.workspace.getConfiguration("window").get<number>("zoomLevel") || 0;
-let fontZoomLevel = 0;
-let fontZoomBeforeReset = 0;
 
 function increaseFontScale(): void {
 	vscode.commands.executeCommand("editor.action.fontZoomIn");
@@ -71,17 +68,17 @@ function resetFontScale(): void {
 }
 
 async function undoResetFontScale(): Promise<void> {
-	if(fontZoomLevel > 0) {
-		for(let i = 0; i < fontZoomLevel; i++) {
+	if (fontZoomBeforeReset > 0) {
+		for (let i = 0; i < fontZoomBeforeReset; i++) {
 			vscode.commands.executeCommand("editor.action.fontZoomOut");
 		}
 	} else {
-		for(let i = 0; i < Math.abs(fontZoomLevel); i++) {
+		for (let i = 0; i < Math.abs(fontZoomBeforeReset); i++) {
 			vscode.commands.executeCommand("editor.action.fontZoomIn");
 		}
 	}
-	fontZoomLevel = 0;
-	outputMessage("Font Scale Reset.");
+	fontZoomLevel = fontZoomBeforeReset;
+	outputMessage("Font Scale Restored.");
 }
 
 function increaseEditorScale(): void {
