@@ -67,6 +67,7 @@ label {
 	height: 25px;
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #00ffff);
 	outline: none;
+	background-color: #00000000;
 }
 
 .slider::-webkit-slider-thumb {
