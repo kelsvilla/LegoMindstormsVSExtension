@@ -67,7 +67,7 @@ export class Configuration {
 export const ConfigSchema = z.object({
     textToSpeech: z.object({
         readingSpeed: z.number(),
-        isEnabled: z.boolean()
+        isEnabledOnStartup: z.boolean()
     }),
     get: z.function(),
 });

@@ -427,13 +427,9 @@ type ChangeHighlightWebviewProps = {
 	viewPath: string;
 };
 
-function getWebviewContent({
-	stylesPath,
-	scriptsPath,
-	viewPath,
-}: ChangeHighlightWebviewProps) {
-	const html = fs.readFileSync(viewPath).toString();
-	return eval(`\`${html}\``);
+function getWebviewContent({stylesPath, scriptsPath, viewPath}: ChangeHighlightWebviewProps){
+    const html = fs.readFileSync(viewPath).toString();
+    return eval(`\`${html}\``);
 }
 
 // Clean-up after ourselves
