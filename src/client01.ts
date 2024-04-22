@@ -5,15 +5,8 @@ var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
 import { outputMessage, outputErrorMessage } from "./commands/text";
-// import {
-// 	CommandEntry,
-// 	accessCommands,
-// 	hubCommands,
-// 	navCommands,
-// 	textCommands,
-// 	voicetotextCommands,
-// 	midicommands,
-// } from "./commands";
+
+let server: any;
 
 function activateVoiceServer() {
 	//activate server
@@ -89,15 +82,24 @@ function runClient(commandHistory: string[]) {
 				console.log(e);
 			}
 		} else {
+			server.kill();
+			server = undefined;
 			outputMessage("Exiting Voice Commands.");
 		}
 	});
 }
 
-export function startStreaming() {
+export function toggleStreaming() {
+	//if server is already running, kill and return
+	if(server) {
+		server.kill();
+		server = undefined;
+		outputMessage("Voice Commands Stopped.");
+		return;
+	}
+	
 	/* activate the voice server */
-	const server = activateVoiceServer();
-
+	server = activateVoiceServer();
 	const commandHistory: string[] = [];
 
 	//stderr -> vscode error
