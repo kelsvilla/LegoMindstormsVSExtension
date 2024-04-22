@@ -291,31 +291,6 @@
 				"voiceEntry": "Disconnect Hub"
 			},
 			{
-				"command": "mind-reader.ctrlC",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.ctrlD",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.ctrlB",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.ctrlE",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
-				"command": "mind-reader.ctrlA",
-				"title": "Disconnect LEGO SPIKE PRIME HUB",
-				"category": "SPIKE Prime"
-			},
-			{
 				"command": "mind-reader.runProgram",
 				"title": "Run a Program on the LEGO SPIKE PRIME HUB",
 				"category": "SPIKE Prime",
@@ -428,8 +403,8 @@
 					"light": "resources/icons/light/refresh.svg"
 				},
 				"category": "ev3dev"
-      },
-      {
+			},
+			{
 				"command": "mind-reader.toggleTTS",
 				"title": "Toggle Text-to-Speech",
 				"category": "Mind Reader"

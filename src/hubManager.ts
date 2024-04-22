@@ -161,7 +161,6 @@ export default class HubManager {
 
 		let mgr = this;
 		this.port.on("data", (data) => {
-			console.log("receiving")
 			mgr.receiveData(data);
 		});
 	}
@@ -300,19 +299,6 @@ export default class HubManager {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			project_id: HubManager.randomID(16),
 		};
-
-		// return await this.send({
-			// i:"fye7",
-			// m:"start_write_program",
-			// p:{
-				// meta:{
-					// created:1580451544403,
-					// modified:1580614688346,
-					// name:"Project 93"
-				// },
-				// size:136,
-				// slotid:0}
-			// })
 
 		return Promise.resolve(
 			await this.send({
