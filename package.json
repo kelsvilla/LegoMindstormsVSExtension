@@ -45,7 +45,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "mind-reader.startStreaming",
+				"command": "mind-reader.toggleStreaming",
 				"title": "Start Voice Commands",
 				"category": "Voice Commands",
 				"voiceEntry": "Voice-command.start Streaming",
@@ -362,7 +362,7 @@
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
 			{
-				"command": "mind-reader.startStreaming",
+				"command": "mind-reader.toggleStreaming",
 				"key": "ctrl+Shift+/ V",
 				"mac": "Cmd+Shift+[Slash] V"
 			},
@@ -465,7 +465,7 @@
 			],
 			"editor/title": [
 				{
-					"command": "mind-reader.startStreaming",
+					"command": "mind-reader.toggleStreaming",
 					"when": "activeEditor",
 					"group": "navigation"
 				}
@@ -816,7 +816,7 @@
 							"altText": "Speech to Code"
 						},
 						"completionEvents": [
-							"onCommand:voice-command.startStreaming"
+							"onCommand:mind-reader.toggleStreaming"
 						]
 					},
 					{

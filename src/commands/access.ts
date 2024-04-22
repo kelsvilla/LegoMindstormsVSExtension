@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { CommandEntry } from "./commandEntry";
-import { startStreaming } from "../client01";
+import { toggleStreaming } from "../client01";
 import { outputMessage } from "./text";
 
 // Accessibility Commands
@@ -42,8 +42,8 @@ export const accessCommands: CommandEntry[] = [
     callback: resetEditorScale,
   },
   {
-    name:'mind-reader.startStreaming',
-    callback: startStreaming,
+    name:'mind-reader.toggleStreaming',
+    callback: toggleStreaming,
   },
 ];
 
