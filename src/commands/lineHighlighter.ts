@@ -37,14 +37,10 @@
 * "mind-reader.lineHighlighter.textDecoration"     : "none",
 * "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
 *
-* ! Restart VSCode for changes to take effect (if they didn't automatically)
-* ! Afterwards you can now edit using the settings window, or manually edit them
-* ! directly in settings.json by editing the values.
-*
-* TODO: FEATURE: Add ability for user to change options through a command pallette configurator
-* TODO: BUG: Adding the settings configurator made default settings break (if no values are found in settings.json)
 **/
 "use strict";
+import * as fs from "fs";
+import * as path from "path";
 import { CommandEntry } from "./commandEntry";
 import {
 	window,
@@ -53,6 +49,7 @@ import {
 	WorkspaceConfiguration,
 	Range,
 } from "vscode";
+import * as vscode from 'vscode';
 import { outputMessage } from "./text";
 
 let highlightStyle: TextEditorDecorationType;
@@ -182,7 +179,7 @@ function triggerHighlight(): void {
  *
  * @returns highlighterStyle
  */
-function getHighlighterStyle(): TextEditorDecorationType {
+function getHighlighterStyle(): TextEditorDecorationType{
 	// Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
 	const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
 		"mind-reader.lineHighlighter",
@@ -224,9 +221,8 @@ function getHighlighterStyle(): TextEditorDecorationType {
 		userConfig.get("outlineColor") || "#4866FE";
 	const outlineStyle: string = userConfig.get("outlineStyle") || "solid";
 	const outlineWidth: string = userConfig.get("outlineWidth") || "1px";
-	const textDecoration: string =
-		userConfig.get("textDecoration") || "none";
 	const textColor: string = userConfig.get("textColor") || "#FFFFFF";
+	const textDecoration: string = userConfig.get("textDecoration") || "none";
 
 	// Combine all our styling into a single variable to return
 	const highlighterStyle: TextEditorDecorationType =
@@ -235,7 +231,6 @@ function getHighlighterStyle(): TextEditorDecorationType {
 			backgroundColor: `${backgroundColor}`,
 			fontStyle: `${fontStyle}`,
 			fontWeight: `${fontWeight}`,
-			textDecoration: `${textDecoration}`,
 			color: `${textColor}`,
 			borderColor: `${borderColorTop} ${borderColorRight} ${borderColorBottom} ${borderColorLeft}`,
 			borderWidth: `${borderWidthTop} ${borderWidthRight} ${borderWidthBottom} ${borderWidthLeft}`,
@@ -243,6 +238,7 @@ function getHighlighterStyle(): TextEditorDecorationType {
 			outlineColor: `${outlineColor}`,
 			outlineWidth: `${outlineWidth}`,
 			outlineStyle: `${outlineStyle}`,
+			textDecoration: `${textDecoration}`
 		});
 
 	// Return our variable
@@ -302,6 +298,8 @@ function getMultiLineHighlighterStatus(): boolean | undefined {
 		return multiLineIsEnabled;
 }
 
+let firstActivation=true;
+
 /* Toggle line highlight function*/
 export function toggleLineHighlight() {
 	let highlightStatus=getHighlighterStatus(); // Set highlightStatus to true or false
@@ -316,9 +314,83 @@ export function toggleLineHighlight() {
 	else{
 		highlightStyle=getHighlighterStyle(); // Set style to current style declaration
 		triggerHighlight(); // Call trigger highlight function
+		if(!firstActivation){
 		outputMessage("Line Highlighter On"); // State highlight is on
+		}
+		firstActivation=false;
 		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", true, true); // Set linehighlight status to true
 	}
+}
+
+let currentPanel: vscode.WebviewPanel | undefined;
+
+export function changeHighlightColor(){
+	const columnToShowIn=vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+
+	if (!currentPanel){
+		currentPanel = vscode.window.createWebviewPanel(
+			"changeHighlightColor",
+			"Highlight Color Picker",
+			vscode.ViewColumn.One,
+			{
+				enableScripts: true,
+				retainContextWhenHidden: true,
+			},
+		);
+
+		const webviewUri = vscode.Uri.file(
+			path.join(
+				path.normalize(__dirname).replace(`${path.sep}out${path.sep}commands`, ""), //Project root
+				"webviews",
+				"ChangeHighlightColor",
+			),
+		);
+		const stylesPath = vscode.Uri.joinPath(webviewUri, "index.css")
+		const scriptsPath = vscode.Uri.joinPath(webviewUri, "index.js")
+		const viewPath = vscode.Uri.joinPath(webviewUri, "index.html")
+
+		currentPanel.webview.html = getWebviewContent({
+			stylesPath: currentPanel.webview.asWebviewUri(stylesPath),
+			scriptsPath: currentPanel.webview.asWebviewUri(scriptsPath),
+			viewPath: viewPath.fsPath,
+		});
+
+		const backgroundColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("backgroundColor");
+		const outlineColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("outlineColor");
+		currentPanel.webview.postMessage({ backgroundColor, outlineColor });
+
+		currentPanel.onDidDispose(() => {
+			currentPanel = undefined;
+		});
+	}
+	else{
+		currentPanel.reveal(columnToShowIn);
+	}
+
+	currentPanel.webview.onDidReceiveMessage(message => {
+		if (message.type === 'selectedColors'){
+			const bgColor=message.backgroundColor;
+			const olColor=message.outlineColor;
+
+			workspace.getConfiguration('mind-reader.lineHighlighter').update('backgroundColor', bgColor, true);
+			workspace.getConfiguration('mind-reader.lineHighlighter').update('outlineColor', olColor, true);
+		}
+	});
+}
+
+type ChangeHighlightWebviewProps = {
+	stylesPath: vscode.Uri;
+	scriptsPath: vscode.Uri;
+	viewPath: string;
+};
+
+function getWebviewContent({stylesPath, scriptsPath, viewPath}: ChangeHighlightWebviewProps){
+    const html = fs.readFileSync(viewPath).toString();
+    return eval(`\`${html}\``);
 }
 
 // Clean-up after ourselves
@@ -335,4 +407,8 @@ export const lineHighlightercommands: CommandEntry[] = [
 		name: "mind-reader.toggleLineHighlight",
 		callback: toggleLineHighlight,
 	},
+	{
+		name: "mind-reader.changeHighlightColor",
+		callback: ()=> changeHighlightColor(),
+	}
 ];

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mind Reader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="flex justify-center lego-yellow font-medium w-full sticky top-0">
+        <a href="./index.html" class="nav-button">
+            <div class="p-4">Home</div>
+        </a>
+        <a href="./media/html/documentation.html" class="nav-button">
+            <div class="p-4">Documentation</div>
+        </a>
+        <a href="./media/html/demo.html" class="nav-button">
+            <div class="p-4">Features</div>
+        </a>
+    </div>
+    <div class="container mx-auto">
+        <div class="grid">
+            <img src="media/logo.png" width="150" class="justify-self-center py-4" />
+        </div>
+
+        <div class="grid justify-center">
+            <h1 class="text-4xl p-4">Welcome to Mind Reader!</h1>
+        </div>
+
+        <div class="p-6">
+            <p>
+                Mind Reader is a Visual Studio Code extension that helps
+                blind students program Lego Mindstorms robots in Python. The
+                current editor options available lack the level of
+                accessibility that is required to allow people who are
+                visually impaired to adequately write, edit, and debug code.
+                This tool extends Visual Studio Code's existing
+                accessibility options to enable people with a visual
+                impairment to learn Python programming with LEGO Mindstorms.
+            </p>
+            <br />
+
+            <h2 class="text-2xl">Our goal is to:</h2>
+            <ul class="list-inside list-disc pb-2">
+                <li>
+                    provide an accessible experience to people with a visual
+                    impairment
+                </li>
+                <li>
+                    <strong>not</strong> change the editing workflow for
+                    people without a visual impairment
+                </li>
+            </ul>
+
+            <h2 class="text-2xl">Major Features</h2>
+            <ul class="list-inside list-disc">
+                <li>
+                    Compatible with major screen readers
+                    <ul class="list-inside list-disc ml-4">
+                            <li>NVDA</li>
+                            <li>JAWS</li>
+                            <li>Apple VoiceOver</li>
+                        </ul>
+                </li>
+                <li>
+                    Present a summary of the scope for an individual line of
+                    code.
+                </li>
+                <li>
+                    Save, Load, Run, and Delete programs directly onto the
+                    LEGO SPIKE Prime Hub from within Visual Studio Code
+                </li>
+                <li>
+                    Line highlighting with customizable colors and formats
+                </li>
+                <li>
+                    Voice hotkeys and functions through the use of an
+                    exterior python server.
+                </li>
+                <li>Relevant autocomplete voiceovers on demand.</li>
+            </ul>
+
+            <br />
+            <h2 class="text-2xl">This is the Lego Spike Prime!</h2>
+            <p></p>
+            <img src="https://cdn.vox-cdn.com/thumbor/qoaa6N2ppl7oj97MR-aj43qPy0w=/0x0:1024x576/920x613/filters:focal(431x207:593x369):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/63339099/lego_spike.0.png"
+                width="300" />
+            <p></p>
+            <a href="https://www.lego.com/en-us/product/lego-education-spike-prime-set-45678">Get the robot!</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="pt-11 pb-4 text-center">
+            <div class="flex flex-wrap w-full justify-center gap-2">
+                <a href="https://github.com/kelsvilla/LegoMindstormsVSExtension" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        >
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
+            <div>&copy; <script>document.write( new Date().getFullYear() );</script> The Spam Artists. All rights reserved.</div>
+        </div>
+        
+    </footer>
+</body>
+
+</html>

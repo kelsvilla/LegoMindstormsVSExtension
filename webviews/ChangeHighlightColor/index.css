@@ -1,0 +1,57 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	border: 1px solid white;
+}
+
+.picker-container {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	border: 1px solid black;
+}
+
+label {
+	font-family: "Poppins", sans-serif;
+	font-size: 20px;
+	width: 10rem;
+	min-width: 3rem;
+	cursor: pointer;
+}
+
+/*------ Color Picker Styles ------*/
+.colorPicker {
+	appearance: none;
+	min-width: 100px;
+	min-height: 100px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.colorPicker::-webkit-color-swatch {
+	border-radius: 15px;
+	border: none;
+}
+/*------ Color Picker Styles ------*/
+
+.live-preview {
+	margin: 5px;
+	outline-style: solid;
+}
