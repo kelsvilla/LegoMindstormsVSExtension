@@ -49,10 +49,11 @@ import {
 	WorkspaceConfiguration,
 	Range,
 } from "vscode";
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 import { outputMessage } from "./text";
 
 let highlightStyle: TextEditorDecorationType;
+let selectionStyle: TextEditorDecorationType;
 
 /**
  * Trigger for when the active text editor changes
@@ -118,14 +119,14 @@ function triggerHighlight(): void {
 		return;
 	}
 
-	const isEnabled=getHighlighterStatus();
-	const multiLineIsEnabled=getMultiLineHighlighterStatus();
+	const isEnabled = getHighlighterStatus();
+	const multiLineIsEnabled = getMultiLineHighlighterStatus();
 
 	/* Create array to store decorations for highlight */
-	let decorations: {range: Range}[]=[];
+	let decorations: { range: Range }[] = [];
 
 	/* If highlight is enabled */
-	if(isEnabled) {
+	if (isEnabled) {
 		//Get cursor selections
 		const selections = activeTextEditor.selections;
 		//If multiline highlight is enabled
@@ -140,7 +141,7 @@ function triggerHighlight(): void {
 			if (isSingleLine) {
 				// If selection is single line, map selection
 				decorations = selections.map((selection) => ({
-					range: new Range(selection.anchor, selection.anchor),
+					range: new Range(selection.start, selection.end),
 				}));
 			}
 		}
@@ -148,6 +149,9 @@ function triggerHighlight(): void {
 
 	if (highlightStyle) {
 		activeTextEditor.setDecorations(highlightStyle, decorations);
+		if (selectionStyle) {selectionStyle.dispose();};
+		selectionStyle = getHighlighterStyle(true);
+		activeTextEditor.setDecorations(selectionStyle, decorations);
 	}
 }
 
@@ -179,23 +183,28 @@ function triggerHighlight(): void {
  *
  * @returns highlighterStyle
  */
-function getHighlighterStyle(): TextEditorDecorationType{
+function getHighlighterStyle(
+	onlyStyleSelections?: boolean,
+): TextEditorDecorationType {
 	// Used so we don't have to type out workspace.getConfiguration('mind-reader.lineHighlighter') on every line, ie: shorthand
 	const userConfig: WorkspaceConfiguration = workspace.getConfiguration(
 		"mind-reader.lineHighlighter",
 	);
 
-	const borderWidthTop: string =
-		userConfig.get("borderWidthTop") || "1px";
+	if (onlyStyleSelections) {
+		return window.createTextEditorDecorationType({
+			backgroundColor: userConfig.get("selectionColor") || "#0000FF40",
+		});
+	}
+
+	const borderWidthTop: string = userConfig.get("borderWidthTop") || "1px";
 	const borderWidthRight: string =
 		userConfig.get("borderWidthRight") || "16px";
 	const borderWidthBottom: string =
 		userConfig.get("borderWidthBottom") || "1px";
-	const borderWidthLeft: string =
-		userConfig.get("borderWidthLeft") || "1px";
+	const borderWidthLeft: string = userConfig.get("borderWidthLeft") || "1px";
 
-	const borderStyleTop: string =
-		userConfig.get("borderStyleTop") || "solid";
+	const borderStyleTop: string = userConfig.get("borderStyleTop") || "solid";
 	const borderStyleRight: string =
 		userConfig.get("borderStyleRight") || "solid";
 	const borderStyleBottom: string =
@@ -217,8 +226,7 @@ function getHighlighterStyle(): TextEditorDecorationType{
 
 	const fontStyle: string = userConfig.get("fontStyle") || "normal";
 	const fontWeight: string = userConfig.get("fontWeight") || "bolder";
-	const outlineColor: string =
-		userConfig.get("outlineColor") || "#4866FE";
+	const outlineColor: string = userConfig.get("outlineColor") || "#4866FE";
 	const outlineStyle: string = userConfig.get("outlineStyle") || "solid";
 	const outlineWidth: string = userConfig.get("outlineWidth") || "1px";
 	const textColor: string = userConfig.get("textColor") || "#FFFFFF";
@@ -227,8 +235,10 @@ function getHighlighterStyle(): TextEditorDecorationType{
 	// Combine all our styling into a single variable to return
 	const highlighterStyle: TextEditorDecorationType =
 		window.createTextEditorDecorationType({
-			isWholeLine: true,
-			backgroundColor: `${backgroundColor}`,
+			isWholeLine: !onlyStyleSelections,
+			backgroundColor: onlyStyleSelections
+				? "#0000FF40"
+				: `${backgroundColor}`,
 			fontStyle: `${fontStyle}`,
 			fontWeight: `${fontWeight}`,
 			color: `${textColor}`,
@@ -238,7 +248,7 @@ function getHighlighterStyle(): TextEditorDecorationType{
 			outlineColor: `${outlineColor}`,
 			outlineWidth: `${outlineWidth}`,
 			outlineStyle: `${outlineStyle}`,
-			textDecoration: `${textDecoration}`
+			textDecoration: `${textDecoration}`,
 		});
 
 	// Return our variable
@@ -269,11 +279,11 @@ function getHighlighterStatus(): boolean | undefined {
 		.get("isEnabled") === undefined
 		? (enabledStatus = true)
 		: (enabledStatus = workspace
-			.getConfiguration("mind-reader.lineHighlighter")
-			.get("isEnabled"));
+				.getConfiguration("mind-reader.lineHighlighter")
+				.get("isEnabled"));
 
-		// return the enabledStatus
-		return enabledStatus;
+	// return the enabledStatus
+	return enabledStatus;
 }
 
 function getMultiLineHighlighterStatus(): boolean | undefined {
@@ -291,43 +301,48 @@ function getMultiLineHighlighterStatus(): boolean | undefined {
 		.get("multiLineIsEnabled") === undefined
 		? (multiLineIsEnabled = true)
 		: (multiLineIsEnabled = workspace
-			.getConfiguration("mind-reader.lineHighlighter")
-			.get("multiLineIsEnabled"));
+				.getConfiguration("mind-reader.lineHighlighter")
+				.get("multiLineIsEnabled"));
 
-		// return the enabledStatus
-		return multiLineIsEnabled;
+	// return the enabledStatus
+	return multiLineIsEnabled;
 }
 
-let firstActivation=true;
+let firstActivation = true;
 
 /* Toggle line highlight function*/
 export function toggleLineHighlight() {
-	let highlightStatus=getHighlighterStatus(); // Set highlightStatus to true or false
+	let highlightStatus = getHighlighterStatus(); // Set highlightStatus to true or false
 
 	/* If highlight is currently on*/
-	if(highlightStatus===true && highlightStyle){
+	if (highlightStatus === true && highlightStyle) {
 		highlightStyle.dispose(); // Dispose of highlight
 		outputMessage("Line Highlighter Off"); // State it is off
-		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", false, true); // Set lineHighlighter status to false
-	}
-	/* If highlight is currently off */
-	else{
-		highlightStyle=getHighlighterStyle(); // Set style to current style declaration
+		workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.update("isEnabled", false, true); // Set lineHighlighter status to false
+	} else {
+		/* If highlight is currently off */
+		highlightStyle = getHighlighterStyle(); // Set style to current style declaration
 		triggerHighlight(); // Call trigger highlight function
-		if(!firstActivation){
-		outputMessage("Line Highlighter On"); // State highlight is on
+		if (!firstActivation) {
+			outputMessage("Line Highlighter On"); // State highlight is on
 		}
-		firstActivation=false;
-		workspace.getConfiguration("mind-reader.lineHighlighter").update("isEnabled", true, true); // Set linehighlight status to true
+		firstActivation = false;
+		workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.update("isEnabled", true, true); // Set linehighlight status to true
 	}
 }
 
 let currentPanel: vscode.WebviewPanel | undefined;
 
-export function changeHighlightColor(){
-	const columnToShowIn=vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+export function changeHighlightColor() {
+	const columnToShowIn = vscode.window.activeTextEditor
+		? vscode.window.activeTextEditor.viewColumn
+		: undefined;
 
-	if (!currentPanel){
+	if (!currentPanel) {
 		currentPanel = vscode.window.createWebviewPanel(
 			"changeHighlightColor",
 			"Highlight Color Picker",
@@ -340,14 +355,16 @@ export function changeHighlightColor(){
 
 		const webviewUri = vscode.Uri.file(
 			path.join(
-				path.normalize(__dirname).replace(`${path.sep}out${path.sep}commands`, ""), //Project root
+				path
+					.normalize(__dirname)
+					.replace(`${path.sep}out${path.sep}commands`, ""), //Project root
 				"webviews",
 				"ChangeHighlightColor",
 			),
 		);
-		const stylesPath = vscode.Uri.joinPath(webviewUri, "index.css")
-		const scriptsPath = vscode.Uri.joinPath(webviewUri, "index.js")
-		const viewPath = vscode.Uri.joinPath(webviewUri, "index.html")
+		const stylesPath = vscode.Uri.joinPath(webviewUri, "index.css");
+		const scriptsPath = vscode.Uri.joinPath(webviewUri, "index.js");
+		const viewPath = vscode.Uri.joinPath(webviewUri, "index.html");
 
 		currentPanel.webview.html = getWebviewContent({
 			stylesPath: currentPanel.webview.asWebviewUri(stylesPath),
@@ -361,23 +378,45 @@ export function changeHighlightColor(){
 		const outlineColor = vscode.workspace
 			.getConfiguration("mind-reader.lineHighlighter")
 			.get<string>("outlineColor");
-		currentPanel.webview.postMessage({ backgroundColor, outlineColor });
+		const secondaryHighlightColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("selectionColor");
+		const textColor = vscode.workspace
+			.getConfiguration("mind-reader.lineHighlighter")
+			.get<string>("textColor");
+		currentPanel.webview.postMessage({ backgroundColor, outlineColor, textColor, secondaryHighlightColor});
 
 		currentPanel.onDidDispose(() => {
 			currentPanel = undefined;
 		});
-	}
-	else{
+	} else {
 		currentPanel.reveal(columnToShowIn);
 	}
 
-	currentPanel.webview.onDidReceiveMessage(message => {
-		if (message.type === 'selectedColors'){
-			const bgColor=message.backgroundColor;
-			const olColor=message.outlineColor;
-
-			workspace.getConfiguration('mind-reader.lineHighlighter').update('backgroundColor', bgColor, true);
-			workspace.getConfiguration('mind-reader.lineHighlighter').update('outlineColor', olColor, true);
+	currentPanel.webview.onDidReceiveMessage((message) => {
+		if (message.type === "selectedColors") {
+			const bgColor = message.backgroundColor;
+			const olColor = message.outlineColor;
+			const tColor = message.textColor;
+			const sbColor = message.secondaryHighlightColor
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("backgroundColor", bgColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("textColor", tColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("borderColorBottom", olColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("borderColorLeft", olColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("borderColorRight", olColor, true);
+			workspace
+				.getConfiguration("mind-reader.lineHighlighter")
+				.update("selectionColor", sbColor, true);
 		}
 	});
 }
@@ -409,6 +448,6 @@ export const lineHighlightercommands: CommandEntry[] = [
 	},
 	{
 		name: "mind-reader.changeHighlightColor",
-		callback: ()=> changeHighlightColor(),
-	}
+		callback: () => changeHighlightColor(),
+	},
 ];
