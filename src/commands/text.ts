@@ -48,14 +48,17 @@ export const textCommands: CommandEntry[] = [
     {
         name: "mind-reader.goToSyntaxErrors",
         callback: goToSyntaxErrors,
+        undo: undoGoToSyntaxErrors,
     },
     {
         name: "mind-reader.moveCursorBeginning",
         callback: moveCursorBeginning,
+        undo: undoMoveCursorBeginning,
     },
     {
         name: "mind-reader.moveCursorEnd",
         callback: moveCursorEnd,
+        undo: undoMoveCursorEnd,
     },
 ];
 
@@ -509,6 +512,7 @@ function runCursorContext(): void {
 	}
 }
 
+let syntaxErrorPreviousPosition: {uri: Uri, position: Position} | undefined;
 async function goToSyntaxErrors(): Promise<void> {
     // Checks if there is an editor open
     if (!window || !window.activeTextEditor) {
@@ -524,6 +528,7 @@ async function goToSyntaxErrors(): Promise<void> {
     let nextProblemFileObj;
     let nextProblemFileIndex;
     let nextProblems;
+    syntaxErrorPreviousPosition = {uri: window.activeTextEditor.document.uri, position: cursorPosition};
 
     // creates array of objects
     /*
@@ -566,7 +571,7 @@ async function goToSyntaxErrors(): Promise<void> {
     if (nextProblemFileObj === undefined) {
         nextProblemFileIndex = 0;
         nextProblemFileObj = globalProblems[0];
-        const tabGroup = getTabGroupIndex(nextProblemFileObj);
+        const tabGroup = getTabGroupIndex(nextProblemFileObj.uri);
         await window.showTextDocument(nextProblemFileObj.uri, {
             selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
             viewColumn: tabGroup
@@ -608,7 +613,7 @@ async function goToSyntaxErrors(): Promise<void> {
         if (nextProblemFileIndex < globalProblems.length - 1) {
             // next problem in next file
             nextProblemFileObj = globalProblems[nextProblemFileIndex + 1];
-            const tabGroup = getTabGroupIndex(nextProblemFileObj);
+            const tabGroup = getTabGroupIndex(nextProblemFileObj.uri);
             await window.showTextDocument(nextProblemFileObj.uri, {
                 selection: new Range(nextProblemFileObj.problems[0].position, nextProblemFileObj.problems[0].position),
                 viewColumn: tabGroup
@@ -618,7 +623,7 @@ async function goToSyntaxErrors(): Promise<void> {
             outputMessage(message);
         } else {
             // last problem, go to first problem of first file
-            const tabGroup = getTabGroupIndex(globalProblems[0]);
+            const tabGroup = getTabGroupIndex(globalProblems[0].uri);
             await window.showTextDocument(globalProblems[0].uri, {
                 selection: new Range(globalProblems[0].problems[0].position, globalProblems[0].problems[0].position),
                 viewColumn: tabGroup
@@ -630,18 +635,27 @@ async function goToSyntaxErrors(): Promise<void> {
     }
 }
 
-function getTabGroupIndex(file: {
-	uri: Uri;
-	problems: {
-		message: string;
-		position: Position;
-	}[];
-}): number | undefined {
+async function undoGoToSyntaxErrors(): Promise<void> {
+    if(!window.activeTextEditor) {
+        return;
+    }
+    if (syntaxErrorPreviousPosition) {
+        const tabGroup = getTabGroupIndex(syntaxErrorPreviousPosition.uri);
+        await window.showTextDocument(syntaxErrorPreviousPosition.uri, {
+            selection: new Range(syntaxErrorPreviousPosition.position, syntaxErrorPreviousPosition.position),
+            viewColumn: tabGroup
+        });
+        syntaxErrorPreviousPosition = undefined;
+    }
+
+}
+
+function getTabGroupIndex(fileUri: Uri): number | undefined {
 	for (const tabGroup of window.tabGroups.all) {
 		for (const tab of tabGroup.tabs) {
 			if (
 				tab.input instanceof TabInputText &&
-				tab.input.uri.toString() === file.uri.toString()
+				tab.input.uri.toString() === fileUri.toString()
 			) {
 				//File is already opened: return the viewColumn for use when opening file
 				return tab.group.viewColumn;
@@ -652,6 +666,7 @@ function getTabGroupIndex(file: {
 }
 
 // Helper functions to move Cursor to beginning or end
+let moveCursorBeginningPrevPosition: Position | undefined;
 export function moveCursorBeginning(): void {
     const editor = window.activeTextEditor;
 
@@ -660,7 +675,7 @@ export function moveCursorBeginning(): void {
         outputErrorMessage("MoveCursorBeginning: No Active Editor");
         return;
     }
-
+    moveCursorBeginningPrevPosition = editor.selection.active; // Save previous position
     let newPosition: Position;
 
     newPosition = new Position(0, 0); // Assign  newPosition to beginning
@@ -672,6 +687,27 @@ export function moveCursorBeginning(): void {
     window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
 }
 
+function undoMoveCursorBeginning(): void {
+    const editor = window.activeTextEditor;
+
+    //Throw error if no editor open
+    if (!editor) {
+        outputErrorMessage("MoveCursorBeginning: No Active Editor");
+        return;
+    }
+
+    if (moveCursorBeginningPrevPosition) {
+        const newSelection = new Selection(
+            moveCursorBeginningPrevPosition,
+            moveCursorBeginningPrevPosition,
+        );
+        editor.selection = newSelection;
+        editor.revealRange(editor.selection, 1);
+        window.showTextDocument(editor.document, editor.viewColumn);
+        moveCursorBeginningPrevPosition = undefined;
+    }
+}
+let moveCursorEndPrevPosition: Position | undefined;
 export function moveCursorEnd(): void {
     const editor = window.activeTextEditor;
 
@@ -681,6 +717,7 @@ export function moveCursorEnd(): void {
         return;
     }
 
+    moveCursorEndPrevPosition = editor.selection.active; // Save previous position
     let newPosition: Position;
 
     const lastLine = editor.document.lineCount - 1; // Get last line
@@ -693,6 +730,28 @@ export function moveCursorEnd(): void {
     editor.revealRange(editor.selection, 1); // Make sure cursor is within range
     window.showTextDocument(editor.document, editor.viewColumn); // You are able to type without reclicking in document
 }
+
+function undoMoveCursorEnd(): void {
+    const editor = window.activeTextEditor;
+
+    //Throw error if no editor open
+    if (!editor) {
+        outputErrorMessage("MoveCursorEnd: No Active Editor");
+        return;
+    }
+
+    if (moveCursorEndPrevPosition) {
+        const newSelection = new Selection(
+            moveCursorEndPrevPosition,
+            moveCursorEndPrevPosition,
+        );
+        editor.selection = newSelection;
+        editor.revealRange(editor.selection, 1);
+        window.showTextDocument(editor.document, editor.viewColumn);
+        moveCursorEndPrevPosition = undefined;
+    }
+}
+
 
 function generateErrorMessage(textEditor: TextEditor, nextProblemMessage: string): string {
     let path = textEditor.document.uri.fsPath;

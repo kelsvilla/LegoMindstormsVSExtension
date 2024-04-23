@@ -352,6 +352,11 @@
 				"command": "mind-reader.changeHighlightColor",
 				"title": "Change Highlight Color",
 				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.goToSyntaxErrors",
+				"title": "Go to Syntax Errors",
+				"category": "Mind Reader"
 			}
 		],
 		"keybindings": [

@@ -124,6 +124,10 @@ export function toggleStreaming() {
 	server = activateVoiceServer();
 	const commandHistory: string[] = [];
 
+	server.on("exit", (code: any) => {
+		server = undefined;
+	})
+
 	//stderr -> vscode error
 	server.stderr.on("data", (err: any) => {
 		console.log("error: ", err.toString());
