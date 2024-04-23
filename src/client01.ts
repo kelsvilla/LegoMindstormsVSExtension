@@ -5,6 +5,26 @@ var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
 import { outputMessage, outputErrorMessage } from "./commands/text";
+import {
+	accessCommands,
+	hubCommands,
+	navCommands,
+	textCommands,
+	voicetotextCommands,
+	TTSCommand,
+	midicommands,
+	lineHighlightercommands,
+} from "./commands";
+
+const allCommands = [
+	accessCommands,
+	hubCommands,
+	navCommands,
+	textCommands,
+	TTSCommand,
+	midicommands,
+	lineHighlightercommands,
+].flat(1);
 
 let server: any;
 
@@ -63,7 +83,9 @@ function runClient(commandHistory: string[]) {
 			try {
 				if (cmdName === "undo") {
 					if (commandHistory.length > 0) {
-						commandHistory.pop();
+						//Get last command and undo it. We don't care whether the command is there or has an undo function, just continue in that case.
+						const lastCommand = commandHistory.pop();
+						allCommands.find((command)=>command.name === lastCommand)?.undo?.();
 					}
 				} else if (cmdName !== "") {
 					await vscode.commands.executeCommand(cmdName);

@@ -6,3 +6,4 @@ export { navCommands } from "./nav";
 export { voicetotextCommands } from "./voicetotext";
 export { midicommands } from "./midi";
 export { lineHighlightercommands} from "./lineHighlighter";
+export { voiceCommands } from "./voice";
