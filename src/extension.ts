@@ -6,7 +6,6 @@ import { installer } from "./pythonManager";
 import path = require("path");
 import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter";
 import { setShouldSpeak } from "./commands/text";
-
 import {
 	accessCommands,
 	hubCommands,
@@ -15,7 +14,8 @@ import {
 	voicetotextCommands,
 	TTSCommand,
 	midicommands,
-	lineHighlightercommands
+	lineHighlightercommands,
+	voiceCommands
 } from "./commands";
 import { Configuration } from "./util";
 
@@ -47,7 +47,8 @@ export function activate(context: vscode.ExtensionContext) {
 		textCommands,
 		TTSCommand,
 		midicommands,
-		lineHighlightercommands
+		lineHighlightercommands,
+		voiceCommands,
 	].flat(1);
 
 	voicetotextCommands.forEach((command) => {
