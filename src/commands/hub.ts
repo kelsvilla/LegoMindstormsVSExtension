@@ -1,10 +1,12 @@
 import * as vscode from "vscode";
 import * as path from "path";
+import HubManager3 from "../primeManager3";
 import HubManager from "../hubManager";
 import { outputMessage, outputErrorMessage, outputWarningMessage } from "./text";
 //import EV3Manager from '../ev3Manager';
 
 import { CommandEntry } from "./commandEntry";
+import EV3Manager from "../ev3Manager";
 
 export const hubCommands: CommandEntry[] = [
 	{
@@ -35,22 +37,11 @@ export const hubCommands: CommandEntry[] = [
 	{
 		name: "mind-reader.deleteProgram",
 		callback: deleteProgram,
-	} /*,
-  {
-    name: 'mind-reader.ev3.test',
-    callback: ev3test
-  }*/,
+	}
 ];
 
 // Current connected hub
-let hub: HubManager | null = null;
-
-/*let ev3: EV3Manager | null = null;
-
-async function ev3test(): Promise<void> {
-  ev3 = await EV3Manager.activate();
-  ev3.test();
-}*/
+let hub: HubManager3 | HubManager | null = null;
 
 async function connectHub(): Promise<void> {
 	if (hub && hub.isOpen()) {
@@ -61,6 +52,9 @@ async function connectHub(): Promise<void> {
 	}
 
 	try {
+		vscode.window.showErrorMessage("Not Yet Implemented")
+		return
+		//Want to programmatically determine if Spike V2 or V3. EV3 should be easy
 		const ports = await HubManager.queryPorts();
 
 		if (ports.length === 0) {
@@ -88,7 +82,7 @@ async function connectHub(): Promise<void> {
 
 			portPath = picked.label;
 		}
-		hub = await HubManager.create(portPath);
+		hub = await HubManager3.create(portPath);
 		outputMessage("LEGO Hub connected");
 	} catch (err) {
 		outputErrorMessage("Could not connect to LEGO Hub");
@@ -118,33 +112,45 @@ async function uploadCurrentFile(): Promise<void> {
 	}
 
 	const currentFilePath = vscode.window.activeTextEditor.document.fileName;
-
-	if (currentFilePath) {
-		// construct quickpick
-		const slots: vscode.QuickPickItem[] = [];
-		for (let i = 0; i < 10; i++) {
-			slots.push({ label: i.toString() });
+	if(hub instanceof HubManager || hub instanceof HubManager3) {
+		if (currentFilePath) {
+			// construct quickpick
+			const slots: vscode.QuickPickItem[] = [];
+			for (let i = 0; i < 10; i++) {
+				slots.push({ label: i.toString() });
+			}
+			const slotID = await vscode.window.showQuickPick(slots, {
+				canPickMany: false,
+			});
+	
+			if (!slotID) {
+				return;
+			}
+	
+			// TODO: progress bar?
+			outputMessage("Uploading current file");
+			if(hub instanceof HubManager) {
+				await hub.uploadFile(
+					currentFilePath,
+					parseInt(slotID.label),
+					path.basename(currentFilePath),
+				);
+			} else {
+				await hub.uploadFile(
+					currentFilePath,
+					parseInt(slotID.label) < 10 ? `0${slotID.label}` : slotID.label,
+					path.basename(currentFilePath),
+				);
+			}
+			outputMessage(
+				path.basename(currentFilePath) +
+					" uploaded to slot " +
+					slotID.label,
+			);
 		}
-		const slotID = await vscode.window.showQuickPick(slots, {
-			canPickMany: false,
-		});
-
-		if (!slotID) {
-			return;
-		}
-
-		// TODO: progress bar?
-		outputMessage("Uploading current file");
-		await hub.uploadFile(
-			currentFilePath,
-			parseInt(slotID.label),
-			path.basename(currentFilePath),
-		);
-		outputMessage(
-			path.basename(currentFilePath) +
-				" uploaded to slot " +
-				slotID.label,
-		);
+	} else {
+		vscode.window.showInformationMessage("Not Yet Implemented")
+		return;
 	}
 }
 
@@ -154,22 +160,25 @@ async function runProgram(): Promise<void> {
 		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
-
-	const slots: vscode.QuickPickItem[] = [];
-	// construct quickpick
-	for (let i = 0; i < 10; i++) {
-		slots.push({ label: i.toString() });
+	if(hub instanceof HubManager || hub instanceof HubManager3) {
+		const slots: vscode.QuickPickItem[] = [];
+		// construct quickpick
+		for (let i = 0; i < 10; i++) {
+			slots.push({ label: i.toString() });
+		}
+		const slotID = await vscode.window.showQuickPick(slots, {
+			canPickMany: false,
+		});
+	
+		if (!slotID) {
+			return;
+		}
+	
+		outputMessage("Running program " + slotID.label);
+		await hub.programExecute(parseInt(slotID.label));
+	} else {
+		vscode.window.showErrorMessage("Not Yet Implemented")
 	}
-	const slotID = await vscode.window.showQuickPick(slots, {
-		canPickMany: false,
-	});
-
-	if (!slotID) {
-		return;
-	}
-
-	outputMessage("Running program " + slotID.label);
-	await hub.programExecute(parseInt(slotID.label));
 }
 
 async function stopExecution(): Promise<void> {
@@ -177,8 +186,9 @@ async function stopExecution(): Promise<void> {
 		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
-
-	await hub.programTerminate();
+	if(hub instanceof HubManager || hub instanceof HubManager3) {
+		await hub.programTerminate();
+	}
 	outputMessage("Execution stopped");
 }
 
@@ -188,20 +198,23 @@ async function deleteProgram(): Promise<void> {
 		outputErrorMessage("LEGO Hub is not connected!");
 		return;
 	}
-
-	const slots: vscode.QuickPickItem[] = [];
-	// construct quickpick
-	for (let i = 0; i < 10; i++) {
-		slots.push({ label: i.toString() });
+	if(hub instanceof HubManager || hub instanceof HubManager3) {
+		const slots: vscode.QuickPickItem[] = [];
+		// construct quickpick
+		for (let i = 0; i < 10; i++) {
+			slots.push({ label: i.toString() });
+		}
+		const slotID = await vscode.window.showQuickPick(slots, {
+			canPickMany: false,
+		});
+	
+		if (!slotID) {
+			return;
+		}
+	
+		await hub.deleteProgram(parseInt(slotID.label));
+		outputMessage("Deleted program " + slotID.label);
+	} else {
+		vscode.window.showErrorMessage("Not Yet Implemented")
 	}
-	const slotID = await vscode.window.showQuickPick(slots, {
-		canPickMany: false,
-	});
-
-	if (!slotID) {
-		return;
-	}
-
-	await hub.deleteProgram(parseInt(slotID.label));
-	outputMessage("Deleted program " + slotID.label);
 }

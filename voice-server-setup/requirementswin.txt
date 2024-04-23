@@ -2,3 +2,4 @@ PyAudio==0.2.14;
 setuptools==69.0.3;
 SpeechRecognition==3.10.1;
 spacy==3.7.2;
+mpy-cross==1.21.0;
