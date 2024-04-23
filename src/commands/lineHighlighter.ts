@@ -445,6 +445,7 @@ export const lineHighlightercommands: CommandEntry[] = [
 	{
 		name: "mind-reader.toggleLineHighlight",
 		callback: toggleLineHighlight,
+		undo: toggleLineHighlight,
 	},
 	{
 		name: "mind-reader.changeHighlightColor",
