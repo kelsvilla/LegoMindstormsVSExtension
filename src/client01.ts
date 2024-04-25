@@ -4,7 +4,7 @@ import * as path from "path";
 var os = require("os");
 const { spawn } = require("child_process");
 import { rootDir } from "./extension";
-import { outputMessage, outputMessageAsync, outputErrorMessage } from "./commands/text";
+import { outputMessage, outputErrorMessage } from "./commands/text";
 import {
 	accessCommands,
 	hubCommands,
@@ -90,11 +90,11 @@ function runClient(commandHistory: string[]) {
 				} else if (cmdName !== "") {
 					await vscode.commands.executeCommand(cmdName);
 					commandHistory.push(cmdName);
-					outputMessageAsync(logMsg);
+					outputMessage(logMsg);
 				} else {
 					for (const log of logMsg.split("\n")) {
 						console.log(log);
-						outputMessageAsync(log);
+						await outputMessage(log);
 					}
 				}
 			} catch (e) {
@@ -134,7 +134,7 @@ export function toggleStreaming() {
 		outputErrorMessage(err.toString());
 	});
 	//child stdout -> vscode info
-	server.stdout.on("data", async (data: any) => {
+	server.stdout.on("data", (data: any) => {
 		console.log("python message: ", data.toString());
 		//server ready for connection
 		var serverMsg = data.toString();
@@ -147,6 +147,6 @@ export function toggleStreaming() {
 			console.log("server not ready yet");
 			console.log(serverMsg);
 		}
-		outputMessageAsync(data.toString());
+		outputMessage(data.toString());
 	});
 }

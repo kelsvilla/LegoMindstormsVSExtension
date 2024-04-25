@@ -101,65 +101,6 @@ export function outputMessage(message: string) {
     shouldSpeak === true ? say.speak(message, undefined, readingSpeed) : undefined;
 }
 
-class MessageQueueManager {
-    private static instance: MessageQueueManager;
-    private messageQueue: {message: string,
-        res: (err: string)=>void,
-        timestamp: number    
-    }[] = [];
-    private isSpeaking: boolean = false;
-    private timeoutThreshold: number = 3000;
-
-    private constructor() {}
-
-    public static GetInstance(): MessageQueueManager {
-        if (!MessageQueueManager.instance) {
-            MessageQueueManager.instance = new MessageQueueManager();
-        }
-        return MessageQueueManager.instance;
-    }
-
-    public addMessage(message: {message: string, res: (err: string)=>void, timestamp: number}): void {
-        this.messageQueue.push(message);
-        this.speakMessage()
-    }
-
-    public speakMessage(): void {
-        if(this.messageQueue.length === 0) return;
-        if (!this.isSpeaking) {
-            this.isSpeaking = true;
-            const message = this.messageQueue.shift();
-            if(!message) {
-                outputErrorMessage("Error with notifications");
-                this.isSpeaking = false;
-                this.speakMessage();
-                return;
-            }
-            if(Date.now() - message.timestamp > this.timeoutThreshold) {
-                console.log("Expired")
-                message.res("");
-                this.isSpeaking = false;
-                this.speakMessage();
-                return;
-            }
-            say.speak(message.message, undefined, Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"], ()=>{
-                message.res("");
-                this.isSpeaking = false;
-                this.speakMessage();
-            });
-        }
-    }
-}
-
-export async function outputMessageAsync(message: string) {
-    let readingSpeed: number = Configuration.GetInstance().get()["textToSpeech"]["readingSpeed"];
-
-    window.showInformationMessage(message);
-    if (shouldSpeak) {
-        return new Promise((res, rej)=>{MessageQueueManager.GetInstance().addMessage({ message: message, res: res, timestamp: Date.now() })});
-    }
-}
-
 export function outputWarningMessage(message: string) {
     window.showWarningMessage(message);
     shouldSpeak === true? say.speak("Warning," + message) : undefined;
