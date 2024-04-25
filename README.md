@@ -1,6 +1,6 @@
 <!-- header with logo -->
 <p align="center">
-<img alt="Mind Reader Logo" src="media/logo.png"></img>
+<img alt="Mind Reader Logo" src="media/logo.png"></img>.
 </p>
 
 <h1>Mind Reader</h1>
@@ -21,7 +21,7 @@ Python programming with LEGO Mindstorms. Our goal is to:
 
 ## Major Features
 
--   Compatible with major screen readers:
+-   Compatible with major screen readers*:
 
     -   [NVDA](https://www.nvaccess.org/)
     -   [JAWS](https://www.freedomscientific.com/products/software/jaws/)
@@ -38,6 +38,17 @@ Python programming with LEGO Mindstorms. Our goal is to:
 -   Voice functions through the use of an exterior python server.
 
 -   Relevant autocomplete voiceovers on demand.
+
+*Note: Most screen readers allow you to cancel what it is reading by pressing CTRL (Windows) or Command (Mac).
+
+# Installation
+1. Open the extensions sidebar on Visual Studio Code
+2. Search for Mind Reader
+3. Click Install
+4. Reload your editor if needed
+5. Enjoy
+
+For MacOS users, you may need to install a package manager like [Homebrew](https://brew.sh/) to get portaudio.
 
 # Contact Information
 

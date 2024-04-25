@@ -1,0 +1,80 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	border: 1px solid white;
+}
+
+.picker-container {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	border: 1px solid black;
+}
+
+label {
+	font-family: "Poppins", sans-serif;
+	font-size: 20px;
+	width: 10rem;
+	min-width: 3rem;
+	cursor: pointer;
+}
+
+/*------ Color Picker Styles ------*/
+.colorPicker {
+	appearance: none;
+	min-width: 100px;
+	min-height: 100px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.colorPicker::-webkit-color-swatch {
+	border-radius: 15px;
+	border: 1px solid black;
+}
+/*------ Color Picker Styles ------*/
+
+.live-preview {
+	margin: 5px;
+	outline-style: solid;
+	--selection-color: #00ffff;
+}
+
+.live-preview::selection {
+	background-color: var(--selection-color);
+}
+
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 25px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #00ffff);
+	outline: none;
+	background-color: #00000000;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 10px;
+	height: 30px;
+	background: #4caf50;
+	cursor: pointer;
+}

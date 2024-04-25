@@ -8,20 +8,24 @@ from nlp import NaturalLanguageProcessor, Command
 def voice_to_text():
     r = sr.Recognizer()
 
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-        while(True):
-            print('Please give your command. Listening...',flush=True)
+    try: 
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            while(True):
+                print('Please give your command. Listening...',flush=True)
 
-            try:
-                audio = r.listen(source,timeout=7,phrase_time_limit=5)
-                cmd =  r.recognize_google(audio)
-                print('Did you say : ' + cmd,flush=True)
-                return str(cmd)
-            
-            except (Exception, sr.exceptions.WaitTimeoutError) as e:
-                if type(e) != sr.exceptions.WaitTimeoutError and type(e) != sr.exceptions.UnknownValueError:
-                    print("There was an issue with the microphone input.", flush=True)
+                try:
+                    audio = r.listen(source,timeout=7,phrase_time_limit=5)
+                    cmd =  r.recognize_google(audio)
+                    print('Did you say : ' + cmd,flush=True)
+                    return str(cmd)
+
+                except (Exception, sr.exceptions.WaitTimeoutError) as e:
+                    if type(e) != sr.exceptions.WaitTimeoutError and type(e) != sr.exceptions.UnknownValueError:
+                        print("There was an issue with the microphone input.", flush=True)
+    except OSError as e:
+        print("Microphone not detected. Please check your microphone connection.", flush=True)
+        exit(0)
 
 def handle_syn_ack(clientsocket):
     #syn msg is received from the client upon successful connection

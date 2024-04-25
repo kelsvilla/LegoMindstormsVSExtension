@@ -31,9 +31,9 @@
 		"Kelsee Villareal <KelseeVillareal@my.unt.edu>",
 		"Bryan Tang <BryanTang@my.unt.edu>"
 	],
-	"version": "3.4.0",
+	"version": "3.6.1",
 	"engines": {
-		"vscode": "^1.66.0"
+		"vscode": "^1.86.0"
 	},
 	"categories": [
 		"Other"
@@ -45,10 +45,11 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "mind-reader.startStreaming",
+				"command": "mind-reader.toggleStreaming",
 				"title": "Start Voice Commands",
 				"category": "Voice Commands",
-				"voiceEntry": "Voice-command.start Streaming"
+				"voiceEntry": "Voice-command.start Streaming",
+				"icon": "$(mic)"
 			},
 			{
 				"command": "mind-reader.voiceToText",
@@ -402,7 +403,28 @@
                     "light": "resources/icons/light/refresh.svg"
                 },
                 "category": "ev3dev"
-            }
+            },
+      {
+				"command": "mind-reader.toggleTTS",
+				"title": "Toggle Text-to-Speech",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"title": "Toggle line highlighter",
+				"category": "Mind Reader",
+				"voiceEntry": "Toggle Line Highlighter"
+			},
+			{
+				"command": "mind-reader.changeHighlightColor",
+				"title": "Change Highlight Color",
+				"category": "Mind Reader"
+			},
+			{
+				"command": "mind-reader.goToSyntaxErrors",
+				"title": "Go to Syntax Errors",
+				"category": "Mind Reader"
+			}
 		],
 		"keybindings": [
 			{
@@ -412,7 +434,7 @@
 				"mac": "Cmc+Shift+[Slash] Cmc+Shift+[Slash]"
 			},
 			{
-				"command": "mind-reader.startStreaming",
+				"command": "mind-reader.toggleStreaming",
 				"key": "ctrl+Shift+/ V",
 				"mac": "Cmd+Shift+[Slash] V"
 			},
@@ -489,6 +511,21 @@
 				"key": "Ctrl+Shift+/ E",
 				"mac": "Ctrl+Shift+[Slash] E",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "mind-reader.toggleSoundCues",
+				"key": "Ctrl+Shift+/ T",
+				"mac": "Ctrl+Shift+[Slash] T"
+			},
+			{
+				"command": "mind-reader.toggleLineHighlight",
+				"key": "Ctrl+Shift+/ H",
+				"mac": "Ctrl+Shift+[Slash] H"
+			},
+			{
+				"command": "mind-reader.changeHighlightColor",
+				"key": "Ctrl+Shift+/ Z",
+				"mac": "Ctrl+Shift+[Slash] Z"
 			}
 		],
 		"menus": {
@@ -496,6 +533,13 @@
 				{
 					"submenu": "mind-reader.editor.context",
 					"group": "mind-reader"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "mind-reader.toggleStreaming",
+					"when": "activeEditor",
+					"group": "navigation"
 				}
 			],
 			"mind-reader.editor.context": [
@@ -775,11 +819,23 @@
 						"order": 2,
 						"type": "string",
 						"markdownDescription": "The default port to try and establish a connection on."
+					},
+					"mind-reader.textToSpeech.readingSpeed": {
+						"order": 4,
+						"type": "number",
+						"description": "The speed that the Text to Speech function will read.",
+						"default": 1
+					},
+					"mind-reader.textToSpeech.isEnabledOnStartup": {
+						"order": 5,
+						"type": "boolean",
+						"description": "Enable/Disable Text to Speech on startup.",
+						"default": false
 					}
 				}
 			},
 			{
-				"title": "Line Highlighter [Must Close Settings And RESTART VSCode For The Line Highlighter To Function]",
+				"title": "Line Highlighter",
 				"order": 1,
 				"properties": {
 					"mind-reader.lineHighlighter.isEnabled": {
@@ -913,6 +969,12 @@
 						"type": "string",
 						"markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
 						"default": "#FFFFFF"
+					},
+					"mind-reader.lineHighlighter.selectionColor": {
+						"order": 25,
+						"type": "string",
+						"markdownDescription": "Set the text color to be used by the line highlighter.\n\nSyntax: _color_ or `transparent`\n\nAvailable color formats include:\n* `HEX(A)`: for Hexadecimal Colors: `#RRGGBB` or `#RRGGBBAA` to add transparency\n* `RGB(A)`: for RGB Colors: `rgb(red, green, blue)` or `rgba(red, green, blue, alpha)`\n* `HSL(A)`: for HSL Colors: `hsl(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`\n* `Predefined Color Names`: 140 color names are predefined in the HTML and CSS color specification: `blue`, `red`, `coral`, `brown`, [etc...](https://www.w3schools.com/colors/colors_names.asp)\n* `None`: For no color to be applied: Sometimes VSCode will pull a color from your theme, other times it uses black\n* `#FFFFFF` is our default",
+						"default": "#FFFFFF"
 					}
 				}
 			},
@@ -1037,6 +1099,12 @@
 					"contextualTitle": "Accessibility Menu Actions"
 				},
 				{
+					"id": "textActions",
+					"name": "Text Actions",
+					"icon": "${file}",
+					"contextualTitle": "Text Data Actions"
+				},
+				{
 					"id": "hubActions",
 					"name": "Hub Actions",
 					"icon": "media/dep.svg",
@@ -1142,7 +1210,7 @@
 							"altText": "Speech to Code"
 						},
 						"completionEvents": [
-							"onCommand:voice-command.startStreaming"
+							"onCommand:mind-reader.toggleStreaming"
 						]
 					},
 					{
@@ -1199,18 +1267,17 @@
 		"@types/ssh2": "^1.11.19",
 		"@types/ssh2-streams": "^0.1.12",
 		"@types/temp": "^0.9.4",
-		"@types/vscode": "^1.60.0",
+		"@types/vscode": "^1.86.0",
 		"@types/ws": "^6.0.0",
 		"@types/zen-observable": "^0.8.7",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
-		"@vscode/test-electron": "^1.6.2",
+		"@vscode/test-electron": "^2.3.9",
 		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^10.0.0",
 		"prettier": "3.1.0",
-		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2"
+		"typescript": "^4.3.2"
 	},
 	"dependencies": {
 		"bonjour": "^3.5.0",
@@ -1219,9 +1286,8 @@
 		"electron": "^24.2.0",
 		"electron-rebuild": "^3.2.9",
 		"jzz": "^1.7.4",
-		"midi": "^2.0.0",
 		"play-sound": "^1.1.6",
-		"say": "^0.16.0",
+		"say": "file:./dependencies/say",
 		"serialport": "^11.0.0",
 		"server": "^1",
 		"speech-synthesis": "^0.3.2",
@@ -1234,7 +1300,8 @@
 		"vscode-languageclient": "^5.1.0-next.9",
 		"web-audio-api": "^0.2.2",
 		"ws": "^6.2.2",
-		"zen-observable": "^0.10.0"
+		"zen-observable": "^0.10.0",
+		"zod": "^3.22.4"
 	},
 	"icon": "media/logo.png",
 	"description": "An extension with additional features for Lego Mindstorm development.",

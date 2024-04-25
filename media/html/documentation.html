@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Reader Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="flex justify-center lego-yellow font-medium w-full sticky top-0 h-14">
+        <a href="../../index.html" class="nav-button">
+            <div class="p-4">Home</div>
+        </a>
+        <a href="./documentation.html" class="nav-button">
+            <div class="p-4">Documentation</div>
+        </a>
+        <a href="./demo.html" class="nav-button">
+            <div class="p-4">Features</div>
+        </a>
+    </div>
+
+    <div class="container mx-auto">
+        <div class="h-full">
+            <div class="flex justify-center">
+                <h1 class="text-4xl p-4">Documentation</h1>
+            </div>
+
+            <div class="grid lg:flex gap-x-44">
+                <!-- TOC -->
+                <div class="hidden lg:block w-2/5">
+                    <div class="grid sticky top-20">
+                        <div class="text-lg py-4 font-semibold">Table of Contents</div>
+                        <div class="pb-4">
+                            <div class="text-md font-semibold">Users</div>
+                            <div><a href="#GettingStarted">Getting Started with Mind Reader</a></div>
+                            <div><a href="#keybind-shortcuts">Keybind Shortcuts</a></div>
+                            <div><a href="#configure-line-highlighter">Configure Line Highlighter</a></div>
+                            <div><a href="#voice-commands">Voice Commands</a></div>
+                            <div><a href="#mind-reader-actions">Mind Reader Actions</a></div>
+                        </div>
+                        <div>
+                            <div class="text-md font-semibold">Development</div>
+                            <div><a href="#development-environment-setup-guide">Development Environment Setup Guide</a>
+                            </div>
+                            <div><a href="#running-the-extension">Running the Extension</a></div>
+                            <div><a href="#alternative">Alternative Setup Method</a></div>
+                            <div><a href="#development-teams">Development Teams</a></div>
+                            <div><a href="#pr-checklist">PR Checklist</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid auto-rows-max gap-y-4">
+                    <!-- User -->
+                    <!-- Getting Started -->
+                    <div id="GettingStarted" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Getting Started with Mind Reader</h2>
+                        <ol class="list-decimal list-inside pb-2">
+                            <li>Open the extensions sidebar on Visual Studio Code</li>
+                            <li>Search for Mind Reader</li>
+                            <li>Click Install</li>
+                            <li>Reload your editor if needed</li>
+                        </ol>
+                        <h3 class="text-lg font-semibold">MacOS</h3>
+                        <p class="pb-2">If you are running Mind Reader on MacOS, you may need to install a package
+                            called
+                            portaudio. This
+                            package allows microphone input for PyAudio, a package for audio I/O. You will need to
+                            install homebrew to get portaudio installed. Here are the steps:</p>
+                        <ol class="list-decimal list-inside pb-2">
+                            <li>Close Visual Studio Code</li>
+                            <li>Go to <a href="https://brew.sh/" class="text-blue-600">Homebrew</a> and follow the steps
+                                to install Homebrew
+                            </li>
+                            <li>On a terminal, run <code>`brew install portaudio`</code></li>
+                        </ol>
+                        <p>The Speech Recognition feature should be able to run now. If you are still getting errors,
+                            you
+                            may need to reinstall the extension.</p>
+                    </div>
+
+                    <!-- Keybind Shortcuts -->
+                    <div id="keybind-shortcuts" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Keybind Shortcuts</h2>
+                        <table class="table-auto w-full border-collapse border border-slate-500">
+                            <thead>
+                                <tr>
+                                    <th class="border border-slate-600">Command</th>
+                                    <th class="border border-slate-600">Keybind</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-slate-700">Go to Access Actions Menu</td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ Ctrl+Shift+/</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Decrease Font Scale</td>
+                                    <td class="border border-slate-700">Shift+Alt+Z -</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Open Keybinds</td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ K</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Get Line Number </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ L</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Get Leading Number of Spaces </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ S</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Get Number of Lines Selected </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ N</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Get Indent </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ I</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Get Scope of the Current Line </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ C</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Increase Font Scale </td>
+                                    <td class="border border-slate-700">Shift+Alt+Z =</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Move Cursor to Beginning </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ B</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Move Cursor to End of File </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ E</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Reset Font Scale </td>
+                                    <td class="border border-slate-700">Shift+Alt+Z 0</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Select Number of Leading White Spaces </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ W</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Start Voice Commands </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ V</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="border border-slate-700">Go to Syntax Errors </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+Space</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="border border-slate-700">Toggle Sound Cues </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ T</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-slate-700">Toggle Line Highlighter on and off </td>
+                                    <td class="border border-slate-700">Ctrl+Shift+/ H</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- Line Highlighter -->
+                    <div id="configure-line-highlighter" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Configure Line Highlighter</h2>
+                        <p>The Line Highlighter feature is customizable. Changes to the highlighter&#39;s appearance can
+                            be done through your <code>`settings.json`</code> or through the settings window.
+                            Before running Mind Reader for the first time it is recommended to add the following code
+                            block to your <code>`settings.json`</code> file
+                        </p>
+
+                        <br>
+
+                        <h3 class="text-lg font-semibold" id="configure-through-settings-json">Configure through
+                            settings.json</h3>
+                        <ol class="list-decimal list-inside">
+                            <li>Launch VS Code</li>
+                            <li>Open the <code>`Command Palette`</code> by pressing <strong>Ctrl + Shift + P</strong>
+                                (Windows) / <strong>Cmd + Shift + P</strong> (Mac)</li>
+                            <li>The Command Palette should appear at the top of your screen ready for you to type</li>
+                            <li>Type <code>`settings`</code> and highlight the option that appears saying
+                                <code>`Preferences: Open Settings (JSON)`</code> then select it
+                            </li>
+                            <li>Your <code>`settings.json`</code> window should appear, scroll to the bottom and make
+                                sure
+                                the last item has a <code>`,`</code> before the closing curly bracket <code>`}`</code>
+                            </li>
+                            <li>Paste the following code block (or the portion you want to change) after the last
+                                comma <code>`,`</code>, but before the closing curly bracket <code>`}`</code>:
+                                <pre><code> "mind-reader.lineHighlighter.isEnabled"          : true,
+ "mind-reader.lineHighlighter.multiLineIsEnabled" : false,
+
+ "mind-reader.lineHighlighter.backgroundColor"    : "#232C5C",
+
+ "mind-reader.lineHighlighter.outlineColor"       : "#4866FE",
+ "mind-reader.lineHighlighter.outlineWidth"       : "1px",
+ "mind-reader.lineHighlighter.outlineStyle"       : "solid",
+
+ "mind-reader.lineHighlighter.borderColorTop"     : "#FFFFFF",
+ "mind-reader.lineHighlighter.borderColorRight"   : "#FFFFFF",
+ "mind-reader.lineHighlighter.borderColorBottom"  : "#FFFFFF",
+ "mind-reader.lineHighlighter.borderColorLeft"    : "#FFFFFF",
+
+ "mind-reader.lineHighlighter.borderWidthTop"     : "1px",
+ "mind-reader.lineHighlighter.borderWidthRight"   : "16px",
+ "mind-reader.lineHighlighter.borderWidthBottom"  : "1px",
+ "mind-reader.lineHighlighter.borderWidthLeft"    : "1px",
+
+ "mind-reader.lineHighlighter.borderStyleTop"     : "solid",
+ "mind-reader.lineHighlighter.borderStyleRight"   : "solid",
+ "mind-reader.lineHighlighter.borderStyleBottom"  : "solid",
+ "mind-reader.lineHighlighter.borderStyleLeft"    : "solid",
+
+ "mind-reader.lineHighlighter.fontStyle"          : "normal",
+ "mind-reader.lineHighlighter.fontWeight"         : "bolder",
+ "mind-reader.lineHighlighter.textDecoration"     : "none",
+ "mind-reader.lineHighlighter.textColor"          : "#FFFFFF",
+</code></pre>
+                                <br>
+                                <p>After adding the code block, the <code>`settings.json`</code> file should look
+                                    similar
+                                    to this:
+                                    <img src="https://github.com/kelsvilla/LegoMindstormsVSExtension/assets/89543725/4e5135cb-e79d-4859-ac8c-af3ab3b6122e"
+                                        alt="line_highlighter_setup">
+                                </p>
+                            </li>
+                            <br>
+                            <li>Save and close <code>`settings.json`</code>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>The values are set to the default values and can be changed here manually.
+                                        Changes made directly in the settings.json will take effect automatically.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <br>
+
+                        <h3 class="text-lg font-semibold" id="configure-through-settings-window">Configure through
+                            Settings Window</h3>
+                        <ol class="list-decimal list-inside">
+                            <li>Open the settings window
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Windows: Ctrl + , or File -&gt; Preferences -&gt; Settings</li>
+                                    <li>Mac: Command + , or Code -&gt; Settings -&gt; Settings</li>
+                                </ul>
+                            </li>
+                            <li>Navigate to Extensions -&gt; Mind Reader -&gt; Line Highlighter</li>
+                            <li>Make any changes you need</li>
+                            <li>Close the settings window
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>You may need to restart VS Code to apply the changes</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <br>
+
+                        <h3 class="text-lg font-semibold" id="line-highlighter-settings-table">Line Highlighter Settings
+                            Table</h2>
+                            <table class="table-auto border-collapse border border-slate-700">
+                                <thead>
+                                    <tr>
+                                        <th class="border border-slate-700"><strong>Item</strong></th>
+                                        <th class="border border-slate-700"><strong>Description</strong></th>
+                                        <th class="border border-slate-700"><strong>Accepted Value</strong></th>
+                                        <th class="border border-slate-700"><strong>Default Values</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>isEnabled</strong></td>
+                                        <td class="border border-slate-700">Enable/Disables the line highlighter</td>
+                                        <td class="border border-slate-700">boolean</td>
+                                        <td class="border border-slate-700">true</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>multiLineIsEnabled</strong></td>
+                                        <td class="border border-slate-700">Highlight when clicking and dragging to
+                                            select lines</td>
+                                        <td class="border border-slate-700">boolean</td>
+                                        <td class="border border-slate-700">false</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>backgroundColor</strong></td>
+                                        <td class="border border-slate-700">Changes the background color of the
+                                            highlight</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#232C5C&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>outlineColor</strong></td>
+                                        <td class="border border-slate-700">Outline Color</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#4866FE&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>outlineWidth</strong></td>
+                                        <td class="border border-slate-700">Outline Width</td>
+                                        <td class="border border-slate-700">&quot;medium&quot;, &quot;thin&quot;,
+                                            &quot;thick&quot;, length (integer +
+                                            string unit), or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;1px&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>outlineStyle</strong></td>
+                                        <td class="border border-slate-700">Outline Style</td>
+                                        <td class="border border-slate-700">none, hidden, dotted, dashed, solid, double,
+                                            groove, ridge, inset, or outset
+                                        </td>
+                                        <td class="border border-slate-700">&quot;solid&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderColorTop</strong></td>
+                                        <td class="border border-slate-700">Top Border Color</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#FFFFFF&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderColorRight</strong></td>
+                                        <td class="border border-slate-700">Right Border Color</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#FFFFFF&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderColorBottom</strong></td>
+                                        <td class="border border-slate-700">Bottom Border Color</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#FFFFFF&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderColorLeft</strong></td>
+                                        <td class="border border-slate-700">Left Border Color</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#FFFFFF&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderWidthTop</strong></td>
+                                        <td class="border border-slate-700">Top Border Width</td>
+                                        <td class="border border-slate-700">&quot;medium&quot;, &quot;thin&quot;,
+                                            &quot;thick&quot;, length (integer +
+                                            string unit), or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;1px&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderWidthRight</strong></td>
+                                        <td class="border border-slate-700">Right Border Width</td>
+                                        <td class="border border-slate-700">&quot;medium&quot;, &quot;thin&quot;,
+                                            &quot;thick&quot;, length (integer +
+                                            string unit), or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;16px&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderWidthBottom</strong></td>
+                                        <td class="border border-slate-700">Bottom Border Width</td>
+                                        <td class="border border-slate-700">&quot;medium&quot;, &quot;thin&quot;,
+                                            &quot;thick&quot;, length (integer +
+                                            string unit), or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;1px&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderWidthLeft</strong></td>
+                                        <td class="border border-slate-700">Left Border Width</td>
+                                        <td class="border border-slate-700">&quot;medium&quot;, &quot;thin&quot;,
+                                            &quot;thick&quot;, length (integer +
+                                            string unit), or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;1px&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderStyleTop</strong></td>
+                                        <td class="border border-slate-700">Top Border Style</td>
+                                        <td class="border border-slate-700">none, hidden, dotted, dashed, solid, double,
+                                            groove, ridge, inset, or outset
+                                        </td>
+                                        <td class="border border-slate-700">&quot;solid&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderStyleRight</strong></td>
+                                        <td class="border border-slate-700">Right Border Style</td>
+                                        <td class="border border-slate-700">none, hidden, dotted, dashed, solid, double,
+                                            groove, ridge, inset, or outset
+                                        </td>
+                                        <td class="border border-slate-700">&quot;solid&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderStyleBottom</strong></td>
+                                        <td class="border border-slate-700">Bottom Border Style</td>
+                                        <td class="border border-slate-700">none, hidden, dotted, dashed, solid, double,
+                                            groove, ridge, inset, or outset
+                                        </td>
+                                        <td class="border border-slate-700">&quot;solid&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>borderStyleLeft</strong></td>
+                                        <td class="border border-slate-700">Left Border Style</td>
+                                        <td class="border border-slate-700">none, hidden, dotted, dashed, solid, double,
+                                            groove, ridge, inset, or outset
+                                        </td>
+                                        <td class="border border-slate-700">&quot;solid&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>fontStyle</strong></td>
+                                        <td class="border border-slate-700">Styling to the font contained within the
+                                            highlight</td>
+                                        <td class="border border-slate-700">&quot;normal&quot;, &quot;italic&quot;,
+                                            &quot;oblique&quot;, or
+                                            &quot;none&quot;
+                                        </td>
+                                        <td class="border border-slate-700">&quot;normal&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>fontWeight</strong></td>
+                                        <td class="border border-slate-700">Weight of the font contained within the
+                                            highlight</td>
+                                        <td class="border border-slate-700">&quot;normal&quot;, &quot;bold&quot;,
+                                            &quot;bolder&quot;,
+                                            &quot;lighter&quot;,
+                                            string based number, &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;bolder&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>textDecoration</strong></td>
+                                        <td class="border border-slate-700">Decoration of the font contained within the
+                                            highlight</td>
+                                        <td class="border border-slate-700">See: <a
+                                                href="https://www.w3schools.com/cssref/pr_text_text-decoration.asp"
+                                                class="text-blue-600">https://www.w3schools.com/cssref/pr_text_text-decoration.asp</a>
+                                        </td>
+                                        <td class="border border-slate-700">&quot;none&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-slate-700"><strong>textColor</strong></td>
+                                        <td class="border border-slate-700">Color of the font contained within the
+                                            highlight</td>
+                                        <td class="border border-slate-700">HEX(A), RGB(A), HSL(A), Predefined Color
+                                            String, or &quot;none&quot;</td>
+                                        <td class="border border-slate-700">&quot;#FFFFFF&quot;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                    </div>
+
+                    <!-- Voice Commands -->
+                    <div id="voice-commands" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Voice Commands</h2>
+                        <p>Voice commands can be used to execute any of the extension&#39;s provided commands with your
+                            voice. Voice
+                            commands can be activated by pressing the &quot;Start Streaming&quot; button on the Access
+                            Menu.
+                        </p>
+                        <br>
+                        <p>Also available through voice commands is speech-to-function, where generic code blocks can be
+                            inserted with dummy
+                            values. The available speech-to-function commands are:
+                        </p>
+                        <ul class="list-inside list-disc">
+                            <li>&quot;Insert If Ladder&quot;</li>
+                            <li>&quot;Insert If Else Ladder&quot;</li>
+                            <li>&quot;Insert For Loop&quot;</li>
+                            <li>&quot;Insert For Number Loop&quot;</li>
+                            <li>&quot;Insert Nest For Number Loop&quot;</li>
+                            <li>&quot;Insert Try Ladder&quot;</li>
+                        </ul>
+                    </div>
+
+                    <!-- Mind Reader Actions -->
+                    <div id="mind-reader-actions" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Mind Reader Actions</h2>
+                        <div>List of available actions</div>
+                    </div>
+
+                    <!-- Development -->
+                    <!-- Setup -->
+                    <div id="development-environment-setup-guide" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Development environment setup
+                            guide</h2>
+
+                        <div class="py-2">
+                            <h3 id="windows-10-or-11" class="text-lg font-semibold">Windows 10 or 11</h3>
+                            <ol class="list-inside list-decimal">
+                                <li>Clone this repo</li>
+                                <li>Open a terminal to the root directory
+                                    <ul class="list-inside list-disc ml-4">
+                                        <li>You can achieve that by doing one of the following:
+                                            <ul class="list-inside list-disc ml-8">
+                                                <li>Press <strong>Control-Shift-`</strong> in VS Code</li>
+                                                <li>Select on the menu bar, Terminal &gt; New Terminal in VS Code</li>
+                                                <li>Typing &quot;cmd&quot; in the address bar of the directory in File
+                                                    Explorer
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>Run <code>`npm i`</code></li>
+                            </ol>
+                        </div>
+
+                        <div class="py-2">
+                            <h3 id="macos" class="text-lg font-semibold">MacOS</h3>
+                            <ol class="list-inside list-decimal">
+                                <li>Clone this repo</li>
+                                <li>Open a terminal to the root directory
+                                    <ul class="list-inside list-disc ml-4">
+                                        <li>You can achieve that by doing one of the following:
+                                            <ul class="list-inside list-disc ml-8">
+                                                <li>Press <strong>Control-Shift-`</strong></li>
+                                                <li>Select on the menu bar, Terminal &gt; New Terminal</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>Run <code>`npm i`</code></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Running the Extension -->
+                    <div id="running-the-extension" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Running the Extension</h2>
+                        <ol class="list-inside list-decimal">
+                            <li>Have a terminal open and make sure that it is in the root directory</li>
+                            <li>Run <code>`npm run compile`</code>. This will compile the TypeScript files.</li>
+                            <li>Run <code>`npm run watch`</code>. This will reload the extension if you make any changes
+                                to
+                                the files.</li>
+                            <li>Run the extension by pressing the F5 key
+                                <ul class="list-inside list-disc ml-4">
+                                    <li>You can also select the &quot;Run and Debug&quot; tab, then select &quot;Run
+                                        Extension&quot; and press the green play button</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Alternative Setup Method -->
+                    <div id="alternative" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Alternative Setup Method</h2>
+                        <p>Instead of cloning this repo, you could also</p>
+                        <ul class="list-inside list-disc">
+                            <li>Download the <a href="/setup-development/windows/install-windows.ps1"
+                                    class="text-blue-600">install-windows.ps1</a>
+                                file (Windows) and run <code>`./install-windows.ps1`</code> in PowerShell as a normal
+                                user,
+                                and accept any UAC prompts that pop-up.
+                                <ul class="list-decimal list-disc ml-8">
+                                    <li>The installation should take around 8 minutes. If an installer doesn&#39;t pop
+                                        up,
+                                        don&#39;t be alarmed.</li>
+                                </ul>
+                            </li>
+                            <li>Download the <a href="/setup-development/linux/install-linux.sh"
+                                    class="text-blue-600">install-linux.sh</a>
+                                file
+                                (Mac) and run <code>`./install-linux.sh`</code> in the terminal.</li>
+                        </ul>
+                        <p>See the Visual Studio Code <a
+                                href="https://code.visualstudio.com/api/get-started/your-first-extension"
+                                class="text-blue-600">getting
+                                started</a>
+                            API page if you need more help.</p>
+                    </div>
+
+                    <!-- Dev Teams -->
+                    <div id="development-teams" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">Development Teams</h2>
+                        <div class="grid gap-y-2">
+                            <div>
+                                <h3 class="text-lg font-semibold" id="single-semester-snobs">Single Semester Snobs</h3>
+                                <h4 class="font-semibold" id="fall-2021-semester">Fall 2021 Semester</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Jake Grossman: JacobGrossman2@my.unt.edu</li>
+                                    <li>Cal Wooten: calwooten@my.unt.edu</li>
+                                    <li>Josiah Moses: josiahmoses@my.unt.edu</li>
+                                    <li>Sophia Drewfs: sophiadrewfs@my.unt.edu</li>
+                                    <li>Mason Bone: masonbone@my.unt.edu</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold" id="we-don-t-byte">We Don&#39;t Byte</h3>
+                                <h4 class="font-semibold" id="spring-2022-semester">Spring 2022 Semester</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>John Breaux: JohnBreaux@my.unt.edu</li>
+                                    <li>Thomas Lane: ThomasLane2@my.unt.edu</li>
+                                    <li>Kendrick Johnson: KendrickJohnson@my.unt.edu</li>
+                                    <li>Ryan Tolbert: RyanTolbert@my.unt.edu</li>
+                                    <li>Pedro Alvarez: PedroAlvarez3@my.unt.edu</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold" id="five-guys">Five Guys</h3>
+                                <h4 class="font-semibold" id="fall-2022-semester">Fall 2022 Semester</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Zachary Chenausky: zacharychenausky@my.unt.edu</li>
+                                    <li>Jigme Rinji Sherpa: jigmesherpa@my.unt.edu</li>
+                                    <li>Clay Lewis: claylewis2@my.unt.edu</li>
+                                    <li>Haris Javed: harisjaved@my.unt.edu</li>
+                                    <li>Saad Javed: saadjaved@my.unt.edu</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold" id="spam-artists">Spam Artists</h3>
+                                <h4 class="font-semibold" id="fall-2023-semester">Fall 2023 Semester</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Kevin Gautier: kevingautier@my.unt.edu</li>
+                                    <li>Alex Tomjack: Alextomjack@my.unt.edu</li>
+                                    <li>Kelsee Villareal: KelseeVillareal@my.unt.edu</li>
+                                    <li>Bryan Tang: BryanTang@my.unt.edu</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PR Checklist -->
+                    <div id="pr-checklist" class="scroll-m-14">
+                        <h2 class="text-3xl py-4">PR Checklist</h2>
+                        <p>Here&#39;s a list of things you should do before pushing a PR</p>
+                        <ol class="list-decimal list-inside">
+                            <li>Do you know if the feature works? Run the extension on a debugger and test what you
+                                added. No matter how small the change, test it.</li>
+                            <li>Do you have some sort of demo? This can be a before/after photo or a video showcasing
+                                your change. This is important so that everyone knows what to expect from your change
+                                and how it works. If you want, you can attach your photo/video to a Trello card or PR.
+                            </li>
+                            <li>Is your code formatted? Run <code>npm run format</code> to format all files. You can
+                                tell if your file has been changed by checking if the name is white. If it&#39;s gray,
+                                then it was unchanged.</li>
+                            <li>Do you have instructions for testing in your PR? This is important so that other devs
+                                know how to test your changes or know what to look out for. Even if its a visual change
+                                or there&#39;s only one thing to do, write it.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="pt-11 pb-4 text-center">
+            <div class="flex flex-wrap w-full justify-center gap-2">
+                <a href="https://github.com/kelsvilla/LegoMindstormsVSExtension" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
+            <div>&copy;
+                <script>document.write(new Date().getFullYear());</script> The Spam Artists. All rights reserved.
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>
