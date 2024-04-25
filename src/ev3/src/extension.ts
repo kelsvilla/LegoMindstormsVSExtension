@@ -362,7 +362,7 @@ async function handleCustomDebugEvent(
 						}
 						ch.destroy();
 					});
-					ch.on("exit", (code, signal, coreDump, desc) => {
+					ch.on("exit", (code: any, signal: any, coreDump: any, desc: any) => {
 						writeEmitter.fire("----------\r\n");
 						if (code === 0) {
 							writeEmitter.fire("Completed successfully.\r\n");
@@ -415,7 +415,7 @@ async function handleCustomDebugEvent(
 							);
 						}
 					});
-					channel.on("exit", (code, signal, coreDump, desc) => {
+					channel.on("exit", (code: any, signal: any, coreDump: any, desc: any) => {
 						if (!debugRestarting) {
 							output.appendLine("----------");
 							if (code === 0) {
