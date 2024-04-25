@@ -4,6 +4,7 @@ import CommandNodeProvider from "./commandNodeProvider";
 import Logger from "./log";
 import { installer } from "./pythonManager";
 import path = require("path");
+import * as ev3 from "./ev3/src/extension";
 import {toggleLineHighlight, highlightDeactivate} from "./commands/lineHighlighter";
 import { setShouldSpeak } from "./commands/text";
 import {
@@ -80,6 +81,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let hubProvider = new CommandNodeProvider(hubCommands);
 	vscode.window.registerTreeDataProvider("hubActions", hubProvider);
 
+	ev3.activate(context);
 	toggleLineHighlight();
 	setShouldSpeak();
 
